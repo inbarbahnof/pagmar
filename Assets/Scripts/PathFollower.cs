@@ -10,7 +10,13 @@ public class PathFollower : MonoBehaviour
 
     private void Update()
     {
+        UpdateTravelThroughPath();
+    }
+
+    private void UpdateTravelThroughPath()
+    {
         distanceTravelled += speed * Time.deltaTime;
         transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled);
+        transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled);
     }
 }
