@@ -12,11 +12,21 @@ public class TargetRangeManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        randomTargetGenerator.AddTargets(other.GetComponent<Target>());
+        Target target = other.GetComponent<Target>();
+        if (target != null)
+        {
+            // Debug.Log("added target: " + other.name);
+            randomTargetGenerator.AddTargets(target);
+        }
     }
     
     private void OnTriggerExit2D(Collider2D other)
     {
-        randomTargetGenerator.RemoveTarget(other.GetComponent<Target>());
+        Target target = other.GetComponent<Target>();
+        if (target != null)
+        {
+            // Debug.Log("removed target: " + other.name);
+            randomTargetGenerator.RemoveTarget(target);
+        }
     }
 }

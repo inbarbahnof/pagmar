@@ -10,15 +10,16 @@ public class PathTarget : Target
     
     public override void StartTargetAction()
     {
-        follower.SetCurPath(pathCreator);
         isDogOnPath = true;
-        follower.SetIsOnPath(true);
+        follower.SetCurPath(pathCreator);
+        follower.SetIsOnPath(isDogOnPath);
     }
     
     public override void FinishTargetAction()
     {
-        follower.SetIsOnPath(false);
         isDogOnPath = false;
+        follower.SetIsOnPath(isDogOnPath);
+        follower.ResetFollow();
         base.FinishTargetAction();
     }
 

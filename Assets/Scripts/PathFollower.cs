@@ -33,4 +33,9 @@ public class PathFollower : MonoBehaviour
     {
         isOnPath = onPath;
     }
+
+    public void ResetFollow()
+    {
+        distanceTravelled = 0;
+    }
 }

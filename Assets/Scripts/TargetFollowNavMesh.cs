@@ -31,10 +31,12 @@ public class TargetFollowNavMesh : MonoBehaviour
         if (distance <= targetDistance)
         {
             print("in target distance");
+            agent.isStopped = true;
             StartTargetAction();
         }
         else if (isGoingToTarget)
         {
+            agent.isStopped = false;
             agent.SetDestination(currentTarget.transform.position);
         }
     }
