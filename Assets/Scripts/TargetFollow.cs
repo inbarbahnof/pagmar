@@ -4,64 +4,83 @@ using UnityEngine;
 
 public class TargetFollow : MonoBehaviour
 {
-    private float moveSpeed = 5f;
     [SerializeField] private RandomTargetGenerator randomTargetGenerator;
-    
-    private Transform target;
+ 
+    private float moveSpeed = 5f;
     private float targetDistance = 3f;
     private float targetHoverTime = 1f; // TODO maybe make this a range
-    private bool hover = false;
     
     private Rigidbody2D rb;
     private Vector2 direction;
     
+    private bool isPerformingAction = false;
+    private Transform target;
+    private Target currentTarget;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        GetNewTarget();
     }
     
     void Update()
     {
+        print("in update");
         if (target != null)
         {
+            print("in target");
             Vector2 moveDirection = (target.position - transform.position);
             moveDirection.Normalize();
             direction = moveDirection;
         }
     }
-
+    
     public void GetNewTarget()
     {
-        Target newTarget = randomTargetGenerator.GenerateNewTarget();
-        Debug.Log("newTarget: " + newTarget.name);
-        target = newTarget.gameObject.transform;
-        targetDistance = newTarget.GetDistance();
-        StartCoroutine(HoverCoroutine());
-    }
+        currentTarget = randomTargetGenerator.GenerateNewTarget();
+        Debug.Log("New target: " + currentTarget.name);
 
-    private IEnumerator HoverCoroutine()
-    {
-        hover = true;
-        yield return new WaitForSeconds(targetHoverTime);
-        hover = false;
+        target = currentTarget.transform;
+        targetDistance = currentTarget.GetDistance();
+        currentTarget.OnTargetActionComplete += OnTargetActionComplete; // Subscribe to event
     }
     
     private void FixedUpdate()
     {
-        // there is a target, and I am too far from it
-        if (target != null && Vector3.Distance(transform.position, target.position) > targetDistance)
+        if (target != null && !isPerformingAction)
         {
-            MoveCharacter(direction);
-        }
-        // there is not a target, or I am close to the target, and I am not hovering
-        else if (!hover)
-        {
-            GetNewTarget();
+            float distance = Vector3.Distance(transform.position, target.position);
+            
+            if (distance > targetDistance)
+            {
+                MoveCharacter(direction);
+            }
+            else
+            {
+                StartTargetAction();
+            }
         }
     }
 
     private void MoveCharacter(Vector2 moveDirection)
     {
         rb.MovePosition((Vector2)transform.position + (moveDirection * (moveSpeed * Time.deltaTime)));
+    }
+    
+    private void StartTargetAction()
+    {
+        if (currentTarget != null)
+        {
+            isPerformingAction = true;
+            currentTarget.StartTargetAction();
+        }
+    }
+
+    private void OnTargetActionComplete()
+    {
+        Debug.Log("Target action completed");
+        isPerformingAction = false;
+        currentTarget.OnTargetActionComplete -= OnTargetActionComplete; // Unsubscribe
+        GetNewTarget();
     }
 }
