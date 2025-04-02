@@ -5,7 +5,7 @@ public class TargetRangeManager : MonoBehaviour
 {
     [SerializeField] private RandomTargetGenerator randomTargetGenerator;
 
-    private void Start()
+    private void Awake()
     {
         randomTargetGenerator.AddTargets(GetComponentInParent<Target>());
     }

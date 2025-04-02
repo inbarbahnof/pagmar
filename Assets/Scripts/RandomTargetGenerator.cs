@@ -11,7 +11,6 @@ public class RandomTargetGenerator : MonoBehaviour
     {
         if (target)
         {
-            Debug.Log("added target: " + target.name);
             targets.Add(target);
         }
     }
@@ -20,7 +19,6 @@ public class RandomTargetGenerator : MonoBehaviour
     {
         if (target)
         {
-            Debug.Log("removed target: " + target.name);
             targets.Remove(target);
         }
     }
