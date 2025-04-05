@@ -9,7 +9,6 @@ public class EndPath : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Dog") && _pathTarget.getIsDogOnPath())
         {
-            print("in EndPath");
             _pathTarget.FinishTargetAction();
         }
     }

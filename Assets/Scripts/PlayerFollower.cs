@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,9 +15,17 @@ public class PlayerFollower : MonoBehaviour
     private float targetDistance;
     private bool isPerformingAction = false;
     private bool isGoingToTarget = true;
+    
+    private PlayerStateManager playerStateManager;
 
     private void Start()
     {
+        playerStateManager = player.GetComponent<PlayerStateManager>();
+        if (playerStateManager != null)
+        {
+            playerStateManager.OnPlayerStateChange += HandlePlayerStateChange;
+        }
+        
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -43,6 +52,22 @@ public class PlayerFollower : MonoBehaviour
             agent.isStopped = false;
             agent.SetDestination(currentTarget.transform.position);
         }
+    }
+    
+    private void HandlePlayerStateChange(PlayerState newState)
+    {
+        Debug.Log("Dog noticed player state changed to: " + newState);
+
+        if (newState == PlayerState.Walk)
+        {
+            StartCoroutine(WaitOnGoingToPlayer());
+            GetNewTarget();
+        }
+    }
+
+    private IEnumerator WaitOnGoingToPlayer()
+    {
+        yield return new WaitForSeconds(1.5f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -88,6 +113,5 @@ public class PlayerFollower : MonoBehaviour
         Debug.Log("Target action completed111");
         isPerformingAction = false;
         currentTarget.OnTargetActionComplete -= OnTargetActionComplete;
-        GetNewTarget();
     }
 }
