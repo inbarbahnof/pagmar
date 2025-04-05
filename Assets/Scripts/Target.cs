@@ -15,13 +15,7 @@ public class Target : MonoBehaviour
     // started the action
     public virtual void StartTargetAction()
     {
-        StartCoroutine(HoverTarget());
-    }
-
-    private IEnumerator HoverTarget()
-    {
-        yield return new WaitForSeconds(2f);
-        FinishTargetAction();
+        OnTargetActionComplete?.Invoke();
     }
     
     // finished the action

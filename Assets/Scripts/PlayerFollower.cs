@@ -41,7 +41,7 @@ public class PlayerFollower : MonoBehaviour
         float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
         
         // Check if the dog reached the target
-        if (distance <= targetDistance)
+        if (distance <= 0.6f)
         {
             print("in target distance");
             agent.isStopped = true;
@@ -58,7 +58,7 @@ public class PlayerFollower : MonoBehaviour
     {
         Debug.Log("Dog noticed player state changed to: " + newState);
 
-        if (newState == PlayerState.Walk)
+        if (newState == PlayerState.Walk && !isPerformingAction)
         {
             StartCoroutine(WaitOnGoingToPlayer());
             GetNewTarget();
@@ -94,6 +94,7 @@ public class PlayerFollower : MonoBehaviour
 
     private void StartTargetAction()
     {
+        print("in StartTargetAction");
         isPerformingAction = true;
         isGoingToTarget = false;
         currentTarget.StartTargetAction();
@@ -103,6 +104,7 @@ public class PlayerFollower : MonoBehaviour
     {
         print("in get new target");
         isGoingToTarget = true;
+        isPerformingAction = false;
         currentTarget = targets[Random.Range(0, targets.Count)];
         targetDistance = currentTarget.GetDistance();
         currentTarget.OnTargetActionComplete += OnTargetActionComplete;
@@ -113,5 +115,10 @@ public class PlayerFollower : MonoBehaviour
         Debug.Log("Target action completed111");
         isPerformingAction = false;
         currentTarget.OnTargetActionComplete -= OnTargetActionComplete;
+        
+        if (currentTarget is HoverTarget || currentTarget is PathTarget)
+        {
+            GetNewTarget();
+        }
     }
 }
