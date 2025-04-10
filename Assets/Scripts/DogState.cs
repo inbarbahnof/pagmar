@@ -1,5 +1,6 @@
 ﻿public enum DogState
 {
     Idle,
-    Follow
+    Follow,
+    Hover
 }

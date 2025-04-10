@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class RandomTargetGenerator : MonoBehaviour
 {
-    private List<Target> targets = new List<Target>(); // player target added on start
+    [SerializeField] private List<Target> targets;
     
     public void AddTargets(Target target)
     {

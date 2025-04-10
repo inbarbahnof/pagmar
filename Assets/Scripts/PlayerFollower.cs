@@ -7,30 +7,29 @@ using Random = UnityEngine.Random;
 
 public class PlayerFollower : MonoBehaviour
 {
+    public event Action OnIdleAfterTarget;
+    public event Action OnStartHover;
+    public event Action OnStartFollow;
+    
     [SerializeField] private Transform player;
-    [SerializeField] private List<Target> targets;
     
     private NavMeshAgent agent;
     private Target currentTarget;
+    private Target nextTarget;
     private float targetDistance;
     private bool isPerformingAction = false;
     private bool isGoingToTarget = true;
-    
-    private PlayerStateManager playerStateManager;
+    private bool isTargetActionDone = false;
+
+    private float stopProb = 0.5f;
 
     private void Start()
     {
-        playerStateManager = player.GetComponent<PlayerStateManager>();
-        if (playerStateManager != null)
-        {
-            playerStateManager.OnPlayerStateChange += HandlePlayerStateChange;
-        }
-        
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         
-        GetNewTarget();
+        // GetNewTarget();
     }
     
     void Update()
@@ -53,16 +52,25 @@ public class PlayerFollower : MonoBehaviour
             agent.SetDestination(currentTarget.transform.position);
         }
     }
-    
-    private void HandlePlayerStateChange(PlayerState newState)
-    {
-        Debug.Log("Dog noticed player state changed to: " + newState);
 
-        if (newState == PlayerState.Walk && !isPerformingAction)
-        {
-            StartCoroutine(WaitOnGoingToPlayer());
-            GetNewTarget();
-        }
+    public void GoToNextTarget()
+    {
+        currentTarget = nextTarget;
+        nextTarget = null;
+        
+        StartCoroutine(WaitOnGoingToPlayer());
+        
+        OnStartFollow?.Invoke();
+        
+        isGoingToTarget = true;
+        isPerformingAction = false;
+        targetDistance = currentTarget.GetDistance();
+        currentTarget.OnTargetActionComplete += OnTargetActionComplete;
+    }
+
+    public void SetNextTarget(Target target)
+    {
+        nextTarget = target;
     }
 
     private IEnumerator WaitOnGoingToPlayer()
@@ -75,19 +83,22 @@ public class PlayerFollower : MonoBehaviour
         Target potentialTarget = other.GetComponent<Target>();
         if (potentialTarget != null)
         {
-            if (Random.value < 0.7f) // 50% chance to switch to this target
+            if (Random.value < stopProb)
             {
                 Debug.Log("Switching to new target from trigger");
-            
+                
                 // Unsubscribe from old target
                 if (currentTarget != null)
                     currentTarget.OnTargetActionComplete -= OnTargetActionComplete;
 
+                nextTarget = currentTarget;
                 currentTarget = potentialTarget;
                 targetDistance = currentTarget.GetDistance();
                 currentTarget.OnTargetActionComplete += OnTargetActionComplete;
                 isPerformingAction = false;
                 isGoingToTarget = true;
+                
+                OnStartHover?.Invoke();
             }
         }
     }
@@ -99,26 +110,20 @@ public class PlayerFollower : MonoBehaviour
         isGoingToTarget = false;
         currentTarget.StartTargetAction();
     }
-
-    private void GetNewTarget()
-    {
-        print("in get new target");
-        isGoingToTarget = true;
-        isPerformingAction = false;
-        currentTarget = targets[Random.Range(0, targets.Count)];
-        targetDistance = currentTarget.GetDistance();
-        currentTarget.OnTargetActionComplete += OnTargetActionComplete;
-    }
     
     private void OnTargetActionComplete()
     {
-        Debug.Log("Target action completed111");
         isPerformingAction = false;
         currentTarget.OnTargetActionComplete -= OnTargetActionComplete;
         
-        if (currentTarget is HoverTarget || currentTarget is PathTarget)
+        if (nextTarget != null)
         {
-            GetNewTarget();
+            GoToNextTarget();
+        }
+        else
+        {
+            // notify that target action is complete
+            OnIdleAfterTarget?.Invoke();
         }
     }
 }
