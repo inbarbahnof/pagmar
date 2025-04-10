@@ -44,7 +44,7 @@ public class DogActionManager : MonoBehaviour
         // float distanceToPlayer = Vector3.Distance(transform.position, playerStateManager.transform.position);
 
         Target newTarget = _targetGenerator.GenerateNewTarget();
-                
+        if (newTarget == null) return;
         // check if dog is on idle or action
         switch (curState)
         {
@@ -68,6 +68,7 @@ public class DogActionManager : MonoBehaviour
     private void StartWalkingAfterNextTarget()
     {
         Target newTarget = _targetGenerator.GenerateNewTarget();
+        if (newTarget == null) return;
         curState = DogState.Follow;
         _playerFollower.SetNextTarget(newTarget);
         _playerFollower.GoToNextTarget();

@@ -9,7 +9,7 @@ public class InteractableManager : MonoBehaviour
     
     public static InteractableManager instance;
     
-    private List<BaseInteractable> curInteractables;
+    private List<BaseInteractable> curInteractables = new List<BaseInteractable>();
     private BaseInteractable curInteractableObj;
     private bool interacting = false;
     

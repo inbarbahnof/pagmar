@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class RandomTargetGenerator : MonoBehaviour
 {
-    [SerializeField] private List<Target> targets;
+    [SerializeField] private List<Target> targets = new List<Target>();
     
     public void AddTargets(Target target)
     {
@@ -25,6 +25,7 @@ public class RandomTargetGenerator : MonoBehaviour
     
     public Target GenerateNewTarget()
     {
+        if (targets.Count == 0) return null;
         Target newTarget = targets[GenerateNewTargetIndex()];
         return newTarget;
     }
