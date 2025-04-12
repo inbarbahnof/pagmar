@@ -13,11 +13,12 @@ public class DogActionManager : MonoBehaviour
     private void Start()
     {
         _playerFollower = GetComponent<PlayerFollower>();
-        // _targetGenerator = GetComponent<RandomTargetGenerator>();
         
         _playerFollower.OnIdleAfterTarget += HandleDogIdle;
         _playerFollower.OnStartHover += HandleDogHover;
         _playerFollower.OnStartFollow += HandleDogFollow;
+
+        StartWalkingAfterNextTarget();
     }
 
     // public void SetPlayerStateManager(PlayerStateManager player)
@@ -68,7 +69,11 @@ public class DogActionManager : MonoBehaviour
     private void StartWalkingAfterNextTarget()
     {
         Target newTarget = _targetGenerator.GenerateNewTarget();
-        if (newTarget == null) return;
+        if (newTarget == null)
+        {
+            print("newTarget == null");
+            return;
+        }
         curState = DogState.Follow;
         _playerFollower.SetNextTarget(newTarget);
         _playerFollower.GoToNextTarget();
