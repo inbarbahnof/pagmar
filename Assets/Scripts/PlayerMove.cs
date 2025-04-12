@@ -5,6 +5,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float _speed = 6f;
     
     private Vector2 _moveInput = Vector2.zero;
+    private Vector2 _prevMoveInput;
     private Rigidbody2D _playerRb;
 
     private PlayerStateManager _stateManager;
@@ -33,6 +34,13 @@ public class PlayerMove : MonoBehaviour
                 isMoving = true;
                 _stateManager.SetState(PlayerState.Walk);
             }
+
+            if (Mathf.Sign(_moveInput.x) != Mathf.Sign(_prevMoveInput.x))
+            {
+                transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            }
+            
+            _prevMoveInput = _moveInput;
         }
         else
         {
