@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 7531407140655005662}
   - component: {fileID: 3584158599489075706}
   - component: {fileID: 7064196692918761702}
-  - component: {fileID: 3631106154867348112}
   - component: {fileID: 2031817862653350588}
+  - component: {fileID: 8220548381845869810}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -39,6 +39,7 @@ Transform:
   m_Children:
   - {fileID: 5749353190371015529}
   - {fileID: 2968899633595902799}
+  - {fileID: 7328353952192761471}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2099683636541506458
@@ -148,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a4248cb37cf6a4fa1d018b21b3d6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactableManager: {fileID: 0}
 --- !u!114 &3584158599489075706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +200,19 @@ MonoBehaviour:
     m_ActionId: 6c2ab1b8-8984-453a-af3d-a3c78ae1679a
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7531407140655005662}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
     m_ActionId: 852140f2-7766-474d-8707-702459ba45f3
     m_ActionName: 'Player/Interact[/Keyboard/e]'
   - m_PersistentCalls:
@@ -312,19 +326,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3631106154867348112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810158106228689958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c76da03c26d107d43804e14eebb17127, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 3
 --- !u!114 &2031817862653350588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +338,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedc0199c20c8a741b850e842c817688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8220548381845869810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810158106228689958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e38829e606522b4da77e7a0fceb28a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pickUpParent: {fileID: 4850159602726226621}
+--- !u!1 &4850159602726226621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7328353952192761471}
+  m_Layer: 0
+  m_Name: PickUpParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7328353952192761471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4850159602726226621}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.58, y: -0.05, z: 0}
+  m_LocalScale: {x: 1, y: 0.53763443, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3301466037238240058}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1157866906046441587
 PrefabInstance:
   m_ObjectHideFlags: 0

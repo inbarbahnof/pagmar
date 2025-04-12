@@ -1,5 +1,7 @@
-﻿public interface IInteractable
+﻿using UnityEngine;
+
+public interface IInteractable
 {
-    void Interact();
+    void Interact(Transform player);
     void SetHighlight(bool isHighlighted);
 }

@@ -15,4 +15,16 @@ public class InputManager : MonoBehaviour
         Vector2 moveInput = context.ReadValue<Vector2>();
         _player.UpdateMoveInput(moveInput);
     }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            InteractableManager.instance.OnInteract();  // Button just pressed
+        }
+        else if (context.canceled)
+        {
+            InteractableManager.instance.OnStopInteract(); // Button released
+        }
+    }
 }

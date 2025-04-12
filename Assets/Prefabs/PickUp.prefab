@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8824701921238938360}
   - component: {fileID: 525374736563896095}
   - component: {fileID: 1778779946493218321}
+  - component: {fileID: 1991178362765687481}
   m_Layer: 0
   m_Name: PickUp
   m_TagString: Untagged
@@ -125,6 +126,19 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.8
+--- !u!114 &1991178362765687481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8422414114862519063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac00ee90be82db4c8e1ca0d3a2bbc10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightEffect: {fileID: 3876481643124065800}
 --- !u!1001 &5250256550240507669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -177,11 +191,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractableIndicator
       objectReference: {fileID: 0}
+    - target: {fileID: 9011895302801281309, guid: d685dfdbabb3e0948996070fc82defb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d685dfdbabb3e0948996070fc82defb3, type: 3}
+--- !u!1 &3876481643124065800 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9011895302801281309, guid: d685dfdbabb3e0948996070fc82defb3, type: 3}
+  m_PrefabInstance: {fileID: 5250256550240507669}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7253375188969064651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3203610531653148638, guid: d685dfdbabb3e0948996070fc82defb3, type: 3}

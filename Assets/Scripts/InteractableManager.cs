@@ -12,6 +12,7 @@ public class InteractableManager : MonoBehaviour
     private List<BaseInteractable> curInteractables = new List<BaseInteractable>();
     private BaseInteractable curInteractableObj;
     private bool interacting = false;
+    private float interactionRange = 1.5f;
     
     private void Start()
     {
@@ -30,6 +31,12 @@ public class InteractableManager : MonoBehaviour
     public void RemoveInteractable(BaseInteractable interactable)
     {
         curInteractables.Remove(interactable);
+        
+        if (curInteractableObj == interactable)
+        {
+            curInteractableObj.SetHighlight(false);
+            curInteractableObj = null;
+        }
     }
 
     private void Update()
@@ -37,6 +44,20 @@ public class InteractableManager : MonoBehaviour
         if (!interacting)
         {
             UpdateClosestInteractable();
+            RemoveDistantInteractables();
+        }
+    }
+    
+    private void RemoveDistantInteractables()
+    {
+        for (int i = curInteractables.Count - 1; i >= 0; i--)
+        {
+            BaseInteractable interactable = curInteractables[i];
+            float dist = Vector2.Distance(player.position, interactable.transform.position);
+            if (dist > interactionRange)
+            {
+                RemoveInteractable(interactable);
+            }
         }
     }
 
@@ -69,19 +90,31 @@ public class InteractableManager : MonoBehaviour
     // player pressed interact button
     public void OnInteract()
     {
-        curInteractableObj.Interact();
-        interacting = true;
+        if (curInteractableObj != null)
+        {
+            curInteractableObj.Interact(player);
+            curInteractableObj.SetHighlight(false);
+            interacting = true;
+        }
     }
 
     // player stopped pressing button
     public void OnStopInteract()
     {
-        curInteractableObj.StopInteract();
+        if (curInteractableObj != null)
+        {
+            curInteractableObj.StopInteractPress();
+        }
     }
 
     public void OnFinishInteraction()
     {
         interacting = false;
-    }
+        
+        if (curInteractableObj != null)
+        {
+            curInteractableObj.SetHighlight(true);
+        }
+    } 
     
 }
