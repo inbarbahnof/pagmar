@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour
 
     private PlayerStateManager _stateManager;
     private bool isMoving = false;
+    private bool isPushing = false;
     
     void Start()
     {
@@ -35,7 +36,7 @@ public class PlayerMove : MonoBehaviour
                 _stateManager.SetState(PlayerState.Walk);
             }
 
-            if (Mathf.Sign(_moveInput.x) != Mathf.Sign(_prevMoveInput.x))
+            if (!isPushing && Mathf.Sign(_moveInput.x) != Mathf.Sign(_prevMoveInput.x))
             {
                 transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             }
@@ -47,6 +48,11 @@ public class PlayerMove : MonoBehaviour
             isMoving = false;
             _stateManager.SetState(PlayerState.Idle);
         }
+    }
+
+    public void SetIsPushing(bool push)
+    {
+        isPushing = push;
     }
 
     public void UpdateMoveInput(Vector2 moveInput)

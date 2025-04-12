@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4359331051284699735}
   - component: {fileID: 170713392587747206}
   - component: {fileID: 912666065559708798}
+  - component: {fileID: 4514809137630530987}
   m_Layer: 0
   m_Name: Push
   m_TagString: Untagged
@@ -125,6 +126,20 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.8
+--- !u!114 &4514809137630530987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2330076112419468966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147ab214f07aa7a49897e4e97e8abce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightEffect: {fileID: 6893773959335885168}
+  pushSpeed: 5
 --- !u!1001 &2502653270438635629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -185,5 +200,10 @@ PrefabInstance:
 --- !u!4 &1066991569218058163 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3203610531653148638, guid: d685dfdbabb3e0948996070fc82defb3, type: 3}
+  m_PrefabInstance: {fileID: 2502653270438635629}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6893773959335885168 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9011895302801281309, guid: d685dfdbabb3e0948996070fc82defb3, type: 3}
   m_PrefabInstance: {fileID: 2502653270438635629}
   m_PrefabAsset: {fileID: 0}
