@@ -42,7 +42,7 @@ public class PlayerFollower : MonoBehaviour
         // Check if the dog reached the target
         if (distance <= 0.6f)
         {
-            print("in target distance");
+            //print("in target distance");
             agent.isStopped = true;
             StartTargetAction();
         }
@@ -85,7 +85,7 @@ public class PlayerFollower : MonoBehaviour
         {
             if (Random.value < stopProb)
             {
-                Debug.Log("Switching to new target from trigger");
+                //Debug.Log("Switching to new target from trigger");
                 
                 // Unsubscribe from old target
                 if (currentTarget != null)
@@ -105,7 +105,7 @@ public class PlayerFollower : MonoBehaviour
 
     private void StartTargetAction()
     {
-        print("in StartTargetAction");
+        //print("in StartTargetAction");
         isPerformingAction = true;
         isGoingToTarget = false;
         currentTarget.StartTargetAction();

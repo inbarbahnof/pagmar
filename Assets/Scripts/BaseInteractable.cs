@@ -34,7 +34,7 @@ public abstract class BaseInteractable : MonoBehaviour, IInteractable
     }
 
     // task complete / not performing task anymore
-    protected void FinishInteraction()
+    protected virtual void FinishInteraction()
     {
         _isInteracting = false;
         InteractableManager.instance.OnFinishInteraction();
