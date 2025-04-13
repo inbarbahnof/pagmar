@@ -26,12 +26,13 @@ public class InteractableManager : MonoBehaviour
     public void AddInteractableObj(BaseInteractable interactable)
     {
         curInteractables.Add(interactable);
+        print("inter added: " + interactable.name);
     }
 
     public void RemoveInteractable(BaseInteractable interactable)
     {
         curInteractables.Remove(interactable);
-        
+        print("inter removed: " + interactable + " at dist: " + Vector2.Distance(player.position, interactable.transform.position));
         if (curInteractableObj == interactable)
         {
             curInteractableObj.SetHighlight(false);
@@ -53,7 +54,7 @@ public class InteractableManager : MonoBehaviour
         for (int i = curInteractables.Count - 1; i >= 0; i--)
         {
             BaseInteractable interactable = curInteractables[i];
-            float dist = Vector2.Distance(player.position, interactable.transform.position);
+            float dist = Vector2.Distance(player.position, interactable.GetCurPos());
             if (dist > interactionRange)
             {
                 RemoveInteractable(interactable);

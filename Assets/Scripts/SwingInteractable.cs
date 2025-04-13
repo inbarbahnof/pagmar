@@ -23,6 +23,11 @@ public class SwingInteractable : BaseInteractable
         StartSwing();
     }
 
+    public override Vector2 GetCurPos()
+    {
+        return attachLoc.position;
+    }
+
     private void AttachPlayerToRope()
     {
         _ogPlayerRot = _player.rotation;
@@ -50,11 +55,8 @@ public class SwingInteractable : BaseInteractable
 
         while (elapsedTime < swingTime)
         {
-            print("swing time: " + elapsedTime);
             float currentAngle = Mathf.Lerp(startAngle, -startAngle, elapsedTime / swingTime);
             transform.rotation = Quaternion.Euler(0f, 0f, currentAngle);
-            print("rotation: " + transform.rotation);
-            //UpdatePlayerPos();
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -75,11 +77,6 @@ public class SwingInteractable : BaseInteractable
         // stop anim and drop
         DetachAndReset();
         // fall anim
-    }
-
-    private Vector2 ComputePlayerPos()
-    {
-        return _player.position;
     }
 
     private void DetachAndReset()

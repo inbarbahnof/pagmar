@@ -7,6 +7,10 @@ public abstract class BaseInteractable : MonoBehaviour, IInteractable
 
     private bool _isInteracting = false;
     
+    /// <summary>
+    /// Controlls highlight of interactable obj, turned on when player can interact and off otherwise.
+    /// </summary>
+    /// <param name="isHighlighted"> Bool val to set highlight activation to </param>
     public void SetHighlight(bool isHighlighted)
     {
         highlightEffect.SetActive(isHighlighted);
@@ -20,23 +24,40 @@ public abstract class BaseInteractable : MonoBehaviour, IInteractable
         }
     }
 
-    // player pressed button
+    /// <summary>
+    /// Called when player pressed interact button and this is current interactable obj.
+    /// </summary>
+    /// <param name="player"> Transform of player interacting with obj </param>
     public virtual void Interact(Transform player)
     {
         _isInteracting = true;
     }
+    
+    /// <summary>
+    /// Returns position for measuring distance from player to find closest interactable.
+    /// </summary>
+    /// <returns> Position from which to measure dist from player </returns>
+    public virtual Vector2 GetCurPos()
+    {
+        return transform.position;
+    }
 
-    // player let go of button
+    /// <summary>
+    /// Called when player interacting with obj let go of interact button.
+    /// </summary>
     public virtual void StopInteractPress()
     {
         // if done need to finish interaction
         // this may be just picking up an obj and then not done until press again to drop
     }
 
-    // task complete / not performing task anymore
-    protected virtual void FinishInteraction()
+    /// <summary>
+    /// Called when player has stopped interaction with obj, either in the middle of interaction or when finished.
+    /// </summary>
+    protected void FinishInteraction()
     {
         _isInteracting = false;
         InteractableManager.instance.OnFinishInteraction();
     }
+    
 }
