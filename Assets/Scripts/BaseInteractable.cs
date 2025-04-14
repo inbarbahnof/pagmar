@@ -28,7 +28,7 @@ public abstract class BaseInteractable : MonoBehaviour, IInteractable
     /// Called when player pressed interact button and this is current interactable obj.
     /// </summary>
     /// <param name="player"> Transform of player interacting with obj </param>
-    public virtual void Interact(Transform player)
+    public virtual void Interact(Transform player, Transform dog)
     {
         _isInteracting = true;
     }

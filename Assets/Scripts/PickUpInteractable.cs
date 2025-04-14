@@ -6,9 +6,9 @@ public class PickUpInteractable : BaseInteractable
     private bool isPickedUp = false;
     private Transform originalParent;
     
-    public override void Interact(Transform player)
+    public override void Interact(Transform player, Transform dog)
     {
-        base.Interact(player);
+        base.Interact(player, dog);
         
         if (isPickedUp) DropObject();
 

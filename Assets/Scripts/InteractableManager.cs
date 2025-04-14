@@ -6,6 +6,7 @@ using UnityEngine.PlayerLoop;
 public class InteractableManager : MonoBehaviour
 {
     [SerializeField] private Transform player;
+    [SerializeField] private Transform dog;
     
     public static InteractableManager instance;
     
@@ -13,6 +14,7 @@ public class InteractableManager : MonoBehaviour
     private BaseInteractable curInteractableObj;
     private bool interacting = false;
     private float interactionRange = 1.5f;
+    private PlayerStateManager playerStateManager;
     
     private void Start()
     {
@@ -21,18 +23,20 @@ public class InteractableManager : MonoBehaviour
             instance = this;
         }
         else Debug.LogError("TOO MANY INTERACTABLE MANAGERS!");
+
+        playerStateManager = player.GetComponent<PlayerStateManager>();
     }
 
     public void AddInteractableObj(BaseInteractable interactable)
     {
         curInteractables.Add(interactable);
-        print("inter added: " + interactable.name);
+        // print("inter added: " + interactable.name);
     }
 
     public void RemoveInteractable(BaseInteractable interactable)
     {
         curInteractables.Remove(interactable);
-        print("inter removed: " + interactable + " at dist: " + Vector2.Distance(player.position, interactable.transform.position));
+        // print("inter removed: " + interactable + " at dist: " + Vector2.Distance(player.position, interactable.transform.position));
         if (curInteractableObj == interactable)
         {
             curInteractableObj.SetHighlight(false);
@@ -93,9 +97,11 @@ public class InteractableManager : MonoBehaviour
     {
         if (curInteractableObj != null)
         {
-            curInteractableObj.Interact(player);
+            curInteractableObj.Interact(player, dog);
             curInteractableObj.SetHighlight(false);
             interacting = true;
+            
+            playerStateManager.SetStateAccordingToInteraction(curInteractableObj);
         }
     }
 
@@ -116,6 +122,8 @@ public class InteractableManager : MonoBehaviour
         {
             curInteractableObj.SetHighlight(true);
         }
+        
+        playerStateManager.SetState(PlayerState.Idle);
     } 
     
 }

@@ -4,11 +4,14 @@ using UnityEngine;
 public class DogActionManager : MonoBehaviour
 {
     private DogState curState = DogState.Idle;
-
+    public DogState CurState => curState;
+    
     [SerializeField] private PlayerStateManager playerStateManager;
     [SerializeField] private RandomTargetGenerator _targetGenerator;
+    [SerializeField] private float _pushDistance = 2f;
     
     private PlayerFollower _playerFollower;
+    private Transform _playerTransform;
 
     private void Start()
     {
@@ -18,14 +21,10 @@ public class DogActionManager : MonoBehaviour
         _playerFollower.OnStartHover += HandleDogHover;
         _playerFollower.OnStartFollow += HandleDogFollow;
 
+        _playerTransform = playerStateManager.GetComponent<Transform>();
+
         StartWalkingAfterNextTarget();
     }
-
-    // public void SetPlayerStateManager(PlayerStateManager player)
-    // {
-    //     playerStateManager = player;
-    //     // playerStateManager.OnPlayerStateChange += HandlePlayerStateChange;
-    // }
     
     private void Update()
     {
@@ -37,6 +36,20 @@ public class DogActionManager : MonoBehaviour
             case PlayerState.Idle:
                 HandlePlayerIdleBehavior();
                 break;
+            case PlayerState.Push:
+                HandlePlayerPushBehavior();
+                break;
+        }
+    }
+
+    private void HandlePlayerPushBehavior()
+    {
+        float distance = Vector2.Distance(_playerTransform.position, transform.position);
+        
+        if (distance < _pushDistance)
+        {
+            curState = DogState.Push;
+            _playerFollower.SetIsGoingToTarget(false);
         }
     }
     
@@ -46,6 +59,7 @@ public class DogActionManager : MonoBehaviour
 
         Target newTarget = _targetGenerator.GenerateNewTarget();
         if (newTarget == null) return;
+        
         // check if dog is on idle or action
         switch (curState)
         {
@@ -63,12 +77,13 @@ public class DogActionManager : MonoBehaviour
 
     private void HandlePlayerIdleBehavior()
     {
-        
+        curState = DogState.Idle;
     }
 
     private void StartWalkingAfterNextTarget()
     {
         Target newTarget = _targetGenerator.GenerateNewTarget();
+        
         if (newTarget == null)
         {
             print("newTarget == null");
@@ -91,7 +106,7 @@ public class DogActionManager : MonoBehaviour
     
     private void HandleDogIdle()
     {
-        Debug.Log("Dog is idle after finishing a target.");
-        curState = DogState.Idle;
+        // Debug.Log("Dog is idle after finishing a target.");
+        // curState = DogState.Idle;
     }
 }

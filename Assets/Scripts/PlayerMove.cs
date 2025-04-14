@@ -33,7 +33,8 @@ public class PlayerMove : MonoBehaviour
             if (!isMoving)
             {
                 isMoving = true;
-                _stateManager.SetState(PlayerState.Walk);
+                
+                if (!isPushing) _stateManager.SetState(PlayerState.Walk);
             }
 
             if (!isPushing && Mathf.Sign(_moveInput.x) != Mathf.Sign(_prevMoveInput.x))
@@ -49,7 +50,7 @@ public class PlayerMove : MonoBehaviour
         else
         {
             isMoving = false;
-            _stateManager.SetState(PlayerState.Idle);
+            if (!isPushing) _stateManager.SetState(PlayerState.Idle);
         }
     }
 

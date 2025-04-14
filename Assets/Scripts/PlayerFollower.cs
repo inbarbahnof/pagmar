@@ -68,6 +68,11 @@ public class PlayerFollower : MonoBehaviour
         currentTarget.OnTargetActionComplete += OnTargetActionComplete;
     }
 
+    public void SetIsGoingToTarget(bool going)
+    {
+        isGoingToTarget = going;
+    }
+
     public void SetNextTarget(Target target)
     {
         nextTarget = target;

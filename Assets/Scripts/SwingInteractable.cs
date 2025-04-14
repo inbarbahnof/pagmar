@@ -14,9 +14,9 @@ public class SwingInteractable : BaseInteractable
     private float _ogPlayerYPos;
 
     
-    public override void Interact(Transform player)
+    public override void Interact(Transform player, Transform dog)
     {
-        base.Interact(player);
+        base.Interact(player, dog);
         // jump and swing anim
         _player = player;
         AttachPlayerToRope();

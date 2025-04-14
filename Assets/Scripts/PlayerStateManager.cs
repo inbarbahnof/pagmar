@@ -17,4 +17,12 @@ public class PlayerStateManager : MonoBehaviour
             OnPlayerStateChange?.Invoke(newState);
         }
     }
+
+    public void SetStateAccordingToInteraction(IInteractable interactible)
+    {
+        if (interactible is PushInteractable push)
+        {
+            SetState(PlayerState.Push);
+        }
+    }
 }

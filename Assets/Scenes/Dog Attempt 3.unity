@@ -923,6 +923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1050567128}
+  dog: {fileID: 1892569884}
 --- !u!4 &413771657
 Transform:
   m_ObjectHideFlags: 0
@@ -1268,6 +1269,10 @@ PrefabInstance:
     - target: {fileID: 4359331051284699735, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514809137630530987, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: _needDogToPush
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2016,6 +2021,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ec8747e4fbb5644900e8f67a185966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1892569884 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2606581116919676563, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
+  m_PrefabInstance: {fileID: 2961544561598206256}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1971049544
 GameObject:
   m_ObjectHideFlags: 0

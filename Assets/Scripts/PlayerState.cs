@@ -2,5 +2,6 @@
 { 
     Idle,
     Walk,
+    Push,
     Stealth
 }
