@@ -44,8 +44,8 @@ public class InteractableManager : MonoBehaviour
     {
         if (!interacting)
         {
-            UpdateClosestInteractable();
             RemoveDistantInteractables();
+            UpdateClosestInteractable();
         }
     }
     

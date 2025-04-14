@@ -40,8 +40,11 @@ public class PlayerMove : MonoBehaviour
             {
                 transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             }
-            
-            _prevMoveInput = _moveInput;
+
+            if (!isPushing)
+            {
+                _prevMoveInput = _moveInput;
+            }
         }
         else
         {
@@ -53,6 +56,15 @@ public class PlayerMove : MonoBehaviour
     public void SetIsPushing(bool push)
     {
         isPushing = push;
+
+        if (isPushing)
+        {
+            _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionY;
+        }
+        else
+        {
+            _playerRb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
+        }
     }
 
     public void UpdateMoveInput(Vector2 moveInput)
