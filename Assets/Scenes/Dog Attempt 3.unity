@@ -1272,7 +1272,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4514809137630530987, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
       propertyPath: _needDogToPush
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514809137630530987, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: _dogDistanceToPush
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1455,6 +1459,79 @@ Transform:
   - {fileID: 1394334871}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1271488746
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 170713392587747206, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: m_Color.b
+      value: 0.03832786
+      objectReference: {fileID: 0}
+    - target: {fileID: 170713392587747206, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 170713392587747206, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: m_Color.r
+      value: 0.46540874
+      objectReference: {fileID: 0}
+    - target: {fileID: 2330076112419468966, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: m_Name
+      value: Push
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359331051284699735, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.381431
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359331051284699735, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.250069
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359331051284699735, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359331051284699735, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359331051284699735, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359331051284699735, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359331051284699735, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359331051284699735, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359331051284699735, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359331051284699735, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514809137630530987, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: _needDogToPush
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
 --- !u!4 &1353930180 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7318197680924137419, guid: 2b5227f561df1ff45bbe9c831e2a20ed, type: 3}
@@ -2340,6 +2417,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1538025327645606136, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
+      propertyPath: _pushDistance
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538025327645606136, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
       propertyPath: _targetGenerator
       value: 
       objectReference: {fileID: 1834576620}
@@ -2644,3 +2725,4 @@ SceneRoots:
   - {fileID: 705753550}
   - {fileID: 209138922}
   - {fileID: 1834576621}
+  - {fileID: 1271488746}

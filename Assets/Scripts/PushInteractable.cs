@@ -71,7 +71,8 @@ public class PushInteractable : BaseInteractable
     private void PushDog()
     {
         Vector3 targetPos = transform.position - _dogOffsetFromObject;
-        _dog.position = Vector3.Lerp(_dog.position, targetPos, Time.deltaTime * pushSpeed);
+        _dog.position = targetPos;
+        // _dog.position = Vector3.Lerp(_dog.position, targetPos, Time.deltaTime * pushSpeed);
     }
 
     private void PushObject()
