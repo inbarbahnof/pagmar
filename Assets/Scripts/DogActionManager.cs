@@ -1,5 +1,7 @@
 using System;
 using DefaultNamespace;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DogActionManager : MonoBehaviour
@@ -51,7 +53,11 @@ public class DogActionManager : MonoBehaviour
 
     private void HandleDogStateChange(DogState newState)
     {
-        
+        switch (curState, newState)
+        {
+            case (DogState.Idle, _):
+                break;
+        }
     }
 
     private void HandlePlayerPushBehavior()
