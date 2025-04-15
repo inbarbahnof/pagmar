@@ -2,6 +2,6 @@
 {
     Idle,
     Follow,
-    Hover,
+    FollowTOI,
     Push
 }

@@ -1,4 +1,5 @@
 using System;
+using DefaultNamespace;
 using UnityEngine;
 
 public class DogActionManager : MonoBehaviour
@@ -13,12 +14,21 @@ public class DogActionManager : MonoBehaviour
     private PlayerFollower _playerFollower;
     private Transform _playerTransform;
 
+    private bool _dogReachedTarget;
+    private bool _dogFollowingTarget;
+    private bool _dogFollowingTOI;
+
+    private DogStateComputer _computer;
+    
+
     private void Start()
     {
+        _computer = new DogStateComputer();
+        
         _playerFollower = GetComponent<PlayerFollower>();
         
         _playerFollower.OnIdleAfterTarget += HandleDogIdle;
-        _playerFollower.OnStartHover += HandleDogHover;
+        _playerFollower.OnStartFollowTOI += HandleDogFollowTOI;
         _playerFollower.OnStartFollow += HandleDogFollow;
 
         _playerTransform = playerStateManager.GetComponent<Transform>();
@@ -28,18 +38,20 @@ public class DogActionManager : MonoBehaviour
     
     private void Update()
     {
-        switch (playerStateManager.CurrentState)
+        float curDistance = Vector2.Distance(_playerTransform.position, transform.position);
+        DogStateMachineInput newInput = new DogStateMachineInput(playerStateManager.CurrentState, curDistance, 
+            _dogReachedTarget, _dogFollowingTarget, _dogFollowingTOI, _pushDistance);
+        DogState newState = _computer.Compute(curState, newInput);
+
+        if (curState != newState)
         {
-            case PlayerState.Walk:
-                HandlePlayerWalkBehavior();
-                break;
-            case PlayerState.Idle:
-                HandlePlayerIdleBehavior();
-                break;
-            case PlayerState.Push:
-                HandlePlayerPushBehavior();
-                break;
+            HandleDogStateChange(newState);
         }
+    }
+
+    private void HandleDogStateChange(DogState newState)
+    {
+        
     }
 
     private void HandlePlayerPushBehavior()
@@ -68,7 +80,7 @@ public class DogActionManager : MonoBehaviour
                 _playerFollower.SetNextTarget(newTarget);
                 _playerFollower.GoToNextTarget();
                 break;
-            case DogState.Hover:
+            case DogState.FollowTOI:
                 _playerFollower.SetNextTarget(newTarget);
                 break;
         }
@@ -94,19 +106,22 @@ public class DogActionManager : MonoBehaviour
         _playerFollower.GoToNextTarget();
     }
 
-    private void HandleDogHover()
+    private void HandleDogFollowTOI()
     {
-        curState = DogState.Hover;
+        // curState = DogState.FollowTOI;
+        _dogFollowingTOI = true;
     }
     
     private void HandleDogFollow()
     {
-        curState = DogState.Follow;
+        // curState = DogState.Follow;
+        _dogFollowingTarget = true;
     }
     
     private void HandleDogIdle()
     {
         // Debug.Log("Dog is idle after finishing a target.");
         // curState = DogState.Idle;
+        _dogReachedTarget = true;
     }
 }

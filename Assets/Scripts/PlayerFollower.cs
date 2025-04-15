@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class PlayerFollower : MonoBehaviour
 {
     public event Action OnIdleAfterTarget;
-    public event Action OnStartHover;
+    public event Action OnStartFollowTOI;
     public event Action OnStartFollow;
     
     [SerializeField] private Transform player;
@@ -103,7 +103,7 @@ public class PlayerFollower : MonoBehaviour
                 isPerformingAction = false;
                 isGoingToTarget = true;
                 
-                OnStartHover?.Invoke();
+                OnStartFollowTOI?.Invoke();
             }
         }
     }

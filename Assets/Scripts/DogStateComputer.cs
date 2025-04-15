@@ -1,0 +1,64 @@
+﻿namespace DefaultNamespace
+{
+    public class DogStateComputer
+    {
+        
+        public DogState Compute(DogState previousDogState, DogStateMachineInput machineInput)
+        {
+            switch (machineInput._playerState)
+            {
+                case PlayerState.Walk:
+                    HandlePlayerWalkBehavior(previousDogState);
+                    break;
+                case PlayerState.Idle:
+                    HandlePlayerIdleBehavior(previousDogState, machineInput);
+                    break;
+                case PlayerState.Push:
+                    HandlePlayerPushBehavior(previousDogState, machineInput);
+                    break;
+            }
+            
+            
+            return DogState.Idle;
+        }
+        
+        private DogState HandlePlayerPushBehavior(DogState previousDogState, DogStateMachineInput machineInput)
+        {
+            if (machineInput._playerDogDistance < machineInput._pushDistance)
+            {
+                return DogState.Push;
+            }
+
+            return previousDogState;
+        }
+    
+        private DogState HandlePlayerWalkBehavior(DogState previousDogState)
+        {
+            if (previousDogState != DogState.FollowTOI)
+            {
+                return DogState.Follow;
+            }
+
+            return previousDogState;
+        }
+
+        private DogState HandlePlayerIdleBehavior(DogState previousDogState, DogStateMachineInput machineInput)
+        {
+            // Idle,
+            // Follow,
+            // FollowTOI,
+            // Push
+            
+            // public bool _dogReachedTarget;
+            // public bool _dogFollowingTarget;
+            // public bool _dogFollowingTOI;
+
+            if (machineInput._dogReachedTarget)
+            {
+                return DogState.Idle;
+            }
+
+            return previousDogState;
+        }
+    }
+}
