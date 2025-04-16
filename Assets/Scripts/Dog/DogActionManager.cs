@@ -67,6 +67,9 @@ namespace Dog
                     curState = DogState.FollowCall;
                     _playerFollower.GoToCallTarget(_targetGenerator.GetCallTarget());
                     break;
+                case (DogState.FollowCall, DogState.Follow):
+                    curState = DogState.Follow;
+                    break;
                 case (_, DogState.OnTargetAction):
                     curState = DogState.OnTargetAction;
                     break;

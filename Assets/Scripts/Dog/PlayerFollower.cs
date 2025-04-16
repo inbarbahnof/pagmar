@@ -91,6 +91,8 @@ namespace Dog
 
             isGoingToTarget = true;
             isPerformingAction = false;
+            
+            OnStartFollow?.Invoke();
 
             targetDistance = currentTarget.GetDistance();
             currentTarget.OnTargetActionComplete += OnTargetActionComplete;
