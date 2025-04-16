@@ -8,18 +8,14 @@
             switch (machineInput._playerState)
             {
                 case PlayerState.Walk:
-                    HandlePlayerWalkBehavior(previousDogState);
-                    break;
+                    return HandlePlayerWalkBehavior(previousDogState);
                 case PlayerState.Idle:
-                    HandlePlayerIdleBehavior(previousDogState, machineInput);
-                    break;
+                    return HandlePlayerIdleBehavior(previousDogState, machineInput);
                 case PlayerState.Push:
-                    HandlePlayerPushBehavior(previousDogState, machineInput);
-                    break;
+                    return HandlePlayerPushBehavior(previousDogState, machineInput);
             }
             
-            
-            return DogState.Idle;
+            return previousDogState;
         }
         
         private DogState HandlePlayerPushBehavior(DogState previousDogState, DogStateMachineInput machineInput)

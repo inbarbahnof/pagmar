@@ -35,11 +35,13 @@ public class DogActionManager : MonoBehaviour
 
         _playerTransform = playerStateManager.GetComponent<Transform>();
 
-        StartWalkingAfterNextTarget();
+        StartWalkingAfterPlayer();
     }
     
     private void Update()
     {
+        print("current state " + curState);
+        
         float curDistance = Vector2.Distance(_playerTransform.position, transform.position);
         DogStateMachineInput newInput = new DogStateMachineInput(playerStateManager.CurrentState, curDistance, 
             _dogReachedTarget, _dogFollowingTarget, _dogFollowingTOI, _pushDistance);
@@ -53,11 +55,34 @@ public class DogActionManager : MonoBehaviour
 
     private void HandleDogStateChange(DogState newState)
     {
+        print("swich from " + curState + " to " + newState);
         switch (curState, newState)
         {
-            case (DogState.Idle, _):
+            case (_, DogState.Push):
+                curState = DogState.Push;
+                _playerFollower.SetIsGoingToTarget(false);
+                break;
+            case (DogState.FollowTOI, DogState.Follow):
+                Target newTarget = _targetGenerator.GenerateNewTarget();
+                _playerFollower.SetNextTarget(newTarget);
+                break;
+            case (_, DogState.Follow):
+                Target newTarget1 = _targetGenerator.GenerateNewTarget();
+                curState = DogState.Follow;
+                _playerFollower.SetNextTarget(newTarget1);
+                _playerFollower.GoToNextTarget();
+                break;
+            case (_, DogState.Idle):
+                HandleIdleBehavior();
                 break;
         }
+    }
+    
+    private void HandleIdleBehavior()
+    {
+        curState = DogState.Idle;
+        _playerFollower.SetIsGoingToTarget(false);
+        // change to random idle animation 
     }
 
     private void HandlePlayerPushBehavior()
@@ -98,7 +123,7 @@ public class DogActionManager : MonoBehaviour
         curState = DogState.Idle;
     }
 
-    private void StartWalkingAfterNextTarget()
+    private void StartWalkingAfterPlayer()
     {
         Target newTarget = _targetGenerator.GenerateNewTarget();
         
