@@ -4,6 +4,7 @@
     {
         Idle,
         Follow,
+        FollowCall,
         FollowTOI,
         OnTargetAction,
         Push

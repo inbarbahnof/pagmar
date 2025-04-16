@@ -22,6 +22,7 @@ namespace Dog
         private bool _dogFollowingTarget;
         private bool _dogFollowingTOI;
         private bool _dogBusy;
+        private bool _isBeingCalled;
 
         private DogStateComputer _computer;
 
@@ -62,6 +63,10 @@ namespace Dog
             // print("swap from " + curState + " to " + newState);
             switch (curState, newState)
             {
+                case (_, DogState.FollowCall):
+                    curState = DogState.FollowCall;
+                    _playerFollower.GoToCallTarget(_targetGenerator.GetCallTarget());
+                    break;
                 case (_, DogState.OnTargetAction):
                     curState = DogState.OnTargetAction;
                     break;

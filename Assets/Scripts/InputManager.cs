@@ -5,10 +5,12 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     private PlayerMove _player;
+    private PlayerStateManager _stateManager;
     
     void Start()
     {
-        _player = GetComponent<PlayerMove>();    
+        _player = GetComponent<PlayerMove>();
+        _stateManager = GetComponent<PlayerStateManager>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -31,6 +33,6 @@ public class InputManager : MonoBehaviour
 
     public void OnCall(InputAction.CallbackContext context)
     {
-        
+        if (context.started) _stateManager.SetState(PlayerState.Call);
     }
 }

@@ -3,5 +3,6 @@
     Idle,
     Walk,
     Push,
+    Call,
     Stealth
 }

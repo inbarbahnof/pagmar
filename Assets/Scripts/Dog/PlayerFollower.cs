@@ -27,6 +27,7 @@ namespace Dog
         // private bool isTargetActionDone = false;
 
         private float stopProb = 0.5f;
+        private float initialStopProb;
 
         private void Start()
         {
@@ -34,6 +35,7 @@ namespace Dog
             agent.updateRotation = false;
             agent.updateUpAxis = false;
 
+            initialStopProb = stopProb;
             // GetNewTarget();
         }
 
@@ -75,6 +77,23 @@ namespace Dog
         public void SetIsGoingToTarget(bool going)
         {
             isGoingToTarget = going;
+        }
+
+        public void GoToCallTarget(Target target)
+        {
+            stopProb = 0;
+            
+            if (currentTarget != null)
+                currentTarget.OnTargetActionComplete -= OnTargetActionComplete;
+
+            currentTarget = target;
+            nextTarget = null;
+
+            isGoingToTarget = true;
+            isPerformingAction = false;
+
+            targetDistance = currentTarget.GetDistance();
+            currentTarget.OnTargetActionComplete += OnTargetActionComplete;
         }
 
         public void SetNextTarget(Target target)
@@ -125,6 +144,9 @@ namespace Dog
         private void OnTargetActionComplete()
         {
             OnFinishedTargetAction?.Invoke();
+            
+            if(stopProb != initialStopProb) stopProb = initialStopProb;
+            
             isPerformingAction = false;
             currentTarget.OnTargetActionComplete -= OnTargetActionComplete;
 

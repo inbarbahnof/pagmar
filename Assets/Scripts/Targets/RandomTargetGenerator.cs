@@ -8,7 +8,13 @@ namespace Targets
     public class RandomTargetGenerator : MonoBehaviour
     {
         [SerializeField] private List<Target> targets = new List<Target>();
+        [SerializeField] private Target _callTarget;
 
+        public Target GetCallTarget()
+        {
+            return _callTarget;
+        }
+        
         public void AddTargets(Target target)
         {
             if (target)
