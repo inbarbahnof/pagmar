@@ -57,7 +57,7 @@ namespace Interactabels
             
             if (_curPushable.NeedDogToPush() && _dogAction.CurState != DogState.Push)
             {
-                print("dog not pushing");
+                // print("dog not pushing");
                 return;
             }
 

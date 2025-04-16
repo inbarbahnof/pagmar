@@ -28,4 +28,9 @@ public class InputManager : MonoBehaviour
             InteractableManager.instance.OnStopInteract(); // Button released
         }
     }
+
+    public void OnCall(InputAction.CallbackContext context)
+    {
+        
+    }
 }
