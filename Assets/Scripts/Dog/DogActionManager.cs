@@ -44,8 +44,8 @@ namespace Dog
 
         private void Update()
         {
-            print("current state " + curState);
-
+            // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
+            
             float curDistance = Vector2.Distance(_playerTransform.position, transform.position);
             DogStateMachineInput newInput = new DogStateMachineInput(playerStateManager.CurrentState, curDistance,
                 _dogReachedTarget, _dogFollowingTarget, _dogFollowingTOI, _pushDistance, _dogBusy);
@@ -59,7 +59,7 @@ namespace Dog
 
         private void HandleDogStateChange(DogState newState)
         {
-            print("swich from " + curState + " to " + newState);
+            // print("swap from " + curState + " to " + newState);
             switch (curState, newState)
             {
                 case (_, DogState.OnTargetAction):

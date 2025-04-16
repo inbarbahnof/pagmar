@@ -1,4 +1,6 @@
-﻿namespace Dog
+﻿using Unity.VisualScripting.FullSerializer;
+
+namespace Dog
 {
     public class DogStateComputer
     {

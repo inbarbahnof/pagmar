@@ -7,7 +7,7 @@ namespace Interactabels
     {
         [SerializeField] private GameObject highlightEffect;
 
-        private bool _isInteracting = false;
+        // private bool _isInteracting = false;
 
         /// <summary>
         /// Controlls highlight of interactable obj, turned on when player can interact and off otherwise.
@@ -32,7 +32,6 @@ namespace Interactabels
         /// <param name="player"> Transform of player interacting with obj </param>
         public virtual void Interact()
         {
-            _isInteracting = true;
         }
 
         /// <summary>
@@ -58,7 +57,6 @@ namespace Interactabels
         /// </summary>
         protected void FinishInteraction()
         {
-            _isInteracting = false;
             InteractableManager.instance.OnFinishInteraction();
         }
 

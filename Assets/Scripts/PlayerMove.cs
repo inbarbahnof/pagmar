@@ -56,6 +56,7 @@ public class PlayerMove : MonoBehaviour
 
     public void SetIsPushing(bool push)
     {
+        print("set is pushing " + push);
         isPushing = push;
 
         if (isPushing)

@@ -7,82 +7,94 @@ namespace Interactabels
     public class PushInteractable : BaseInteractable
     {
         [SerializeField] private bool _needDogToPush = false;
-
-        private Transform _player;
-        private Transform _dog;
-        private PlayerMove _playerMove;
-        private bool _isBeingPushed = false;
+        public bool NeedDogToPush() => _needDogToPush;
+        
         private float _xOffset;
-        private DogActionManager _dogAction;
-        private Vector3 _dogOffsetFromObject;
-
-        [SerializeField] private float pushSpeed = 5f;
-
+        
         public override void Interact()
         {
-            // base.Interact(player, dog);
-            //
-            // _player = player;
-            // _isBeingPushed = true;
-            //
-            // _playerMove = _player.GetComponent<PlayerMove>();
-            // _playerMove.SetIsPushing(true);
-            //
-            // _xOffset = transform.position.x - player.position.x;
-            //
-            // if (_needDogToPush)
-            // {
-            //     _dog = dog;
-            //     _dogAction = dog.GetComponent<DogActionManager>();
-            //     _dogOffsetFromObject = transform.position - dog.position;
-            // }
+            PushInterattableManager.instance.TryStartPush(this);
+            base.Interact();
         }
 
         public override void StopInteractPress()
         {
-            _isBeingPushed = false;
-            _player = null;
-
-            _playerMove.SetIsPushing(false);
-            _playerMove = null;
-
-            _dog = null;
-            _dogAction = null;
-
+            PushInterattableManager.instance.StopPush();
             FinishInteraction();
         }
-
-        private void Update()
+        
+        public void SetOffset(float playerX)
         {
-            if (_isBeingPushed && _player != null)
-            {
-                if (_needDogToPush)
-                {
-                    if (_dogAction.CurState == DogState.Push)
-                    {
-                        PushObject();
-                        PushDog();
-                    }
-                }
-                else
-                {
-                    PushObject();
-                }
-            }
+            _xOffset = transform.position.x - playerX;
         }
 
-        private void PushDog()
-        {
-            Vector3 targetPos = transform.position - _dogOffsetFromObject;
-            _dog.position = targetPos;
-            // _dog.position = Vector3.Lerp(_dog.position, targetPos, Time.deltaTime * pushSpeed);
-        }
-
-        private void PushObject()
+        public void PushObject(float playerX)
         {
             Vector3 newPos = transform.position;
-            newPos.x = _player.position.x + _xOffset;
+            newPos.x = playerX + _xOffset;
             transform.position = newPos;
         }
     }
 }
+
+
+// private Transform _player;
+// private Transform _dog;
+// private PlayerMove _playerMove;
+// private bool _isBeingPushed = false;
+        
+// private DogActionManager _dogAction;
+// private Vector3 _dogOffsetFromObject;
+
+// [SerializeField] private float pushSpeed = 5f;
+// public override void Interact()
+// {
+// base.Interact(player, dog);
+//
+// _player = player;
+// _isBeingPushed = true;
+//
+// _playerMove = _player.GetComponent<PlayerMove>();
+// _playerMove.SetIsPushing(true);
+//
+// _xOffset = transform.position.x - player.position.x;
+//
+// if (_needDogToPush)
+// {
+//     _dog = dog;
+//     _dogAction = dog.GetComponent<DogActionManager>();
+//     _dogOffsetFromObject = transform.position - dog.position;
+// }
+// }
+// public override void StopInteractPress()
+// {
+//     _isBeingPushed = false;
+//     _player = null;
+//
+//     _playerMove.SetIsPushing(false);
+//     _playerMove = null;
+//
+//     _dog = null;
+//     _dogAction = null;
+//
+//     FinishInteraction();
+// }
+
+// private void Update()
+// {
+//     if (_isBeingPushed && _player != null)
+//     {
+//         if (_needDogToPush)
+//         {
+//             if (_dogAction.CurState == DogState.Push)
+//             {
+//                 PushObject();
+//                 PushDog();
+//             }
+//         }
+//         else
+//         {
+//             PushObject();
+//         }
+//     }
+// }

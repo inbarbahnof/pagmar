@@ -45,9 +45,8 @@ namespace Dog
             float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
 
             // Check if the dog reached the target
-            if (distance <= 0.6f)
+            if (distance <= 0.6f && isGoingToTarget)
             {
-                //print("in target distance");
                 agent.isStopped = true;
                 StartTargetAction();
             }
@@ -118,13 +117,14 @@ namespace Dog
             //print("in StartTargetAction");
             isPerformingAction = true;
             isGoingToTarget = false;
-            currentTarget.StartTargetAction();
-
+            
             OnPerformingTargetAction?.Invoke();
+            currentTarget.StartTargetAction();
         }
 
         private void OnTargetActionComplete()
         {
+            OnFinishedTargetAction?.Invoke();
             isPerformingAction = false;
             currentTarget.OnTargetActionComplete -= OnTargetActionComplete;
 
@@ -137,8 +137,6 @@ namespace Dog
                 // notify that target action is complete
                 OnIdleAfterTarget?.Invoke();
             }
-
-            OnFinishedTargetAction?.Invoke();
         }
     }
 }

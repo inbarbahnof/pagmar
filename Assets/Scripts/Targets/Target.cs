@@ -6,7 +6,7 @@ namespace Targets
 {
     public class Target : MonoBehaviour
     {
-        [SerializeField] private float distance = 0.1f;
+        [SerializeField] private float distance = 0.6f;
         public event Action OnTargetActionComplete;
 
         public float GetDistance()
@@ -17,12 +17,13 @@ namespace Targets
         // started the action
         public virtual void StartTargetAction()
         {
-            OnTargetActionComplete?.Invoke();
+            FinishTargetAction();
         }
 
         // finished the action
         public virtual void FinishTargetAction()
         {
+            print("FinishTargetAction");
             OnTargetActionComplete?.Invoke();
         }
     }
