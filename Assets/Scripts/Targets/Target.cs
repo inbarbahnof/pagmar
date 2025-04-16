@@ -23,7 +23,6 @@ namespace Targets
         // finished the action
         public virtual void FinishTargetAction()
         {
-            print("FinishTargetAction");
             OnTargetActionComplete?.Invoke();
         }
     }

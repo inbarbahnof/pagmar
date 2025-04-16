@@ -24,7 +24,7 @@ namespace Interactabels
             {
                 instance = this;
             }
-            else Debug.LogError("TOO MANY INTERACTABLE MANAGERS!");
+            else Debug.LogError("TOO MANY PUSH INTERACTABLE MANAGERS!");
 
             _playerMove = player.GetComponent<PlayerMove>();
             _dogAction = dog.GetComponent<DogActionManager>();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,29 +8,27 @@ namespace Interactabels
     {
         private bool isPickedUp = false;
         private Transform originalParent;
+        
+        public bool IsPickedUp => isPickedUp;
+
+        private void Start()
+        {
+            originalParent = transform.parent;
+        }
 
         public override void Interact()
         {
-            // base.Interact(player, dog);
-            //
-            // if (isPickedUp) DropObject();
-            //
-            // else PickUpObject(player);
+            PickUpInteractableManager.instance.Interact(this);
         }
 
-        private void PickUpObject(Transform player)
+        public void PickUpObject(Transform parent)
         {
-            originalParent = transform.parent;
-
-            Transform pickUpParent = player.GetComponent<PickUpParentManager>().GetPickUpParent();
-            transform.SetParent(pickUpParent);
-
+            transform.SetParent(parent);
             transform.localPosition = Vector3.zero;
-
             isPickedUp = true;
         }
 
-        private void DropObject()
+        public void DropObject()
         {
             isPickedUp = false;
             transform.SetParent(originalParent);
