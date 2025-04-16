@@ -15,24 +15,24 @@ public class PushInteractable : BaseInteractable
 
     [SerializeField] private float pushSpeed = 5f;
 
-    public override void Interact(Transform player, Transform dog)
+    public override void Interact()
     {
-        base.Interact(player, dog);
-
-        _player = player;
-        _isBeingPushed = true;
-        
-        _playerMove = _player.GetComponent<PlayerMove>();
-        _playerMove.SetIsPushing(true);
-        
-        _xOffset = transform.position.x - player.position.x;
-
-        if (_needDogToPush)
-        {
-            _dog = dog;
-            _dogAction = dog.GetComponent<DogActionManager>();
-            _dogOffsetFromObject = transform.position - dog.position;
-        }
+        // base.Interact(player, dog);
+        //
+        // _player = player;
+        // _isBeingPushed = true;
+        //
+        // _playerMove = _player.GetComponent<PlayerMove>();
+        // _playerMove.SetIsPushing(true);
+        //
+        // _xOffset = transform.position.x - player.position.x;
+        //
+        // if (_needDogToPush)
+        // {
+        //     _dog = dog;
+        //     _dogAction = dog.GetComponent<DogActionManager>();
+        //     _dogOffsetFromObject = transform.position - dog.position;
+        // }
     }
 
     public override void StopInteractPress()

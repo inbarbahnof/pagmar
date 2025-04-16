@@ -14,13 +14,13 @@ public class SwingInteractable : BaseInteractable
     private float _ogPlayerYPos;
 
     
-    public override void Interact(Transform player, Transform dog)
+    public override void Interact()
     {
-        base.Interact(player, dog);
-        // jump and swing anim
-        _player = player;
-        AttachPlayerToRope();
-        StartSwing();
+        // base.Interact();
+        // // jump and swing anim
+        // _player = player;
+        // AttachPlayerToRope();
+        // StartSwing();
     }
 
     public override Vector2 GetCurPos()

@@ -97,7 +97,7 @@ public class InteractableManager : MonoBehaviour
     {
         if (curInteractableObj != null)
         {
-            curInteractableObj.Interact(player, dog);
+            curInteractableObj.Interact();
             curInteractableObj.SetHighlight(false);
             interacting = true;
             
