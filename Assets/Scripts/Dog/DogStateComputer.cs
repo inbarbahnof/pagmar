@@ -1,4 +1,4 @@
-﻿namespace DefaultNamespace
+﻿namespace Dog
 {
     public class DogStateComputer
     {

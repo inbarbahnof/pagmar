@@ -1,3 +1,4 @@
+using Interactabels;
 using UnityEngine;
 
 public class PlayerStateManager : MonoBehaviour
