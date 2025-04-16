@@ -9,6 +9,8 @@ public class PlayerFollower : MonoBehaviour
 {
     public event Action OnIdleAfterTarget;
     public event Action OnStartFollowTOI;
+    public event Action OnPerformingTargetAction;
+    public event Action OnFinishedTargetAction;
     public event Action OnStartFollow;
     
     [SerializeField] private Transform player;
@@ -19,7 +21,7 @@ public class PlayerFollower : MonoBehaviour
     private float targetDistance;
     private bool isPerformingAction = false;
     private bool isGoingToTarget = true;
-    private bool isTargetActionDone = false;
+    // private bool isTargetActionDone = false;
 
     private float stopProb = 0.5f;
 
@@ -114,6 +116,8 @@ public class PlayerFollower : MonoBehaviour
         isPerformingAction = true;
         isGoingToTarget = false;
         currentTarget.StartTargetAction();
+        
+        OnPerformingTargetAction?.Invoke();
     }
     
     private void OnTargetActionComplete()
@@ -130,5 +134,7 @@ public class PlayerFollower : MonoBehaviour
             // notify that target action is complete
             OnIdleAfterTarget?.Invoke();
         }
+        
+        OnFinishedTargetAction?.Invoke();
     }
 }

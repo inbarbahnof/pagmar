@@ -10,10 +10,14 @@ namespace DefaultNamespace
         public bool _dogReachedTarget;
         public bool _dogFollowingTarget;
         public bool _dogFollowingTOI;
+        public bool _dogBusy;
 
         public float _pushDistance;
 
-        public DogStateMachineInput(PlayerState playerState, float playerDogDistance, bool dogReachedTarget, bool dogFollowingTarget, bool dogFollowingTOI, float pushDistance)
+        public DogStateMachineInput(PlayerState playerState, float playerDogDistance,
+            bool dogReachedTarget, bool dogFollowingTarget, 
+            bool dogFollowingTOI, float pushDistance,
+            bool dogBusy)
         {
             _playerState = playerState;
             _playerDogDistance = playerDogDistance;
@@ -21,6 +25,7 @@ namespace DefaultNamespace
             _dogFollowingTarget = dogFollowingTarget;
             _dogFollowingTOI = dogFollowingTOI;
             _pushDistance = pushDistance;
+            _dogBusy = dogBusy;
         }
     }
 }

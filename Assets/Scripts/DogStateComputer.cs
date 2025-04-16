@@ -5,6 +5,11 @@
         
         public DogState Compute(DogState previousDogState, DogStateMachineInput machineInput)
         {
+            if (machineInput._dogBusy)
+            {
+                return DogState.OnTargetAction;
+            }
+            
             switch (machineInput._playerState)
             {
                 case PlayerState.Walk:
@@ -53,8 +58,8 @@
             {
                 return DogState.Idle;
             }
-
-            return previousDogState;
+            
+            return DogState.Follow;
         }
     }
 }

@@ -19,6 +19,7 @@ public class DogActionManager : MonoBehaviour
     private bool _dogReachedTarget;
     private bool _dogFollowingTarget;
     private bool _dogFollowingTOI;
+    private bool _dogBusy;
 
     private DogStateComputer _computer;
     
@@ -32,6 +33,8 @@ public class DogActionManager : MonoBehaviour
         _playerFollower.OnIdleAfterTarget += HandleDogIdle;
         _playerFollower.OnStartFollowTOI += HandleDogFollowTOI;
         _playerFollower.OnStartFollow += HandleDogFollow;
+        _playerFollower.OnPerformingTargetAction += HandleDogOnAction;
+        _playerFollower.OnFinishedTargetAction += HandleDogFinishedAction;
 
         _playerTransform = playerStateManager.GetComponent<Transform>();
 
@@ -44,7 +47,7 @@ public class DogActionManager : MonoBehaviour
         
         float curDistance = Vector2.Distance(_playerTransform.position, transform.position);
         DogStateMachineInput newInput = new DogStateMachineInput(playerStateManager.CurrentState, curDistance, 
-            _dogReachedTarget, _dogFollowingTarget, _dogFollowingTOI, _pushDistance);
+            _dogReachedTarget, _dogFollowingTarget, _dogFollowingTOI, _pushDistance, _dogBusy);
         DogState newState = _computer.Compute(curState, newInput);
 
         if (curState != newState)
@@ -58,6 +61,9 @@ public class DogActionManager : MonoBehaviour
         print("swich from " + curState + " to " + newState);
         switch (curState, newState)
         {
+            case (_, DogState.OnTargetAction):
+                curState = DogState.OnTargetAction;
+                break;
             case (_, DogState.Push):
                 curState = DogState.Push;
                 _playerFollower.SetIsGoingToTarget(false);
@@ -69,6 +75,7 @@ public class DogActionManager : MonoBehaviour
             case (_, DogState.Follow):
                 Target newTarget1 = _targetGenerator.GenerateNewTarget();
                 curState = DogState.Follow;
+                _dogReachedTarget = false;
                 _playerFollower.SetNextTarget(newTarget1);
                 _playerFollower.GoToNextTarget();
                 break;
@@ -81,46 +88,9 @@ public class DogActionManager : MonoBehaviour
     private void HandleIdleBehavior()
     {
         curState = DogState.Idle;
+        _dogFollowingTarget = false;
         _playerFollower.SetIsGoingToTarget(false);
         // change to random idle animation 
-    }
-
-    private void HandlePlayerPushBehavior()
-    {
-        float distance = Vector2.Distance(_playerTransform.position, transform.position);
-        
-        if (distance < _pushDistance)
-        {
-            curState = DogState.Push;
-            _playerFollower.SetIsGoingToTarget(false);
-        }
-    }
-    
-    private void HandlePlayerWalkBehavior()
-    {
-        // float distanceToPlayer = Vector3.Distance(transform.position, playerStateManager.transform.position);
-
-        Target newTarget = _targetGenerator.GenerateNewTarget();
-        if (newTarget == null) return;
-        
-        // check if dog is on idle or action
-        switch (curState)
-        {
-            case DogState.Idle:
-                curState = DogState.Follow;
-                _playerFollower.SetNextTarget(newTarget);
-                _playerFollower.GoToNextTarget();
-                break;
-            case DogState.FollowTOI:
-                _playerFollower.SetNextTarget(newTarget);
-                break;
-        }
-        
-    }
-
-    private void HandlePlayerIdleBehavior()
-    {
-        curState = DogState.Idle;
     }
 
     private void StartWalkingAfterPlayer()
@@ -139,20 +109,64 @@ public class DogActionManager : MonoBehaviour
 
     private void HandleDogFollowTOI()
     {
-        // curState = DogState.FollowTOI;
         _dogFollowingTOI = true;
+    }
+
+    private void HandleDogOnAction()
+    {
+        _dogBusy = true;
+    }
+    
+    private void HandleDogFinishedAction()
+    {
+        _dogBusy = false;
     }
     
     private void HandleDogFollow()
     {
-        // curState = DogState.Follow;
         _dogFollowingTarget = true;
     }
     
     private void HandleDogIdle()
     {
-        // Debug.Log("Dog is idle after finishing a target.");
-        // curState = DogState.Idle;
         _dogReachedTarget = true;
     }
+    
+    // private void HandlePlayerPushBehavior()
+    // {
+    //     float distance = Vector2.Distance(_playerTransform.position, transform.position);
+    //     
+    //     if (distance < _pushDistance)
+    //     {
+    //         curState = DogState.Push;
+    //         _playerFollower.SetIsGoingToTarget(false);
+    //     }
+    // }
+    //
+    // private void HandlePlayerWalkBehavior()
+    // {
+    //     // float distanceToPlayer = Vector3.Distance(transform.position, playerStateManager.transform.position);
+    //
+    //     Target newTarget = _targetGenerator.GenerateNewTarget();
+    //     if (newTarget == null) return;
+    //     
+    //     // check if dog is on idle or action
+    //     switch (curState)
+    //     {
+    //         case DogState.Idle:
+    //             curState = DogState.Follow;
+    //             _playerFollower.SetNextTarget(newTarget);
+    //             _playerFollower.GoToNextTarget();
+    //             break;
+    //         case DogState.FollowTOI:
+    //             _playerFollower.SetNextTarget(newTarget);
+    //             break;
+    //     }
+    //     
+    // }
+    //
+    // private void HandlePlayerIdleBehavior()
+    // {
+    //     curState = DogState.Idle;
+    // }
 }

@@ -3,5 +3,6 @@
     Idle,
     Follow,
     FollowTOI,
+    OnTargetAction,
     Push
 }
