@@ -24,10 +24,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 142977134012021778}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.26, y: 1.74, z: 0}
-  m_LocalScale: {x: 4.31, y: 2.2671099, z: 2.4960032}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5679396002623858780}
   - {fileID: 1118684869166394383}
@@ -103,6 +103,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2136769604117811414}
     m_Modifications:
+    - target: {fileID: 1813287412970552068, guid: 44e01bcd56bd77a49bebe60b91f72f79, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4c6393957bc4d4df88ebdd9b9ebc27d8, type: 3}
+    - target: {fileID: 1813287412970552068, guid: 44e01bcd56bd77a49bebe60b91f72f79, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813287412970552068, guid: 44e01bcd56bd77a49bebe60b91f72f79, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813287412970552068, guid: 44e01bcd56bd77a49bebe60b91f72f79, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8418781521519934096, guid: 44e01bcd56bd77a49bebe60b91f72f79, type: 3}
       propertyPath: m_Name
       value: RockArt
