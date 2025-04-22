@@ -6,6 +6,9 @@ namespace Interactabels
     public abstract class BaseInteractable : MonoBehaviour, IInteractable
     {
         [SerializeField] private GameObject highlightEffect;
+        [SerializeField] protected float interactionRange = 1.5f;
+        
+        public float InteractionRange => interactionRange;
 
         // private bool _isInteracting = false;
 
