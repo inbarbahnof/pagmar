@@ -12,10 +12,14 @@ namespace Ghosts
         [SerializeField] private MovementType movementType = MovementType.Circle;
         [SerializeField] private float radius = 2.5f;
         [SerializeField] private float speed = 1.5f;
+        [SerializeField] private float runAwaySpeed = 5f;
+        [SerializeField] private float moveAwayFromDogDistance = 4f;
         
         private Vector3 _initialPosition;
         private Vector3 _movementLine;
         private Tween curTween;
+        private Tween runAwayTween;
+        private bool _isRunningAway;
         
         private void Start()
         {
@@ -32,13 +36,40 @@ namespace Ghosts
                 MoveInStraightLine();
         }
 
-        public void StopGoingAround()
+        public bool StopGoingAround()
         {
+            if (_isRunningAway) return true;
+            
             if (curTween != null)
             {
                 curTween.Kill();
                 curTween = null;
             }
+
+            return false;
+        }
+
+        public void MoveAwayFromDog(Transform dog)
+        {
+            StopGoingAround();
+            print("moving away from dog");
+            _isRunningAway = true;
+            
+            Vector3 awayDir = (transform.position - dog.position).normalized;
+            Vector3 target = transform.position + awayDir * moveAwayFromDogDistance;
+
+            float distance = Vector3.Distance(transform.position, target);
+            float moveDuration = distance / runAwaySpeed;
+
+            runAwayTween = transform.DOMove(target, moveDuration)
+                .SetEase(Ease.OutCubic)
+                .OnComplete(() =>
+                {
+                    runAwayTween = null;
+                    _isRunningAway = false;
+                    print("stop moving away from dog");
+                    MoveAround();
+                });
         }
 
         private void MoveInCircle()
