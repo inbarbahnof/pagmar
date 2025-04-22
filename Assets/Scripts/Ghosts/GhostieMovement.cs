@@ -15,15 +15,30 @@ namespace Ghosts
         
         private Vector3 _initialPosition;
         private Vector3 _movementLine;
+        private Tween curTween;
         
         private void Start()
         {
             _initialPosition = transform.position;
 
+            MoveAround();
+        }
+
+        public void MoveAround()
+        {
             if (movementType == MovementType.Circle)
                 MoveInCircle();
             else
                 MoveInStraightLine();
+        }
+
+        public void StopGoingAround()
+        {
+            if (curTween != null)
+            {
+                curTween.Kill();
+                curTween = null;
+            }
         }
 
         private void MoveInCircle()
@@ -34,7 +49,7 @@ namespace Ghosts
             float distance = Vector3.Distance(transform.position, target);
             float moveDuration = distance / speed;
             
-            transform.DOMove(target, moveDuration)
+            curTween = transform.DOMove(target, moveDuration)
                 .SetEase(Ease.InOutSine)
                 .OnComplete(MoveInCircle);
         }
@@ -48,19 +63,19 @@ namespace Ghosts
             float distance = Vector3.Distance(transform.position, target);
             float moveDuration = distance / speed;
             
-            transform.DOMove(target, moveDuration)
+            curTween = transform.DOMove(target, moveDuration)
                 .SetEase(Ease.InOutSine)
                 .OnComplete(MoveInStraightLine);
         }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.blue;
-            
-            if (movementType == MovementType.Circle)
-                Gizmos.DrawSphere(_initialPosition, radius);
-            else
-                Gizmos.DrawLine(_initialPosition,_movementLine);
-        }
+        // private void OnDrawGizmos()
+        // {
+        //     Gizmos.color = Color.blue;
+        //     
+        //     if (movementType == MovementType.Circle)
+        //         Gizmos.DrawSphere(_initialPosition, radius);
+        //     else
+        //         Gizmos.DrawLine(_initialPosition,_movementLine);
+        // }
     }
 }

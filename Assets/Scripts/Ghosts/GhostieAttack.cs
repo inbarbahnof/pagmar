@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using DG.Tweening;
 
@@ -5,44 +6,54 @@ namespace Ghosts
 {
     public class GhostieAttack : MonoBehaviour
     {
-        [SerializeField] private float attackSpeed = 5f;
+        [SerializeField] private float attackSpeed = 3f;
         [SerializeField] private Ease attackEase = Ease.InOutSine;
 
-        private bool attacking;
-        private Vector3 startAttackPos;
+        private Rigidbody2D _rb;
+        private GhostieMovement _ghostieMovement;
+        private Vector3 _startAttackPos;
+        private Transform _targetPlayer;
+        private bool _attacking = false;
+        
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+            _ghostieMovement = GetComponent<GhostieMovement>();
+        }
         
         public void Attack(Transform player)
         {
-            if (player == null || attacking) return;
-
-            startAttackPos = transform.position;
-
-            float distance = Vector3.Distance(transform.position, player.position);
-            float duration = distance / attackSpeed;
+            print("in attack");
             
-            attacking = true;
-
-            transform.DOMove(player.position, duration)
-                .SetEase(attackEase)
-                .OnComplete(() =>
-                {
-                    GoToStartPos();
-                    print("attack complete");
-                });
+            if (player == null || _attacking) return;
+            
+            _ghostieMovement.StopGoingAround();
+            _startAttackPos = transform.position;
+            _targetPlayer = player;
+            _attacking = true;
         }
 
-        private void GoToStartPos()
+        private void FixedUpdate()
         {
-            float distance = Vector3.Distance(startAttackPos, transform.position);
-            float duration = distance / attackSpeed;
+            if (_attacking && _targetPlayer != null)
+            {
+                Vector2 newPos = Vector2.MoveTowards(
+                    transform.position,
+                    _targetPlayer.position,
+                    attackSpeed * Time.fixedDeltaTime
+                );
 
-            transform.DOMove(startAttackPos, duration)
-                .SetEase(attackEase)
-                .OnComplete(() =>
+                if (Vector2.Distance(transform.position, _targetPlayer.position) <= 0.5f)
                 {
-                    attacking = false; 
-                    print("back to place");
-                });
+                    Debug.Log("Attack reached!");
+                    _attacking = false;
+                    _ghostieMovement.MoveAround();
+                }
+                else
+                {
+                    _rb.MovePosition(newPos);
+                }
+            }
         }
     }
 }
