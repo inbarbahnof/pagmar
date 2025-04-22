@@ -12,11 +12,12 @@ namespace Ghosts
         [SerializeField] private MovementType movementType = MovementType.Circle;
         [SerializeField] private float radius = 2.5f;
         [SerializeField] private float speed = 1.5f;
+
+        [Header("Run Away From Dog Properties")]
+        [SerializeField] private Vector3 runAwayPoint;
         [SerializeField] private float runAwaySpeed = 5f;
-        [SerializeField] private float moveAwayFromDogDistance = 4f;
         
         private Vector3 _initialPosition;
-        private Vector3 _movementLine;
         private Tween curTween;
         private Tween runAwayTween;
         private bool _isRunningAway;
@@ -49,25 +50,22 @@ namespace Ghosts
             return false;
         }
 
-        public void MoveAwayFromDog(Transform dog)
+        public void MoveAwayFromDog()
         {
             StopGoingAround();
-            print("moving away from dog");
+            // print("moving away from dog");
             _isRunningAway = true;
             
-            Vector3 awayDir = (transform.position - dog.position).normalized;
-            Vector3 target = transform.position + awayDir * moveAwayFromDogDistance;
-
-            float distance = Vector3.Distance(transform.position, target);
+            float distance = Vector3.Distance(transform.position, runAwayPoint);
             float moveDuration = distance / runAwaySpeed;
 
-            runAwayTween = transform.DOMove(target, moveDuration)
+            runAwayTween = transform.DOMove(runAwayPoint, moveDuration)
                 .SetEase(Ease.OutCubic)
                 .OnComplete(() =>
                 {
                     runAwayTween = null;
                     _isRunningAway = false;
-                    print("stop moving away from dog");
+                    // print("stop moving away from dog");
                     MoveAround();
                 });
         }
@@ -89,7 +87,6 @@ namespace Ghosts
         {
             Vector2 direction = Random.insideUnitCircle.normalized;
             Vector3 target = _initialPosition + new Vector3(direction.x, 0, 0) * radius;
-            _movementLine = target;
             
             float distance = Vector3.Distance(transform.position, target);
             float moveDuration = distance / speed;
