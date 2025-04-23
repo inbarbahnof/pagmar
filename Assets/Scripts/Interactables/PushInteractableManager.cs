@@ -1,4 +1,6 @@
+using System;
 using Dog;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Interactabels
@@ -6,6 +8,7 @@ namespace Interactabels
     public class PushInteractableManager : MonoBehaviour
     {
         public static PushInteractableManager instance;
+        public event Action OnReachedTarget;
 
         [SerializeField] private Transform player;
         [SerializeField] private Transform dog;
@@ -33,9 +36,10 @@ namespace Interactabels
             _dogAction = dog.GetComponent<DogActionManager>();
         }
 
-        public void SetPushTarget(Vector2 target)
+        public void SetPushTarget(Vector2 target, Action onReachEvent)
         {
             _pushTarget = target;
+            OnReachedTarget += onReachEvent;
         }
 
         public void TryStartPush(PushInteractable interactable)
@@ -80,7 +84,9 @@ namespace Interactabels
             {
                 if (Vector2.Distance(_curPushable.transform.position, _pushTarget) < 0.1f)
                 {
-                    // TODO event reached target
+                    OnReachedTarget?.Invoke();
+                    print("finished");
+                    StopPush();
                 }
             }
         }
@@ -94,7 +100,9 @@ namespace Interactabels
         public void ResetOnDeath()
         {
             // TODO reset to og state
+            print("Died");
         }
+        
     }
 
 }

@@ -7,28 +7,28 @@ namespace Interactables
 {
     public class PushObstacle : Obstacle
     {
-        private PushInteractableManager _pushManager;
+        [SerializeField] private PushInteractableManager pushManager;
         private bool _setupComplete;
         private Vector2 _pushTarget;
 
         void Start()
         {
             _pushTarget = transform.position;
-            _pushManager.SetPushTarget(_pushTarget);
+            pushManager.SetPushTarget(_pushTarget, ReachedTarget);
         }
         
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player") && !_setupComplete)
             {
-                _pushManager.ResetOnDeath();
+                pushManager.ResetOnDeath();
             }
         }
 
         public void ReachedTarget()
         {
             _setupComplete = true;
-            // TODO called on event
+            GetComponent<Collider2D>().enabled = false;
         }
         
         
