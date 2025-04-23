@@ -11,6 +11,7 @@ public class PlayerMove : MonoBehaviour
     private PlayerStateManager _stateManager;
     private bool isMoving = false;
     private bool isPushing = false;
+    private bool canMove = true;
     
     void Start()
     {
@@ -20,7 +21,7 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
+        if (canMove) Move();
     }
 
     private void Move()
@@ -66,6 +67,11 @@ public class PlayerMove : MonoBehaviour
         {
             _playerRb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
         }
+    }
+
+    public void SetIsSwinging(bool swing)
+    {
+        canMove = !isMoving;
     }
 
     public void UpdateMoveInput(Vector2 moveInput)

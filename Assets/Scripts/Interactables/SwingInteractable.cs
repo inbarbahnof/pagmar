@@ -9,21 +9,16 @@ namespace Interactabels
     public class SwingInteractable : BaseInteractable
     {
         [SerializeField] private Transform attachLoc;
-        private Transform _player;
         private Coroutine swing;
-        private float swingTime = 5f;
+        private float swingTime = 3f;
         private float startAngle;
-        private Quaternion _ogPlayerRot;
-        private float _ogPlayerYPos;
 
+        public Transform AttachLoc => attachLoc;
 
         public override void Interact()
         {
-            // base.Interact();
-            // // jump and swing anim
-            // _player = player;
-            // AttachPlayerToRope();
-            // StartSwing();
+            base.Interact();
+            SwingInteractableManager.instance.TryStartSwing(this);
         }
 
         public override Vector2 GetCurPos()
@@ -31,21 +26,7 @@ namespace Interactabels
             return attachLoc.position;
         }
 
-        private void AttachPlayerToRope()
-        {
-            _ogPlayerRot = _player.rotation;
-            _ogPlayerYPos = _player.position.y;
-            _player.SetParent(attachLoc);
-            UpdatePlayerPos();
-        }
-
-        private void UpdatePlayerPos()
-        {
-            _player.position = attachLoc.position;
-            _player.rotation = attachLoc.rotation;
-        }
-
-        private void StartSwing()
+        public void StartSwing()
         {
             startAngle = -45;
             swing = StartCoroutine(SwingOverTime());
@@ -72,27 +53,18 @@ namespace Interactabels
         {
             // at finish anim
             // reposition player at end
-            DetachAndReset();
+            SwingInteractableManager.instance.FinishSwing(this);
         }
 
         public override void StopInteractPress()
         {
-            // get player cur pos
             // stop anim and drop
-            DetachAndReset();
+            SwingInteractableManager.instance.StopSwing(this);
             // fall anim
         }
 
-        private void DetachAndReset()
+        public void ResetSwing()
         {
-            if (_player)
-            {
-                _player.SetParent(null);
-                _player.rotation = _ogPlayerRot;
-                _player.position = new Vector2(_player.position.x, _ogPlayerYPos);
-            }
-
-            _player = null;
             if (swing != null) StopCoroutine(swing);
             FinishInteraction();
         }
