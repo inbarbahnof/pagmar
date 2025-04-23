@@ -96,8 +96,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4359331051284699735}
-  - component: {fileID: 912666065559708798}
   - component: {fileID: 4514809137630530987}
+  - component: {fileID: 1329075442572256967}
   m_Layer: 0
   m_Name: Push
   m_TagString: Untagged
@@ -122,8 +122,22 @@ Transform:
   - {fileID: 1066991569218058163}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &912666065559708798
-CircleCollider2D:
+--- !u!114 &4514809137630530987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2330076112419468966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147ab214f07aa7a49897e4e97e8abce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightEffect: {fileID: 6893773959335885168}
+  _needDogToPush: 0
+--- !u!70 &1329075442572256967
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -157,21 +171,8 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.8
---- !u!114 &4514809137630530987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2330076112419468966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 147ab214f07aa7a49897e4e97e8abce7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlightEffect: {fileID: 6893773959335885168}
-  _needDogToPush: 0
+  m_Size: {x: 2.57, y: 1.41}
+  m_Direction: 1
 --- !u!1001 &2502653270438635629
 PrefabInstance:
   m_ObjectHideFlags: 0

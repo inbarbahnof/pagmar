@@ -15,7 +15,6 @@ namespace Interactabels
         private List<BaseInteractable> curInteractables = new List<BaseInteractable>();
         private BaseInteractable curInteractableObj;
         private bool interacting = false;
-        private float interactionRange = 1.5f;
         private PlayerStateManager playerStateManager;
 
         private void Start()
@@ -61,8 +60,11 @@ namespace Interactabels
             {
                 BaseInteractable interactable = curInteractables[i];
                 float dist = Vector2.Distance(player.position, interactable.GetCurPos());
+                float interactionRange = interactable.InteractionRange;
+                
                 if (dist > interactionRange)
                 {
+                    // print("removing " + interactable.name + " at distance " + dist);
                     RemoveInteractable(interactable);
                 }
             }
@@ -92,6 +94,7 @@ namespace Interactabels
 
                 curInteractableObj = closest;
                 curInteractableObj.SetHighlight(true);
+                // print("curInteractableObj " + curInteractableObj.name);
             }
         }
 
