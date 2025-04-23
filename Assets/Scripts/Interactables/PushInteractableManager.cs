@@ -96,12 +96,6 @@ namespace Interactabels
             Vector3 dogTargetPos = _curPushable.transform.position - _dogOffsetFromObject;
             dog.position = dogTargetPos;
         }
-
-        public void ResetOnDeath()
-        {
-            // TODO reset to og state
-            print("Died");
-        }
         
     }
 
