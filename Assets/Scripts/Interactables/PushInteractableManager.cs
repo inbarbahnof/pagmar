@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Interactabels
 {
-    public class PushInterattableManager : MonoBehaviour
+    public class PushInteractableManager : MonoBehaviour
     {
-        public static PushInterattableManager instance;
+        public static PushInteractableManager instance;
 
         [SerializeField] private Transform player;
         [SerializeField] private Transform dog;
@@ -18,6 +18,9 @@ namespace Interactabels
         private Vector3 _dogOffsetFromObject;
         private bool _isPushing = false;
 
+        private Vector2 _pushTarget;
+
+
         void Start()
         {
             if (instance == null)
@@ -28,6 +31,11 @@ namespace Interactabels
 
             _playerMove = player.GetComponent<PlayerMove>();
             _dogAction = dog.GetComponent<DogActionManager>();
+        }
+
+        public void SetPushTarget(Vector2 target)
+        {
+            _pushTarget = target;
         }
 
         public void TryStartPush(PushInteractable interactable)
@@ -67,12 +75,25 @@ namespace Interactabels
             {
                 PushDog();
             }
+
+            if (_pushTarget != Vector2.zero)
+            {
+                if (Vector2.Distance(_curPushable.transform.position, _pushTarget) < 0.1f)
+                {
+                    // TODO event reached target
+                }
+            }
         }
         
         private void PushDog()
         {
             Vector3 dogTargetPos = _curPushable.transform.position - _dogOffsetFromObject;
             dog.position = dogTargetPos;
+        }
+
+        public void ResetOnDeath()
+        {
+            // TODO reset to og state
         }
     }
 
