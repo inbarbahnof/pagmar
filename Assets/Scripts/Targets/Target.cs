@@ -7,7 +7,9 @@ namespace Targets
     public class Target : MonoBehaviour
     {
         [SerializeField] private float distance = 0.6f;
+        [SerializeField] protected bool isTOI = true;
         public event Action OnTargetActionComplete;
+        public bool IsTOI => isTOI;
 
         public float GetDistance()
         {

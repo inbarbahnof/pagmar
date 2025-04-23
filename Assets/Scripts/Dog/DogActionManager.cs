@@ -51,8 +51,9 @@ namespace Dog
             DogStateMachineInput newInput = new DogStateMachineInput(playerStateManager.CurrentState, curDistance,
                 _dogReachedTarget, _dogFollowingTarget, _dogFollowingTOI, _pushDistance, _dogBusy);
             DogState newState = _computer.Compute(curState, newInput);
+            // print("new state " + newState);
 
-            if (curState != newState)
+            if (curState != newState || !_dogReachedTarget)
             {
                 HandleDogStateChange(newState);
             }
@@ -72,6 +73,9 @@ namespace Dog
                     break;
                 case (_, DogState.OnTargetAction):
                     curState = DogState.OnTargetAction;
+                    break;
+                case (_,DogState.FollowTOI):
+                    curState = DogState.FollowTOI;
                     break;
                 case (_, DogState.Push):
                     curState = DogState.Push;
@@ -98,6 +102,7 @@ namespace Dog
         {
             curState = DogState.Idle;
             _dogFollowingTarget = false;
+            _dogFollowingTOI = false;
             _playerFollower.SetIsGoingToTarget(false);
             // change to random idle animation 
         }
@@ -124,21 +129,27 @@ namespace Dog
 
         private void HandleDogOnAction()
         {
+            _dogFollowingTOI = false;
             _dogBusy = true;
         }
 
         private void HandleDogFinishedAction()
         {
+            _dogFollowingTOI = false;
             _dogBusy = false;
         }
 
         private void HandleDogFollow()
         {
+            _dogFollowingTOI = false;
             _dogFollowingTarget = true;
+            _dogReachedTarget = false;
         }
 
         private void HandleDogIdle()
         {
+            _dogFollowingTOI = false;
+            _dogFollowingTarget = false;
             _dogReachedTarget = true;
         }
 

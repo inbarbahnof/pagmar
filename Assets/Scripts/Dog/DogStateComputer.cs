@@ -7,15 +7,11 @@ namespace Dog
         
         public DogState Compute(DogState previousDogState, DogStateMachineInput machineInput)
         {
-            if (machineInput._playerState == PlayerState.Call)
-            {
-                return DogState.FollowCall;
-            }
+            if (machineInput._playerState == PlayerState.Call) return DogState.FollowCall;
             
-            if (machineInput._dogBusy)
-            {
-                return DogState.OnTargetAction;
-            }
+            if (machineInput._dogBusy) return DogState.OnTargetAction;
+
+            if (machineInput._dogFollowingTOI) return DogState.FollowTOI;
             
             switch (machineInput._playerState)
             {

@@ -26,7 +26,7 @@ namespace Dog
         private bool isGoingToTarget = true;
         // private bool isTargetActionDone = false;
 
-        private float stopProb = 0.5f;
+        private float stopProb = 0.7f;
         private float initialStopProb;
 
         private void Start()
@@ -34,6 +34,7 @@ namespace Dog
             agent = GetComponent<NavMeshAgent>();
             agent.updateRotation = false;
             agent.updateUpAxis = false;
+            agent.stoppingDistance = 0.1f;
 
             initialStopProb = stopProb;
             // GetNewTarget();
@@ -45,11 +46,14 @@ namespace Dog
                 return;
 
             float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
-
+            
             // Check if the dog reached the target
-            if (distance <= 0.6f && isGoingToTarget)
+            if(!agent.pathPending &&
+               agent.remainingDistance <= agent.stoppingDistance &&
+               agent.hasPath)
             {
                 agent.isStopped = true;
+                // print("start target action");
                 StartTargetAction();
             }
             else if (isGoingToTarget)
@@ -111,11 +115,11 @@ namespace Dog
         private void OnTriggerEnter2D(Collider2D other)
         {
             Target potentialTarget = other.GetComponent<Target>();
-            if (potentialTarget != null)
+            if (potentialTarget != null && potentialTarget.IsTOI)
             {
                 if (Random.value < stopProb)
                 {
-                    //Debug.Log("Switching to new target from trigger");
+                    Debug.Log("Switching to new target from trigger " + potentialTarget.name);
 
                     // Unsubscribe from old target
                     if (currentTarget != null)
