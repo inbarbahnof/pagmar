@@ -94,7 +94,7 @@ namespace Interactabels
 
                 curInteractableObj = closest;
                 curInteractableObj.SetHighlight(true);
-                print("curInteractableObj " + curInteractableObj.name);
+                // print("curInteractableObj " + curInteractableObj.name);
             }
         }
 

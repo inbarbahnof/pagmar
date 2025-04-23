@@ -221,6 +221,7 @@ MonoBehaviour:
   movementType: 0
   radius: 2.5
   speed: 1.5
+  moveAwayFromDogDistance: 2.5
 --- !u!114 &2123686772605441957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +312,7 @@ GameObject:
   - component: {fileID: 5710907024880852963}
   - component: {fileID: 7307591643191433319}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -446,3 +447,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attack: {fileID: 2123686772605441957}
+  _movement: {fileID: 997506254591797113}

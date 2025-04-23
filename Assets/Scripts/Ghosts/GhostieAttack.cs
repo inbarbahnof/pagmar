@@ -11,7 +11,6 @@ namespace Ghosts
 
         private Rigidbody2D _rb;
         private GhostieMovement _ghostieMovement;
-        private Vector3 _startAttackPos;
         private Transform _targetPlayer;
         private bool _attacking = false;
         
@@ -20,6 +19,11 @@ namespace Ghosts
             _rb = GetComponent<Rigidbody2D>();
             _ghostieMovement = GetComponent<GhostieMovement>();
         }
+
+        public void StopAttacking()
+        {
+            _attacking = false;
+        }
         
         public void Attack(Transform player)
         {
@@ -27,10 +31,13 @@ namespace Ghosts
             
             if (player == null || _attacking) return;
             
-            _ghostieMovement.StopGoingAround();
-            _startAttackPos = transform.position;
-            _targetPlayer = player;
-            _attacking = true;
+            bool isRunning = _ghostieMovement.StopGoingAround();
+
+            if (!isRunning)
+            {
+                _targetPlayer = player;
+                _attacking = true;
+            }
         }
 
         private void FixedUpdate()
