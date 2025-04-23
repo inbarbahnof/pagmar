@@ -48,9 +48,10 @@ namespace Dog
             float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
             
             // Check if the dog reached the target
-            if(!agent.pathPending &&
-               agent.remainingDistance <= agent.stoppingDistance &&
-               agent.hasPath)
+            // if(!agent.pathPending &&
+            //    agent.remainingDistance <= agent.stoppingDistance &&
+            //    agent.hasPath)
+            if (distance <= targetDistance && isGoingToTarget)   
             {
                 agent.isStopped = true;
                 // print("start target action");

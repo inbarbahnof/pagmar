@@ -7,7 +7,9 @@ namespace Dog
         
         public DogState Compute(DogState previousDogState, DogStateMachineInput machineInput)
         {
-            if (machineInput._playerState == PlayerState.Call) return DogState.FollowCall;
+            if (machineInput._playerState == PlayerState.Call && 
+                machineInput._playerDogDistance <= machineInput._callDistance) 
+                return DogState.FollowCall;
             
             if (machineInput._dogBusy) return DogState.OnTargetAction;
 
@@ -16,7 +18,7 @@ namespace Dog
             switch (machineInput._playerState)
             {
                 case PlayerState.Walk:
-                    return HandlePlayerWalkBehavior(previousDogState);
+                    return HandlePlayerWalkBehavior(previousDogState, machineInput);
                 case PlayerState.Idle:
                     return HandlePlayerIdleBehavior(previousDogState, machineInput);
                 case PlayerState.Push:
@@ -28,7 +30,7 @@ namespace Dog
         
         private DogState HandlePlayerPushBehavior(DogState previousDogState, DogStateMachineInput machineInput)
         {
-            if (machineInput._playerDogDistance < machineInput._pushDistance)
+            if (machineInput._playerDogDistance <= machineInput._pushDistance)
             {
                 return DogState.Push;
             }
@@ -36,11 +38,16 @@ namespace Dog
             return previousDogState;
         }
     
-        private DogState HandlePlayerWalkBehavior(DogState previousDogState)
+        private DogState HandlePlayerWalkBehavior(DogState previousDogState, DogStateMachineInput machineInput)
         {
             if (previousDogState != DogState.FollowTOI)
             {
-                return DogState.Follow;
+                if (machineInput._playerDogDistance <= machineInput._followDistance)
+                {
+                    return DogState.Follow;
+                }
+
+                return DogState.Idle;
             }
 
             return previousDogState;

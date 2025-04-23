@@ -13,7 +13,11 @@ namespace Dog
 
         [SerializeField] private PlayerStateManager playerStateManager;
         [SerializeField] private RandomTargetGenerator _targetGenerator;
+        
+        [Header("Distances For States")]
         [SerializeField] private float _pushDistance = 2f;
+        [SerializeField] private float _followDistance = 4f;
+        [SerializeField] private float _callDistance = 4f;
 
         private PlayerFollower _playerFollower;
         private Transform _playerTransform;
@@ -48,10 +52,13 @@ namespace Dog
             // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
             
             float curDistance = Vector2.Distance(_playerTransform.position, transform.position);
-            DogStateMachineInput newInput = new DogStateMachineInput(playerStateManager.CurrentState, curDistance,
-                _dogReachedTarget, _dogFollowingTarget, _dogFollowingTOI, _pushDistance, _dogBusy);
+            DogStateMachineInput newInput = new DogStateMachineInput(playerStateManager.CurrentState, 
+                curDistance, _dogReachedTarget,
+                _dogFollowingTarget, _dogFollowingTOI,
+                _pushDistance, _dogBusy, _callDistance, _followDistance);
+            
             DogState newState = _computer.Compute(curState, newInput);
-            // print("new state " + newState);
+            print("curDistance " + curDistance);
 
             if (curState != newState || !_dogReachedTarget)
             {
