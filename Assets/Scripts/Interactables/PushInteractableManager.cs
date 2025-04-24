@@ -1,11 +1,14 @@
+using System;
 using Dog;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Interactabels
 {
-    public class PushInterattableManager : MonoBehaviour
+    public class PushInteractableManager : MonoBehaviour
     {
-        public static PushInterattableManager instance;
+        public static PushInteractableManager instance;
+        public event Action OnReachedTarget;
 
         [SerializeField] private Transform player;
         [SerializeField] private Transform dog;
@@ -18,6 +21,9 @@ namespace Interactabels
         private Vector3 _dogOffsetFromObject;
         private bool _isPushing = false;
 
+        private Vector2 _pushTarget;
+
+
         void Start()
         {
             if (instance == null)
@@ -28,6 +34,12 @@ namespace Interactabels
 
             _playerMove = player.GetComponent<PlayerMove>();
             _dogAction = dog.GetComponent<DogActionManager>();
+        }
+
+        public void SetPushTarget(Vector2 target, Action onReachEvent)
+        {
+            _pushTarget = target;
+            OnReachedTarget += onReachEvent;
         }
 
         public void TryStartPush(PushInteractable interactable)
@@ -67,6 +79,16 @@ namespace Interactabels
             {
                 PushDog();
             }
+
+            if (_pushTarget != Vector2.zero)
+            {
+                if (Vector2.Distance(_curPushable.transform.position, _pushTarget) < 0.1f)
+                {
+                    OnReachedTarget?.Invoke();
+                    print("finished");
+                    StopPush();
+                }
+            }
         }
         
         private void PushDog()
@@ -74,6 +96,7 @@ namespace Interactabels
             Vector3 dogTargetPos = _curPushable.transform.position - _dogOffsetFromObject;
             dog.position = dogTargetPos;
         }
+        
     }
 
 }

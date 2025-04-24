@@ -13,13 +13,13 @@ namespace Interactabels
         
         public override void Interact()
         {
-            PushInterattableManager.instance.TryStartPush(this);
+            PushInteractableManager.instance.TryStartPush(this);
             base.Interact();
         }
 
         public override void StopInteractPress()
         {
-            PushInterattableManager.instance.StopPush();
+            PushInteractableManager.instance.StopPush();
             FinishInteraction();
         }
         

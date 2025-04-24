@@ -1,0 +1,27 @@
+using Interactabels;
+using UnityEngine;
+
+namespace Interactables
+{
+    public class PushObstacle : Obstacle
+    {
+        [SerializeField] private PushInteractableManager pushManager;
+        private bool _setupComplete;
+        private Vector2 _pushTarget;
+
+        void Start()
+        {
+            _pushTarget = transform.position;
+            pushManager.SetPushTarget(_pushTarget, ReachedTarget);
+        }
+
+        public void ReachedTarget()
+        {
+            _setupComplete = true;
+            GetComponentInChildren<PlayerDeathZone>().TrunOff();
+        }
+        
+        
+        
+    }
+}
