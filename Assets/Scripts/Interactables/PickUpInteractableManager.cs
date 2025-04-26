@@ -1,14 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Interactabels
 {
     public class PickUpInteractableManager : MonoBehaviour
     {
         public static PickUpInteractableManager instance;
+        
+        public event Action OnReachedTarget;
 
         [SerializeField] private Transform player;
 
         private Transform _pickUpParent;
+        private Vector2 _carryTarget;
         
         void Start()
         {
@@ -20,6 +24,12 @@ namespace Interactabels
             
             _pickUpParent = player.GetComponent<PickUpParentManager>().GetPickUpParent();
         }
+        
+        public void SetCarryTarget(Vector2 target, Action onReachEvent)
+        {
+            _carryTarget = target;
+            OnReachedTarget += onReachEvent;
+        }
 
         public void Interact(PickUpInteractable pickup)
         {
@@ -30,6 +40,10 @@ namespace Interactabels
             else
             {
                 pickup.DropObject();
+                if (Vector2.Distance(pickup.transform.position, _carryTarget) <= 0.5f)
+                {
+                    OnReachedTarget?.Invoke();
+                }
             }
         }
     }

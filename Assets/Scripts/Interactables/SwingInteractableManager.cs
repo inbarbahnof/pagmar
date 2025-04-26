@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Interactabels
 {
     public class SwingInteractableManager : MonoBehaviour
     {
         public static SwingInteractableManager instance;
-        
+        public event Action OnSwingStart;
+        public event Action OnSwingStop;
+
         [SerializeField] private Transform player;
         private PlayerMove _playerMove;
         
@@ -24,6 +27,12 @@ namespace Interactabels
 
             _playerMove = player.GetComponent<PlayerMove>();
 
+        }
+
+        public void SetSwingEndAction(Action startAction, Action stopAction)
+        {
+            OnSwingStart += startAction;
+            OnSwingStop += stopAction;
         }
 
         public void TryStartSwing(SwingInteractable interactable)
@@ -45,6 +54,7 @@ namespace Interactabels
             _ogPlayerYPos = player.position.y;
             player.SetParent(_interactable.AttachLoc);
             UpdatePlayerPos();
+            OnSwingStart?.Invoke();
         }
 
         private void UpdatePlayerPos()
@@ -81,6 +91,7 @@ namespace Interactabels
             player.position = new Vector2(player.position.x, _ogPlayerYPos);
             _interactable.ResetSwing();
             _interactable = null;
+            OnSwingStop?.Invoke();
         }
     }
 }
