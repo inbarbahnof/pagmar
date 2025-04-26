@@ -8,12 +8,14 @@ namespace Dog
         public DogState Compute(DogState previousDogState, DogStateMachineInput machineInput)
         {
             if (machineInput._playerState == PlayerState.Call && 
-                machineInput._playerDogDistance <= machineInput._callDistance) 
+                machineInput._playerDogDistance <= machineInput._listenDistance) 
                 return DogState.FollowCall;
             
             if (machineInput._dogBusy) return DogState.OnTargetAction;
 
             if (machineInput._dogFollowingTOI) return DogState.FollowTOI;
+
+            if (machineInput._playerDogDistance > machineInput._listenDistance) return DogState.Idle;
             
             switch (machineInput._playerState)
             {
@@ -42,12 +44,7 @@ namespace Dog
         {
             if (previousDogState != DogState.FollowTOI)
             {
-                if (machineInput._playerDogDistance <= machineInput._followDistance)
-                {
-                    return DogState.Follow;
-                }
-
-                return DogState.Idle;
+                return DogState.Follow;
             }
 
             return previousDogState;

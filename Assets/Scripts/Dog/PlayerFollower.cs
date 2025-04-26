@@ -17,7 +17,7 @@ namespace Dog
         public event Action OnStartFollow;
 
         [SerializeField] private Transform player;
-
+        
         private NavMeshAgent agent;
         private Target currentTarget;
         private Target nextTarget;
@@ -37,7 +37,6 @@ namespace Dog
             agent.stoppingDistance = 0.1f;
 
             initialStopProb = stopProb;
-            // GetNewTarget();
         }
 
         void Update()
@@ -48,9 +47,6 @@ namespace Dog
             float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
             
             // Check if the dog reached the target
-            // if(!agent.pathPending &&
-            //    agent.remainingDistance <= agent.stoppingDistance &&
-            //    agent.hasPath)
             if (distance <= targetDistance && isGoingToTarget)   
             {
                 agent.isStopped = true;
