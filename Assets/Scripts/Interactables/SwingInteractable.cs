@@ -28,7 +28,8 @@ namespace Interactabels
 
         public void StartSwing()
         {
-            startAngle = -45;
+            startAngle = transform.localEulerAngles.z;
+            if (startAngle > 180f) startAngle -= 360f;
             swing = StartCoroutine(SwingOverTime());
         }
 
