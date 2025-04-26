@@ -78,4 +78,9 @@ public class PlayerMove : MonoBehaviour
     {
         _moveInput = moveInput;
     }
+
+    public void ResetToCheckpoint(Vector2 pos)
+    {
+        // TODO reset pos and state
+    }
 }

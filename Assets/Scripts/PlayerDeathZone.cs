@@ -7,7 +7,7 @@ public class PlayerDeathZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // reset
+            GameManager.checkpointManagerInstance.Undo();
             print("player died");
         }
     }
