@@ -7,11 +7,13 @@ namespace Dog
     {
         [SerializeField] private GameObject art;
 
+        private DogActionManager _actionManager;
         private Vector3 lastPosition;
         private float moveXPrevDir;
 
         private void Start()
         {
+            _actionManager = GetComponent<DogActionManager>();
             lastPosition = transform.position;
         }
 
@@ -20,7 +22,7 @@ namespace Dog
             Vector3 currentPosition = transform.position;
             float dirX = currentPosition.x - lastPosition.x;
 
-            if (Mathf.Sign(dirX) != Mathf.Sign(moveXPrevDir))
+            if (Mathf.Sign(dirX) != Mathf.Sign(moveXPrevDir) && _actionManager.CurState != DogState.Push)
             {
                 art.transform.localScale = new Vector3(
                     -art.transform.localScale.x,
