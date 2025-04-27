@@ -23,7 +23,7 @@ namespace Dog
         private Target nextTarget;
         private float targetDistance;
         private bool isPerformingAction = false;
-        private bool isGoingToTarget = true;
+        private bool isGoingToTarget = false;
         // private bool isTargetActionDone = false;
 
         private float stopProb = 0.7f;
@@ -45,11 +45,16 @@ namespace Dog
 
             float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
             
+            // print("agent remaininig distance " + agent.remainingDistance);
+            // if (agent.hasPath && agent.remainingDistance <= agent.stoppingDistance + 0.1f && isGoingToTarget)
+            // {
+            //     print("agent reached target");
+            // }
+            
             // Check if the dog reached the target
             if (distance <= targetDistance && isGoingToTarget)   
             {
                 agent.isStopped = true;
-                // print("start target action");
                 StartTargetAction();
             }
             else if (isGoingToTarget)
