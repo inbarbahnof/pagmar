@@ -3,13 +3,20 @@ using UnityEngine;
 
 namespace Ghosts
 {
-    public class AttackDetector : MonoBehaviour
+    public class AttackDetector : PlayerDeathZone
     {
-        private void OnTriggerEnter2D(Collider2D other)
+        [SerializeField] private GhostieAttack _attack;
+        [SerializeField] private GhostieMovement _movement;
+        
+        protected override void OnTriggerEnter2D(Collider2D other)
         {
+            base.OnTriggerEnter2D(other);
+            
             if (other.CompareTag("Player"))
             {
-                print("player got attacked");
+                _attack.StopAttacking();
+                _movement.MoveAround();
+                print("player died with ghost");
             }
         }
     }
