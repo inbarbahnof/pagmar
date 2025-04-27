@@ -17,7 +17,7 @@ namespace Interactables
         public void ReachedTarget()
         {
             _setupComplete = true;
-            GetComponentInChildren<PlayerDeathZone>().TrunOff();
+            GetComponentInChildren<PlayerDeathZone>()?.TrunOff();
         }
         
         
