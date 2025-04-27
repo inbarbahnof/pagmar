@@ -21,8 +21,7 @@ namespace Interactables
         private bool _isPushing = false;
 
         private Vector2 _pushTarget;
-
-
+        
         void Start()
         {
             if (instance == null)
@@ -64,7 +63,7 @@ namespace Interactables
 
         void Update()
         {
-            if (!_isPushing || _curPushable == null)return;
+            if (!_isPushing || _curPushable == null) return;
             
             if (_curPushable.NeedDogToPush() && _dogAction.CurState != DogState.Push)
             {
@@ -83,7 +82,7 @@ namespace Interactables
             {
                 if (Vector2.Distance(_curPushable.transform.position, _pushTarget) < 0.3f)
                 {
-                    _curPushable.SetAtTargetPos(_pushTarget.x);
+                    _curPushable.SetAtPos(_pushTarget.x);
                     OnReachedTarget?.Invoke();
                     print("finished");
                     StopPush();
@@ -95,6 +94,12 @@ namespace Interactables
         {
             Vector3 dogTargetPos = _curPushable.transform.position - _dogOffsetFromObject;
             dog.position = dogTargetPos;
+        }
+
+        public void ResetToCheckpoint(PushInteractable interactable)
+        {
+            interactable.ResetToCheckpoint();
+            StopPush();
         }
         
     }

@@ -1,31 +1,32 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Interactables
 {
     public class SwingObstacle : Obstacle
     {
         [SerializeField] private SwingInteractableManager swingManager;
-        private GameObject deathZone;
+        [SerializeField] private SwingInteractable interactable;
+        [SerializeField] private GameObject deathZone;
 
         void Start()
         {
             swingManager.SetSwingEndAction(StartSwinging, StopSwinging);
-            deathZone = GetComponentInChildren<PlayerDeathZone>().gameObject;
         }
         
         public void StartSwinging()
         {
-            deathZone.SetActive(false);
+            if (deathZone is not null) deathZone.SetActive(false);
         }
 
         public void StopSwinging()
         {
-            deathZone.SetActive(true);
+            if (deathZone is not null) deathZone.SetActive(true);
         }
 
         public override void ResetObstacle()
         {
-            swingManager.ResetToCheckpoint();
+            swingManager.ResetToCheckpoint(interactable);
         }
     }
 }

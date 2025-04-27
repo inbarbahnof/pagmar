@@ -105,10 +105,9 @@ namespace Interactables
             if (reposition) player.position = new Vector2(player.position.x, _ogPlayerYPos);
         }
 
-        public void ResetToCheckpoint()
+        public void ResetToCheckpoint(SwingInteractable interactable)
         {
-            if (_curInteractable is not null) _curInteractable.ResetToCheckpoint();
-            else _prevInteractable.ResetToCheckpoint();
+            interactable.ResetToCheckpoint();
             DetachPlayer();
         }
     }

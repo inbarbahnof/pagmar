@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -9,8 +10,14 @@ namespace Interactables
         private Coroutine swing;
         private float swingTime = 3f;
         private float startAngle;
+        private float ogStartAngle;
 
         public Transform AttachLoc => attachLoc;
+
+        private void Start()
+        {
+            ogStartAngle = transform.localEulerAngles.z;
+        }
 
         public override void Interact()
         {
@@ -70,9 +77,9 @@ namespace Interactables
             FinishInteraction();
         }
 
-        public void ResetToCheckpoint()
+        public override void ResetToCheckpoint()
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, startAngle);
+            transform.rotation = Quaternion.Euler(0f, 0f, ogStartAngle);
             ResetSwing();
         }
 

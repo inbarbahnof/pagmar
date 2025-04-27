@@ -11,9 +11,6 @@ namespace Interactables
             SetupComplete = true;
         }
         
-        public virtual void ResetObstacle()
-        {
-            
-        }
+        public virtual void ResetObstacle() { }
     }
 }

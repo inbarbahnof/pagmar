@@ -1,5 +1,8 @@
+using System;
+using System.Numerics;
 using UnityEngine;
 using Vector2 = System.Numerics.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Interactables
 {
@@ -9,7 +12,14 @@ namespace Interactables
         public bool NeedDogToPush() => _needDogToPush;
         
         private float _xOffset;
-        
+
+        private Vector3 ogPos;
+
+        private void Start()
+        {
+            ogPos = transform.position;
+        }
+
         public override void Interact()
         {
             PushInteractableManager.instance.TryStartPush(this);
@@ -34,11 +44,16 @@ namespace Interactables
             transform.position = newPos;
         }
 
-        public void SetAtTargetPos(float targetX)
+        public void SetAtPos(float posX)
         {
             Vector3 newPos = transform.position;
-            newPos.x = targetX;
+            newPos.x = posX;
             transform.position = newPos;
+        }
+
+        public override void ResetToCheckpoint()
+        {
+            transform.position = ogPos;
         }
     }
 }

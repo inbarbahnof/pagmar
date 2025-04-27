@@ -54,6 +54,8 @@ namespace Interactables
             // this may be just picking up an obj and then not done until press again to drop
         }
 
+        public virtual void ResetToCheckpoint() { }
+
         /// <summary>
         /// Called when player has stopped interaction with obj, either in the middle of interaction or when finished.
         /// </summary>
@@ -61,6 +63,7 @@ namespace Interactables
         {
             InteractableManager.instance.OnFinishInteraction();
         }
+        
 
     }
 }
