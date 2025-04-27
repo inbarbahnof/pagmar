@@ -4,7 +4,7 @@ using UnityEngine;
 public class NavMeshManager : MonoBehaviour
 {
     public static NavMeshManager instance;
-    [SerializeField] private NavMeshSurface Surface2D;
+    private NavMeshSurface Surface2D;
 
     private void Start()
     {
@@ -13,7 +13,8 @@ public class NavMeshManager : MonoBehaviour
             instance = this;
         }
         else Debug.LogError("TOO MANY PUSH NAVMESH MANAGERS!");
-        
+
+        Surface2D = GetComponent<NavMeshSurface>();
         Surface2D.BuildNavMeshAsync();
     }
 
