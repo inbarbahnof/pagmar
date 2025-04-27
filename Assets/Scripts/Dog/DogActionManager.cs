@@ -68,9 +68,17 @@ namespace Dog
             }
         }
 
+        public void Reset()
+        {
+            
+        }
+
         private void HandleDogStateChange(DogState newState)
         {
             // print("swap from " + curState + " to " + newState);
+            if (curState == DogState.Push)
+                _playerFollower.SetStopProb(false);
+            
             switch (curState, newState)
             {
                 case (_, DogState.FollowCall):
@@ -88,6 +96,7 @@ namespace Dog
                     break;
                 case (_, DogState.Push):
                     curState = DogState.Push;
+                    _playerFollower.SetStopProb(true);
                     _playerFollower.SetIsGoingToTarget(false);
                     break;
                 case (DogState.FollowTOI, DogState.Follow):
@@ -161,43 +170,5 @@ namespace Dog
             _dogFollowingTarget = false;
             _dogReachedTarget = true;
         }
-
-        // private void HandlePlayerPushBehavior()
-        // {
-        //     float distance = Vector2.Distance(_playerTransform.position, transform.position);
-        //     
-        //     if (distance < _pushDistance)
-        //     {
-        //         curState = DogState.Push;
-        //         _playerFollower.SetIsGoingToTarget(false);
-        //     }
-        // }
-        //
-        // private void HandlePlayerWalkBehavior()
-        // {
-        //     // float distanceToPlayer = Vector3.Distance(transform.position, playerStateManager.transform.position);
-        //
-        //     Target newTarget = _targetGenerator.GenerateNewTarget();
-        //     if (newTarget == null) return;
-        //     
-        //     // check if dog is on idle or action
-        //     switch (curState)
-        //     {
-        //         case DogState.Idle:
-        //             curState = DogState.Follow;
-        //             _playerFollower.SetNextTarget(newTarget);
-        //             _playerFollower.GoToNextTarget();
-        //             break;
-        //         case DogState.FollowTOI:
-        //             _playerFollower.SetNextTarget(newTarget);
-        //             break;
-        //     }
-        //     
-        // }
-        //
-        // private void HandlePlayerIdleBehavior()
-        // {
-        //     curState = DogState.Idle;
-        // }
     }
 }

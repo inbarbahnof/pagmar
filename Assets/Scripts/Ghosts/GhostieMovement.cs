@@ -10,6 +10,7 @@ namespace Ghosts
         private enum MovementType { Circle, StraightLine }
 
         [SerializeField] private MovementType movementType = MovementType.Circle;
+        [SerializeField] private Ease movementEase = Ease.InOutSine;
         [SerializeField] private float radius = 2.5f;
         [SerializeField] private float speed = 1.5f;
 
@@ -25,7 +26,6 @@ namespace Ghosts
         private void Start()
         {
             _initialPosition = transform.position;
-
             MoveAround();
         }
 
@@ -60,7 +60,7 @@ namespace Ghosts
             float moveDuration = distance / runAwaySpeed;
 
             runAwayTween = transform.DOMove(runAwayPoint, moveDuration)
-                .SetEase(Ease.OutCubic)
+                .SetEase(movementEase)
                 .OnComplete(() =>
                 {
                     runAwayTween = null;
@@ -79,7 +79,7 @@ namespace Ghosts
             float moveDuration = distance / speed;
             
             curTween = transform.DOMove(target, moveDuration)
-                .SetEase(Ease.InOutSine)
+                .SetEase(movementEase)
                 .OnComplete(MoveInCircle);
         }
 

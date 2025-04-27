@@ -7,7 +7,6 @@ namespace Ghosts
     public class GhostieAttack : MonoBehaviour
     {
         [SerializeField] private float attackSpeed = 3f;
-        [SerializeField] private Ease attackEase = Ease.InOutSine;
 
         private Rigidbody2D _rb;
         private GhostieMovement _ghostieMovement;

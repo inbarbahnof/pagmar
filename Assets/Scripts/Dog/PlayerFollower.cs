@@ -34,7 +34,6 @@ namespace Dog
             agent = GetComponent<NavMeshAgent>();
             agent.updateRotation = false;
             agent.updateUpAxis = false;
-            agent.stoppingDistance = 0.1f;
 
             initialStopProb = stopProb;
         }
@@ -80,6 +79,13 @@ namespace Dog
             isGoingToTarget = going;
         }
 
+        public void Reset()
+        {
+            currentTarget = null;
+            nextTarget = null;
+            stopProb = initialStopProb;
+        }
+
         public void GoToCallTarget(Target target)
         {
             stopProb = 0;
@@ -97,6 +103,18 @@ namespace Dog
 
             targetDistance = currentTarget.GetDistance();
             currentTarget.OnTargetActionComplete += OnTargetActionComplete;
+        }
+
+        public void SetStopProb(bool isStoping)
+        {
+            if (isStoping)
+            {
+                stopProb = 0;
+            }
+            else
+            {
+                stopProb = initialStopProb;
+            }
         }
 
         public void SetNextTarget(Target target)
