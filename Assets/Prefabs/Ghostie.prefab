@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8462009740500779152}
   - component: {fileID: 3341439297436038234}
   - component: {fileID: 6222949353568404467}
+  - component: {fileID: 8815050809999208052}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c503e2109b7c534785a0ed9e7cacef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8815050809999208052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286610580926665560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8616adf2bb8b4a9db2a5d0c43ca41a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4924876290146459057
@@ -218,6 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementType: 0
+  movementEase: 4
   radius: 2.5
   speed: 1.5
   runAwayPoint: {x: 0, y: 0, z: 0}
@@ -235,7 +249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackSpeed: 5
-  attackEase: 4
 --- !u!50 &1748362117836619842
 Rigidbody2D:
   serializedVersion: 5

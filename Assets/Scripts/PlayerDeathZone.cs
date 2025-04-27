@@ -14,7 +14,7 @@ public class PlayerDeathZone : MonoBehaviour
 
     public void TrunOff()
     {
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
 }

@@ -49,7 +49,8 @@ namespace Ghosts
                     attackSpeed * Time.fixedDeltaTime
                 );
 
-                if (Vector2.Distance(transform.position, _targetPlayer.position) <= 0.5f)
+                var dist = Vector2.Distance(transform.position, _targetPlayer.position);
+                if (dist <= 0.5f)
                 {
                     Debug.Log("Attack reached!");
                     _attacking = false;
