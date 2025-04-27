@@ -28,11 +28,11 @@ namespace Interactabels
             isPickedUp = true;
         }
 
-        public void DropObject()
+        public void DropObject(Vector2 worldTarget)
         {
             isPickedUp = false;
             transform.SetParent(originalParent);
-
+            if (worldTarget != Vector2.zero) transform.position = worldTarget;
             StartCoroutine(FinishAction());
         }
 

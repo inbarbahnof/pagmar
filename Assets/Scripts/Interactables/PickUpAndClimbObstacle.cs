@@ -14,13 +14,19 @@ public class PickUpAndClimbObstacle : Obstacle
     void Start()
     {
         _carryTarget = transform.position;
-        pickUpManager.SetCarryTarget(_carryTarget, ReachedTarget);
+        pickUpManager.SetCarryTarget(_carryTarget, ReachedTarget, PickedUp);
     }
 
     public void ReachedTarget()
     {
         _setupComplete = true;
         roadBlock.GetComponent<Collider2D>().enabled = false;
+    }
+
+    public void PickedUp()
+    {
+        _setupComplete = false;
+        roadBlock.GetComponent<Collider2D>().enabled = true;
     }
     
 }

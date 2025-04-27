@@ -40,7 +40,10 @@ namespace Interactabels
 
             while (elapsedTime < swingTime)
             {
-                float currentAngle = Mathf.Lerp(startAngle, -startAngle, elapsedTime / swingTime);
+                float t = elapsedTime / swingTime;
+                float easedT = Mathf.SmoothStep(0f, 1f, t);
+                float currentAngle = Mathf.Lerp(startAngle, -startAngle, easedT);
+                
                 transform.rotation = Quaternion.Euler(0f, 0f, currentAngle);
                 elapsedTime += Time.deltaTime;
                 yield return null;
