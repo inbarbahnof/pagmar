@@ -1,4 +1,5 @@
 using System;
+using Dog;
 using Interactables;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,20 +9,27 @@ namespace CheckpointUtils
     public class CheckpointOriginator : MonoBehaviour
     {
         [SerializeField] private PlayerMove player;
-        [SerializeField] private GameObject dog;
+        [SerializeField] private DogActionManager dog;
         private Obstacle _curObs = null;
     
         private CheckpointInfo _curCheckpointInfo;
     
         private void Start()
         {
-            _curCheckpointInfo = new CheckpointInfo(player.transform.position, dog.transform.position);
+            _curCheckpointInfo = new CheckpointInfo(
+                transform.position, 
+                player.transform.position, 
+                dog.transform.position);
         }
 
-        public IMemento Save(Obstacle obstacle = null)
+        public IMemento Save(Vector2 checkpointLoc, Vector2 playerRespawnPoint, Obstacle obstacle = null)
         {
             _curObs = obstacle;
-            _curCheckpointInfo = new CheckpointInfo(player.transform.position, dog.transform.position, _curObs);
+            _curCheckpointInfo = new CheckpointInfo(
+                checkpointLoc, 
+                playerRespawnPoint, 
+                dog.transform.position, 
+                _curObs);
             return new ConcreteMemento(_curCheckpointInfo);
         }
 
@@ -33,8 +41,8 @@ namespace CheckpointUtils
             }
             _curCheckpointInfo = memento.GetCheckpointInfo();
             // restore player and dog
-            player.ResetToCheckpoint(_curCheckpointInfo.PlayerLoc);
-            // TODO reset dog, finish reset player
+            player.ResetToCheckpoint(_curCheckpointInfo.PlayerRespawnLoc);
+            dog.ResetToCheckpoint(_curCheckpointInfo.DogLoc);
             // TODO reset obstacle
         }
     }

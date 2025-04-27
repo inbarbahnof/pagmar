@@ -17,9 +17,9 @@ namespace CheckpointUtils
         }
 
         // call from checkpoint collider
-        public void Backup(Obstacle obstacle = null)
+        public void Backup(Vector2 checkpointLoc, Vector2 playerRespawnPoint, Obstacle obstacle = null)
         {
-            _mementoes.Add(_originator.Save(obstacle));
+            _mementoes.Add(_originator.Save(checkpointLoc, playerRespawnPoint, obstacle));
             ShowHistory();
         }
 
@@ -49,7 +49,7 @@ namespace CheckpointUtils
             Debug.Log("Checkpoint Locals: ");
             foreach (var memento in _mementoes)
             {
-                Debug.Log(memento.GetCheckpointInfo().PlayerLoc + " ");
+                Debug.Log(memento.GetCheckpointInfo().PlayerRespawnLoc + " ");
             }
         }
     }

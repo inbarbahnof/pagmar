@@ -84,7 +84,7 @@ namespace Dog
             isGoingToTarget = going;
         }
 
-        public void Reset(Vector2 position)
+        public void ResetToCheckpoint(Vector2 position)
         {
             transform.position = position;
             

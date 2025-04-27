@@ -81,6 +81,10 @@ public class PlayerMove : MonoBehaviour
 
     public void ResetToCheckpoint(Vector2 pos)
     {
-        // TODO reset pos and state
+        transform.position = pos;
+        isMoving = false;
+        UpdateMoveInput(Vector2.zero);
+        SetIsPushing(false);
+        SetIsSwinging(false);
     }
 }
