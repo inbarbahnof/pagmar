@@ -5,7 +5,6 @@ namespace Interactables
     public class SwingObstacle : Obstacle
     {
         [SerializeField] private SwingInteractableManager swingManager;
-        private bool _setupComplete;
         private GameObject deathZone;
 
         void Start()
@@ -13,12 +12,7 @@ namespace Interactables
             swingManager.SetSwingEndAction(StartSwinging, StopSwinging);
             deathZone = GetComponentInChildren<PlayerDeathZone>().gameObject;
         }
-
-        public void ReachedTarget()
-        {
-            _setupComplete = true;
-        }
-
+        
         public void StartSwinging()
         {
             deathZone.SetActive(false);
@@ -29,5 +23,9 @@ namespace Interactables
             deathZone.SetActive(true);
         }
 
+        public override void ResetObstacle()
+        {
+            swingManager.ResetToCheckpoint();
+        }
     }
 }

@@ -43,7 +43,10 @@ namespace CheckpointUtils
             // restore player and dog
             player.ResetToCheckpoint(_curCheckpointInfo.PlayerRespawnLoc);
             dog.ResetToCheckpoint(_curCheckpointInfo.DogLoc);
-            // TODO reset obstacle
+            if (_curCheckpointInfo.CurObstacle != null)
+            {
+                _curObs.ResetObstacle();
+            }
         }
     }
 }

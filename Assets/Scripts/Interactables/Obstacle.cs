@@ -4,16 +4,16 @@ namespace Interactables
 {
     public class Obstacle : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-        
-        }
+        protected bool SetupComplete;
 
-        // Update is called once per frame
-        void Update()
+        public virtual void ReachedTarget()
         {
+            SetupComplete = true;
+        }
         
+        public virtual void ResetObstacle()
+        {
+            
         }
     }
 }

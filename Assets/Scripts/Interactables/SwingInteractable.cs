@@ -70,6 +70,12 @@ namespace Interactables
             FinishInteraction();
         }
 
+        public void ResetToCheckpoint()
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, startAngle);
+            ResetSwing();
+        }
+
 
     }
 }

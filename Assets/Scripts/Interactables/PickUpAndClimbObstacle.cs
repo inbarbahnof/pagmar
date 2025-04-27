@@ -6,7 +6,6 @@ namespace Interactables
     {
         [SerializeField] private PickUpInteractableManager pickUpManager;
         [SerializeField] private GameObject roadBlock;
-        private bool _setupComplete;
         private Vector2 _carryTarget;
 
         void Start()
@@ -17,13 +16,13 @@ namespace Interactables
 
         public void ReachedTarget()
         {
-            _setupComplete = true;
+            base.ReachedTarget();
             roadBlock.GetComponent<Collider2D>().enabled = false;
         }
 
         public void PickedUp()
         {
-            _setupComplete = false;
+            SetupComplete = false;
             roadBlock.GetComponent<Collider2D>().enabled = true;
         }
     

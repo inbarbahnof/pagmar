@@ -15,7 +15,8 @@ namespace Interactables
         private Quaternion _ogPlayerRot;
         private float _ogPlayerYPos;
 
-        private SwingInteractable _interactable;
+        private SwingInteractable _curInteractable;
+        private SwingInteractable _prevInteractable;
         
         void Start()
         {
@@ -37,12 +38,12 @@ namespace Interactables
 
         public void TryStartSwing(SwingInteractable interactable)
         {
-            if (_interactable != null)
+            if (_curInteractable != null)
             {
                 print("Already interacting with a swing!");
                 return;
             }
-            _interactable = interactable;
+            _curInteractable = interactable;
             AttachPlayerToRope();
             interactable.StartSwing();
         }
@@ -52,46 +53,63 @@ namespace Interactables
             _playerMove.SetIsSwinging(true);
             _ogPlayerRot = player.rotation;
             _ogPlayerYPos = player.position.y;
-            player.SetParent(_interactable.AttachLoc);
+            player.SetParent(_curInteractable.AttachLoc);
             UpdatePlayerPos();
             OnSwingStart?.Invoke();
         }
 
         private void UpdatePlayerPos()
         {
-            player.position = _interactable.AttachLoc.position;
-            player.rotation = _interactable.AttachLoc.rotation;
+            player.position = _curInteractable.AttachLoc.position;
+            player.rotation = _curInteractable.AttachLoc.rotation;
         }
 
         public void FinishSwing(SwingInteractable interactable)
         {
-            if (_interactable != interactable)
+            if (_curInteractable is not null && _curInteractable != interactable)
             {
                 print("Trying to detach from wrong interactable obj");
                 return;
             }
-            DetachAndReset();
+            OnSwingStop?.Invoke();
+            ResetSwing();
+            DetachPlayer(true);
         }
 
         public void StopSwing(SwingInteractable interactable)
         {
-            if (_interactable != interactable)
+            if (_curInteractable is null) return;
+            if (_curInteractable != interactable)
             {
                 print("Trying to detach from wrong interactable obj");
                 return;
             }
-            DetachAndReset();
+            OnSwingStop?.Invoke();
+            ResetSwing();
+            DetachPlayer(true);
         }
 
-        private void DetachAndReset()
+        private void ResetSwing()
+        {
+            if (_curInteractable is null) return;
+            _curInteractable.ResetSwing();
+            _prevInteractable = _curInteractable;
+            _curInteractable = null;
+        }
+
+        private void DetachPlayer(bool reposition = false)
         {
             _playerMove.SetIsSwinging(false);
             player.SetParent(null);
             player.rotation = _ogPlayerRot;
-            player.position = new Vector2(player.position.x, _ogPlayerYPos);
-            _interactable.ResetSwing();
-            _interactable = null;
-            OnSwingStop?.Invoke();
+            if (reposition) player.position = new Vector2(player.position.x, _ogPlayerYPos);
+        }
+
+        public void ResetToCheckpoint()
+        {
+            if (_curInteractable is not null) _curInteractable.ResetToCheckpoint();
+            else _prevInteractable.ResetToCheckpoint();
+            DetachPlayer();
         }
     }
 }
