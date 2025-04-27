@@ -33,8 +33,9 @@ namespace CheckpointUtils
             }
             _curCheckpointInfo = memento.GetCheckpointInfo();
             // restore player and dog
-            player.GetComponent<PlayerMove>().ResetToCheckpoint(_curCheckpointInfo.PlayerLoc);
+            player.ResetToCheckpoint(_curCheckpointInfo.PlayerLoc);
             // TODO reset dog, finish reset player
+            // TODO reset obstacle
         }
     }
 }
