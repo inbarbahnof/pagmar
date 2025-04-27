@@ -1,8 +1,6 @@
-using System;
-using Dog;
 using UnityEngine;
 
-namespace Interactabels
+namespace Interactables
 {
     public class PushInteractable : BaseInteractable
     {

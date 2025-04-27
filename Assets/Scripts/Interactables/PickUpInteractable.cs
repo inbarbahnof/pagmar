@@ -1,8 +1,7 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Interactabels
+namespace Interactables
 {
     public class PickUpInteractable : BaseInteractable
     {

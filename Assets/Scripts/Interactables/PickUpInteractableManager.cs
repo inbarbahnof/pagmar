@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Interactabels
+namespace Interactables
 {
     public class PickUpInteractableManager : MonoBehaviour
     {

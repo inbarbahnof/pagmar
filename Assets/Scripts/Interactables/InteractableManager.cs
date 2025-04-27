@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
-namespace Interactabels
+namespace Interactables
 {
     public class InteractableManager : MonoBehaviour
     {

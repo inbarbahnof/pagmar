@@ -1,5 +1,5 @@
 using System;
-using Interactabels;
+using Interactables;
 using UnityEngine;
 
 public class PlayerStateManager : MonoBehaviour

@@ -1,5 +1,3 @@
-using Interactabels;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Interactables

@@ -1,32 +1,31 @@
-using System;
-using System.Collections;
-using Interactabels;
-using Interactables;
 using UnityEngine;
 
-public class PickUpAndClimbObstacle : Obstacle
+namespace Interactables
 {
-    [SerializeField] private PickUpInteractableManager pickUpManager;
-    [SerializeField] private GameObject roadBlock;
-    private bool _setupComplete;
-    private Vector2 _carryTarget;
-
-    void Start()
+    public class PickUpAndClimbObstacle : Obstacle
     {
-        _carryTarget = transform.position;
-        pickUpManager.SetCarryTarget(_carryTarget, ReachedTarget, PickedUp);
-    }
+        [SerializeField] private PickUpInteractableManager pickUpManager;
+        [SerializeField] private GameObject roadBlock;
+        private bool _setupComplete;
+        private Vector2 _carryTarget;
 
-    public void ReachedTarget()
-    {
-        _setupComplete = true;
-        roadBlock.GetComponent<Collider2D>().enabled = false;
-    }
+        void Start()
+        {
+            _carryTarget = transform.position;
+            pickUpManager.SetCarryTarget(_carryTarget, ReachedTarget, PickedUp);
+        }
 
-    public void PickedUp()
-    {
-        _setupComplete = false;
-        roadBlock.GetComponent<Collider2D>().enabled = true;
-    }
+        public void ReachedTarget()
+        {
+            _setupComplete = true;
+            roadBlock.GetComponent<Collider2D>().enabled = false;
+        }
+
+        public void PickedUp()
+        {
+            _setupComplete = false;
+            roadBlock.GetComponent<Collider2D>().enabled = true;
+        }
     
+    }
 }

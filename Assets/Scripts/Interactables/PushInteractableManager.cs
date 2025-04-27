@@ -1,9 +1,8 @@
 using System;
 using Dog;
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Interactabels
+namespace Interactables
 {
     public class PushInteractableManager : MonoBehaviour
     {

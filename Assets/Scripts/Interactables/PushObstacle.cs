@@ -1,4 +1,3 @@
-using Interactabels;
 using UnityEngine;
 
 namespace Interactables
