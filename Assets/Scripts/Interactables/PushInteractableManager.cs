@@ -83,6 +83,7 @@ namespace Interactables
             {
                 if (Vector2.Distance(_curPushable.transform.position, _pushTarget) < 0.3f)
                 {
+                    _curPushable.SetAtTargetPos(_pushTarget.x);
                     OnReachedTarget?.Invoke();
                     print("finished");
                     StopPush();

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Vector2 = System.Numerics.Vector2;
 
 namespace Interactables
 {
@@ -30,6 +31,13 @@ namespace Interactables
         {
             Vector3 newPos = transform.position;
             newPos.x = playerX + _xOffset;
+            transform.position = newPos;
+        }
+
+        public void SetAtTargetPos(float targetX)
+        {
+            Vector3 newPos = transform.position;
+            newPos.x = targetX;
             transform.position = newPos;
         }
     }
