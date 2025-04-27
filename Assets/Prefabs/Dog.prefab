@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 9219256641357554996}
   - component: {fileID: 8767457203420734768}
   - component: {fileID: 1538025327645606136}
+  - component: {fileID: 2126287841468501225}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Dog
@@ -333,6 +334,19 @@ MonoBehaviour:
   _targetGenerator: {fileID: 0}
   _pushDistance: 1.5
   _listenDistance: 7
+--- !u!114 &2126287841468501225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6921637257308304299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa982fff3cb7824bb0a78bd46770bc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  art: {fileID: 4520135744935336809}
 --- !u!1001 &7550540371054337146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -393,5 +407,10 @@ PrefabInstance:
 --- !u!4 &2140299066528282448 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8465420259257756458, guid: 6ded59b8451f38e42bf96839d1908b59, type: 3}
+  m_PrefabInstance: {fileID: 7550540371054337146}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4520135744935336809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6229137941761492755, guid: 6ded59b8451f38e42bf96839d1908b59, type: 3}
   m_PrefabInstance: {fileID: 7550540371054337146}
   m_PrefabAsset: {fileID: 0}
