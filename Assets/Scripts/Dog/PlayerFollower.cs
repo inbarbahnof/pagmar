@@ -79,11 +79,17 @@ namespace Dog
             isGoingToTarget = going;
         }
 
-        public void Reset()
+        public void Reset(Vector2 position)
         {
+            transform.position = position;
+            
             currentTarget = null;
             nextTarget = null;
+            
             stopProb = initialStopProb;
+            
+            isGoingToTarget = true;
+            isPerformingAction = false;
         }
 
         public void GoToCallTarget(Target target)

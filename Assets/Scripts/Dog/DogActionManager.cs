@@ -68,9 +68,12 @@ namespace Dog
             }
         }
 
-        public void Reset()
+        public void Reset(Vector2 position)
         {
-            
+            _playerFollower.Reset(position);
+            curState = DogState.Idle;
+
+            StartWalkingAfterPlayer();
         }
 
         private void HandleDogStateChange(DogState newState)
