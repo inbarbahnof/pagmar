@@ -14,7 +14,7 @@ namespace Ghosts
             
             if (other.CompareTag("Player"))
             {
-                _attack.StopAttacking();
+                _attack.StopAttacking(false);
                 _movement.MoveAround();
                 print("player died with ghost");
             }
