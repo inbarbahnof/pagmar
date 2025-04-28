@@ -19,9 +19,18 @@ namespace Ghosts
             _ghostieMovement = GetComponent<GhostieMovement>();
         }
 
-        public void StopAttacking()
+        public void StopAttacking(bool isRunning)
         {
             _attacking = false;
+            
+            if (isRunning)
+            {
+                _ghostieMovement.MoveAwayFromDog();
+            }
+            else
+            {
+                _ghostieMovement.MoveAround();
+            }
         }
         
         public void Attack(Transform player)
@@ -48,18 +57,8 @@ namespace Ghosts
                     _targetPlayer.position,
                     attackSpeed * Time.fixedDeltaTime
                 );
-
-                var dist = Vector2.Distance(transform.position, _targetPlayer.position);
-                if (dist <= 0.5f)
-                {
-                    Debug.Log("Attack reached!");
-                    _attacking = false;
-                    _ghostieMovement.MoveAround();
-                }
-                else
-                {
-                    _rb.MovePosition(newPos);
-                }
+                
+                _rb.MovePosition(newPos);
             }
         }
     }

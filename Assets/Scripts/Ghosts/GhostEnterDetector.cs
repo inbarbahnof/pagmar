@@ -6,7 +6,6 @@ namespace Ghosts
     public class GhostEnterDetector : MonoBehaviour
     {
         [SerializeField] private GhostieAttack _attack;
-        [SerializeField] private GhostieMovement _movement;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -16,8 +15,7 @@ namespace Ghosts
             }
             else if(other.CompareTag("Dog"))
             {
-                _movement.MoveAwayFromDog();
-                _attack.StopAttacking();
+                _attack.StopAttacking(true);
             }
         }
     }

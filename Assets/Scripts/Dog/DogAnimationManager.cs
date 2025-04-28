@@ -31,8 +31,12 @@ namespace Dog
                 );
             }
 
-            moveXPrevDir = dirX;
-            lastPosition = currentPosition;
+            if (_actionManager.CurState != DogState.Push)
+            {
+                moveXPrevDir = dirX;
+                lastPosition = currentPosition;
+            }
+            
         }
     }
 }

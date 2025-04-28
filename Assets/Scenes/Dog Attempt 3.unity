@@ -6764,6 +6764,10 @@ PrefabInstance:
       propertyPath: interactionRange
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6893773959335885168, guid: 7e9a587903d8278429ef3b8cefa9e8cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8824,13 +8828,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swingManager: {fileID: 603882398}
-  interactable: {fileID: 1899910094}
-  deathZone: {fileID: 1753317393}
---- !u!1 &1753317393 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5929893861109145277, guid: ec477847afdf33344a303e867adf2547, type: 3}
-  m_PrefabInstance: {fileID: 1703015472}
-  m_PrefabAsset: {fileID: 0}
+  interactable: {fileID: 0}
+  deathZone: {fileID: 0}
 --- !u!1001 &1757923352
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9610,17 +9609,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49cf293b1e2ca824fbff3189d6688754, type: 3}
---- !u!114 &1899910094 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6278222004752488913, guid: 6fcfdbe751c4f024383dd71adf5ff839, type: 3}
-  m_PrefabInstance: {fileID: 1764320189}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cee97a04e1b5120408538c48c5eb434c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1909792731 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8115306365290175835, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
