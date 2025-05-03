@@ -1,3 +1,4 @@
+using System;
 using Interactables;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,11 +7,36 @@ public class InputManager : MonoBehaviour
 {
     private PlayerMove _player;
     private PlayerStateManager _stateManager;
-    
-    void Start()
+    private PlayerInput _input;
+
+    private void Awake()
     {
+        _input = GetComponent<PlayerInput>();
+        
         _player = GetComponent<PlayerMove>();
         _stateManager = GetComponent<PlayerStateManager>();
+    }
+
+    public void ChangeState(int state)
+    {
+        _input.actions["CallMultiTap"].Disable();
+        _input.actions["Call"].Disable();
+        
+        if (state <= 2)
+        {
+            print("CallMultiTap enabled");
+            _input.actions["Call"].Disable();
+            _input.actions["CallMultiTap"].Enable();
+        }
+        else
+        {
+            print("Call enabled");
+            _input.actions["CallMultiTap"].Disable();
+            _input.actions["Call"].Enable();
+        }
+        
+        // Debug.Log("ChangeState Call enabled: " + _input.actions["Call"].enabled);
+        // Debug.Log("ChangeState CallMultiTap enabled: " + _input.actions["CallMultiTap"].enabled);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -33,6 +59,10 @@ public class InputManager : MonoBehaviour
 
     public void OnCall(InputAction.CallbackContext context)
     {
-        if (context.started) _stateManager.SetState(PlayerState.Call);
+        if (context.performed)
+        {
+            _stateManager.SetState(PlayerState.Call);
+            print("call performed");
+        }
     }
 }
