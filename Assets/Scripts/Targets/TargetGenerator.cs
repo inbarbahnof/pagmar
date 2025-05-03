@@ -5,10 +5,11 @@ using Random = UnityEngine.Random;
 
 namespace Targets
 {
-    public class RandomTargetGenerator : MonoBehaviour
+    public class TargetGenerator : MonoBehaviour
     {
         [SerializeField] private List<Target> targets = new List<Target>();
         [SerializeField] private Target _callTarget;
+        private Target _foodTarget;
 
         public Target GetCallTarget()
         {
@@ -29,6 +30,16 @@ namespace Targets
             {
                 targets.Remove(target);
             }
+        }
+
+        public void SetFoodTarget(Target target)
+        {
+            _foodTarget = target;
+        }
+
+        public Target GetFoodTarget()
+        {
+            return _foodTarget;
         }
 
         public Target GenerateNewTarget()

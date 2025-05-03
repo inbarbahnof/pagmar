@@ -4,6 +4,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static CheckpointManager checkpointManagerInstance;
+
+    public static GameManager instance;
+
+    [SerializeField] private int connectionState;
+    public int ConnectionState => connectionState;
     
     void Start()
     {
@@ -13,6 +18,11 @@ public class GameManager : MonoBehaviour
         }
         else Debug.LogError("TOO MANY CHECKPOINT MANAGERS!");
 
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else Debug.LogError("TOO MANY GAME MANAGERS!");
     }
     
 }

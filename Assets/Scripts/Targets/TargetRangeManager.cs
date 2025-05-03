@@ -1,15 +1,16 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Targets
 {
     public class TargetRangeManager : MonoBehaviour
     {
-        [SerializeField] private RandomTargetGenerator randomTargetGenerator;
+        [FormerlySerializedAs("randomTargetGenerator")] [SerializeField] private TargetGenerator targetGenerator;
 
         private void Awake()
         {
-            randomTargetGenerator.AddTargets(GetComponentInParent<Target>());
+            targetGenerator.AddTargets(GetComponentInParent<Target>());
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -18,7 +19,7 @@ namespace Targets
             if (target != null)
             {
                 // Debug.Log("added target: " + other.name);
-                randomTargetGenerator.AddTargets(target);
+                targetGenerator.AddTargets(target);
             }
         }
 
@@ -28,7 +29,7 @@ namespace Targets
             if (target != null)
             {
                 // Debug.Log("removed target: " + other.name);
-                randomTargetGenerator.RemoveTarget(target);
+                targetGenerator.RemoveTarget(target);
             }
         }
     }

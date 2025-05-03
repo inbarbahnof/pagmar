@@ -7,6 +7,8 @@ namespace Dog
         
         public DogState Compute(DogState previousDogState, DogStateMachineInput machineInput)
         {
+            if (machineInput._isFoodClose) return DogState.FollowFood;
+            
             if (machineInput._playerState == PlayerState.Call && 
                 machineInput._playerDogDistance <= machineInput._listenDistance) 
                 return DogState.FollowCall;

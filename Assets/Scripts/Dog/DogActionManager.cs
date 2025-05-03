@@ -1,4 +1,5 @@
 using System;
+using Interactables;
 using Targets;
 using TMPro;
 using Unity.VisualScripting;
@@ -12,7 +13,7 @@ namespace Dog
         public DogState CurState => curState;
 
         [SerializeField] private PlayerStateManager playerStateManager;
-        [SerializeField] private RandomTargetGenerator _targetGenerator;
+        [SerializeField] private TargetGenerator _targetGenerator;
         
         [Header("Distances For States")]
         [SerializeField] private float _pushDistance = 2f;
@@ -26,6 +27,7 @@ namespace Dog
         private bool _dogFollowingTOI;
         private bool _dogBusy;
         private bool _isBeingCalled;
+        private bool _foodIsClose;
 
         private DogStateComputer _computer;
         private float _dogPlayerDistance;
@@ -57,7 +59,7 @@ namespace Dog
             DogStateMachineInput newInput = new DogStateMachineInput(playerStateManager.CurrentState, 
                 _dogPlayerDistance, _dogReachedTarget,
                 _dogFollowingTarget, _dogFollowingTOI,
-                _pushDistance, _dogBusy, _listenDistance);
+                _pushDistance, _dogBusy, _listenDistance, _foodIsClose);
             
             DogState newState = _computer.Compute(curState, newInput);
             // print("curDistance " + curDistance);
@@ -84,6 +86,10 @@ namespace Dog
             
             switch (curState, newState)
             {
+                case (_, DogState.FollowFood):
+                    curState = DogState.FollowFood;
+                    _playerFollower.GoToCallTarget(_targetGenerator.GetFoodTarget());
+                    break;
                 case (_, DogState.FollowCall):
                     curState = DogState.FollowCall;
                     _playerFollower.GoToCallTarget(_targetGenerator.GetCallTarget());
@@ -116,6 +122,17 @@ namespace Dog
                 case (_, DogState.Idle):
                     HandleIdleBehavior();
                     break;
+            }
+        }
+
+        public void FoodIsClose(Collider2D food)
+        {
+            PickUpInteractable pickUp = food.GetComponent<PickUpInteractable>();
+
+            if (pickUp != null && !pickUp.IsPickedUp)
+            {
+                _foodIsClose = true;
+                _targetGenerator.SetFoodTarget(food.GetComponent<Target>());
             }
         }
 
@@ -152,12 +169,14 @@ namespace Dog
         {
             _dogFollowingTOI = false;
             _dogBusy = true;
+            _foodIsClose = false;
         }
 
         private void HandleDogFinishedAction()
         {
             _dogFollowingTOI = false;
             _dogBusy = false;
+            _foodIsClose = false;
         }
 
         private void HandleDogFollow()

@@ -145,7 +145,7 @@ namespace Dog
             {
                 if (Random.value < stopProb)
                 {
-                    Debug.Log("Switching to new target from trigger " + potentialTarget.name);
+                    // Debug.Log("Switching to new target from trigger " + potentialTarget.name);
 
                     // Unsubscribe from old target
                     if (currentTarget != null)

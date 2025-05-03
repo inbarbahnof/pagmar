@@ -6,6 +6,7 @@
         Follow,
         FollowCall,
         FollowTOI,
+        FollowFood,
         OnTargetAction,
         Push
     }
