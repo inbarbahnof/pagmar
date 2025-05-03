@@ -4,5 +4,6 @@
     Walk,
     Push,
     Call,
+    Pet,
     Stealth
 }

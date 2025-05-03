@@ -18,6 +18,8 @@ namespace Dog
         [Header("Distances For States")]
         [SerializeField] private float _pushDistance = 2f;
         [SerializeField] private float _listenDistance = 6f;
+        [SerializeField] private float _petDistance = 2f;
+        [SerializeField] private float getAwayFromPlayerDis = 3f;
 
         private PlayerFollower _playerFollower;
         private Transform _playerTransform;
@@ -60,10 +62,10 @@ namespace Dog
                 GameManager.instance.ConnectionState,
                 _dogPlayerDistance, _dogReachedTarget,
                 _dogFollowingTarget, _dogFollowingTOI,
-                _pushDistance, _dogBusy, _listenDistance, _foodIsClose);
+                _pushDistance, _dogBusy, _listenDistance, _foodIsClose, _petDistance);
             
             DogState newState = _computer.Compute(curState, newInput);
-            // print("curDistance " + curDistance);
+            // print("_dogPlayerDistance " + _dogPlayerDistance);
 
             if (curState != newState || !_dogReachedTarget)
             {
@@ -95,6 +97,14 @@ namespace Dog
                     curState = DogState.FollowCall;
                     _playerFollower.GoToCallTarget(_targetGenerator.GetCallTarget());
                     break;
+                case (_, DogState.GetAwayFromPlayer):
+                    curState = DogState.GetAwayFromPlayer;
+                    GetAwayFromPlayer();
+                    break;
+                case (_, DogState.Pet):
+                    curState = DogState.Pet;
+                    HandlePetBehavior();
+                    break;
                 case (DogState.FollowCall, DogState.Follow):
                     curState = DogState.Follow;
                     break;
@@ -124,6 +134,20 @@ namespace Dog
                     HandleIdleBehavior();
                     break;
             }
+        }
+
+        private void HandlePetBehavior()
+        {
+            
+        }
+
+        private void GetAwayFromPlayer()
+        {
+            Vector2 directionAway = (transform.position - _playerTransform.position).normalized;
+            Vector2 newPos = (Vector2)transform.position + directionAway * getAwayFromPlayerDis;
+            transform.position = newPos;
+            
+            curState = DogState.Idle;
         }
 
         public void FoodIsClose(Collider2D food)

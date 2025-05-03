@@ -16,11 +16,12 @@ namespace Dog
 
         public float _pushDistance;
         public float _listenDistance;
+        public float _petDistance;
 
         public DogStateMachineInput(PlayerState playerState, int connectionStage,
             float playerDogDistance, bool dogReachedTarget, bool dogFollowingTarget, 
             bool dogFollowingTOI, float pushDistance,
-            bool dogBusy, float listenDistance, bool isFoodClose)
+            bool dogBusy, float listenDistance, bool isFoodClose, float petDistance)
         {
             _playerState = playerState;
             _playerDogDistance = playerDogDistance;
@@ -32,6 +33,7 @@ namespace Dog
             _listenDistance = listenDistance;
             _isFoodClose = isFoodClose;
             _connectionStage = connectionStage;
+            _petDistance = petDistance;
         }
     }
 }

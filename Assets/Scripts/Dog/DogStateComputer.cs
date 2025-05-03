@@ -1,4 +1,5 @@
 ﻿using Unity.VisualScripting.FullSerializer;
+using UnityEngine;
 
 namespace Dog
 {
@@ -27,6 +28,22 @@ namespace Dog
                     return HandlePlayerIdleBehavior(previousDogState, machineInput);
                 case PlayerState.Push:
                     return HandlePlayerPushBehavior(previousDogState, machineInput);
+                case PlayerState.Pet:
+                    return HandlePlayerPetBehavior(previousDogState, machineInput);
+            }
+            
+            return previousDogState;
+        }
+
+        private DogState HandlePlayerPetBehavior(DogState previousDogState, DogStateMachineInput machineInput)
+        {
+            if (machineInput._playerDogDistance <= machineInput._petDistance)
+            {
+                if (machineInput._connectionStage == 1)
+                {
+                    return DogState.GetAwayFromPlayer;
+                }
+                return DogState.Pet;
             }
             
             return previousDogState;

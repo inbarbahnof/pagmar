@@ -335,6 +335,8 @@ MonoBehaviour:
   _targetGenerator: {fileID: 0}
   _pushDistance: 1.5
   _listenDistance: 7
+  _petDistance: 2
+  getAwayFromPlayerDis: 3
 --- !u!114 &2126287841468501225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,6 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _actionManager: {fileID: 1538025327645606136}
+  _targetGenerator: {fileID: 0}
 --- !u!50 &3345117996108438016
 Rigidbody2D:
   serializedVersion: 5
