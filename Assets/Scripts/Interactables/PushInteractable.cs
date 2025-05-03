@@ -1,6 +1,7 @@
 using System;
 using System.Numerics;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Vector2 = System.Numerics.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -9,6 +10,9 @@ namespace Interactables
     public class PushInteractable : BaseInteractable
     {
         [SerializeField] private bool _needDogToPush = false;
+        [SerializeField] private Transform playerPosToPush;
+        [SerializeField] private Transform dogPosToPush;
+        
         public bool NeedDogToPush() => _needDogToPush;
         
         private float _xOffset;
@@ -22,7 +26,7 @@ namespace Interactables
 
         public override void Interact()
         {
-            PushInteractableManager.instance.TryStartPush(this);
+            PushInteractableManager.instance.TryStartPush(this, playerPosToPush.position, dogPosToPush.position);
             base.Interact();
         }
 

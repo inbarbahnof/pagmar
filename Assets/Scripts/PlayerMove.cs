@@ -55,13 +55,14 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public void SetIsPushing(bool push)
+    public void SetIsPushing(bool push, Vector3 playerPos)
     {
         isPushing = push;
 
         if (isPushing)
         {
             _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionY;
+            transform.position = playerPos;
         }
         else
         {
@@ -84,7 +85,7 @@ public class PlayerMove : MonoBehaviour
         transform.position = pos;
         isMoving = false;
         UpdateMoveInput(Vector2.zero);
-        SetIsPushing(false);
+        SetIsPushing(false, Vector3.zero);
         SetIsSwinging(false);
     }
 }

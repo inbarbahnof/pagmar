@@ -40,16 +40,17 @@ namespace Interactables
             OnReachedTarget += onReachEvent;
         }
 
-        public void TryStartPush(PushInteractable interactable)
+        public void TryStartPush(PushInteractable interactable, Vector3 playerPos, Vector3 dogPos)
         {
             _isPushing = true;
-            _playerMove.SetIsPushing(true);
+            _playerMove.SetIsPushing(true, playerPos);
 
             _curPushable = interactable;
             _curPushable.SetOffset(player.position.x);
 
             if (interactable.NeedDogToPush())
             {
+                dog.position = dogPos;
                 _dogOffsetFromObject = interactable.transform.position - dog.position;
             }
         }
@@ -58,7 +59,7 @@ namespace Interactables
         {
             _isPushing = false;
             _curPushable = null;
-            _playerMove.SetIsPushing(false);
+            _playerMove.SetIsPushing(false, Vector3.zero);
         }
 
         void Update()
