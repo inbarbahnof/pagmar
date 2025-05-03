@@ -19,18 +19,13 @@ public class InputManager : MonoBehaviour
 
     public void ChangeState(int state)
     {
-        _input.actions["CallMultiTap"].Disable();
-        _input.actions["Call"].Disable();
-        
         if (state <= 2)
         {
-            print("CallMultiTap enabled");
             _input.actions["Call"].Disable();
             _input.actions["CallMultiTap"].Enable();
         }
         else
         {
-            print("Call enabled");
             _input.actions["CallMultiTap"].Disable();
             _input.actions["Call"].Enable();
         }

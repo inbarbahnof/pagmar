@@ -97,9 +97,26 @@ namespace Dog
             isPerformingAction = false;
         }
 
+        private float ComputeStopProbOnCall()
+        {
+            switch (GameManager.instance.ConnectionState)
+            {
+                case 1:
+                    return 0.4f;
+                case 2:
+                    return 0.3f;
+                case 3:
+                    return 0.1f;
+                case 4:
+                    return 0;
+            }
+
+            return 0;
+        }
+
         public void GoToCallTarget(Target target)
         {
-            stopProb = 0;
+            stopProb = ComputeStopProbOnCall();
             
             if (currentTarget != null)
                 currentTarget.OnTargetActionComplete -= OnTargetActionComplete;

@@ -9388,7 +9388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca8daa498590924696805bc8fc564de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targets:
+  playerTargets:
   - {fileID: 6206195499498904294}
   - {fileID: 6206195499498904293}
   _callTarget: {fileID: 6206195499498904295}
@@ -10496,6 +10496,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 703857614519380795, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
+      propertyPath: _targetGenerator
+      value: 
+      objectReference: {fileID: 1834576620}
     - target: {fileID: 1538025327645606136, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
       propertyPath: _pushDistance
       value: 1.5

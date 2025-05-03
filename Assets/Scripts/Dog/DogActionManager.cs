@@ -57,6 +57,7 @@ namespace Dog
             
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
             DogStateMachineInput newInput = new DogStateMachineInput(playerStateManager.CurrentState, 
+                GameManager.instance.ConnectionState,
                 _dogPlayerDistance, _dogReachedTarget,
                 _dogFollowingTarget, _dogFollowingTOI,
                 _pushDistance, _dogBusy, _listenDistance, _foodIsClose);
@@ -143,6 +144,13 @@ namespace Dog
             _dogFollowingTOI = false;
             _playerFollower.SetIsGoingToTarget(false);
             // change to random idle animation 
+
+            // Target target = _targetGenerator.GenerateNewIdleTarget();
+            // if (target != null)
+            // {
+            //     _playerFollower.SetNextTarget(target);
+            //     _playerFollower.GoToNextTarget();
+            // }
         }
 
         private void StartWalkingAfterPlayer()

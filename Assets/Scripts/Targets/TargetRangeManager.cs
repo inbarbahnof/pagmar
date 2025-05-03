@@ -10,7 +10,7 @@ namespace Targets
 
         private void Awake()
         {
-            targetGenerator.AddTargets(GetComponentInParent<Target>());
+            targetGenerator.AddToPlayerTargets(GetComponentInParent<Target>());
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -19,7 +19,7 @@ namespace Targets
             if (target != null)
             {
                 // Debug.Log("added target: " + other.name);
-                targetGenerator.AddTargets(target);
+                targetGenerator.AddToPlayerTargets(target);
             }
         }
 
@@ -29,7 +29,7 @@ namespace Targets
             if (target != null)
             {
                 // Debug.Log("removed target: " + other.name);
-                targetGenerator.RemoveTarget(target);
+                targetGenerator.RemoveFromPlayerTarget(target);
             }
         }
     }

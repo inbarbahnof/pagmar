@@ -44,12 +44,17 @@ namespace Dog
     
         private DogState HandlePlayerWalkBehavior(DogState previousDogState, DogStateMachineInput machineInput)
         {
-            if (previousDogState != DogState.FollowTOI)
+            if (machineInput._connectionStage > 1)
             {
-                return DogState.Follow;
+                if (previousDogState != DogState.FollowTOI)
+                {
+                    return DogState.Follow;
+                }
+
+                return previousDogState;
             }
 
-            return previousDogState;
+            return DogState.Idle;
         }
 
         private DogState HandlePlayerIdleBehavior(DogState previousDogState, DogStateMachineInput machineInput)
