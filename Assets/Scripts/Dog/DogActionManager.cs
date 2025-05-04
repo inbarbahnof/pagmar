@@ -2,7 +2,6 @@ using System;
 using Interactables;
 using Targets;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Dog

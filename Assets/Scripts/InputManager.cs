@@ -8,13 +8,14 @@ public class InputManager : MonoBehaviour
     private PlayerMove _player;
     private PlayerStateManager _stateManager;
     private PlayerInput _input;
+    private PlayerThrowController _throwController;
 
     private void Awake()
     {
         _input = GetComponent<PlayerInput>();
-        
         _player = GetComponent<PlayerMove>();
         _stateManager = GetComponent<PlayerStateManager>();
+        _throwController = GetComponent<PlayerThrowController>();
     }
 
     public void ChangeState(int state)
@@ -62,6 +63,20 @@ public class InputManager : MonoBehaviour
         if (context.performed)
         {
             _stateManager.SetState(PlayerState.Call);
+        }
+    }
+
+    public void OnAim(InputAction.CallbackContext context)
+    {
+        Vector2 aimInput = context.ReadValue<Vector2>();
+        _throwController.UpdateAimInput(aimInput);
+    }
+
+    public void OnThrow(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _throwController.OnThrow();
         }
     }
 }
