@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1991178362765687481}
   - component: {fileID: 39700548976252455}
   - component: {fileID: 6163489230947057892}
+  - component: {fileID: 6159751718454857035}
   m_Layer: 0
   m_Name: Throwable PickUp
   m_TagString: Untagged
@@ -126,6 +127,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c9a395a9084481b1caa20c5f7fca3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6159751718454857035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8422414114862519063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d1dd6999eea4941b49ac7d149465a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0.8
+  isTOI: 0
+  _hoverTime: 2
 --- !u!1001 &4168871098909330182
 PrefabInstance:
   m_ObjectHideFlags: 0

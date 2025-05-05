@@ -29,6 +29,7 @@ namespace Dog
         private bool _dogBusy;
         private bool _isBeingCalled;
         private bool _foodIsClose;
+        private bool _isFollowingStick;
 
         private DogStateComputer _computer;
         private float _dogPlayerDistance;
@@ -60,8 +61,8 @@ namespace Dog
             DogStateMachineInput newInput = new DogStateMachineInput(playerStateManager.CurrentState, 
                 GameManager.instance.ConnectionState,
                 _dogPlayerDistance, _dogReachedTarget,
-                _dogFollowingTarget, _dogFollowingTOI,
-                _pushDistance, _dogBusy, _listenDistance, _foodIsClose, _petDistance);
+                _dogFollowingTarget, _dogFollowingTOI, _pushDistance,
+                _dogBusy, _listenDistance, _foodIsClose, _petDistance, _isFollowingStick);
             
             DogState newState = _computer.Compute(curState, newInput);
             // print("_dogPlayerDistance " + _dogPlayerDistance);
@@ -95,6 +96,9 @@ namespace Dog
                 case (_, DogState.FollowCall):
                     curState = DogState.FollowCall;
                     _playerFollower.GoToCallTarget(_targetGenerator.GetCallTarget());
+                    break;
+                case (_, DogState.FollowStick):
+                    HandleFollowStickBehavior();
                     break;
                 case (_, DogState.GetAwayFromPlayer):
                     curState = DogState.GetAwayFromPlayer;
@@ -133,6 +137,14 @@ namespace Dog
                     HandleIdleBehavior();
                     break;
             }
+        }
+
+        private void HandleFollowStickBehavior()
+        {
+            _isFollowingStick = true;
+            
+            curState = DogState.FollowStick;
+            _playerFollower.GoToCallTarget(_targetGenerator.GetStickTarget());
         }
 
         private void HandlePetBehavior()
@@ -201,6 +213,7 @@ namespace Dog
             _dogFollowingTOI = false;
             _dogBusy = true;
             _foodIsClose = false;
+            _isFollowingStick = false;
         }
 
         private void HandleDogFinishedAction()
@@ -208,6 +221,7 @@ namespace Dog
             _dogFollowingTOI = false;
             _dogBusy = false;
             _foodIsClose = false;
+            _isFollowingStick = false;
         }
 
         private void HandleDogFollow()

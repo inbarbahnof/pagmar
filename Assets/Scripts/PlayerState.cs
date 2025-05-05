@@ -5,5 +5,6 @@
     Push,
     Call,
     Pet,
+    Throw,
     Stealth
 }
