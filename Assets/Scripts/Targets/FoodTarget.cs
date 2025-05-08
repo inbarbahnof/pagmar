@@ -1,14 +1,29 @@
 using System.Collections;
 using UnityEngine;
+using Interactables;
 
 namespace Targets
 {
     public class FoodTarget : Target
     {
+        [SerializeField] private bool canBeFed;
+        public bool CanBeFed => canBeFed;
+            
         public override void StartTargetAction()
         {
             print("Dog started eating food");
+            
+            // turn off the pickability
+            InteractableManager.instance.RemoveInteractable(GetComponent<FoodPickUpInteractable>());
+            GetComponent<Collider2D>().enabled = false;
+            
+            // eat the target
             StartCoroutine(EatTarget());
+        }
+
+        public void SetCanBeFed(bool can)
+        {
+            canBeFed = can;
         }
         
         private IEnumerator EatTarget()

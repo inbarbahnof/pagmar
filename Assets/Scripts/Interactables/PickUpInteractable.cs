@@ -27,7 +27,7 @@ namespace Interactables
             isPickedUp = true;
         }
 
-        public void DropObject(Vector2 worldTarget)
+        public virtual void DropObject(Vector2 worldTarget)
         {
             isPickedUp = false;
             transform.SetParent(originalParent);

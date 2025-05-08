@@ -8,6 +8,7 @@
         FollowTOI,
         FollowFood,
         FollowStick,
+        WantFood,
         Pet,
         GetAwayFromPlayer,
         OnTargetAction,

@@ -57,13 +57,16 @@ namespace Interactables
             for (int i = curInteractables.Count - 1; i >= 0; i--)
             {
                 BaseInteractable interactable = curInteractables[i];
-                float dist = Vector2.Distance(player.position, interactable.GetCurPos());
-                float interactionRange = interactable.InteractionRange;
-                
-                if (dist > interactionRange)
+                if (interactable != null)
                 {
-                    // print("removing " + interactable.name + " at distance " + dist);
-                    RemoveInteractable(interactable);
+                    float dist = Vector2.Distance(player.position, interactable.GetCurPos());
+                    float interactionRange = interactable.InteractionRange;
+                
+                    if (dist > interactionRange)
+                    {
+                        // print("removing " + interactable.name + " at distance " + dist);
+                        RemoveInteractable(interactable);
+                    }
                 }
             }
         }

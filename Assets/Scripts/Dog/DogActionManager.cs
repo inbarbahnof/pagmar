@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using Interactables;
 using Targets;
 using TMPro;
@@ -30,6 +31,8 @@ namespace Dog
         private bool _isBeingCalled;
         private bool _foodIsClose;
         private bool _isFollowingStick;
+        private bool _canEatFood;
+        private bool _wantFood;
 
         private DogStateComputer _computer;
         private float _dogPlayerDistance;
@@ -58,11 +61,15 @@ namespace Dog
             // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
             
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
+            
+            _canEatFood = _targetGenerator.GetFoodTarget() != null;
+            
             DogStateMachineInput newInput = new DogStateMachineInput(playerStateManager.CurrentState, 
                 GameManager.instance.ConnectionState,
                 _dogPlayerDistance, _dogReachedTarget,
                 _dogFollowingTarget, _dogFollowingTOI, _pushDistance,
-                _dogBusy, _listenDistance, _foodIsClose, _petDistance, _isFollowingStick);
+                _dogBusy, _listenDistance, _foodIsClose, _canEatFood, _wantFood,
+                _petDistance, _isFollowingStick);
             
             DogState newState = _computer.Compute(curState, newInput);
             // print("_dogPlayerDistance " + _dogPlayerDistance);
@@ -71,6 +78,11 @@ namespace Dog
             {
                 HandleDogStateChange(newState);
             }
+        }
+
+        public void SetWantsFood(bool want)
+        {
+            _wantFood = want;
         }
 
         public void ResetToCheckpoint(Vector2 position)
@@ -89,9 +101,12 @@ namespace Dog
             
             switch (curState, newState)
             {
+                case (_, DogState.WantFood):
+                    HandleWantFoodBehavior();
+                    break;
                 case (_, DogState.FollowFood):
                     curState = DogState.FollowFood;
-                    _playerFollower.GoToCallTarget(_targetGenerator.GetFoodTarget());
+                    _playerFollower.GoToFoodTarget(_targetGenerator.GetFoodTarget());
                     break;
                 case (_, DogState.FollowCall):
                     curState = DogState.FollowCall;
@@ -139,6 +154,13 @@ namespace Dog
             }
         }
 
+        private void HandleWantFoodBehavior()
+        {
+            curState = DogState.WantFood;
+            WantFoodTarget target = _targetGenerator.GetWantFoodTarget();
+            _playerFollower.GoToFoodTarget(target); 
+        }
+
         private void HandleFollowStickBehavior()
         {
             _isFollowingStick = true;
@@ -163,13 +185,14 @@ namespace Dog
 
         public void FoodIsClose(Collider2D food)
         {
-            PickUpInteractable pickUp = food.GetComponent<PickUpInteractable>();
+            _foodIsClose = true;
+            _targetGenerator.NotifyFoodNearby(food.GetComponent<FoodTarget>());
+        }
 
-            if (pickUp != null && !pickUp.IsPickedUp)
-            {
-                _foodIsClose = true;
-                _targetGenerator.SetFoodTarget(food.GetComponent<Target>());
-            }
+        public void FoodIsFar(Collider2D food)
+        {
+            _foodIsClose = false;
+            _targetGenerator.NotifyFoodFar(food.GetComponent<FoodTarget>());
         }
 
         private void HandleIdleBehavior()
@@ -222,6 +245,7 @@ namespace Dog
             _dogBusy = false;
             _foodIsClose = false;
             _isFollowingStick = false;
+            _wantFood = false;
         }
 
         private void HandleDogFollow()

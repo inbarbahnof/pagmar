@@ -23,6 +23,22 @@ namespace Dog
             //     }
             // }
         }
+        
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.CompareTag("Food"))
+            {
+                _actionManager.FoodIsFar(other);
+            }
+            // else
+            // {
+            //     Target potentialTarget = other.GetComponent<Target>();
+            //     if (potentialTarget != null && potentialTarget.IsTOI)
+            //     {
+            //         _targetGenerator.AddToIdleTargets(potentialTarget);
+            //     }
+            // }
+        }
 
         // private void OnTriggerExit2D(Collider2D other)
         // {

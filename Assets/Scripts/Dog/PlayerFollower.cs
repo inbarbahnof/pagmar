@@ -114,10 +114,8 @@ namespace Dog
             return 0;
         }
 
-        public void GoToCallTarget(Target target)
+        private void GoToTarget(Target target)
         {
-            stopProb = ComputeStopProbOnCall();
-            
             if (currentTarget != null)
                 currentTarget.OnTargetActionComplete -= OnTargetActionComplete;
 
@@ -131,6 +129,18 @@ namespace Dog
 
             targetDistance = currentTarget.GetDistance();
             currentTarget.OnTargetActionComplete += OnTargetActionComplete;
+        }
+
+        public void GoToCallTarget(Target target)
+        {
+            stopProb = ComputeStopProbOnCall();
+            GoToTarget(target);
+        }
+        
+        public void GoToFoodTarget(Target target)
+        {
+            stopProb = 0;
+            GoToTarget(target);
         }
 
         public void SetStopProb(bool isStoping)

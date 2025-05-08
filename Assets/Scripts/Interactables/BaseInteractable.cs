@@ -7,6 +7,13 @@ namespace Interactables
         [SerializeField] private GameObject highlightEffect;
         [SerializeField] protected float interactionRange = 1.5f;
         
+        private Vector3 ogPos;
+
+        private void Start()
+        {
+            ogPos = transform.position;
+        }
+        
         public float InteractionRange => interactionRange;
 
         // private bool _isInteracting = false;
@@ -54,7 +61,10 @@ namespace Interactables
             // this may be just picking up an obj and then not done until press again to drop
         }
 
-        public virtual void ResetToCheckpoint() { }
+        public virtual void ResetToCheckpoint()
+        {
+            transform.position = ogPos;
+        }
 
         /// <summary>
         /// Called when player has stopped interaction with obj, either in the middle of interaction or when finished.

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Interactables;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -12,8 +13,11 @@ namespace Targets
         
         [FormerlySerializedAs("targets")] [SerializeField] private List<Target> playerTargets = new List<Target>();
         [SerializeField] private Target _callTarget;
-        private Target _foodTarget;
+        
+        private FoodTarget _foodTarget;
         private Target _stickTarget;
+
+        private WantFoodTarget _wantFoodTarget;
         
         // private List<Target> idleTargets = new List<Target>();
 
@@ -56,15 +60,39 @@ namespace Targets
         {
             return _stickTarget;
         }
+        
+        public void SetWantFoodTarget(WantFoodTarget target)
+        {
+            _wantFoodTarget = target;
+        }
 
-        public void SetFoodTarget(Target target)
+        public WantFoodTarget GetWantFoodTarget()
+        {
+            return _wantFoodTarget;
+        }
+
+        public void SetFoodTarget(FoodTarget target)
         {
             _foodTarget = target;
         }
-
-        public Target GetFoodTarget()
+        
+        public void NotifyFoodNearby(FoodTarget food)
         {
-            return _foodTarget;
+            if (food != null && !food.GetComponent<PickUpInteractable>().IsPickedUp && food.CanBeFed)
+                _foodTarget = food;
+        }
+
+        public void NotifyFoodFar(FoodTarget food)
+        {
+            if (_foodTarget == food)
+                _foodTarget = null;
+        }
+
+        public FoodTarget GetFoodTarget()
+        {
+            if (_foodTarget != null && _foodTarget.CanBeFed)
+                return _foodTarget;
+            return null;
         }
 
         public Target GenerateNewTarget()
