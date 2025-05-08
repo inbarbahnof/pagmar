@@ -33,7 +33,6 @@ namespace Interactables
             if (other.CompareTag("Dog"))
             {
                 TargetGenerator.instance.SetWantFoodTarget(_wantFoodTarget);
-                print("want target is set to " + _wantFoodTarget.name);
                 other.GetComponent<DogActionManager>().SetWantsFood(true);
             }
         }
