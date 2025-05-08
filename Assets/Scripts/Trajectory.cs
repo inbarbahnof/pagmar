@@ -28,16 +28,11 @@ public class Trajectory : MonoBehaviour
         dotsParent.SetActive(false);
     }
 
-    public void UpdateDots(Vector2 objPos, Vector2 force)
+    public void UpdateDots(Vector2 startPoint, Vector2 endPoint, Vector2 controlPoint)
     {
-        _timeStamp = dotSpacing;
         for (int i = 0; i < dotsNum; i++)
         {
-            _pos.x = (objPos.x + force.x * _timeStamp);
-            _pos.y = (objPos.y + force.y * _timeStamp) - (Physics2D.gravity.magnitude*_timeStamp*_timeStamp) /2f;
-
-            _dotsList[i].position = _pos;
-            _timeStamp += dotSpacing;
+            _dotsList[i].position = Evaluate((float) i / dotsNum, startPoint, endPoint, controlPoint);
         }
     }
 
@@ -49,5 +44,12 @@ public class Trajectory : MonoBehaviour
             _dotsList[i] = Instantiate(dotPrefab, null).transform;
             _dotsList[i].parent = dotsParent.transform;
         }
+    }
+    
+    private Vector2 Evaluate(float t, Vector2 startPoint, Vector2 endPoint, Vector2 controlPoint)
+    {
+        Vector2 sc = Vector2.Lerp(startPoint, controlPoint, t);
+        Vector2 ce = Vector2.Lerp(controlPoint, endPoint, t);
+        return Vector2.Lerp(sc, ce, t);
     }
 }
