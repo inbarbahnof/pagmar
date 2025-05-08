@@ -22,10 +22,11 @@ namespace Dog
             Vector3 currentPosition = transform.position;
             float dirX = currentPosition.x - lastPosition.x;
 
-            if (Mathf.Sign(dirX) != Mathf.Sign(moveXPrevDir) && _actionManager.CurState != DogState.Push && Mathf.Abs(dirX) > 0.001f)
+            if (Mathf.Abs(dirX) > 0.001f && _actionManager.CurState != DogState.Push)
             {
+                float newScaleX = dirX > 0 ? 1 : -1;
                 art.transform.localScale = new Vector3(
-                    -art.transform.localScale.x,
+                    newScaleX * Mathf.Abs(art.transform.localScale.x),
                     art.transform.localScale.y,
                     art.transform.localScale.z
                 );
@@ -36,7 +37,6 @@ namespace Dog
                 moveXPrevDir = dirX;
                 lastPosition = currentPosition;
             }
-            
         }
     }
 }

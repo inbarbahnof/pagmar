@@ -81,15 +81,6 @@ namespace Dog
 
         private DogState HandlePlayerIdleBehavior(DogState previousDogState, DogStateMachineInput machineInput)
         {
-            // Idle,
-            // Follow,
-            // FollowTOI,
-            // Push
-            
-            // public bool _dogReachedTarget;
-            // public bool _dogFollowingTarget;
-            // public bool _dogFollowingTOI;
-
             if (machineInput._dogReachedTarget)
             {
                 return DogState.Idle;
