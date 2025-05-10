@@ -7,6 +7,8 @@ namespace Targets
         public override void StartTargetAction()
         {
             print("Dog reached want food");
+            if (_dogTempComunication != null)
+                _dogTempComunication.SetActive(true);
         }
 
         public void FoodCanBeReached()

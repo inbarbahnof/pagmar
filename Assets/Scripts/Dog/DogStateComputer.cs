@@ -13,7 +13,7 @@ namespace Dog
             if (machineInput._isFoodClose && machineInput._canEatFood) return DogState.FollowFood;
 
             if (machineInput._playerState == PlayerState.Throw || machineInput._isFollowingStick)
-                return DogState.FollowStick;
+                return HandleThrowStickBehavior(previousDogState, machineInput);
             
             if (machineInput._playerState == PlayerState.Call && 
                 machineInput._playerDogDistance <= machineInput._listenDistance) 
@@ -38,6 +38,17 @@ namespace Dog
             }
             
             return previousDogState;
+        }
+
+        private DogState HandleThrowStickBehavior(DogState previousDogState, DogStateMachineInput machineInput)
+        {
+            if (machineInput._connectionStage == 1)
+            {
+                if (Random.value < 0.5f) return DogState.FollowStick;
+                
+                return previousDogState;
+            }
+            return DogState.FollowStick;
         }
 
         private DogState HandlePlayerPetBehavior(DogState previousDogState, DogStateMachineInput machineInput)

@@ -12,6 +12,8 @@ namespace Targets
         public override void StartTargetAction()
         {
             print("Dog started eating food");
+            if (_dogTempComunication != null)
+                _dogTempComunication.SetActive(true);
             
             // turn off the pickability
             InteractableManager.instance.RemoveInteractable(GetComponent<FoodPickUpInteractable>());
