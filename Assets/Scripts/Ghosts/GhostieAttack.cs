@@ -59,7 +59,6 @@ namespace Ghosts
                 if (Vector3.Distance(transform.position, _initialPos) <= _attackRadius
                     && Vector3.Distance(_targetPlayer.position, transform.position) <= _attackRadius )
                 {
-                    print("attacking");
                     Vector2 newPos = Vector2.MoveTowards(
                         transform.position,
                         _targetPlayer.position,
@@ -70,7 +69,6 @@ namespace Ghosts
                 }
                 else
                 {
-                    print("too far attacking");
                     StopAttacking(false);
                 }
             }
