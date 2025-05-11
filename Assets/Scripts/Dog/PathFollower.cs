@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using PathCreation;
+using Targets;
 
 namespace Dog
 {
@@ -10,6 +11,7 @@ namespace Dog
         private float distanceTravelled;
         private bool isOnPath = false;
         private PathCreator pathCreator;
+        private PathTarget _target;
 
         private void Update()
         {
@@ -21,13 +23,22 @@ namespace Dog
 
         private void UpdateTravelThroughPath()
         {
+            print("following path");
+            
             distanceTravelled += speed * Time.deltaTime;
-            transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled);
-            // transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled);
+            EndOfPathInstruction instruction = EndOfPathInstruction.Stop;
+            transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, instruction);
+            
+            if (distanceTravelled >= pathCreator.path.length)
+            {
+                Debug.Log("Reached end of path!");
+                _target.FinishTargetAction();
+            }
         }
 
-        public void SetCurPath(PathCreator path)
+        public void SetCurPath(PathCreator path, PathTarget target)
         {
+            _target = target;
             pathCreator = path;
         }
 

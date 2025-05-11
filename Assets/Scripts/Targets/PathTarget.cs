@@ -14,7 +14,7 @@ namespace Targets
         public override void StartTargetAction()
         {
             isDogOnPath = true;
-            follower.SetCurPath(pathCreator);
+            follower.SetCurPath(pathCreator, this);
             follower.SetIsOnPath(isDogOnPath);
         }
 
