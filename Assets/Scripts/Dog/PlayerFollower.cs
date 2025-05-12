@@ -170,11 +170,8 @@ namespace Dog
             Target potentialTarget = other.GetComponent<Target>();
             if (potentialTarget != null && potentialTarget.IsTOI)
             {
-                if (Random.value < stopProb)
+                if (other.CompareTag("Jump") || Random.value < stopProb)
                 {
-                    // Debug.Log("Switching to new target from trigger " + potentialTarget.name);
-
-                    // Unsubscribe from old target
                     if (currentTarget != null)
                         currentTarget.OnTargetActionComplete -= OnTargetActionComplete;
 

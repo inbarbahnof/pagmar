@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using PathCreation;
 using Targets;
+using UnityEngine.AI;
 
 namespace Dog
 {
@@ -23,19 +25,28 @@ namespace Dog
 
         private void UpdateTravelThroughPath()
         {
-            print("following path");
-            
             distanceTravelled += speed * Time.deltaTime;
-            EndOfPathInstruction instruction = EndOfPathInstruction.Stop;
-            transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, instruction);
+            float pathLength = pathCreator.path.length;
             
-            if (distanceTravelled >= pathCreator.path.length)
+            if (distanceTravelled < pathLength)
             {
-                Debug.Log("Reached end of path!");
+                Vector3 pos = pathCreator.path.GetPointAtDistance(distanceTravelled, EndOfPathInstruction.Stop);
+                transform.position = pos;
+            }
+            else
+            {
                 _target.FinishTargetAction();
+                Vector3 pos = pathCreator.path.GetPointAtDistance(pathLength, EndOfPathInstruction.Stop);
+                transform.position = pos;
+                
+                var agent = GetComponent<NavMeshAgent>();
+                if (agent != null) agent.Warp(pos);
+                
+                isOnPath = false;
+                distanceTravelled = 0;
             }
         }
-
+        
         public void SetCurPath(PathCreator path, PathTarget target)
         {
             _target = target;

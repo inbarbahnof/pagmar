@@ -9,6 +9,7 @@ namespace Targets
         [SerializeField] protected GameObject _dogTempComunication;
         [SerializeField] private float distance = 0.6f;
         [SerializeField] protected bool isTOI = true;
+
         public event Action OnTargetActionComplete;
         public bool IsTOI => isTOI;
 

@@ -21,8 +21,8 @@ namespace Targets
         public override void FinishTargetAction()
         {
             isDogOnPath = false;
-            follower.SetIsOnPath(isDogOnPath);
-            follower.ResetFollow();
+            // follower.SetIsOnPath(isDogOnPath);
+            // follower.ResetFollow();
             base.FinishTargetAction();
         }
 
