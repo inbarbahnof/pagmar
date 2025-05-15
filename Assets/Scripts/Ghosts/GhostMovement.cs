@@ -9,38 +9,43 @@ namespace Ghosts
         [SerializeField] private Transform pointB;
 
         private Tween moveTween;
+        private bool movingToB = true;
 
         private void Start()
         {
-            MoveBetweenPoints();
+            MoveAround();
         }
 
         public override void MoveAround()
         {
+            print("moving around");
             MoveBetweenPoints();
         }
 
         private void MoveBetweenPoints()
         {
-            float distance = Vector3.Distance(pointA.position, pointB.position);
+            Transform target = movingToB ? pointB : pointA;
+
+            float distance = Vector3.Distance(transform.position, target.position);
             float duration = distance / speed;
 
-            moveTween = transform.DOMove(pointB.position, duration)
+            moveTween = transform.DOMove(target.position, duration)
                 .SetEase(movementEase)
                 .OnComplete(SwitchDirection);
         }
 
         private void SwitchDirection()
         {
-            // Swap pointA and pointB, then move again
-            (pointA, pointB) = (pointB, pointA);
+            movingToB = !movingToB;
             MoveBetweenPoints();
         }
 
         public override bool StopGoingAround()
         {
-            if (moveTween != null && moveTween.IsActive())
+            print("stop going around (moveTween != null) " + (moveTween != null) + " moveTween.IsActive() " + moveTween.IsActive());
+            if (moveTween != null)
             {
+                print("killing tween");
                 moveTween.Kill();
                 moveTween = null;
             }

@@ -6,21 +6,11 @@ namespace Ghosts
 {
     public class GhostAttack : GhostieAttack
     {
-        [SerializeField] private float attackSpeed = 3f;
-         private float _attackRadius = 7f;
-
-        private GhostMovement _ghostMovement;
+        [SerializeField] private GhostMovement _ghostMovement;
         
-        private void Awake()
-        {
-            _rb = GetComponent<Rigidbody2D>();
-            _ghostMovement = GetComponent<GhostMovement>();
-            _initialPos = transform.position;
-        }
-
         public override void StopAttacking(bool isRunning)
         {
-            if (isRunning) return;
+            print("StopAttacking Ghost isRunning " + isRunning);
             
             _attacking = false;
             _targetPlayer = null;
@@ -30,9 +20,9 @@ namespace Ghosts
         
         public override void Attack(Transform player)
         {
-            print("in attack");
+            print("in attack player " + player.name + " attacking " + _attacking);
             
-            if (player == null || _attacking) return;
+            // if (player == null || _attacking) return;
 
             _ghostMovement.StopGoingAround();
             

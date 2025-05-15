@@ -10,14 +10,14 @@ namespace Ghosts
         
         protected override void OnTriggerEnter2D(Collider2D other)
         {
-            base.OnTriggerEnter2D(other);
-            
             if (other.CompareTag("Player"))
             {
+                print("player died with ghost");
                 _attack.StopAttacking(false);
                 _movement.MoveAround();
-                print("player died with ghost");
             }
+            
+            base.OnTriggerEnter2D(other);
         }
     }
 }
