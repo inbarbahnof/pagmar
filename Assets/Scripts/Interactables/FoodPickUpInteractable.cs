@@ -34,7 +34,6 @@ namespace Interactables
             NavMeshHit hit;
             // You can tweak the maxDistance (0.5f–1f is usually enough)
             bool isWalkable = NavMesh.SamplePosition(position, out hit, 0.5f, NavMesh.AllAreas);
-            print("food dropped walkable " + isWalkable);
             return isWalkable;
         }
     }

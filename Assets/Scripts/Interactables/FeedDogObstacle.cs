@@ -16,8 +16,19 @@ namespace Interactables
             {
                 foodPickup.OnDroppedOnWalkableSurface += HandleFoodDroppedWalkable;
             }
+
+            FoodTarget foodTarget = _food.GetComponent<FoodTarget>();
+            if (foodTarget != null)
+            {
+                foodTarget.OnFoodEaten += HandleFoodEaten;
+            }
         }
 
+        private void HandleFoodEaten()
+        {
+            GetComponent<Collider2D>().enabled = false;
+        }
+        
         private void HandleFoodDroppedWalkable(FoodPickUpInteractable food)
         {
             _wantFoodTarget.FoodCanBeReached();

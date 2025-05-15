@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Interactables;
@@ -6,6 +7,8 @@ namespace Targets
 {
     public class FoodTarget : Target
     {
+        public event Action OnFoodEaten;
+        
         [SerializeField] private bool canBeFed;
         public bool CanBeFed => canBeFed;
             
@@ -33,6 +36,7 @@ namespace Targets
             yield return new WaitForSeconds(1.5f);
             print("Dog finished eating food");
             Destroy(gameObject);
+            OnFoodEaten?.Invoke();
             FinishTargetAction();
         }
     }
