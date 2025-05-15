@@ -6,14 +6,14 @@ namespace Ghosts
 {
     public class GhostieAttack : MonoBehaviour
     {
-        [SerializeField] private float attackSpeed = 3f;
-         private float _attackRadius = 7f;
+        [SerializeField] protected float attackSpeed = 3f; 
+        [SerializeField] protected float _attackRadius = 7f;
 
-        private Rigidbody2D _rb;
-        private GhostieMovement _ghostieMovement;
-        private Transform _targetPlayer;
-        private bool _attacking = false;
-        private Vector3 _initialPos;
+        protected Rigidbody2D _rb;
+        protected GhostieMovement _ghostieMovement;
+        protected Transform _targetPlayer;
+        protected bool _attacking = false;
+        protected Vector3 _initialPos;
         
         private void Awake()
         {
@@ -22,7 +22,7 @@ namespace Ghosts
             _initialPos = transform.position;
         }
 
-        public void StopAttacking(bool isRunning)
+        public virtual void StopAttacking(bool isRunning)
         {
             _attacking = false;
             _targetPlayer = null;
@@ -37,7 +37,7 @@ namespace Ghosts
             }
         }
         
-        public void Attack(Transform player)
+        public virtual void Attack(Transform player)
         {
             print("in attack");
             
@@ -52,7 +52,7 @@ namespace Ghosts
             }
         }
 
-        private void FixedUpdate()
+        protected virtual void FixedUpdate()
         {
             if (_attacking && _targetPlayer != null)
             {

@@ -9,16 +9,17 @@ namespace Ghosts
     {
         private enum MovementType { Circle, StraightLine }
 
-        [SerializeField] private MovementType movementType = MovementType.Circle;
-        [SerializeField] private Ease movementEase = Ease.InOutSine;
         [SerializeField] private float radius = 2.5f;
-        [SerializeField] private float speed = 1.5f;
+        [SerializeField] private MovementType movementType = MovementType.Circle;
+        
+        [SerializeField] protected float speed = 1.5f;
+        [SerializeField] protected Ease movementEase = Ease.InOutSine;
 
         [Header("Run Away From Dog Properties")]
         [SerializeField] private Vector3 runAwayPoint;
         [SerializeField] private float runAwaySpeed = 5f;
         
-        private Vector3 _initialPosition;
+        protected Vector3 _initialPosition;
         private Tween curTween;
         private Tween runAwayTween;
         private bool _isRunningAway;
@@ -29,7 +30,7 @@ namespace Ghosts
             MoveAround();
         }
 
-        public void MoveAround()
+        public virtual void MoveAround()
         {
             if (movementType == MovementType.Circle)
                 MoveInCircle();
@@ -37,7 +38,7 @@ namespace Ghosts
                 MoveInStraightLine();
         }
 
-        public bool StopGoingAround()
+        public virtual bool StopGoingAround()
         {
             if (_isRunningAway) return true;
             
