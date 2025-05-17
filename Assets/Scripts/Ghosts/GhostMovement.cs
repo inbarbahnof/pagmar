@@ -1,67 +1,64 @@
 using UnityEngine;
-using DG.Tweening;
 
 namespace Ghosts
 {
     public class GhostMovement : GhostieMovement
     {
-        // [SerializeField] protected float speed = 1.5f;
-        // [SerializeField] protected Ease movementEase = Ease.InOutSine;
-
         [SerializeField] private Transform pointA;
         [SerializeField] private Transform pointB;
 
-        private Tween moveTween;
         private bool movingToB = true;
-        private bool isRunning = true;
+        private bool isGoingAround = true;
 
-        private void Start()
+        private Rigidbody2D _rb;
+        private Vector3 _currentTarget;
+
+        private void Awake()
         {
+            _rb = GetComponent<Rigidbody2D>();
+            
             MoveAround();
         }
 
         public override void MoveAround()
         {
-            print("moving around");
-            isRunning = true;
-            MoveBetweenPoints();
+            isGoingAround = true;
+            SetNextTarget();
         }
 
-        private void MoveBetweenPoints()
+        private void FixedUpdate()
         {
-            if (!isRunning) return;
+            if (!isGoingAround) return;
 
-            Transform target = movingToB ? pointB : pointA;
+            Vector2 newPos = Vector2.MoveTowards(
+                _rb.position,
+                _currentTarget,
+                speed * Time.fixedDeltaTime
+            );
 
-            float distance = Vector3.Distance(transform.position, target.position);
-            float duration = distance / speed;
+            _rb.MovePosition(newPos);
 
-            moveTween = transform.DOMove(target.position, duration)
-                .SetEase(movementEase)
-                .OnComplete(() =>
-                {
-                    moveTween = null;
-                    SwitchDirection();
-                });
+            // Check if reached target
+            if (Vector2.Distance(_rb.position, _currentTarget) < 0.05f)
+            {
+                SwitchDirection();
+            }
+        }
+
+        private void SetNextTarget()
+        {
+            _currentTarget = (movingToB ? pointB : pointA).position;
         }
 
         private void SwitchDirection()
         {
             movingToB = !movingToB;
-            MoveBetweenPoints();
+            SetNextTarget();
         }
 
         public override bool StopGoingAround()
         {
-            isRunning = false;
-
-            if (moveTween != null && moveTween.IsActive())
-            {
-                print("killing tween");
-                moveTween.Kill();
-                moveTween = null;
-            }
-
+            isGoingAround = false;
             return false;
         }
     }

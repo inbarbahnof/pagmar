@@ -22,7 +22,7 @@ namespace Ghosts
         {
             print("in attack player " + player.name + " attacking " + _attacking);
             
-            // if (player == null || _attacking) return;
+            if (player == null || _attacking) return;
 
             _ghostMovement.StopGoingAround();
             
