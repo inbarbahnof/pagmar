@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Ghosts
@@ -6,9 +7,11 @@ namespace Ghosts
     {
         [SerializeField] private Transform pointA;
         [SerializeField] private Transform pointB;
+        [SerializeField] private float _pauseAfterTarget = 1f;
 
         private bool movingToB = true;
         private bool isGoingAround = true;
+        private bool isGoingToTarget = false;
 
         private Rigidbody2D _rb;
         private Vector3 _currentTarget;
@@ -17,18 +20,23 @@ namespace Ghosts
         {
             _rb = GetComponent<Rigidbody2D>();
             
+        }
+
+        private void Start()
+        {
             MoveAround();
         }
 
         public override void MoveAround()
         {
             isGoingAround = true;
+            isGoingToTarget = false;
             SetNextTarget();
         }
 
         private void FixedUpdate()
         {
-            if (!isGoingAround) return;
+            if (!isGoingAround && !isGoingToTarget) return;
 
             Vector2 newPos = Vector2.MoveTowards(
                 _rb.position,
@@ -38,10 +46,17 @@ namespace Ghosts
 
             _rb.MovePosition(newPos);
 
-            // Check if reached target
             if (Vector2.Distance(_rb.position, _currentTarget) < 0.05f)
             {
-                SwitchDirection();
+                if (isGoingToTarget)
+                {
+                    isGoingToTarget = false;
+                    StartCoroutine(WaitAndResume());
+                }
+                else if (isGoingAround)
+                {
+                    SwitchDirection();
+                }
             }
         }
 
@@ -60,6 +75,19 @@ namespace Ghosts
         {
             isGoingAround = false;
             return false;
+        }
+
+        public void GoToTargetAndPause(Transform target)
+        {
+            StopGoingAround();
+            isGoingToTarget = true;
+            _currentTarget = target.position;
+        }
+
+        private IEnumerator WaitAndResume()
+        {
+            yield return new WaitForSeconds(_pauseAfterTarget);
+            MoveAround();
         }
     }
 }

@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using DG.Tweening;
 using Random = UnityEngine.Random;
 
 namespace Ghosts
@@ -11,19 +10,25 @@ namespace Ghosts
 
         [SerializeField] private float radius = 2.5f;
         [SerializeField] private MovementType movementType = MovementType.Circle;
-        
+
         [SerializeField] protected float speed = 1.5f;
-        [SerializeField] protected Ease movementEase = Ease.InOutSine;
 
         [Header("Run Away From Dog Properties")]
         [SerializeField] private Vector3 runAwayPoint;
         [SerializeField] private float runAwaySpeed = 5f;
-        
+
         protected Vector3 _initialPosition;
-        private Tween curTween;
-        private Tween runAwayTween;
-        private bool _isRunningAway;
+        protected Rigidbody2D _rb;
         
+        private Vector3 _target;
+        private bool _isRunningAway = false;
+        private bool _isMoving = false;
+
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+        }
+
         private void Start()
         {
             _initialPosition = transform.position;
@@ -32,79 +37,67 @@ namespace Ghosts
 
         public virtual void MoveAround()
         {
-            if (movementType == MovementType.Circle)
-                MoveInCircle();
-            else
-                MoveInStraightLine();
+            _isRunningAway = false;
+            _isMoving = true;
+
+            SetNextTarget();
         }
 
         public virtual bool StopGoingAround()
         {
             if (_isRunningAway) return true;
-            
-            if (curTween != null)
-            {
-                curTween.Kill();
-                curTween = null;
-            }
 
+            _isMoving = false;
             return false;
         }
 
         public void MoveAwayFromDog()
         {
             StopGoingAround();
-            // print("moving away from dog");
             _isRunningAway = true;
-            
-            float distance = Vector3.Distance(transform.position, runAwayPoint);
-            float moveDuration = distance / runAwaySpeed;
+            _isMoving = true;
 
-            runAwayTween = transform.DOMove(runAwayPoint, moveDuration)
-                .SetEase(movementEase)
-                .OnComplete(() =>
+            _target = runAwayPoint;
+        }
+
+        private void FixedUpdate()
+        {
+            if (!_isMoving) return;
+
+            float currentSpeed = _isRunningAway ? runAwaySpeed : speed;
+
+            _rb.MovePosition(Vector2.MoveTowards(
+                _rb.position,
+                _target,
+                currentSpeed * Time.fixedDeltaTime
+            ));
+
+            if (Vector2.Distance(_rb.position, _target) < 0.05f)
+            {
+                if (_isRunningAway)
                 {
-                    runAwayTween = null;
                     _isRunningAway = false;
-                    // print("stop moving away from dog");
                     MoveAround();
-                });
+                }
+                else
+                {
+                    SetNextTarget();
+                }
+            }
         }
 
-        private void MoveInCircle()
+        private void SetNextTarget()
         {
-            Vector3 randomOffset = Random.insideUnitCircle * radius;
-            Vector3 target = _initialPosition + new Vector3(randomOffset.x, randomOffset.y, 0);
-
-            float distance = Vector3.Distance(transform.position, target);
-            float moveDuration = distance / speed;
-            
-            curTween = transform.DOMove(target, moveDuration)
-                .SetEase(movementEase)
-                .OnComplete(MoveInCircle);
+            if (movementType == MovementType.Circle)
+            {
+                Vector2 offset = Random.insideUnitCircle * radius;
+                _target = _initialPosition + new Vector3(offset.x, offset.y, 0);
+            }
+            else
+            {
+                Vector2 direction = Random.insideUnitCircle.normalized;
+                _target = _initialPosition + new Vector3(direction.x, 0, 0) * radius;
+            }
         }
-
-        private void MoveInStraightLine()
-        {
-            Vector2 direction = Random.insideUnitCircle.normalized;
-            Vector3 target = _initialPosition + new Vector3(direction.x, 0, 0) * radius;
-            
-            float distance = Vector3.Distance(transform.position, target);
-            float moveDuration = distance / speed;
-            
-            curTween = transform.DOMove(target, moveDuration)
-                .SetEase(Ease.InOutSine)
-                .OnComplete(MoveInStraightLine);
-        }
-
-        // private void OnDrawGizmos()
-        // {
-        //     Gizmos.color = Color.blue;
-        //     
-        //     if (movementType == MovementType.Circle)
-        //         Gizmos.DrawSphere(_initialPosition, radius);
-        //     else
-        //         Gizmos.DrawLine(_initialPosition,_movementLine);
-        // }
     }
 }
