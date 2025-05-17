@@ -10,7 +10,10 @@ namespace Ghosts
         {
             if (other.CompareTag("Player")) 
             {
-                _attack.Attack(other.transform);
+                if (!other.GetComponent<PlayerStealthManager>().isProtected)
+                {
+                    _attack.Attack(other.transform);
+                }
             }
         }
     }
