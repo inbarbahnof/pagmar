@@ -19,7 +19,6 @@ namespace Ghosts
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
-            
         }
 
         private void Start()

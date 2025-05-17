@@ -8,15 +8,15 @@ namespace Ghosts
     {
         private SerializedProperty pointA;
         private SerializedProperty pointB;
+        private SerializedProperty pauseAfterTarget;
         private SerializedProperty speed;
-        private SerializedProperty movementEase;
 
         private void OnEnable()
         {
             pointA = serializedObject.FindProperty("pointA");
             pointB = serializedObject.FindProperty("pointB");
+            pauseAfterTarget = serializedObject.FindProperty("_pauseAfterTarget");
             speed = serializedObject.FindProperty("speed");
-            movementEase = serializedObject.FindProperty("movementEase");
         }
 
         public override void OnInspectorGUI()
@@ -25,8 +25,8 @@ namespace Ghosts
 
             EditorGUILayout.PropertyField(pointA);
             EditorGUILayout.PropertyField(pointB);
+            EditorGUILayout.PropertyField(pauseAfterTarget);
             EditorGUILayout.PropertyField(speed);
-            EditorGUILayout.PropertyField(movementEase);
 
             serializedObject.ApplyModifiedProperties();
         }

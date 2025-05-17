@@ -18,13 +18,13 @@ namespace Ghosts
         [SerializeField] private float runAwaySpeed = 5f;
 
         protected Vector3 _initialPosition;
-        protected Rigidbody2D _rb;
+        private Rigidbody2D _rb;
         
         private Vector3 _target;
         private bool _isRunningAway = false;
         private bool _isMoving = false;
 
-        private void Awake()
+        protected void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
         }
