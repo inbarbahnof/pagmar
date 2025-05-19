@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator ChangeBinding()
     {
         yield return new WaitForSeconds(0.1f);
-        _playerInput.ChangeState(connectionState);
+        _playerInput.ChangeCallState(connectionState);
     }
     
 }

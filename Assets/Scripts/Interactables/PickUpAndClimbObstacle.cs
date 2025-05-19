@@ -14,7 +14,7 @@ namespace Interactables
             pickUpManager.SetCarryTarget(_carryTarget, ReachedTarget, PickedUp);
         }
 
-        public void ReachedTarget()
+        public override void ReachedTarget()
         {
             base.ReachedTarget();
             roadBlock.GetComponent<Collider2D>().enabled = false;

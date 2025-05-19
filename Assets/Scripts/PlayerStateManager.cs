@@ -8,6 +8,7 @@ public class PlayerStateManager : MonoBehaviour
     private PlayerAnimationManager _animationManager;
     private PlayerStealthManager _stealthManager;
     private bool _isCrouching;
+    private bool _isAbleToAim;
 
     public PlayerState CurrentState => curState;
 
@@ -32,12 +33,16 @@ public class PlayerStateManager : MonoBehaviour
         _animationManager.PlayerAnimationUpdate(input);
     }
 
+    public void UpdateAimAbility(bool canAim = false)
+    {
+        _isAbleToAim = canAim;
+    }
+
     public void SetState(PlayerState newState)
     {
-        if (curState != newState)
-        {
-            curState = newState;
-        }
+        if (curState == newState) return;
+        if (_isAbleToAim) curState = PlayerState.Aim;
+        else curState = newState;
     }
 
     public void SetStateAccordingToInteraction(IInteractable interactible)

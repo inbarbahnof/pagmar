@@ -8,17 +8,17 @@ public class InputManager : MonoBehaviour
     private PlayerMove _player;
     private PlayerStateManager _stateManager;
     private PlayerInput _input;
-    private PlayerThrowController _throwController;
-
+    private AimControl _aimControl;
+    
     private void Awake()
     {
         _input = GetComponent<PlayerInput>();
         _player = GetComponent<PlayerMove>();
         _stateManager = GetComponent<PlayerStateManager>();
-        _throwController = GetComponent<PlayerThrowController>();
+        _aimControl = GetComponent<AimControl>();
     }
 
-    public void ChangeState(int state)
+    public void ChangeCallState(int state)
     {
         if (state <= 2)
         {
@@ -31,14 +31,23 @@ public class InputManager : MonoBehaviour
             _input.actions["Call"].Enable();
         }
         
-        // Debug.Log("ChangeState Call enabled: " + _input.actions["Call"].enabled);
-        // Debug.Log("ChangeState CallMultiTap enabled: " + _input.actions["CallMultiTap"].enabled);
+        // Debug.Log("ChangeCallState Call enabled: " + _input.actions["Call"].enabled);
+        // Debug.Log("ChangeCallState CallMultiTap enabled: " + _input.actions["CallMultiTap"].enabled);
     }
-
+    
     public void OnMove(InputAction.CallbackContext context)
     {
-        Vector2 moveInput = context.ReadValue<Vector2>();
-        _player.UpdateMoveInput(moveInput);
+        Vector2 inputVal = context.ReadValue<Vector2>();
+        
+        Debug.Log("state: "+_stateManager);
+        if (_stateManager.CurrentState == PlayerState.Aim)
+        {
+            _aimControl.UpdateAimInput(inputVal);
+        }
+        else
+        {
+            _player.UpdateMoveInput(inputVal);
+        }
     }
 
     public void OnInteract(InputAction.CallbackContext context)
@@ -65,18 +74,5 @@ public class InputManager : MonoBehaviour
             _stateManager.SetState(PlayerState.Call);
         }
     }
-
-    public void OnAim(InputAction.CallbackContext context)
-    {
-        Vector2 aimInput = context.ReadValue<Vector2>();
-        _throwController.UpdateAimInput(aimInput);
-    }
-
-    public void OnThrow(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            _throwController.OnThrow();
-        }
-    }
+    
 }
