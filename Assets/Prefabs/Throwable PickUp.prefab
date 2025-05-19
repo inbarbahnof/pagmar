@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6159751718454857035}
   m_Layer: 0
   m_Name: Throwable PickUp
-  m_TagString: Untagged
+  m_TagString: Stick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d1dd6999eea4941b49ac7d149465a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dogTempComunication: {fileID: 0}
   distance: 0.8
   isTOI: 0
   _hoverTime: 2
