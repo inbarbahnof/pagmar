@@ -39,7 +39,6 @@ public class InputManager : MonoBehaviour
     {
         Vector2 inputVal = context.ReadValue<Vector2>();
         
-        Debug.Log("state: "+_stateManager);
         if (_stateManager.CurrentState == PlayerState.Aim)
         {
             _aimControl.UpdateAimInput(inputVal);
