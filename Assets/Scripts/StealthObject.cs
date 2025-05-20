@@ -13,7 +13,7 @@ public class StealthObject : MonoBehaviour
             _curStealthManager = other.GetComponent<PlayerStealthManager>();
            _curStealthManager.SetStealthMode(true);
            print("in stealth mode");
-           other.transform.position = _stealthPos.position;
+           other.GetComponent<SmoothMover>().MoveTo(_stealthPos.position);
         }
     }
     

@@ -2,7 +2,6 @@
 
 public class AimControl : MonoBehaviour
 {
-    [SerializeField] private float baseForce = 4f;
     [SerializeField] private Trajectory trajectory;
     
     private Vector2 _aimInput = Vector2.zero;

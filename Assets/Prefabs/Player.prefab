@@ -65,6 +65,7 @@ GameObject:
   - component: {fileID: 2666259007683875841}
   - component: {fileID: 5283738756936239595}
   - component: {fileID: 4198250712665286360}
+  - component: {fileID: 1930956038802629493}
   - component: {fileID: 1612652190619567834}
   - component: {fileID: 4441815370302880759}
   - component: {fileID: 1558094733959529270}
@@ -345,6 +346,43 @@ MonoBehaviour:
   trajectory: {fileID: 317533366402807946}
   arcHeight: 2
   aimSmoothSpeed: 10
+--- !u!114 &1930956038802629493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810158106228689958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac8845d2c744592b476ab34383bc311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDuration: 0.5
+  easeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!50 &1612652190619567834
 Rigidbody2D:
   serializedVersion: 5

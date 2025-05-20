@@ -21,7 +21,6 @@ namespace Interactables
         private Vector2 _carryTarget = Vector2.zero;
 
         private bool _isAbleToAim;
-        public bool IsAbleToAim => _isAbleToAim;
         
         void Start()
         {
@@ -57,7 +56,7 @@ namespace Interactables
                 {
                     _isAbleToAim = true;
                     _playerStateManager.UpdateAimAbility(true);
-                    _playerStateManager.SetState(PlayerState.Aim);
+                    _playerStateManager.UpdateThrowState(PlayerStateManager.ThrowState.Aim);
                 }
                 else if (Vector2.Distance(pickup.transform.position, _carryTarget) <= 0.5f)
                 {
@@ -79,12 +78,12 @@ namespace Interactables
             {
                 throwableObj.Throw(aimControl.GetCurThrowInput());
                 TargetGenerator.instance.SetStickTarget(throwableObj.GetComponent<Target>());
-                _playerStateManager.SetState(PlayerState.Throw);
+                _playerStateManager.UpdateThrowState(PlayerStateManager.ThrowState.Throw);
             }
             throwableObj.DropObject(Vector2.zero);
             _isAbleToAim = false;
             _playerStateManager.UpdateAimAbility();
-            _playerStateManager.SetState(PlayerState.Idle);
+            _playerStateManager.UpdateThrowState(PlayerStateManager.ThrowState.End);
             aimControl.HideTrajectory();
         }
     }

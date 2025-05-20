@@ -108,7 +108,7 @@ namespace Interactables
                 curInteractableObj.SetHighlight(false);
                 interacting = true;
 
-                playerStateManager.SetStateAccordingToInteraction(curInteractableObj);
+                playerStateManager.UpdateCurInteraction(curInteractableObj);
             }
         }
 
@@ -130,7 +130,7 @@ namespace Interactables
                 curInteractableObj.SetHighlight(true);
             }
 
-            playerStateManager.SetState(PlayerState.Idle);
+            playerStateManager.OnFinishedInteraction(curInteractableObj);
         }
 
     }

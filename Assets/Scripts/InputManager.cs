@@ -63,14 +63,14 @@ public class InputManager : MonoBehaviour
 
     public void OnPet(InputAction.CallbackContext context)
     {
-        _stateManager.SetState(PlayerState.Pet);
+        _stateManager.UpdatePetting();
     }
 
     public void OnCall(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            _stateManager.SetState(PlayerState.Call);
+            _stateManager.UpdateCalling();
         }
     }
     

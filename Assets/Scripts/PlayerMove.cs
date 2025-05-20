@@ -38,13 +38,16 @@ public class PlayerMove : MonoBehaviour
             if (!isMoving)
             {
                 isMoving = true;
-                if (!isPushing) _stateManager.SetState(PlayerState.Walk);
             }
         }
         else
         {
             isMoving = false;
-            if (!isPushing) _stateManager.SetState(PlayerState.Idle);
+        }
+
+        if (!isPushing)
+        {
+            _stateManager.UpdateWalking(isMoving);
         }
     }
 
@@ -76,7 +79,7 @@ public class PlayerMove : MonoBehaviour
         if (isPushing)
         {
             _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionY;
-            transform.position = playerPos;
+            GetComponent<SmoothMover>().MoveTo(playerPos);
         }
         else
         {

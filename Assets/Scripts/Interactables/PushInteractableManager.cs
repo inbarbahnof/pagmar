@@ -46,7 +46,7 @@ namespace Interactables
             _playerMove.SetIsPushing(true, playerPos);
 
             _curPushable = interactable;
-            _curPushable.SetOffset(player.position.x);
+            _curPushable.SetOffset(playerPos.x);
 
             if (interactable.NeedDogToPush())
             {
@@ -94,7 +94,7 @@ namespace Interactables
         private void PushDog()
         {
             Vector3 dogTargetPos = _curPushable.transform.position - _dogOffsetFromObject;
-            dog.position = dogTargetPos;
+            dog.GetComponent<SmoothMover>().MoveTo(dogTargetPos);
         }
 
         public void ResetToCheckpoint(PushInteractable interactable)
