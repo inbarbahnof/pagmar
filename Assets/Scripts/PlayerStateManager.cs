@@ -35,7 +35,6 @@ public class PlayerStateManager : MonoBehaviour
 
     private void Update()
     {
-        _isCrouching = _stealthManager.isProtected; // TODO update func
         PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching);
         
         _animationManager.PlayerAnimationUpdate(input);
@@ -72,9 +71,10 @@ public class PlayerStateManager : MonoBehaviour
         SetState(isWalking ? PlayerState.Walk : PlayerState.Idle);
     }
 
-    public void UpdateStealth()
+    public void UpdateStealth(bool isProtected)
     {
-        SetState(PlayerState.Stealth);
+        _isCrouching = isProtected;
+        if (isProtected) SetState(PlayerState.Stealth);
     }
 
     public void UpdateThrowState(ThrowState state)

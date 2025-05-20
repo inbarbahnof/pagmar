@@ -10,6 +10,7 @@ namespace Ghosts
         {
             if (other.CompareTag("Player")) 
             {
+                // TODO why not check player state?
                 if (!other.GetComponent<PlayerStealthManager>().isProtected)
                 {
                     _attack.Attack(other.transform);
