@@ -12,6 +12,7 @@ namespace Dog
         {
             if (other.CompareTag("Food"))
             {
+                print("food is close to detector");
                 _actionManager.FoodIsClose(other);
             }
             // else

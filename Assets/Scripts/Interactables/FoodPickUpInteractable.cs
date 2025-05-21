@@ -28,6 +28,11 @@ namespace Interactables
                 OnDroppedOnWalkableSurface?.Invoke(this);
             }
         }
+
+        public void FoodCanBeFed()
+        {
+            _foodTarget.SetCanBeFed(true);
+        }
         
         private bool IsWalkable(Vector2 position)
         {

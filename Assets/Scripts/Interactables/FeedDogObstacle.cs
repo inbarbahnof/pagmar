@@ -29,7 +29,7 @@ namespace Interactables
             GetComponent<Collider2D>().enabled = false;
         }
         
-        private void HandleFoodDroppedWalkable(FoodPickUpInteractable food)
+        public void HandleFoodDroppedWalkable(FoodPickUpInteractable food)
         {
             _wantFoodTarget.FoodCanBeReached();
         }

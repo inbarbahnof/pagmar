@@ -74,7 +74,7 @@ namespace Dog
             DogState newState = _computer.Compute(curState, newInput);
             // print("_dogPlayerDistance " + _dogPlayerDistance);
 
-            if (curState != newState )//|| !_dogReachedTarget)
+            if (curState != newState )//|| !_dogReachedTarget)  
             {
                 // print("cur state " + curState + " newState " + newState + " _dogReachedTarget " +_dogReachedTarget);
                 HandleDogStateChange(newState);

@@ -6,25 +6,18 @@ namespace Interactables
     public class ThrowStickOnFoodObstacle : MonoBehaviour
     {
         [SerializeField] private FoodPickUpInteractable _food;
-        [SerializeField] private Vector3 _dropFoodPos;
+        [SerializeField] private FeedDogObstacle _feedDogObstacle;
+        [SerializeField] private Transform _dropFoodPos;
         [SerializeField] private float _dropDuration = 1f;
-
-        // void Start()
-        // {
-        //     _food.OnDroppedOnWalkableSurface += HandleFoodDroppedWalkable;
-        // }
-        //
-        //
-        // private void HandleFoodDroppedWalkable(FoodPickUpInteractable food)
-        // {
-        //     
-        // }
 
         public void DropStick()
         {
-            _food.transform.DOMove(_dropFoodPos, _dropDuration)
+            _food.transform.DOMove(_dropFoodPos.position, _dropDuration)
                 .SetEase(Ease.OutBounce);
             
+            _feedDogObstacle.HandleFoodDroppedWalkable(_food);
+            _food.FoodCanBeFed();
+
             // TODO make noise and bring the ghost
         }
 
