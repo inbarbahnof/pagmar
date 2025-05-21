@@ -34,8 +34,6 @@ Transform:
   - {fileID: 623857140344850084}
   - {fileID: 1031407949079313485}
   - {fileID: 537834816163319943}
-  - {fileID: 2976118088915794982}
-  - {fileID: 6661784906648046611}
   - {fileID: 7417843088537168638}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _food: {fileID: 8489642334423480895}
+  _feedDogObstacle: {fileID: 0}
   _dropFoodPos: {fileID: 623857140344850084}
   _dropDuration: 1
 --- !u!1 &2657773114014268576
@@ -258,68 +257,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 77516053487013415, guid: a433e807d2a934051837db1f10751412, type: 3}
   m_PrefabInstance: {fileID: 460952223115599520}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1858195073285385846
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6529663963250797038}
-    m_Modifications:
-    - target: {fileID: 1413393299442258733, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_Name
-      value: StealthBush (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 13.041372
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -7.527712
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.18543112
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
---- !u!4 &6661784906648046611 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-  m_PrefabInstance: {fileID: 1858195073285385846}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2969744565766686822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -334,19 +271,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3382807358699185779, guid: 1ff8cde24afe54a4aae5eba92b1d4ae1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.41
+      value: -2.49
       objectReference: {fileID: 0}
     - target: {fileID: 3382807358699185779, guid: 1ff8cde24afe54a4aae5eba92b1d4ae1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.69
+      value: -0.77
       objectReference: {fileID: 0}
     - target: {fileID: 5748807602950873752, guid: 1ff8cde24afe54a4aae5eba92b1d4ae1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.43
+      value: 9.16
       objectReference: {fileID: 0}
     - target: {fileID: 5748807602950873752, guid: 1ff8cde24afe54a4aae5eba92b1d4ae1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.69
+      value: -1.06
       objectReference: {fileID: 0}
     - target: {fileID: 5748807602950873752, guid: 1ff8cde24afe54a4aae5eba92b1d4ae1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -463,65 +400,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3650608561491c8e9ee5fa880f4680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &7851888663757463107
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6529663963250797038}
-    m_Modifications:
-    - target: {fileID: 1413393299442258733, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_Name
-      value: StealthBush
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 12.195528
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -6.9421296
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.18543112
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
---- !u!4 &2976118088915794982 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-  m_PrefabInstance: {fileID: 7851888663757463107}
-  m_PrefabAsset: {fileID: 0}
