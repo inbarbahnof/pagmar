@@ -18,7 +18,7 @@ namespace Ghosts
         [SerializeField] private float runAwaySpeed = 5f;
 
         protected Vector3 _initialPosition;
-        private Rigidbody2D _rb;
+        protected Rigidbody2D _rb;
         
         private Vector3 _target;
         private bool _isRunningAway = false;

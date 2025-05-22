@@ -48,7 +48,7 @@ public class PlayerStateManager : MonoBehaviour
     public void UpdateCurInteraction(BaseInteractable interactable)
     {
         _curInteraction = interactable;
-        SetStateAccordingToInteraction(interactable);
+        SetStateAccordingToInteraction(_curInteraction);
     }
 
     public void OnFinishedInteraction(BaseInteractable interactable)
@@ -100,9 +100,9 @@ public class PlayerStateManager : MonoBehaviour
         else curState = newState;
     }
 
-    private void SetStateAccordingToInteraction(IInteractable interactible)
+    private void SetStateAccordingToInteraction(IInteractable interactable)
     {
-        if (interactible is PushInteractable push)
+        if (interactable is PushInteractable push)
         {
             SetState(PlayerState.Push);
         }
