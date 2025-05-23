@@ -74,17 +74,23 @@ namespace Interactables
         private void UpdateClosestInteractable()
         {
             if (curInteractables.Count == 0) return;
-            BaseInteractable closest = (curInteractableObj == null) ? curInteractables[0] : curInteractableObj;
-            float dist = Vector2.Distance(player.position, closest.transform.position);
+
+            BaseInteractable closest = null;
+            float minDist = float.MaxValue;
+
             foreach (BaseInteractable interactable in curInteractables)
             {
+                if (interactable == null) continue;
+
                 float curDist = Vector2.Distance(player.position, interactable.transform.position);
-                if (curDist < dist)
+                if (curDist < minDist)
                 {
-                    dist = curDist;
+                    minDist = curDist;
                     closest = interactable;
                 }
             }
+
+            if (closest == null) return;
 
             if (curInteractableObj != closest)
             {
@@ -95,8 +101,31 @@ namespace Interactables
 
                 curInteractableObj = closest;
                 curInteractableObj.SetHighlight(true);
-                // print("curInteractableObj " + curInteractableObj.name);
             }
+            // if (curInteractables.Count == 0) return;
+            // BaseInteractable closest = (curInteractableObj == null) ? curInteractables[0] : curInteractableObj;
+            // float dist = Vector2.Distance(player.position, closest.transform.position);
+            // foreach (BaseInteractable interactable in curInteractables)
+            // {
+            //     float curDist = Vector2.Distance(player.position, interactable.transform.position);
+            //     if (curDist < dist)
+            //     {
+            //         dist = curDist;
+            //         closest = interactable;
+            //     }
+            // }
+            //
+            // if (curInteractableObj != closest)
+            // {
+            //     if (curInteractableObj != null)
+            //     {
+            //         curInteractableObj.SetHighlight(false);
+            //     }
+            //
+            //     curInteractableObj = closest;
+            //     curInteractableObj.SetHighlight(true);
+            //     // print("curInteractableObj " + curInteractableObj.name);
+            // }
         }
 
         // player pressed interact button
