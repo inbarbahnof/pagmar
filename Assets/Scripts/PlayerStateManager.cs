@@ -68,7 +68,8 @@ public class PlayerStateManager : MonoBehaviour
 
     public void UpdateWalking(bool isWalking)
     {
-        SetState(isWalking ? PlayerState.Walk : PlayerState.Idle);
+        if (!_isCrouching) SetState(isWalking ? PlayerState.Walk : PlayerState.Idle);
+        else SetState(PlayerState.Stealth);
     }
 
     public void UpdateStealth(bool isProtected)

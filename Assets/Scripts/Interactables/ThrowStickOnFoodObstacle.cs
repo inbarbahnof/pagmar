@@ -14,6 +14,7 @@ namespace Interactables
 
         [Header("Ghost Appearance")] 
         [SerializeField] private GameObject _ghost;
+        [SerializeField] private Target _stealthTarget;
 
         public void DropStick()
         {
@@ -24,13 +25,14 @@ namespace Interactables
             _food.FoodCanBeFed();
             _targetGenerator.NotifyFoodNearby(_food.GetComponent<FoodTarget>());
 
-            // TODO make noise and bring the ghost
-            if (_ghost != null)  _ghost.SetActive(true);
+            GhostAppear();
         }
 
-        void Update()
+        private void GhostAppear()
         {
-
+            // TODO make noise and bring the ghost
+            if (_ghost != null)  _ghost.SetActive(true);
+            TargetGenerator.instance.SetStealthTarget(_stealthTarget);
         }
     }
 }

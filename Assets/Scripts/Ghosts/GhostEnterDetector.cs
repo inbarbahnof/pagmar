@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Dog;
+using UnityEngine;
 
 namespace Ghosts
 {
@@ -18,7 +19,10 @@ namespace Ghosts
             }
             else if (other.CompareTag("Dog"))
             {
-                _attack.Attack(other.transform);
+                if (!other.GetComponent<DogActionManager>().IsDogProtected)
+                {
+                    _attack.Attack(other.transform);
+                }
             }
         }
     }

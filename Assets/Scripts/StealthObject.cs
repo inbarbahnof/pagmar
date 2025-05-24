@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class StealthObject : MonoBehaviour
 {
-    // [SerializeField] private Transform _stealthPos;
     private PlayerStealthManager _curStealthManager;
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -12,8 +11,7 @@ public class StealthObject : MonoBehaviour
         {
             _curStealthManager = other.GetComponent<PlayerStealthManager>();
            _curStealthManager.SetStealthMode(true);
-           print("in stealth mode");
-           // other.GetComponent<SmoothMover>().MoveTo(_stealthPos.position);
+           print("player in stealth mode");
         }
     }
     
@@ -23,7 +21,7 @@ public class StealthObject : MonoBehaviour
         {
             _curStealthManager.SetStealthMode(false);
             _curStealthManager = null;
-            print("exit stealth mode");
+            print("player exit stealth mode");
         }
     }
 }

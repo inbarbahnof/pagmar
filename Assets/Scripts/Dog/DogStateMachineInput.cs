@@ -16,6 +16,7 @@ namespace Dog
         public bool _canEatFood;
         public bool _wantsFood;
         public bool _isFollowingStick;
+        public bool _isStealthTargetClose;
 
         public float _pushDistance;
         public float _listenDistance;
@@ -25,7 +26,7 @@ namespace Dog
             float playerDogDistance, bool dogReachedTarget, bool dogFollowingTarget, 
             bool dogFollowingTOI, float pushDistance, bool dogBusy,
             float listenDistance, bool isFoodClose, bool canEatFood,
-            bool wantsFood, float petDistance, bool isFollowingStick)
+            bool wantsFood, float petDistance, bool isFollowingStick, bool isStealthTargetClose)
         {
             _playerState = playerState;
             _playerDogDistance = playerDogDistance;
@@ -41,6 +42,7 @@ namespace Dog
             _isFollowingStick = isFollowingStick;
             _canEatFood = canEatFood;
             _wantsFood = wantsFood;
+            _isStealthTargetClose = isStealthTargetClose;
         }
     }
 }
