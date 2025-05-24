@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.39, y: 0.39, z: 0.39}
+  m_LocalScale: {x: 0.24, y: 0.24, z: 0.24}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8824701921238938360}
@@ -158,7 +158,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.61
+  m_Radius: 0.46
 --- !u!114 &7878337892010842829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4486605ec00b941964fd668be6bb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dogTempComunication: {fileID: 0}
   distance: 0.6
   isTOI: 0
   canBeFed: 0
