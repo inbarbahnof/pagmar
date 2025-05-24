@@ -12,4 +12,9 @@ public class PlayerDeathZone : MonoBehaviour
         }
     }
 
+    protected void DogDied()
+    {
+        print("dog died");
+        GameManager.checkpointManagerInstance.Undo();
+    }
 }

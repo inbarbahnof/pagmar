@@ -78,6 +78,10 @@ namespace Targets
         
         public void NotifyFoodNearby(FoodTarget food)
         {
+            print("NotifyFoodNearby " + food + " IsPickedUp " + 
+                  food.GetComponent<PickUpInteractable>().IsPickedUp + 
+                  " food.CanBeFed " + food.CanBeFed);
+            
             if (food != null && !food.GetComponent<PickUpInteractable>().IsPickedUp && food.CanBeFed)
                 _foodTarget = food;
         }
@@ -92,6 +96,7 @@ namespace Targets
         {
             if (_foodTarget != null && _foodTarget.CanBeFed)
                 return _foodTarget;
+                
             return null;
         }
 

@@ -15,14 +15,6 @@ namespace Dog
                 print("food is close to detector");
                 _actionManager.FoodIsClose(other);
             }
-            // else
-            // {
-            //     Target potentialTarget = other.GetComponent<Target>();
-            //     if (potentialTarget != null && potentialTarget.IsTOI)
-            //     {
-            //         _targetGenerator.AddToIdleTargets(potentialTarget);
-            //     }
-            // }
         }
         
         private void OnTriggerExit2D(Collider2D other)
@@ -31,23 +23,6 @@ namespace Dog
             {
                 _actionManager.FoodIsFar(other);
             }
-            // else
-            // {
-            //     Target potentialTarget = other.GetComponent<Target>();
-            //     if (potentialTarget != null && potentialTarget.IsTOI)
-            //     {
-            //         _targetGenerator.AddToIdleTargets(potentialTarget);
-            //     }
-            // }
         }
-
-        // private void OnTriggerExit2D(Collider2D other)
-        // {
-        //     Target potentialTarget = other.GetComponent<Target>();
-        //     if (potentialTarget != null && potentialTarget.IsTOI)
-        //     {
-        //         _targetGenerator.RemoveToIdleTargets(potentialTarget);
-        //     }
-        // }
     }
 }

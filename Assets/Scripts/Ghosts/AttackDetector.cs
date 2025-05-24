@@ -7,6 +7,7 @@ namespace Ghosts
     {
         [SerializeField] private GhostieAttack _attack;
         [SerializeField] private GhostieMovement _movement;
+        [SerializeField] private bool _canAttackDog;
         
         protected override void OnTriggerEnter2D(Collider2D other)
         {
@@ -15,6 +16,12 @@ namespace Ghosts
                 print("player died with ghost");
                 _attack.StopAttacking(false);
                 _movement.MoveAround();
+            }
+            else if (_canAttackDog &&other.CompareTag("Dog"))
+            {
+                _attack.StopAttacking(false);
+                _movement.MoveAround();
+                DogDied();
             }
             
             base.OnTriggerEnter2D(other);
