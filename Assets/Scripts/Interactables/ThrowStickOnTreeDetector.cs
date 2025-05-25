@@ -11,7 +11,8 @@ namespace Interactables
         {
             if (other.CompareTag("Stick"))
             {
-                _throwStickOnFoodObstacle.DropStick();
+                if (other.GetComponent<ThrowablePickUpInteractable>().IsThrowing)
+                    _throwStickOnFoodObstacle.DropStick();
             }
         }
     }
