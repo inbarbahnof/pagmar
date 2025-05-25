@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Interactables
 {
-    public class ThrowStickOnTreeDetector : MonoBehaviour
+    public class ThrowStickOnTreeDetector : Obstacle
     {
         [SerializeField] private ThrowStickOnFoodObstacle _throwStickOnFoodObstacle;
 
@@ -14,6 +14,11 @@ namespace Interactables
                 if (other.GetComponent<ThrowablePickUpInteractable>().IsThrowing)
                     _throwStickOnFoodObstacle.DropStick();
             }
+        }
+
+        public virtual void ResetObstacle()
+        {
+            // TODO reset?
         }
     }
 }

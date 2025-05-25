@@ -10,7 +10,6 @@ namespace Dog
     public class DogActionManager : MonoBehaviour
     {
         private DogState curState = DogState.Idle;
-        public DogState CurState => curState;
 
         [SerializeField] private PlayerStateManager playerStateManager;
         [SerializeField] private TargetGenerator _targetGenerator;
@@ -43,6 +42,7 @@ namespace Dog
         public float DogPlayerDistance => _dogPlayerDistance;
         public float ListenDistance => _listenDistance;
         public bool IsDogProtected => _isDogProtected;
+        public DogState CurState => curState;
 
         private void Start()
         {
@@ -203,7 +203,7 @@ namespace Dog
             curState = DogState.Idle;
         }
         
-        private void HandleDogProtectionChanged(bool isProtected)
+        public void HandleDogProtectionChanged(bool isProtected)
         {
             _isDogProtected = isProtected;
         }
