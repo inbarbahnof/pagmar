@@ -12,6 +12,7 @@ public class PlayerMove : MonoBehaviour
     private bool isMoving = false;
     private bool isPushing = false;
     private bool canMove = true;
+    private bool movingRight = true;
 
     private Vector3 _lastPosition;
 
@@ -51,45 +52,55 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    // changed this from working acc to actual movement to acc to input dir
     private void FlipSpriteBasedOnMovement()
     {
-        Vector3 currentPosition = transform.position;
-        float dirX = currentPosition.x - _lastPosition.x;
-
-        if (Mathf.Abs(dirX) > 0.001f && !isPushing)
+        //Vector3 currentPosition = transform.position;
+        //float dirX = currentPosition.x - _lastPosition.x;
+        if (Mathf.Abs(_moveInput.x) > 0.001f && !isPushing)
         {
-            float newScaleX = dirX > 0 ? 1 : -1;
-            _playerArt.transform.localScale = new Vector3(
-                newScaleX * Mathf.Abs(_playerArt.transform.localScale.x),
-                _playerArt.transform.localScale.y,
-                _playerArt.transform.localScale.z
-            );
+            if (!isPushing)
+            {
+                float newScaleX = _moveInput.x > 0 ? 1 : -1;
+                _playerArt.transform.localScale = new Vector3(
+                    newScaleX * Mathf.Abs(_playerArt.transform.localScale.x),
+                    _playerArt.transform.localScale.y,
+                    _playerArt.transform.localScale.z
+                );
+            }
         }
-
-        if (!isPushing)
-        {
-            _lastPosition = currentPosition;
-        }
+        movingRight = _moveInput.x > 0;
+        // if (!isPushing)
+        // {
+        //     _lastPosition = currentPosition;
+        // }
     }
 
-    public void SetIsPushing(bool push, Vector3 playerPos)
+    public void SetIsPushing(bool push, Vector3 playerPos, bool stationary = false)
     {
         isPushing = push;
 
         if (isPushing)
         {
-            _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionY;
+            if (stationary) _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionX;
+            else _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionY;
             GetComponent<SmoothMover>().MoveTo(playerPos);
         }
         else
         {
             _playerRb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
+            _playerRb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         }
     }
 
     public void SetIsSwinging(bool swing)
     {
         canMove = !isMoving;
+    }
+
+    public bool GetMoveDirRight()
+    {
+        return movingRight;
     }
 
     public void UpdateMoveInput(Vector2 moveInput)

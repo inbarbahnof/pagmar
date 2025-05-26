@@ -1,17 +1,16 @@
-using System;
-using System.Numerics;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Vector2 = System.Numerics.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
 namespace Interactables
 {
     public class PushInteractable : BaseInteractable
     {
-        [SerializeField] private bool _needDogToPush = false;
-        [SerializeField] private Transform playerPosToPush;
-        [SerializeField] private Transform dogPosToPush;
+        [SerializeField] protected bool _needDogToPush = false;
+        [SerializeField] protected Transform playerPosToPush;
+        [SerializeField] protected Transform dogPosToPush;
+        
+        protected bool Stationary = false;
+        public bool GetStationary() => Stationary;
         
         public bool NeedDogToPush() => _needDogToPush;
         
@@ -34,7 +33,7 @@ namespace Interactables
             _xOffset = transform.position.x - playerX;
         }
 
-        public void PushObject(float playerX)
+        public virtual void PushObject(float playerX, bool playerMoveDirRight = false)
         {
             Vector3 newPos = transform.position;
             newPos.x = playerX + _xOffset;

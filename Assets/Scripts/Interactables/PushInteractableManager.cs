@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Dog;
 using UnityEngine;
 
@@ -43,7 +44,7 @@ namespace Interactables
         public void TryStartPush(PushInteractable interactable, Vector3 playerPos, Vector3 dogPos)
         {
             _isPushing = true;
-            _playerMove.SetIsPushing(true, playerPos);
+            _playerMove.SetIsPushing(true, playerPos, interactable.GetStationary());
 
             _curPushable = interactable;
             _curPushable.SetOffset(playerPos.x);
@@ -71,8 +72,8 @@ namespace Interactables
                 // print("dog not pushing");
                 return;
             }
-
-            _curPushable.PushObject(player.position.x);
+            
+            _curPushable.PushObject(player.position.x, _playerMove.GetMoveDirRight());
 
             if (_curPushable.NeedDogToPush())
             {
@@ -102,6 +103,17 @@ namespace Interactables
             interactable.ResetToCheckpoint();
             StopPush();
         }
+
+        public void PushPlayerBack(Vector3 pushDir)
+        {
+            // Player movement setup
+            Vector3 startPos = player.position;
+            //Vector3 endPos = startPos - pullDirection.normalized * 1f; // 1 unit backward (adjust as needed)
+            Vector3 endPos = startPos + pushDir * 1f;
+            player.GetComponent<SmoothMover>().MoveTo(endPos);
+        }
+        
+        
         
     }
 
