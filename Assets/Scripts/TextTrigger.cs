@@ -18,7 +18,6 @@ public class TextTrigger : MonoBehaviour
 
     private IEnumerator ShowTxtForTime()
     {
-        Debug.Log("aaaaa");
         text.SetActive(true);
         yield return new WaitForSeconds(showTime);
         text.SetActive(false);
