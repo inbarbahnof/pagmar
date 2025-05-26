@@ -11,8 +11,9 @@ namespace Targets
 
         public override void StartTargetAction()
         {
+            _manager.TargetReached(_isLast);
+            
             if (_isLast) FinishTargetAction();
-            else _manager.TargetReached();
         }
         
     }

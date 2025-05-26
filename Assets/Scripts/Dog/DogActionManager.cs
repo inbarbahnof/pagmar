@@ -208,9 +208,15 @@ namespace Dog
             curState = DogState.Idle;
         }
 
-        public void StealthObs()
+        public void StealthObs(bool isStealth)
         {
-            _needToStealth = true;
+            _needToStealth = isStealth;
+
+            if (!isStealth)
+            {
+                _playerFollower.StopGoingToTarget();
+                curState = DogState.Idle;
+            }
         }
         
         public void HandleDogProtectionChanged(bool isProtected)

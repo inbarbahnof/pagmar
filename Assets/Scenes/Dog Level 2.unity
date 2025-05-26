@@ -907,6 +907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint5
       objectReference: {fileID: 0}
+    - target: {fileID: 4512282350650903690, guid: 75c86de759e3be54f90565638c407d6d, type: 3}
+      propertyPath: obstacle
+      value: 
+      objectReference: {fileID: 1971031438}
     - target: {fileID: 6998024096195671369, guid: 75c86de759e3be54f90565638c407d6d, type: 3}
       propertyPath: m_LocalScale.y
       value: 10.89
@@ -11464,6 +11468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dog: {fileID: 1892569885}
+  _player: {fileID: 6206195499498904310}
   _targets:
   - {fileID: 6878270806038001034}
   - {fileID: 1601124003}
@@ -12914,11 +12919,11 @@ PrefabInstance:
       objectReference: {fileID: 1050567134}
     - target: {fileID: 2606581116919676563, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 125.81
+      value: 125.6
       objectReference: {fileID: 0}
     - target: {fileID: 2606581116919676563, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.02
+      value: 1.1700001
       objectReference: {fileID: 0}
     - target: {fileID: 2606581116919676563, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13193,11 +13198,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3301466037238240058, guid: 9839d545bdf45bc4a98f1cfcbdb0d7ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 128.17
+      value: 128.23
       objectReference: {fileID: 0}
     - target: {fileID: 3301466037238240058, guid: 9839d545bdf45bc4a98f1cfcbdb0d7ed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.42
+      value: -1.27
       objectReference: {fileID: 0}
     - target: {fileID: 3301466037238240058, guid: 9839d545bdf45bc4a98f1cfcbdb0d7ed, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13289,6 +13294,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 382d20e436984dd9bb7ef8520824880b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6206195499498904310 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2666259007683875841, guid: 9839d545bdf45bc4a98f1cfcbdb0d7ed, type: 3}
+  m_PrefabInstance: {fileID: 6206195499498904292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050567125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87122a699774ef48a2a858931261583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6218503231766635870

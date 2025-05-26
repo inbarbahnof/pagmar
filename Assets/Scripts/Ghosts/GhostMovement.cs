@@ -13,14 +13,7 @@ namespace Ghosts
         private bool isGoingAround = true;
         private bool isGoingToTarget = false;
 
-        //private Rigidbody2D _rb;
         private Vector3 _currentTarget;
-
-        // private void Awake()
-        // {
-        //     _rb = GetComponent<Rigidbody2D>();
-        // }
-        // this already happens in parent class
 
         private void Start()
         {

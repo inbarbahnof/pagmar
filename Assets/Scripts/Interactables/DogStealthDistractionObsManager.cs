@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
+using System.Linq;
 using Dog;
 using Ghosts;
 using Targets;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Interactables
@@ -10,17 +12,22 @@ namespace Interactables
     public class DogStealthDistractionObsManager : Obstacle
     {
         [SerializeField] private DogActionManager _dog;
+        [SerializeField] private PlayerStealthManager _player;
         [SerializeField] private Target[] _targets;
         [SerializeField] private GhostMovement[] _ghosts;
         [SerializeField] private ThrowablePickUpInteractable[] _sticks;
 
         private int _curTarget = 0;
+        private Vector3[] _stickPositions;
 
         private void Start()
         {
-            foreach (var stick in _sticks)
+            _stickPositions = new Vector3[_sticks.Length];
+              
+            for (int i = 0; i < _sticks.Length; i++)
             {
-                stick.OnThrowComplete += ThrewStick;
+                _stickPositions[i] = _sticks[i].transform.position;
+                _sticks[i].OnThrowComplete += ThrewStick;
             }
 
             StartCoroutine(WaitToSetTarget());
@@ -28,16 +35,33 @@ namespace Interactables
 
         private IEnumerator WaitToSetTarget()
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.5f);
             TargetGenerator.instance.SetStealthTarget(_targets[0]);
         }
 
         public override void ResetObstacle()
         {
+            print("reset obs");
             _curTarget = 0;
             TargetGenerator.instance.SetStealthTarget(_targets[0]);
             
+            // reset player
+            _player.SetStealthMode(false);
+            
+            // reset dog
+            _dog.StealthObs(false);
+            
+            // // reset targets
+            foreach (var target in _targets)  
+            {
+                target.FinishTargetAction();
+            }
+            
             // reset sticks positions
+            for (int i = 0; i < _stickPositions.Length; i++)
+            {
+                _sticks[i].transform.position = _stickPositions[i];
+            }
 
             // reset ghost positions
             foreach (var ghost in _ghosts)  
@@ -46,17 +70,18 @@ namespace Interactables
             }
         }
 
-        public void TargetReached()
+        public void TargetReached(bool isLast)
         {
-            print("target reached");
-            _curTarget++;
+            if (isLast) _player.SetStealthMode(true);
+            else _curTarget++;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Dog"))
             {
-                _dog.StealthObs();
+                _dog.StealthObs(true);
+                _player.SetStealthMode(true);
             }
         }
 

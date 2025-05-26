@@ -18,7 +18,6 @@ public class PlayerAnimationManager : MonoBehaviour
             {
                 case PlayerState.Stealth:
                     _animator.SetBool("Crouching", true);
-                    print("crouching");
                     break;
                 case PlayerState.Idle:
                     if (!input._isCrouching)

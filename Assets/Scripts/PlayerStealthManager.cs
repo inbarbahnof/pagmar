@@ -16,6 +16,5 @@ public class PlayerStealthManager : MonoBehaviour
     {
         _isProtected = isInStealth;
         _playerStateManager.UpdateStealth(_isProtected);
-
     }
 }

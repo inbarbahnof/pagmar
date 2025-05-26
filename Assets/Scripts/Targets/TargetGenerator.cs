@@ -62,6 +62,7 @@ namespace Targets
         {
             _didStealthTargetChange = true;
             _stealthTarget = target;
+            print("stealth target set to " + target);
         }
 
         public Target GetStealthTarget(bool toFollow)
