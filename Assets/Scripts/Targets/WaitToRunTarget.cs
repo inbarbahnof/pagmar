@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Interactables;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Targets
@@ -6,12 +7,13 @@ namespace Targets
     public class WaitToRunTarget : Target
     {
         [SerializeField] private bool _isLast;
-        public override void StartTargetAction() { }
-        
-        public void ThrewStick()
+        [SerializeField] private DogStealthDistractionObsManager _manager;
+
+        public override void StartTargetAction()
         {
             if (_isLast) FinishTargetAction();
-            // else 
+            else _manager.TargetReached();
         }
+        
     }
 }

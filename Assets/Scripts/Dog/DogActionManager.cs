@@ -34,6 +34,7 @@ namespace Dog
         private bool _wantFood;
         private bool _isDogProtected;
         private bool _isStealthTargetClose;
+        private bool _needToStealth;
 
         private DogStateComputer _computer;
         private float _dogPlayerDistance;
@@ -70,14 +71,14 @@ namespace Dog
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
             
             _canEatFood = _targetGenerator.GetFoodTarget() != null;
-            _isStealthTargetClose = _targetGenerator.GetStealthTarget() != null;
+            _isStealthTargetClose = _targetGenerator.GetStealthTarget(false) != null;
             
             DogStateMachineInput newInput = new DogStateMachineInput(playerStateManager.CurrentState, 
                 GameManager.instance.ConnectionState,
                 _dogPlayerDistance, _dogReachedTarget,
                 _dogFollowingTarget, _dogFollowingTOI, _pushDistance,
                 _dogBusy, _listenDistance, _foodIsClose, _canEatFood, _wantFood,
-                _petDistance, _isFollowingStick, _isStealthTargetClose);
+                _petDistance, _isFollowingStick, _isStealthTargetClose, _needToStealth);
             
             DogState newState = _computer.Compute(curState, newInput);
             // print("_dogPlayerDistance " + _dogPlayerDistance);
@@ -86,6 +87,10 @@ namespace Dog
             {
                 // print("cur state " + curState + " newState " + newState + " _dogReachedTarget " +_dogReachedTarget);
                 HandleDogStateChange(newState);
+            }
+            else if (curState == DogState.Stealth && _targetGenerator.DidStealthTargetChange())
+            {
+                HandleStealthBehavior();
             }
         }
 
@@ -170,7 +175,7 @@ namespace Dog
         private void HandleStealthBehavior()
         {
             curState = DogState.Stealth;
-            Target target = _targetGenerator.GetStealthTarget();
+            Target target = _targetGenerator.GetStealthTarget(true);
             _playerFollower.GoToFoodTarget(target); 
         }
 
@@ -201,6 +206,11 @@ namespace Dog
             transform.position = newPos;
             
             curState = DogState.Idle;
+        }
+
+        public void StealthObs()
+        {
+            _needToStealth = true;
         }
         
         public void HandleDogProtectionChanged(bool isProtected)
@@ -262,6 +272,7 @@ namespace Dog
             _dogBusy = false;
             _isFollowingStick = false;
             _wantFood = false;
+            _needToStealth = false;
         }
 
         private void HandleDogFollow()

@@ -18,6 +18,8 @@ namespace Targets
         private Target _stickTarget;
         private WantFoodTarget _wantFoodTarget;
         private Target _stealthTarget;
+
+        private bool _didStealthTargetChange;
         
         // private List<Target> idleTargets = new List<Target>();
 
@@ -50,14 +52,21 @@ namespace Targets
                 playerTargets.Remove(target);
             }
         }
+
+        public bool DidStealthTargetChange()
+        {
+            return _didStealthTargetChange && _stealthTarget != null;
+        }
         
         public void SetStealthTarget(Target target)
         {
+            _didStealthTargetChange = true;
             _stealthTarget = target;
         }
 
-        public Target GetStealthTarget()
+        public Target GetStealthTarget(bool toFollow)
         {
+            if (toFollow) _didStealthTargetChange = false;
             return _stealthTarget;
         }
         

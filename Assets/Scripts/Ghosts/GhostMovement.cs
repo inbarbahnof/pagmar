@@ -7,7 +7,7 @@ namespace Ghosts
     {
         [SerializeField] private Transform pointA;
         [SerializeField] private Transform pointB;
-        [SerializeField] private float _pauseAfterTarget = 1f;
+        [SerializeField] private float _pauseAfterTarget = 2f;
 
         private bool movingToB = true;
         private bool isGoingAround = true;

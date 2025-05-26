@@ -8,7 +8,9 @@ namespace Dog
         
         public DogState Compute(DogState previousDogState, DogStateMachineInput machineInput)
         {
-            if (machineInput is { _playerState: PlayerState.Stealth, _isStealthTargetClose: true }) return DogState.Stealth;
+            if (machineInput._needToStealth ||
+                machineInput is { _playerState: PlayerState.Stealth, _isStealthTargetClose: true }) 
+                return DogState.Stealth;
             
             if (machineInput._wantsFood) return DogState.WantFood;
             

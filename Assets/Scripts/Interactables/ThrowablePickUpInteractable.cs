@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Interactables
         private bool _isThrowing;
 
         public bool IsThrowing => _isThrowing;
+        public event Action<Transform> OnThrowComplete;
         
         public void Throw(ThrowInput input)
         {
@@ -39,6 +41,7 @@ namespace Interactables
         
             transform.position = input.endPoint;
             _isThrowing = false;
+            OnThrowComplete?.Invoke(transform);
         }
 
         public override void StopInteractPress()

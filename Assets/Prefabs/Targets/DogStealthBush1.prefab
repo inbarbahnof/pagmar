@@ -49,7 +49,8 @@ MonoBehaviour:
   _dogTempComunication: {fileID: 0}
   distance: 0.6
   isTOI: 1
-  _path: {fileID: 3214542178064929045}
+  _isLast: 0
+  _manager: {fileID: 0}
 --- !u!1001 &7062405430576175391
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -187,17 +188,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f2ecc660a72ecb45aab4c48ed0ff761, type: 3}
---- !u!114 &3214542178064929045 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5665226268234893322, guid: 5f2ecc660a72ecb45aab4c48ed0ff761, type: 3}
-  m_PrefabInstance: {fileID: 7062405430576175391}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57db178ac6f14c947b2639fa4b2c30a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &3859928521760345110 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6310542362362041609, guid: 5f2ecc660a72ecb45aab4c48ed0ff761, type: 3}
@@ -225,15 +215,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.268036
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.5386095
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.08086625
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_LocalRotation.w
