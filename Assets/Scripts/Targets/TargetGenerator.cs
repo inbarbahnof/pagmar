@@ -16,8 +16,8 @@ namespace Targets
         
         private FoodTarget _foodTarget;
         private Target _stickTarget;
-
         private WantFoodTarget _wantFoodTarget;
+        private Target _stealthTarget;
         
         // private List<Target> idleTargets = new List<Target>();
 
@@ -51,6 +51,16 @@ namespace Targets
             }
         }
         
+        public void SetStealthTarget(Target target)
+        {
+            _stealthTarget = target;
+        }
+
+        public Target GetStealthTarget()
+        {
+            return _stealthTarget;
+        }
+        
         public void SetStickTarget(Target target)
         {
             _stickTarget = target;
@@ -78,10 +88,6 @@ namespace Targets
         
         public void NotifyFoodNearby(FoodTarget food)
         {
-            print("NotifyFoodNearby " + food + " IsPickedUp " + 
-                  food.GetComponent<PickUpInteractable>().IsPickedUp + 
-                  " food.CanBeFed " + food.CanBeFed);
-            
             if (food != null && !food.GetComponent<PickUpInteractable>().IsPickedUp && food.CanBeFed)
                 _foodTarget = food;
         }

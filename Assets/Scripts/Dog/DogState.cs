@@ -12,6 +12,7 @@
         Pet,
         GetAwayFromPlayer,
         OnTargetAction,
-        Push
+        Push,
+        Stealth
     }
 }

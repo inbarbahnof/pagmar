@@ -17,7 +17,7 @@ namespace Ghosts
                 _attack.StopAttacking(false);
                 _movement.MoveAround();
             }
-            else if (_canAttackDog &&other.CompareTag("Dog"))
+            else if (_canAttackDog && other.CompareTag("Dog"))
             {
                 _attack.StopAttacking(false);
                 _movement.MoveAround();

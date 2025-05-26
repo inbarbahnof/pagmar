@@ -8,6 +8,8 @@ namespace Interactables
     {
         private AimControl _aimControl;
         private bool _isThrowing;
+
+        public bool IsThrowing => _isThrowing;
         
         public void Throw(ThrowInput input)
         {

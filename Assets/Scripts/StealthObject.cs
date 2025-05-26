@@ -1,10 +1,11 @@
 using System;
+using Dog;
 using UnityEngine;
 
 public class StealthObject : MonoBehaviour
 {
-    // [SerializeField] private Transform _stealthPos;
     private PlayerStealthManager _curStealthManager;
+    private DogActionManager _curDogActionManager;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -12,8 +13,13 @@ public class StealthObject : MonoBehaviour
         {
             _curStealthManager = other.GetComponent<PlayerStealthManager>();
            _curStealthManager.SetStealthMode(true);
-           print("in stealth mode");
-           // other.GetComponent<SmoothMover>().MoveTo(_stealthPos.position);
+           print("player in stealth mode");
+        }
+        else if (other.CompareTag("Dog"))
+        {
+            _curDogActionManager = other.GetComponent<DogActionManager>();
+            _curDogActionManager.HandleDogProtectionChanged(true);
+            print("dog in stealth mode");
         }
     }
     
@@ -23,7 +29,13 @@ public class StealthObject : MonoBehaviour
         {
             _curStealthManager.SetStealthMode(false);
             _curStealthManager = null;
-            print("exit stealth mode");
+            print("player exit stealth mode");
+        }
+        else if (other.CompareTag("Dog"))
+        {
+            _curDogActionManager.HandleDogProtectionChanged(false);
+            _curDogActionManager = null;
+            print("dog exit stealth mode");
         }
     }
 }
