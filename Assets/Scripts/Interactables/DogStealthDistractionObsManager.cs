@@ -13,6 +13,7 @@ namespace Interactables
     {
         [SerializeField] private DogActionManager _dog;
         [SerializeField] private PlayerStealthManager _player;
+        [SerializeField] private StickAreaDetector _areaDetector;
         [SerializeField] private Target[] _targets;
         [SerializeField] private GhostMovement[] _ghosts;
         [SerializeField] private ThrowablePickUpInteractable[] _sticks;
@@ -46,10 +47,13 @@ namespace Interactables
             TargetGenerator.instance.SetStealthTarget(_targets[0]);
             
             // reset player
-            _player.SetStealthMode(false);
+            _player.SetProtected(false);
             
             // reset dog
             _dog.StealthObs(false);
+            
+            // reset camera
+            CameraController.instance.FollowPlayer();
             
             // // reset targets
             foreach (var target in _targets)  
@@ -72,7 +76,11 @@ namespace Interactables
 
         public void TargetReached(bool isLast)
         {
-            if (isLast) _player.SetStealthMode(true);
+            if (isLast)
+            {
+                _player.SetProtected(false);
+                CameraController.instance.FollowPlayer();
+            }
             else _curTarget++;
         }
 
@@ -81,12 +89,15 @@ namespace Interactables
             if (other.CompareTag("Dog"))
             {
                 _dog.StealthObs(true);
-                _player.SetStealthMode(true);
+                _player.SetProtected(true);
+                CameraController.instance.FollowPlayerAndDog();
             }
         }
 
         private void ThrewStick(Transform stick)
         {
+            if (!_areaDetector.didStickLand) return;
+            
             print("target changed to " + _targets[_curTarget].name);
             TargetGenerator.instance.SetStealthTarget(_targets[_curTarget]);
             
