@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,7 +14,10 @@ namespace Ghosts
 
         [SerializeField] protected float speed = 1.5f;
 
-        [Header("Run Away From Dog Properties")]
+        [Header("Run Away From Dog Properties")] 
+        [SerializeField] private bool _goesToRunPos;
+        [SerializeField] private float _distanceToRun = 2;
+        [SerializeField] private float _waitForIdle = 1.5f;
         [SerializeField] private Vector3 runAwayPoint;
         [SerializeField] private float runAwaySpeed = 5f;
 
@@ -23,6 +27,8 @@ namespace Ghosts
         private Vector3 _target;
         private bool _isRunningAway = false;
         private bool _isMoving = false;
+
+        private Coroutine _coroutine;
 
         protected void Awake()
         {
@@ -51,13 +57,24 @@ namespace Ghosts
             return false;
         }
 
-        public void MoveAwayFromDog()
+        public void Die()
+        {
+            _isMoving = false;
+            if (_coroutine != null) StopCoroutine(_coroutine);
+        }
+
+        public void MoveAwayFromDog(Vector3 dogPosition)
         {
             StopGoingAround();
             _isRunningAway = true;
             _isMoving = true;
 
-            _target = runAwayPoint;
+            if (_goesToRunPos) _target = runAwayPoint;
+            else
+            {
+                Vector3 directionAwayFromDog = (transform.position - dogPosition).normalized;
+                _target = transform.position + directionAwayFromDog * _distanceToRun;
+            }
         }
 
         private void FixedUpdate()
@@ -76,14 +93,25 @@ namespace Ghosts
             {
                 if (_isRunningAway)
                 {
-                    _isRunningAway = false;
-                    MoveAround();
+                    _isMoving = false;
+                    if (_coroutine != null) StopCoroutine(_coroutine);
+                    _coroutine = StartCoroutine(WaitToGoBackToIdle());
+                    _coroutine = null;
                 }
                 else
                 {
                     SetNextTarget();
                 }
             }
+        }
+
+        private IEnumerator WaitToGoBackToIdle()
+        {
+            yield return new WaitForSeconds(_waitForIdle);
+            
+            _isMoving = true;
+            _isRunningAway = false;
+            MoveAround();
         }
 
         private void SetNextTarget()

@@ -22,14 +22,14 @@ namespace Ghosts
             _initialPos = transform.position;
         }
 
-        public virtual void StopAttacking(bool isRunning)
+        public virtual void StopAttacking(bool isRunning, Vector3 dogPosition)
         {
             _attacking = false;
             _targetPlayer = null;
             
             if (isRunning)
             {
-                _ghostieMovement.MoveAwayFromDog();
+                _ghostieMovement.MoveAwayFromDog(dogPosition);
             }
             else
             {
@@ -69,7 +69,7 @@ namespace Ghosts
                 }
                 else
                 {
-                    StopAttacking(false);
+                    StopAttacking(false, Vector3.zero);
                 }
             }
         }

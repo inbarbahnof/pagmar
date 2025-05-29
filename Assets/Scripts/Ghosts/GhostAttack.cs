@@ -8,7 +8,7 @@ namespace Ghosts
     {
         [SerializeField] private GhostMovement _ghostMovement;
         
-        public override void StopAttacking(bool isRunning)
+        public override void StopAttacking(bool isRunning, Vector3 dogPos)
         {
             _attacking = false;
             _targetPlayer = null;

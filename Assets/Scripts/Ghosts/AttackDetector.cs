@@ -8,23 +8,32 @@ namespace Ghosts
         [SerializeField] private GhostieAttack _attack;
         [SerializeField] private GhostieMovement _movement;
         [SerializeField] private bool _canAttackDog;
+
+        private bool _canAttack = true;
         
         protected override void OnTriggerEnter2D(Collider2D other)
         {
+            if (!_canAttack) return;
+            
             if (other.CompareTag("Player"))
             {
                 print("player died with ghost");
-                _attack.StopAttacking(false);
+                _attack.StopAttacking(false, Vector3.zero);
                 _movement.MoveAround();
             }
             else if (_canAttackDog && other.CompareTag("Dog"))
             {
-                _attack.StopAttacking(false);
+                _attack.StopAttacking(false, Vector3.zero);
                 _movement.MoveAround();
                 DogDied();
             }
             
             base.OnTriggerEnter2D(other);
+        }
+
+        public void DisableAttack()
+        {
+            _canAttack = false;
         }
     }
 }
