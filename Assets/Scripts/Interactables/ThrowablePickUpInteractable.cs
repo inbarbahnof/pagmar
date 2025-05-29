@@ -7,6 +7,8 @@ namespace Interactables
 {
     public class ThrowablePickUpInteractable : PickUpInteractable
     {
+        [SerializeField] private FoodPickUpInteractable _food;
+        
         private AimControl _aimControl;
         private bool _isThrowing;
 
@@ -18,7 +20,13 @@ namespace Interactables
             if (_isThrowing) return;
             StartCoroutine(ThrowCoroutine(input));
         }
-    
+
+        public override void DropObject(Vector2 worldTarget)
+        {
+            if (_food != null) _food.ActivateIfOnWalkable(worldTarget);
+            base.DropObject(worldTarget);
+        }
+
         private IEnumerator ThrowCoroutine(ThrowInput input)
         {
             _isThrowing = true;
@@ -42,6 +50,8 @@ namespace Interactables
             transform.position = input.endPoint;
             _isThrowing = false;
             OnThrowComplete?.Invoke(transform);
+            
+            if (_food != null) _food.ActivateIfOnWalkable(transform.position);
         }
 
         public override void StopInteractPress()

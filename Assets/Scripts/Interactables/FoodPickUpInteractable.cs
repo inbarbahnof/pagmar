@@ -20,8 +20,13 @@ namespace Interactables
         {
             base.DropObject(worldTarget);
             
-            bool isWalkable = IsWalkable(worldTarget);
+            ActivateIfOnWalkable(worldTarget);
+        }
 
+        public void ActivateIfOnWalkable(Vector2 worldTarget)
+        {
+            bool isWalkable = IsWalkable(worldTarget);
+            
             if (isWalkable)
             {
                 _foodTarget.SetCanBeFed(true);
