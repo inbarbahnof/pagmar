@@ -1,5 +1,7 @@
+using System;
 using DG.Tweening;
 using Targets;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Interactables
@@ -8,31 +10,24 @@ namespace Interactables
     {
         [SerializeField] private FoodPickUpInteractable _food;
         [SerializeField] private FeedDogObstacle _feedDogObstacle;
-        [SerializeField] private TargetGenerator _targetGenerator;
         [SerializeField] private Transform _dropFoodPos;
         [SerializeField] private float _dropDuration = 1f;
 
-        [Header("Ghost Appearance")] 
-        [SerializeField] private GameObject _ghost;
-        [SerializeField] private Target _stealthTarget;
+        [Header("Ghost Appearance")] [SerializeField]
+        private Stealth1Obstacle _stealth;
 
         public void DropStick()
         {
             _food.transform.DOMove(_dropFoodPos.position, _dropDuration)
                 .SetEase(Ease.OutBounce);
+
+            _food.gameObject.layer = LayerMask.NameToLayer("Default");
             
             _feedDogObstacle.HandleFoodDroppedWalkable(_food);
             _food.FoodCanBeFed();
-            _targetGenerator.NotifyFoodNearby(_food.GetComponent<FoodTarget>());
+            TargetGenerator.instance.NotifyFoodNearby(_food.GetComponent<FoodTarget>());
 
-            GhostAppear();
-        }
-
-        private void GhostAppear()
-        {
-            // TODO make noise and bring the ghost
-            if (_ghost != null)  _ghost.SetActive(true);
-            TargetGenerator.instance.SetStealthTarget(_stealthTarget);
+            _stealth.GhostAppear();
         }
     }
 }

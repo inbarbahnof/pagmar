@@ -7,7 +7,7 @@ namespace Targets
     public class WaitToRunTarget : Target
     {
         [SerializeField] private bool _isLast;
-        [SerializeField] private DogStealthDistractionObsManager _manager;
+        [SerializeField] private DogStealth2Obstacle _manager;
 
         public override void StartTargetAction()
         {

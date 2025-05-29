@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Dog;
 using Targets;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace Interactables
                 foodPickup.OnDroppedOnWalkableSurface += HandleFoodDroppedWalkable;
             }
 
+            // StartCoroutine(SetListener());
             FoodTarget foodTarget = _food.GetComponent<FoodTarget>();
             if (foodTarget != null)
             {

@@ -27,7 +27,8 @@ namespace Targets
         public override void FinishTargetAction()
         {
             isDogOnPath = false;
-
+            follower.SetIsOnPath(isDogOnPath);
+            
             if (_isStealthPath)
             {
                 OnDogProtectionChanged?.Invoke(false);

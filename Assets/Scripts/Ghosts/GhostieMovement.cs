@@ -100,7 +100,7 @@ namespace Ghosts
                 }
                 else
                 {
-                    SetNextTarget();
+                    SetNextTarget();    
                 }
             }
         }

@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Interactables
 {
-    public class DogStealthDistractionObsManager : Obstacle
+    public class DogStealth2Obstacle : Obstacle
     {
         [SerializeField] private DogActionManager _dog;
         [SerializeField] private PlayerStealthManager _player;
@@ -88,6 +88,7 @@ namespace Interactables
         {
             if (other.CompareTag("Dog"))
             {
+                TargetGenerator.instance.SetStealthTarget(_targets[0]);
                 _dog.StealthObs(true);
                 _player.SetProtected(true);
                 CameraController.instance.FollowPlayerAndDog();
