@@ -63,6 +63,12 @@ namespace Ghosts
             if (_coroutine != null) StopCoroutine(_coroutine);
         }
 
+        public void ResetMovement()
+        {
+            _isMoving = true;
+            MoveAround();
+        }
+
         public void MoveAwayFromDog(Vector3 dogPosition)
         {
             StopGoingAround();

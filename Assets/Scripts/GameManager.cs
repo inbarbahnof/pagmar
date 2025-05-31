@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         }
         else Debug.LogError("TOO MANY GAME MANAGERS!");
 
-        StartCoroutine(ChangeBinding());
+        // StartCoroutine(ChangeBinding());
     }
 
     private IEnumerator ChangeBinding()

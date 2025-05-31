@@ -39,7 +39,7 @@ namespace Ghosts
         
         public virtual void Attack(Transform player)
         {
-            print("in attack");
+            // print("in attack");
             
             if (player == null || _attacking) return;
             

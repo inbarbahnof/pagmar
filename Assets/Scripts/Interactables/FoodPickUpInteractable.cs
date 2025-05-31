@@ -16,10 +16,16 @@ namespace Interactables
             _foodTarget = GetComponent<FoodTarget>();
         }
 
+        public override void PickUpObject(Transform parent)
+        {
+            _foodTarget.SetCanBeFed(false);
+            base.PickUpObject(parent);
+        }
+
         public override void DropObject(Vector2 worldTarget)
         {
             base.DropObject(worldTarget);
-            
+            _foodTarget.SetCanBeFed(true);
             ActivateIfOnWalkable(worldTarget);
         }
 

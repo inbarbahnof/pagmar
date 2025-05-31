@@ -31,9 +31,10 @@ namespace Ghosts
             base.OnTriggerEnter2D(other);
         }
 
-        public void DisableAttack()
+        public void IsAttackEnabled(bool enabled)
         {
-            _canAttack = false;
+            print("IsAttackEnabled " + name + " " + enabled);
+            _canAttack = enabled;
         }
     }
 }

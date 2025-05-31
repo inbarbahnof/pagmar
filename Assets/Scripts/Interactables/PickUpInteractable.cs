@@ -20,7 +20,7 @@ namespace Interactables
             PickUpInteractableManager.instance.Interact(this);
         }
 
-        public void PickUpObject(Transform parent)
+        public virtual void PickUpObject(Transform parent)
         {
             transform.SetParent(parent);
             transform.localPosition = Vector3.zero;
