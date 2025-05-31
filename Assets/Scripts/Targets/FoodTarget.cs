@@ -35,7 +35,8 @@ namespace Targets
         {
             yield return new WaitForSeconds(1.5f);
             print("Dog finished eating food");
-            Destroy(gameObject);
+            
+            gameObject.SetActive(false);
             OnFoodEaten?.Invoke();
             FinishTargetAction();
         }
