@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Dog;
 using Interactables;
 using Targets;
 using UnityEngine;
@@ -6,14 +8,18 @@ public class GhostiesCircleObstacle : Obstacle
 {
     [SerializeField] private FoodTarget[] _food;
     [SerializeField] private Obstacle _pushObs;
+    [SerializeField] private DogActionManager _dog;
 
     private Vector3[] _foodPositions;
     private FoodTarget[] _spawnedFoods;
+    private Dictionary<Transform, int> _foodTransformToIndex;
 
     private void Start()
     {
         _foodPositions = new Vector3[_food.Length];
         _spawnedFoods = new FoodTarget[_food.Length];
+
+        _foodTransformToIndex = new Dictionary<Transform, int>();
 
         for (int i = 0; i < _food.Length; i++)
         {
@@ -21,8 +27,20 @@ public class GhostiesCircleObstacle : Obstacle
 
             int index = i;
             _food[i].OnFoodEaten += () => RespawnFood(index);
+            ThrowablePickUpInteractable interactable = _food[i].GetComponent<ThrowablePickUpInteractable>();
+            interactable.OnThrowComplete += ThrowComplete;
 
+            _foodTransformToIndex[_food[i].transform] = i;
             _spawnedFoods[i] = _food[i];
+        }
+    }
+
+    private void ThrowComplete(Transform pos)
+    {
+        if (_foodTransformToIndex.TryGetValue(pos, out int index))
+        {
+            _dog.FoodIsClose(pos.GetComponent<Collider2D>());
+            _food[index].SetCanBeFed(true);
         }
     }
 

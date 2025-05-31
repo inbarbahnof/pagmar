@@ -49,9 +49,10 @@ namespace Interactables
         
             transform.position = input.endPoint;
             _isThrowing = false;
-            OnThrowComplete?.Invoke(transform);
             
             if (_food != null) _food.ActivateIfOnWalkable(transform.position);
+            
+            OnThrowComplete?.Invoke(transform);
         }
 
         public override void StopInteractPress()
