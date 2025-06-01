@@ -64,6 +64,7 @@ public class PlayerStateManager : MonoBehaviour
     public void UpdateCalling()
     {
         SetState(PlayerState.Call);
+        print("player calling " + Time.deltaTime);
     }
 
     public void UpdateWalking(bool isWalking)
