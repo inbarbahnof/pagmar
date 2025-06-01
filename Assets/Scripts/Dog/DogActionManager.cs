@@ -67,7 +67,7 @@ namespace Dog
         private void Update()
         {
             // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
-            
+            // print("_foodIsClose " + _foodIsClose + " _canEatFood " + _canEatFood);
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
             
             _canEatFood = _targetGenerator.GetFoodTarget() != null;
@@ -124,6 +124,7 @@ namespace Dog
                     break;
                 case (_, DogState.FollowFood):
                     curState = DogState.FollowFood;
+                    _dogFollowingTOI = true;
                     _playerFollower.GoToFoodTarget(_targetGenerator.GetFoodTarget());
                     break;
                 case (_, DogState.FollowCall):
@@ -232,6 +233,8 @@ namespace Dog
 
         public void FoodIsFar(Collider2D food)
         {
+            if (_dogFollowingTOI) return;
+            
             _foodIsClose = false;
             _targetGenerator.NotifyFoodFar(food.GetComponent<FoodTarget>());
         }

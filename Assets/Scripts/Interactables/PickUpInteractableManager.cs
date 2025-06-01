@@ -21,6 +21,8 @@ namespace Interactables
         private Vector2 _carryTarget = Vector2.zero;
 
         private bool _isAbleToAim;
+        private PickUpInteractable _curPickUp;
+        public PickUpInteractable CurPickUp => _curPickUp;
         
         void Start()
         {
@@ -46,6 +48,7 @@ namespace Interactables
         {
             if (!pickup.IsPickedUp)
             {
+                _curPickUp = pickup;
                 pickup.PickUpObject(_pickUpParent);
                 OnPickedUp?.Invoke();
             }
@@ -61,14 +64,21 @@ namespace Interactables
                 else if (Vector2.Distance(pickup.transform.position, _carryTarget) <= 0.5f)
                 {
                     pickup.DropObject(_carryTarget);
+                    _curPickUp = null;
                     OnReachedTarget?.Invoke();
                 }
                 else
                 {
                     pickup.DropObject(Vector2.zero);
+                    _curPickUp = null;
                 }
                 SetCarryTarget(Vector2.zero, null, null);
             }
+        }
+
+        public void DropObject()
+        {
+            if (_curPickUp != null) _curPickUp.DropObject(Vector2.zero);
         }
         
         public void StopInteractPress(ThrowablePickUpInteractable throwableObj)

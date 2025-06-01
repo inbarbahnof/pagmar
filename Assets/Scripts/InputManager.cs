@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    private float _waitOnCallTime = 0.5f;
+    [SerializeField] private float _waitOnCallTime = 0.5f;
     
     private PlayerMove _player;
     private PlayerStateManager _stateManager;

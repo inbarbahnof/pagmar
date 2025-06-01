@@ -32,7 +32,9 @@ namespace Interactables
             isPickedUp = false;
             transform.SetParent(originalParent);
             if (worldTarget != Vector2.zero) transform.position = worldTarget;
-            StartCoroutine(FinishAction());
+            
+            FinishInteraction();
+            // StartCoroutine(FinishAction());
         }
 
         private IEnumerator FinishAction()

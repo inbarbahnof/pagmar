@@ -11,6 +11,7 @@ public class GhostiesCircleObstacle : Obstacle
     [SerializeField] private Obstacle _pushObs;
     [SerializeField] private DogActionManager _dog;
     [SerializeField] private GhostieMovement[] _ghosties;
+    [SerializeField] private PlayerStateManager _player;
 
     private Vector3[] _foodPositions;
     private FoodTarget[] _spawnedFoods;
@@ -79,7 +80,11 @@ public class GhostiesCircleObstacle : Obstacle
                 _spawnedFoods[i].GetComponent<Collider2D>().enabled = true;
             }
         }
-
+        
+        PickUpInteractableManager.instance.DropObject();
+        PushInteractableManager.instance.StopPush();
+        
+        _player.OnFinishedInteraction(PickUpInteractableManager.instance.CurPickUp);
         _pushObs.ResetObstacle();
     }
 }
