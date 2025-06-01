@@ -11,6 +11,11 @@ namespace Interactables
         [SerializeField] private float pushDelayTime = 5f;
         [SerializeField] private float rotationTime = 0.5f;
         [SerializeField] private Transform roadblock;
+
+        [Header("Surfaces")]
+        [SerializeField] private GameObject _unwalkable;
+        [SerializeField] private GameObject _walkable;
+        
         private Coroutine _pushDelay;
         private bool _pushing = false;
         private bool _playerMoveDirRight;
@@ -94,6 +99,10 @@ namespace Interactables
             // Ensure final positions are exact
             roadblock.rotation = endRot;
             GetComponent<Collider2D>().enabled = false;
+            
+            _unwalkable.SetActive(false);
+            _walkable.SetActive(true);
+            
             NavMeshManager.instance.ReBake();
         }
     }

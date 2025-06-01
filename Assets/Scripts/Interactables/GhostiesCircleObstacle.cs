@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Dog;
+using Ghosts;
 using Interactables;
 using Targets;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class GhostiesCircleObstacle : Obstacle
     [SerializeField] private FoodTarget[] _food;
     [SerializeField] private Obstacle _pushObs;
     [SerializeField] private DogActionManager _dog;
+    [SerializeField] private GhostieMovement[] _ghosties;
 
     private Vector3[] _foodPositions;
     private FoodTarget[] _spawnedFoods;
@@ -55,6 +57,14 @@ public class GhostiesCircleObstacle : Obstacle
         foodTarget.OnFoodEaten += () => RespawnFood(index);
 
         _spawnedFoods[index] = foodTarget;
+    }
+
+    public void GhostiesRun()
+    {
+        foreach (var ghosty in _ghosties)
+        {
+            ghosty.MoveAwayFromDog(_dog.transform.position);
+        }
     }
 
     public override void ResetObstacle()
