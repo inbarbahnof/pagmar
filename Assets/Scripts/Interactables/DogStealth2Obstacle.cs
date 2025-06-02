@@ -90,7 +90,6 @@ namespace Interactables
             {
                 TargetGenerator.instance.SetStealthTarget(_targets[0]);
                 _dog.StealthObs(true);
-                _player.SetProtected(true);
                 CameraController.instance.FollowPlayerAndDog();
             }
         }

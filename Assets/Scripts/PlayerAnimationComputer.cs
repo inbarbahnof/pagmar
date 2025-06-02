@@ -2,6 +2,8 @@
 {
     public PlayerAnimation Compute(PlayerAnimationInput input)
     {
+        // TODO climb, pet, walk animations
+        
         if (input._isCalling) return PlayerAnimation.Call;
 
         if (input._justPickedUp) return PlayerAnimation.PickUp;
@@ -16,9 +18,6 @@
                 return HandleStealthAnim(input);
             case PlayerState.Push:
                 return HandlePushingAnim(input);
-            
-            // case PlayerState.Pet:
-            //     return PlayerAnimation.Pet;
         }
         return PlayerAnimation.Idle;
     }

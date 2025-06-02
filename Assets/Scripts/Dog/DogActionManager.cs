@@ -67,7 +67,7 @@ namespace Dog
         private void Update()
         {
             // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
-            // print("_foodIsClose " + _foodIsClose + " _canEatFood " + _canEatFood);
+            
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
             
             _canEatFood = _targetGenerator.GetFoodTarget() != null;
