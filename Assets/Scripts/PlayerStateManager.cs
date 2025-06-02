@@ -14,11 +14,15 @@ public class PlayerStateManager : MonoBehaviour
     private PlayerState curState = PlayerState.Idle;
     private PlayerAnimationManager _animationManager;
     private PlayerStealthManager _stealthManager;
+    private BaseInteractable _curInteraction;
+    private PlayerMove _move;
+    
     private bool _isCrouching;
     private bool _isAbleToAim;
 
+    private PlayerAnimationComputer _computer;
+
     public PlayerState CurrentState => curState;
-    private BaseInteractable _curInteraction;
 
     // public delegate void OnStateChange(PlayerState newState);
 
@@ -31,13 +35,17 @@ public class PlayerStateManager : MonoBehaviour
     {
         _animationManager = GetComponent<PlayerAnimationManager>();
         _stealthManager = GetComponent<PlayerStealthManager>();
+        _move = GetComponent<PlayerMove>();
+        _computer = new PlayerAnimationComputer();
     }
 
     private void Update()
     {
-        PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching);
+        PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching, 
+            _move.IsMoving, _move.IsPushing);
         
-        _animationManager.PlayerAnimationUpdate(input);
+        PlayerAnimation animation = _computer.Compute(input);
+        _animationManager.PlayerAnimationUpdate(animation);
     }
 
     public void UpdateAimAbility(bool canAim = false)
@@ -97,6 +105,7 @@ public class PlayerStateManager : MonoBehaviour
     private void SetState(PlayerState newState)
     {
         if (curState == newState) return;
+        
         if (_isAbleToAim) curState = PlayerState.Aim;
         else curState = newState;
     }

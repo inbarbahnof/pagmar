@@ -16,6 +16,9 @@ public class PlayerMove : MonoBehaviour
 
     private Vector3 _lastPosition;
 
+    public bool IsMoving => isMoving;
+    public bool IsPushing => isPushing;
+
     void Start()
     {
         _playerRb = GetComponent<Rigidbody2D>();
