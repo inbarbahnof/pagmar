@@ -23,11 +23,15 @@ namespace Dog
 
             if (machineInput._dogFollowingTOI) return DogState.FollowTOI;
             
+            // if (machineInput._didCallDog && 
+            //     machineInput._playerDogDistance <= machineInput._listenDistance) 
+            //     return DogState.FollowCall;
+            
             if (machineInput._playerState == PlayerState.Call && 
                 machineInput._playerDogDistance <= machineInput._listenDistance) 
                 return DogState.FollowCall;
 
-            if (machineInput._playerDogDistance > machineInput._listenDistance) return DogState.Idle;
+            // if (machineInput._playerDogDistance > machineInput._listenDistance) return DogState.Idle;
             
             switch (machineInput._playerState)
             {

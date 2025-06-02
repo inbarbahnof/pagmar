@@ -7,6 +7,7 @@ public class PlayerStateManager : MonoBehaviour
 {
     [SerializeField] private float _pickUpAnimTime = 0.5f;
     [SerializeField] private float _throwAnimTime = 0.867f;
+    [SerializeField] private float _waitOnCallTime = 1f;
     
     public enum ThrowState
     {
@@ -21,6 +22,7 @@ public class PlayerStateManager : MonoBehaviour
     private BaseInteractable _curInteraction;
     private PlayerMove _move;
     private InputManager _inputManager;
+
     
     private bool _isCrouching;
     private bool _isAbleToAim;
@@ -29,6 +31,8 @@ public class PlayerStateManager : MonoBehaviour
     private bool _justPickedUp;
     private bool _throwing;
 
+    private Coroutine _waitToCallCoroutine;
+    
     private PlayerAnimationComputer _computer;
 
     public PlayerState CurrentState => curState;
@@ -107,15 +111,38 @@ public class PlayerStateManager : MonoBehaviour
     public void StartedCalling()
     {
         _isCalling = true;
+        print("started calling");
+        
+        _move.SetCanMove(false);
+        _move.UpdateMoveInput(Vector2.zero);
+        
+        if (_waitToCallCoroutine != null) StopCoroutine(_waitToCallCoroutine);
+            
+        _waitToCallCoroutine = StartCoroutine(WaitToCall());
+    }
+    
+    private IEnumerator WaitToCall()
+    {
+        yield return new WaitForSeconds(_waitOnCallTime);
+        
+        UpdateCalling();
+
+        yield return new WaitForSeconds(0.1f);
+        
+        _isCalling = false;
+        _waitToCallCoroutine = null;
     }
 
     public void UpdateCalling()
     {
         SetState(PlayerState.Call);
+        _move.SetCanMove(true);
     }
 
     public void UpdateWalking(bool isWalking)
     {
+        if (_isCalling) return;
+        
         if (!_isCrouching) SetState(isWalking ? PlayerState.Walk : PlayerState.Idle);
         else SetState(PlayerState.Stealth);
     }
@@ -150,18 +177,6 @@ public class PlayerStateManager : MonoBehaviour
         
         if (_isAbleToAim) curState = PlayerState.Aim;
         else curState = newState;
-
-        if (newState == PlayerState.Call)
-        {
-            StartCoroutine(WaitToStopCall());
-        }
-        
-    }
-
-    private IEnumerator WaitToStopCall()
-    {
-        yield return new WaitForSeconds(_inputManager.WaitOnCallTime);
-        _isCalling = false;
     }
 
     private void SetStateAccordingToInteraction(IInteractable interactable)

@@ -110,7 +110,7 @@ namespace Dog
 
         private void HandleDogStateChange(DogState newState)
         {
-            // print("swap from " + curState + " to " + newState);
+            print("swap from " + curState + " to " + newState);
             if (curState == DogState.Push)
                 _playerFollower.SetStopProb(false);
             
