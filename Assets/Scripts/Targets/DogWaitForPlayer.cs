@@ -10,6 +10,7 @@ public class DogWaitForPlayer : MonoBehaviour
     {
         if (other.CompareTag("Dog"))
         {
+            print("wait for player");
             TargetGenerator.instance.SetWantFoodTarget(_wantFoodTarget);
             other.GetComponent<DogActionManager>().SetWantsFood(true);
         }

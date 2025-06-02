@@ -11,6 +11,7 @@ public class PlayerReached : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            print("player reached");
             _dogWait.PlayerReached();
             if (_obstacle != null) _obstacle.PlayerReachedTarget();
         }
