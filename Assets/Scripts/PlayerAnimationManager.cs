@@ -38,7 +38,7 @@ public class PlayerAnimationManager : MonoBehaviour
         if (_curAnim != animation)
         {
             TrackEntry entry = null;
-
+            // print("switching from animation " + _curAnim +" to animation " + animation);
             switch (animation)
             {
                 case PlayerAnimation.Idle:
