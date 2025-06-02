@@ -5,6 +5,8 @@
         if (input._isCalling) return PlayerAnimation.Call;
 
         if (input._justPickedUp) return PlayerAnimation.PickUp;
+
+        if (input._throwing) return PlayerAnimation.Throw;
         
         switch (input._playerState)
         {
@@ -14,14 +16,10 @@
                 return HandleStealthAnim(input);
             case PlayerState.Push:
                 return HandlePushingAnim(input);
-            case PlayerState.Throw:
-                return PlayerAnimation.Throw;
             
             // case PlayerState.Pet:
             //     return PlayerAnimation.Pet;
         }
-        
-        
         return PlayerAnimation.Idle;
     }
 

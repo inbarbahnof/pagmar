@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerStateManager : MonoBehaviour
 {
+    [SerializeField] private float _pickUpAnimTime = 0.5f;
+    [SerializeField] private float _throwAnimTime = 0.867f;
+    
     public enum ThrowState
     {
         Aim,
@@ -24,6 +27,7 @@ public class PlayerStateManager : MonoBehaviour
     private bool _isCalling;
     private bool _pickedUp;
     private bool _justPickedUp;
+    private bool _throwing;
 
     private PlayerAnimationComputer _computer;
 
@@ -48,7 +52,8 @@ public class PlayerStateManager : MonoBehaviour
     private void Update()
     {
         PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching, 
-            _move.IsMoving, _isCalling, _move.MovingRight, _pickedUp, _justPickedUp);
+            _move.IsMoving, _isCalling, _move.MovingRight, _pickedUp,
+            _justPickedUp, _throwing);
         
         PlayerAnimation animation = _computer.Compute(input);
         _animationManager.PlayerAnimationUpdate(animation);
@@ -70,10 +75,16 @@ public class PlayerStateManager : MonoBehaviour
             StartCoroutine(WaitForPickUpAnim());
         }
     }
+    
+    private IEnumerator WaitForThrowingAnim()
+    {
+        yield return new WaitForSeconds(_throwAnimTime);
+        _throwing = false;
+    }
 
     private IEnumerator WaitForPickUpAnim()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(_pickUpAnimTime);
         _justPickedUp = false;
     }
 
@@ -124,6 +135,8 @@ public class PlayerStateManager : MonoBehaviour
                 break;
             case (ThrowState.Throw):
                 SetState(PlayerState.Throw);
+                _throwing = true;
+                StartCoroutine(WaitForThrowingAnim());
                 break;
             case (ThrowState.End):
                 SetState(PlayerState.Idle);
