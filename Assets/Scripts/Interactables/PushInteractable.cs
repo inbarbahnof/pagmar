@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using Vector3 = UnityEngine.Vector3;
 
 namespace Interactables
 {
@@ -8,6 +8,10 @@ namespace Interactables
         [SerializeField] protected bool _needDogToPush = false;
         [SerializeField] protected Transform playerPosToPush;
         [SerializeField] protected Transform dogPosToPush;
+        
+        private Vector2 _pushTarget;
+        public event Action OnReachedTarget;
+        private bool hasTarget;
         
         protected bool Stationary = false;
         public bool GetStationary() => Stationary;
@@ -18,6 +22,7 @@ namespace Interactables
 
         public override void Interact()
         {
+            if (hasTarget) PushInteractableManager.instance.SetPushTarget(_pushTarget, OnReachedTarget);
             PushInteractableManager.instance.TryStartPush(this, playerPosToPush.position, dogPosToPush.position);
             base.Interact();
         }
@@ -45,6 +50,13 @@ namespace Interactables
             Vector3 newPos = transform.position;
             newPos.x = posX;
             transform.position = newPos;
+        }
+
+        public void SetPushTarget(Vector2 target, Action onReachEvent)
+        {
+            _pushTarget = target;
+            OnReachedTarget += onReachEvent;
+            hasTarget = true;
         }
     }
 }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using Dog;
 using UnityEngine;
 
@@ -38,6 +37,7 @@ namespace Interactables
         public void SetPushTarget(Vector2 target, Action onReachEvent)
         {
             _pushTarget = target;
+            Debug.Log("pushTarget: " + target);
             OnReachedTarget += onReachEvent;
         }
 
@@ -82,10 +82,13 @@ namespace Interactables
 
             if (_pushTarget != Vector2.zero)
             {
-                if (Vector2.Distance(_curPushable.transform.position, _pushTarget) < 0.3f)
+                float targetDist = Vector2.Distance(_curPushable.transform.position, _pushTarget);
+                Debug.Log("targetDist: " + targetDist);
+                if (targetDist < 0.3f)
                 {
                     _curPushable.SetAtPos(_pushTarget.x);
                     OnReachedTarget?.Invoke();
+                    SetPushTarget(Vector2.zero, null);
                     print("finished");
                     StopPush();
                 }
