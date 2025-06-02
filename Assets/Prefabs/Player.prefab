@@ -68,7 +68,6 @@ GameObject:
   - component: {fileID: 1930956038802629493}
   - component: {fileID: 1612652190619567834}
   - component: {fileID: 4441815370302880759}
-  - component: {fileID: 1558094733959529270}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -87,7 +86,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3670087948830583748}
   - {fileID: 5749353190371015529}
@@ -121,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a4248cb37cf6a4fa1d018b21b3d6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waitOnCallTime: 0.5
 --- !u!114 &3584158599489075706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,28 +443,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.41}
   m_Radius: 0.35
---- !u!95 &1558094733959529270
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810158106228689958}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b6336fd911ce7aa469b7baa409d8e7d5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3875658489770806721
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,9 +632,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3301466037238240058}
     m_Modifications:
+    - target: {fileID: 3773087840359869347, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5402755923373750246, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
       propertyPath: m_Name
       value: PlayerArt
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953794250482906744, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953794250482906744, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 994594407
       objectReference: {fileID: 0}
     - target: {fileID: 6374609478747475555, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -697,6 +687,14 @@ PrefabInstance:
     - target: {fileID: 6374609478747475555, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8290332546494739832, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
+      propertyPath: loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8290332546494739832, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
+      propertyPath: _animationName
+      value: Idle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
