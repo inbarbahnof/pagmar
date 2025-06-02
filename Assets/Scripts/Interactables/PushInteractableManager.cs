@@ -32,7 +32,7 @@ namespace Interactables
             else Debug.LogError("TOO MANY PUSH INTERACTABLE MANAGERS!");
 
             _playerMove = player.GetComponent<PlayerMove>();
-            _dogAction = dog.GetComponent<DogActionManager>();
+            if (dog != null) _dogAction = dog.GetComponent<DogActionManager>();
         }
 
         public void SetPushTarget(Vector2 target, Action onReachEvent)

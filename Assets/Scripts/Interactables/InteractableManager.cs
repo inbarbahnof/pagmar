@@ -79,7 +79,11 @@ namespace Interactables
             float minDist = float.MaxValue;
             foreach (BaseInteractable interactable in curInteractables)
             {
-                if (interactable == null) { continue; }
+                if (interactable == null)
+                {
+                    curInteractables.Remove(interactable);
+                    continue;
+                }
 
                 float curDist = Vector2.Distance(player.position, interactable.transform.position);
                 if (curDist < minDist)

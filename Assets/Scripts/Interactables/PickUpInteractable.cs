@@ -5,6 +5,8 @@ namespace Interactables
 {
     public class PickUpInteractable : BaseInteractable
     {
+        [SerializeField] protected bool _isThrowable;
+        
         private bool isPickedUp = false;
         private Transform originalParent;
         
@@ -29,12 +31,13 @@ namespace Interactables
 
         public virtual void DropObject(Vector2 worldTarget)
         {
+            print("in DropObject");
             isPickedUp = false;
             transform.SetParent(originalParent);
             if (worldTarget != Vector2.zero) transform.position = worldTarget;
             
-            FinishInteraction();
-            // StartCoroutine(FinishAction());
+            if (_isThrowable) FinishInteraction();
+            else StartCoroutine(FinishAction());
         }
 
         private IEnumerator FinishAction()
