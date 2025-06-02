@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    private float _waitOnCallTime = 1.967f; 
+    private float _waitOnCallTime = 1f; 
     public float WaitOnCallTime => _waitOnCallTime;
     
     private PlayerMove _player;

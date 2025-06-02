@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63024ad1bb2b614a9eb34cefb732dc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 6
+  _speed: 4.7
   _playerArt: {fileID: 2333882633315783233}
 --- !u!114 &7531407140655005662
 MonoBehaviour:
@@ -120,7 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a4248cb37cf6a4fa1d018b21b3d6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waitOnCallTime: 0.5
 --- !u!114 &3584158599489075706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedc0199c20c8a741b850e842c817688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pickUpAnimTime: 0.5
+  _throwAnimTime: 0.867
 --- !u!114 &8220548381845869810
 MonoBehaviour:
   m_ObjectHideFlags: 0

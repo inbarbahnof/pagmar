@@ -46,6 +46,8 @@ public class PlayerAnimationManager : MonoBehaviour
                     break;
                 case PlayerAnimation.Call:
                     entry = spineAnimationState.SetAnimation(0, callAnimName, false);
+                    if (entry != null)
+                        entry.TimeScale = 2f;
                     break;
                 case PlayerAnimation.Push:
                     entry = spineAnimationState.SetAnimation(0, pushAnimName, true);
@@ -85,7 +87,7 @@ public class PlayerAnimationManager : MonoBehaviour
                     break;
             }
 
-            if (animation != PlayerAnimation.Run && entry != null)
+            if (animation != PlayerAnimation.Run && animation != PlayerAnimation.Call && entry != null)
             {
                 entry.TimeScale = 1f;
             }
