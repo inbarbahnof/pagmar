@@ -38,7 +38,7 @@ namespace CheckpointUtils
             {
                 _originator.Restore(memento);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Undo();
             }

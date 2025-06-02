@@ -16,7 +16,7 @@ namespace Interactables
             }
         }
 
-        public virtual void ResetObstacle()
+        public override void ResetObstacle()
         {
             // TODO reset?
         }
