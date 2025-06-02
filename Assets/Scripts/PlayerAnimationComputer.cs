@@ -3,11 +3,11 @@
     public PlayerAnimation Compute(PlayerAnimationInput input)
     {
         if (input._isCalling) return PlayerAnimation.Call;
+
+        if (input._justPickedUp) return PlayerAnimation.PickUp;
         
         switch (input._playerState)
         {
-            // case PlayerState.Call:
-            //     return PlayerAnimation.Call;
             case PlayerState.Walk:
                 return HandleWalkAnim(input);
             case PlayerState.Stealth:

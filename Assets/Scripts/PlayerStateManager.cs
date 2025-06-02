@@ -22,6 +22,8 @@ public class PlayerStateManager : MonoBehaviour
     private bool _isCrouching;
     private bool _isAbleToAim;
     private bool _isCalling;
+    private bool _pickedUp;
+    private bool _justPickedUp;
 
     private PlayerAnimationComputer _computer;
 
@@ -46,7 +48,7 @@ public class PlayerStateManager : MonoBehaviour
     private void Update()
     {
         PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching, 
-            _move.IsMoving, _isCalling, _move.MovingRight);
+            _move.IsMoving, _isCalling, _move.MovingRight, _pickedUp, _justPickedUp);
         
         PlayerAnimation animation = _computer.Compute(input);
         _animationManager.PlayerAnimationUpdate(animation);
@@ -57,6 +59,22 @@ public class PlayerStateManager : MonoBehaviour
     public void UpdateAimAbility(bool canAim = false)
     {
         _isAbleToAim = canAim;
+    }
+
+    public void UpdatePickedUp(bool pick)
+    {
+        _pickedUp = pick;
+        if (_pickedUp)
+        {
+            _justPickedUp = true;
+            StartCoroutine(WaitForPickUpAnim());
+        }
+    }
+
+    private IEnumerator WaitForPickUpAnim()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _justPickedUp = false;
     }
 
     public void UpdateCurInteraction(BaseInteractable interactable)

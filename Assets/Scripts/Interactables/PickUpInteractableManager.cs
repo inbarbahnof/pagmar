@@ -50,6 +50,7 @@ namespace Interactables
             {
                 _curPickUp = pickup;
                 pickup.PickUpObject(_pickUpParent);
+                _playerStateManager.UpdatePickedUp(true);
                 OnPickedUp?.Invoke();
             }
             else
@@ -64,12 +65,14 @@ namespace Interactables
                 else if (Vector2.Distance(pickup.transform.position, _carryTarget) <= 0.5f)
                 {
                     pickup.DropObject(_carryTarget);
+                    _playerStateManager.UpdatePickedUp(false);
                     _curPickUp = null;
                     OnReachedTarget?.Invoke();
                 }
                 else
                 {
                     pickup.DropObject(Vector2.zero);
+                    _playerStateManager.UpdatePickedUp(false);
                     _curPickUp = null;
                 }
                 SetCarryTarget(Vector2.zero, null, null);
