@@ -20,7 +20,6 @@ public class PlayerStealthManager : MonoBehaviour
 
     public void SetProtected(bool isInStealth)
     {
-        print("SetProtected " + isInStealth);
         _isProtected = isInStealth;
     }
 }

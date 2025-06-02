@@ -16,10 +16,10 @@ namespace CheckpointUtils
     
         private void Start()
         {
-            // _curCheckpointInfo = new CheckpointInfo(
-            //     transform.position, 
-            //     player.transform.position, 
-            //     dog.transform.position);
+            _curCheckpointInfo = new CheckpointInfo(
+                transform.position, 
+                player.transform.position, 
+                dog.transform.position);
         }
 
         public IMemento Save(Vector2 checkpointLoc, Vector2 playerRespawnPoint, Obstacle obstacle = null)
