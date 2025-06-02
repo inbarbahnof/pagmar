@@ -18,6 +18,7 @@ public class PlayerMove : MonoBehaviour
 
     public bool IsMoving => isMoving;
     public bool IsPushing => isPushing;
+    public bool MovingRight => movingRight;
 
     void Start()
     {
@@ -55,11 +56,8 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    // changed this from working acc to actual movement to acc to input dir
     private void FlipSpriteBasedOnMovement()
     {
-        //Vector3 currentPosition = transform.position;
-        //float dirX = currentPosition.x - _lastPosition.x;
         if (Mathf.Abs(_moveInput.x) > 0.001f && !isPushing)
         {
             if (!isPushing)
@@ -94,6 +92,11 @@ public class PlayerMove : MonoBehaviour
             _playerRb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
             _playerRb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         }
+    }
+
+    public void SetCanMove(bool move)
+    {
+        canMove = move;
     }
 
     public void SetIsSwinging(bool swing)

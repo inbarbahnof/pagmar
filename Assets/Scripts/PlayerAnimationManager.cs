@@ -46,7 +46,6 @@ public class PlayerAnimationManager : MonoBehaviour
                     break;
                 case PlayerAnimation.Call:
                     entry = spineAnimationState.SetAnimation(0, callAnimName, false);
-                    spineAnimationState.AddAnimation(0, idleAnimName, true, 0);
                     break;
                 case PlayerAnimation.Push:
                     entry = spineAnimationState.SetAnimation(0, pushAnimName, true);

@@ -6,14 +6,14 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] private float _waitOnCallTime = 0.5f;
+    private float _waitOnCallTime = 1.967f; 
+    public float WaitOnCallTime => _waitOnCallTime;
     
     private PlayerMove _player;
     private PlayerStateManager _stateManager;
     private PlayerInput _input;
     private AimControl _aimControl;
 
-    private bool _canWalk = true;
     private bool _called;
     private Coroutine _waitToCallCoroutine;
     
@@ -44,7 +44,6 @@ public class InputManager : MonoBehaviour
     
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (!_canWalk)  return;
         if (_called)
         {
             _stateManager.UpdateCalling();
@@ -85,8 +84,9 @@ public class InputManager : MonoBehaviour
     {
         if (context.started)
         {
-            _canWalk = false;
+            _player.SetCanMove(false);
             _called = true;
+            _stateManager.StartedCalling();
             _player.UpdateMoveInput(Vector2.zero);
         }
         
@@ -104,7 +104,7 @@ public class InputManager : MonoBehaviour
         
         _stateManager.UpdateCalling();
         
-        _canWalk = true;
+        _player.SetCanMove(true);
         _waitToCallCoroutine = null;
     }
     

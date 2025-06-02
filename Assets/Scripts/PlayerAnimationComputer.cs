@@ -2,10 +2,12 @@
 {
     public PlayerAnimation Compute(PlayerAnimationInput input)
     {
+        if (input._isCalling) return PlayerAnimation.Call;
+        
         switch (input._playerState)
         {
-            case PlayerState.Call:
-                return PlayerAnimation.Call;
+            // case PlayerState.Call:
+            //     return PlayerAnimation.Call;
             case PlayerState.Walk:
                 return HandleWalkAnim(input);
             case PlayerState.Stealth:
@@ -38,7 +40,8 @@
 
     private PlayerAnimation HandlePushingAnim(PlayerAnimationInput input)
     {
-        // TODO check whethere we need to pull or push
+        if (!input._movingRight) return PlayerAnimation.Pull;
+        
         return PlayerAnimation.Push;
     }
 }

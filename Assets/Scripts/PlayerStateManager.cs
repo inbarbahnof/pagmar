@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Interactables;
 using UnityEngine;
 
@@ -16,9 +17,11 @@ public class PlayerStateManager : MonoBehaviour
     private PlayerStealthManager _stealthManager;
     private BaseInteractable _curInteraction;
     private PlayerMove _move;
+    private InputManager _inputManager;
     
     private bool _isCrouching;
     private bool _isAbleToAim;
+    private bool _isCalling;
 
     private PlayerAnimationComputer _computer;
 
@@ -37,15 +40,18 @@ public class PlayerStateManager : MonoBehaviour
         _stealthManager = GetComponent<PlayerStealthManager>();
         _move = GetComponent<PlayerMove>();
         _computer = new PlayerAnimationComputer();
+        _inputManager = GetComponent<InputManager>();
     }
 
     private void Update()
     {
         PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching, 
-            _move.IsMoving, _move.IsPushing);
+            _move.IsMoving, _isCalling, _move.MovingRight);
         
         PlayerAnimation animation = _computer.Compute(input);
         _animationManager.PlayerAnimationUpdate(animation);
+        
+        // print("player state " + curState);
     }
 
     public void UpdateAimAbility(bool canAim = false)
@@ -67,6 +73,11 @@ public class PlayerStateManager : MonoBehaviour
     public void UpdatePetting()
     {
         SetState(PlayerState.Pet);
+    }
+
+    public void StartedCalling()
+    {
+        _isCalling = true;
     }
 
     public void UpdateCalling()
@@ -108,6 +119,18 @@ public class PlayerStateManager : MonoBehaviour
         
         if (_isAbleToAim) curState = PlayerState.Aim;
         else curState = newState;
+
+        if (newState == PlayerState.Call)
+        {
+            StartCoroutine(WaitToStopCall());
+        }
+        
+    }
+
+    private IEnumerator WaitToStopCall()
+    {
+        yield return new WaitForSeconds(_inputManager.WaitOnCallTime);
+        _isCalling = false;
     }
 
     private void SetStateAccordingToInteraction(IInteractable interactable)
