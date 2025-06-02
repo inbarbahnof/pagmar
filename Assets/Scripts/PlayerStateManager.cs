@@ -111,7 +111,6 @@ public class PlayerStateManager : MonoBehaviour
     public void StartedCalling()
     {
         _isCalling = true;
-        print("started calling");
         
         _move.SetCanMove(false);
         _move.UpdateMoveInput(Vector2.zero);

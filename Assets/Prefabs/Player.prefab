@@ -106,7 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63024ad1bb2b614a9eb34cefb732dc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4.7
+  _runSpeed: 4.7
+  _pushSpeed: 3.7
   _playerArt: {fileID: 2333882633315783233}
 --- !u!114 &7531407140655005662
 MonoBehaviour:
@@ -292,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pickUpAnimTime: 0.5
   _throwAnimTime: 0.867
+  _waitOnCallTime: 0.9
 --- !u!114 &8220548381845869810
 MonoBehaviour:
   m_ObjectHideFlags: 0
