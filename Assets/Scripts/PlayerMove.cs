@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] private float _speed = 6f;
+    [SerializeField] private float _runSpeed = 4.7f;
+    [SerializeField] private float _pushSpeed = 3.7f;
     [SerializeField] private GameObject _playerArt;
 
     private Vector2 _moveInput = Vector2.zero;
@@ -14,6 +16,8 @@ public class PlayerMove : MonoBehaviour
     private bool canMove = true;
     private bool movingRight = true;
 
+    private float _speed;
+
     private Vector3 _lastPosition;
 
     public bool IsMoving => isMoving;
@@ -22,6 +26,8 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
+        _speed = _runSpeed;
+        
         _playerRb = GetComponent<Rigidbody2D>();
         _stateManager = GetComponent<PlayerStateManager>();
         _lastPosition = transform.position;
@@ -86,11 +92,15 @@ public class PlayerMove : MonoBehaviour
             if (stationary) _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionX;
             else _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionY;
             GetComponent<SmoothMover>().MoveTo(playerPos);
+
+            _speed = _pushSpeed;
         }
         else
         {
             _playerRb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
             _playerRb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+
+            _speed = _runSpeed;
         }
     }
 

@@ -40,6 +40,7 @@ namespace CheckpointUtils
                 throw new Exception("Unknown memento class " + memento.ToString());
             }
             _curCheckpointInfo = memento.GetCheckpointInfo();
+            CameraController.instance.FollowPlayer();
             // restore player and dog
             player.ResetToCheckpoint(_curCheckpointInfo.PlayerRespawnLoc);
             dog.ResetToCheckpoint(_curCheckpointInfo.DogLoc);

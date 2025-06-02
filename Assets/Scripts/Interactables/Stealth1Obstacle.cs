@@ -23,8 +23,7 @@ namespace Interactables
 
         public override void ResetObstacle()
         {
-            print("Reset Stealth1Obstacle");
-            CameraController.instance.FollowPlayer();
+            // CameraController.instance.FollowPlayer();
             _stealthTarget.FinishTargetAction();
         }
 

@@ -42,7 +42,9 @@ namespace Interactables
 
         public override void ResetObstacle()
         {
-            print("reset obs");
+            // reset camera
+            // CameraController.instance.FollowPlayer();
+            
             _curTarget = 0;
             TargetGenerator.instance.SetStealthTarget(_targets[0]);
             
@@ -51,9 +53,6 @@ namespace Interactables
             
             // reset dog
             _dog.StealthObs(false);
-            
-            // reset camera
-            CameraController.instance.FollowPlayer();
             
             // // reset targets
             foreach (var target in _targets)  
