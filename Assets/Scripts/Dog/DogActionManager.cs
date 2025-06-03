@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Runtime.InteropServices;
 using Interactables;
 using Targets;
@@ -96,7 +97,7 @@ namespace Dog
 
         public void SetWantsFood(bool want)
         {
-            print("in SetWantsFood");
+            //print("in SetWantsFood");
             _wantFood = want;
         }
 
@@ -104,8 +105,14 @@ namespace Dog
         {
             _playerFollower.ResetToCheckpoint(position);
             curState = DogState.Idle;
+            
+            StartCoroutine(DogResetPause());
+        }
 
-            StartWalkingAfterPlayer();
+        private IEnumerator DogResetPause()
+        {
+            yield return new WaitForSeconds(1f);
+            if (curState == DogState.Idle) StartWalkingAfterPlayer();
         }
 
         private void HandleDogStateChange(DogState newState)
