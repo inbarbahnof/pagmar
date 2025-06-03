@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Interactables
@@ -25,7 +26,8 @@ namespace Interactables
         public virtual void PickUpObject(Transform parent)
         {
             transform.SetParent(parent);
-            transform.localPosition = Vector3.zero;
+            transform.DOLocalMove(Vector3.zero, 0.1f)
+                .SetEase(Ease.OutQuad);
             isPickedUp = true;
         }
 

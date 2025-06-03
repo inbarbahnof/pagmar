@@ -9,8 +9,10 @@ namespace Interactables
     public class ThrowStickOnFoodObstacle : MonoBehaviour
     {
         [SerializeField] private FoodPickUpInteractable _food;
+        [SerializeField] private GameObject _stick;
         [SerializeField] private FeedDogObstacle _feedDogObstacle;
         [SerializeField] private Transform _dropFoodPos;
+        [SerializeField] private Transform _dropStickPos;
         [SerializeField] private float _dropDuration = 1f;
 
         [Header("Ghost Appearance")] [SerializeField]
@@ -19,6 +21,9 @@ namespace Interactables
         public void DropStick()
         {
             _food.transform.DOMove(_dropFoodPos.position, _dropDuration)
+                .SetEase(Ease.OutBounce);
+            
+            _stick.transform.DOMove(_dropStickPos.position, _dropDuration)
                 .SetEase(Ease.OutBounce);
 
             _food.gameObject.layer = LayerMask.NameToLayer("Default");

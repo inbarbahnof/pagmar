@@ -73,11 +73,15 @@ public class PlayerStateManager : MonoBehaviour
     public void UpdatePickedUp(bool pick)
     {
         _pickedUp = pick;
-        if (_pickedUp)
-        {
-            _justPickedUp = true;
-            StartCoroutine(WaitForPickUpAnim());
-        }
+        
+        _justPickedUp = true;
+        StartCoroutine(WaitForPickUpAnim());
+        
+        // if (_pickedUp)
+        // {
+        //     _justPickedUp = true;
+        //     StartCoroutine(WaitForPickUpAnim());
+        // }
     }
     
     private IEnumerator WaitForThrowingAnim()
@@ -166,6 +170,7 @@ public class PlayerStateManager : MonoBehaviour
                 break;
             case (ThrowState.End):
                 SetState(PlayerState.Idle);
+                UpdatePickedUp(false);
                 break;
         }
     }
