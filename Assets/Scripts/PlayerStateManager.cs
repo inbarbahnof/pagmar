@@ -170,7 +170,7 @@ public class PlayerStateManager : MonoBehaviour
                 break;
             case (ThrowState.End):
                 SetState(PlayerState.Idle);
-                UpdatePickedUp(false);
+                if (!_throwing) UpdatePickedUp(false);
                 break;
         }
     }
