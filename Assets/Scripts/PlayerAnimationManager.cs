@@ -26,7 +26,7 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private float idleAnimSpeed = 1f;
     [SerializeField] private float callAnimSpeed = 2f;
     [SerializeField] private float pushAnimSpeed = 1f;
-    [SerializeField] private float pullAnimSpeed;
+    [SerializeField] private float pullAnimSpeed = 1f;
     [SerializeField] private float runAnimSpeed = 1.25f;
     [SerializeField] private float pickUpAnimSpeed = 1f;
     [SerializeField] private float climbAnimSpeed = 1f;
