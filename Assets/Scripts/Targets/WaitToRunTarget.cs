@@ -13,7 +13,7 @@ namespace Targets
         {
             _manager.TargetReached(_isLast);
             
-            if (_isLast) FinishTargetAction();
+            // if (_isLast) FinishTargetAction();
         }
         
     }

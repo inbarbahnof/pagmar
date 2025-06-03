@@ -23,7 +23,7 @@ namespace Interactables
 
         public override void ResetObstacle()
         {
-            // CameraController.instance.FollowPlayer();
+            CameraController.instance.ZoomIn();
             _stealthTarget.FinishTargetAction();
         }
 
@@ -31,7 +31,7 @@ namespace Interactables
         {
             if (_didGhostAppear && other.CompareTag("Dog"))
             {
-                CameraController.instance.FollowPlayerAndDog();
+                CameraController.instance.ZoomOut();
             }
         }
 

@@ -14,6 +14,7 @@ namespace Interactables
         [SerializeField] private DogActionManager _dog;
         [SerializeField] private PlayerStealthManager _player;
         [SerializeField] private StickAreaDetector _areaDetector;
+        [SerializeField] private Target _lastTarget;
         [SerializeField] private Target[] _targets;
         [SerializeField] private GhostMovement[] _ghosts;
         [SerializeField] private ThrowablePickUpInteractable[] _sticks;
@@ -43,7 +44,7 @@ namespace Interactables
         public override void ResetObstacle()
         {
             // reset camera
-            // CameraController.instance.FollowPlayer();
+            CameraController.instance.FollowPlayer();
             
             _curTarget = 0;
             TargetGenerator.instance.SetStealthTarget(_targets[0]);
@@ -73,14 +74,16 @@ namespace Interactables
             }
         }
 
+        public override void PlayerReachedTarget()
+        {
+            _player.SetProtected(false);
+            CameraController.instance.FollowPlayer();
+        }
+
         public void TargetReached(bool isLast)
         {
-            if (isLast)
-            {
-                _player.SetProtected(false);
-                CameraController.instance.FollowPlayer();
-            }
-            else _curTarget++;
+            if (!isLast) _curTarget++;
+            else TargetGenerator.instance.SetStealthTarget(_lastTarget);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
