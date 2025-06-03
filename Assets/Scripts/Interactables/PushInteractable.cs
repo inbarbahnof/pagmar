@@ -30,7 +30,7 @@ namespace Interactables
         public override void StopInteractPress()
         {
             PushInteractableManager.instance.StopPush();
-            FinishInteraction();
+            base.FinishInteraction();
         }
         
         public void SetOffset(float playerX)

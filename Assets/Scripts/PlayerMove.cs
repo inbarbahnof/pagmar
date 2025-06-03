@@ -131,5 +131,6 @@ public class PlayerMove : MonoBehaviour
         UpdateMoveInput(Vector2.zero);
         SetIsPushing(false, Vector3.zero);
         SetIsSwinging(false);
+        _stateManager.OnFinishedInteraction();
     }
 }

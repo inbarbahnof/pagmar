@@ -98,7 +98,7 @@ public class PlayerStateManager : MonoBehaviour
         SetStateAccordingToInteraction(_curInteraction);
     }
 
-    public void OnFinishedInteraction(BaseInteractable interactable)
+    public void OnFinishedInteraction(BaseInteractable interactable = null)
     {
         SetState(PlayerState.Idle);
     }
