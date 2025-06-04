@@ -1,4 +1,5 @@
 using System;
+using Audio.FMOD;
 using Targets;
 using UnityEngine;
 
@@ -17,6 +18,9 @@ namespace Interactables
             
             if (_ghost != null)  _ghost.SetActive(true);
             TargetGenerator.instance.SetStealthTarget(_stealthTarget);
+            
+            AudioManager.Instance.SetParameter(AudioManager.Instance.musicInstance,
+                "Intensity", 1, false);
 
             _didGhostAppear = true;
         }

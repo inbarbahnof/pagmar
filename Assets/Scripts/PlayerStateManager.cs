@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
+using Audio.FMOD;
 using Interactables;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -123,6 +125,8 @@ public class PlayerStateManager : MonoBehaviour
         _move.SetCanMove(false);
         _move.UpdateMoveInput(Vector2.zero);
         
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerCall);
+        
         if (_waitToCallCoroutine != null) StopCoroutine(_waitToCallCoroutine);
             
         _waitToCallCoroutine = StartCoroutine(WaitToCall());
@@ -174,7 +178,11 @@ public class PlayerStateManager : MonoBehaviour
                 break;
             case (ThrowState.End):
                 SetState(PlayerState.Idle);
-                if (!_throwing) UpdatePickedUp(false);
+                if (!_throwing)
+                {
+                    UpdatePickedUp(false);
+                    AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPickUp);
+                }
                 break;
         }
     }

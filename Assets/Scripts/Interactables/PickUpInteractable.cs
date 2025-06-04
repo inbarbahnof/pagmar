@@ -1,4 +1,5 @@
 using System.Collections;
+using Audio.FMOD;
 using DG.Tweening;
 using UnityEngine;
 
@@ -29,6 +30,8 @@ namespace Interactables
             transform.DOLocalMove(Vector3.zero, 0.1f)
                 .SetEase(Ease.OutQuad);
             isPickedUp = true;
+            
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPickUp);
         }
 
         public virtual void DropObject(Vector2 worldTarget)
@@ -44,6 +47,8 @@ namespace Interactables
         private IEnumerator FinishAction()
         {
             yield return new WaitForSeconds(0.1f);
+            
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPickUp);
             FinishInteraction();
         }
     }

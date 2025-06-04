@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2709496971714555277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2886312491454227381}
+  - component: {fileID: 6773691893312521259}
+  - component: {fileID: 3994285496854985580}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2886312491454227381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709496971714555277}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2628882, y: 4.0800467, z: -0.37265295}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6773691893312521259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709496971714555277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca11fa35a5964c23b2c618bf1d9fb772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3994285496854985580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709496971714555277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21c424c2f864b02a653767ad51e2983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <PlayerCall>k__BackingField:
+    Guid:
+      Data1: -640603026
+      Data2: 1169055393
+      Data3: 1198492837
+      Data4: 1347995738
+    Path: event:/characters/Girl/call
+  <PlayerFootsteps>k__BackingField:
+    Guid:
+      Data1: 1926979466
+      Data2: 1180954508
+      Data3: -1749239636
+      Data4: -26794852
+    Path: event:/characters/Girl/footsteps
+  <PlayerPickUp>k__BackingField:
+    Guid:
+      Data1: 1524701587
+      Data2: 1256027747
+      Data3: -1926642545
+      Data4: -1083528958
+    Path: event:/characters/Girl/pickup
+  <PlayerDrag>k__BackingField:
+    Guid:
+      Data1: 1334310058
+      Data2: 1231741054
+      Data3: -1780055155
+      Data4: -301785169
+    Path: event:/characters/Girl/push
+  <DogBark>k__BackingField:
+    Guid:
+      Data1: -246845240
+      Data2: 1158472954
+      Data3: -739515491
+      Data4: -1986390564
+    Path: event:/characters/Dog/bark
+  <DogFootsteps>k__BackingField:
+    Guid:
+      Data1: -664954353
+      Data2: 1335924654
+      Data3: -25413714
+      Data4: 7131409
+    Path: event:/characters/Dog/footsteps
+  <DogGrowl>k__BackingField:
+    Guid:
+      Data1: -158269936
+      Data2: 1262429755
+      Data3: 1210650047
+      Data4: -607272834
+    Path: event:/characters/Dog/growl
+  <Chapter0Music>k__BackingField:
+    Guid:
+      Data1: -1814211400
+      Data2: 1120428623
+      Data3: 205424045
+      Data4: 331788983
+    Path: event:/music/00_tutorial/tutorial_beforeDog
+  <Chapter1Music>k__BackingField:
+    Guid:
+      Data1: 2030487017
+      Data2: 1273989417
+      Data3: 1015754931
+      Data4: -837773198
+    Path: event:/music/01_chapter1/main_chapterOne
+  <Chapter2Music>k__BackingField:
+    Guid:
+      Data1: 1014308284
+      Data2: 1094707700
+      Data3: 477527734
+      Data4: 2006082061
+    Path: event:/music/02_chapter2/main_chapterTwo
+  <Ambiance>k__BackingField:
+    Guid:
+      Data1: 1124757196
+      Data2: 1100941959
+      Data3: -838262632
+      Data4: 1683058445
+    Path: event:/environment/ambience/00_amb_tutorial
