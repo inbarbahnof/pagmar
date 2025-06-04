@@ -133,7 +133,6 @@ namespace Dog
                     break;
                 case (_, DogState.FollowFood):
                     curState = DogState.FollowFood;
-                    print("dog following food");
                     HandleDogFollowTOI();
                     _playerFollower.GoToFoodTarget(_targetGenerator.GetFoodTarget());
                     break;
