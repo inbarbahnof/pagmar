@@ -8,6 +8,7 @@ namespace Interactables
         [SerializeField] protected bool _needDogToPush = false;
         [SerializeField] protected Transform playerPosToPush;
         [SerializeField] protected Transform dogPosToPush;
+        [SerializeField] protected bool _isPushingFromLeft = true;
         
         private Vector2 _pushTarget;
         public event Action OnReachedTarget;
@@ -17,6 +18,7 @@ namespace Interactables
         public bool GetStationary() => Stationary;
         
         public bool NeedDogToPush() => _needDogToPush;
+        public bool IsPushingFromLeft => _isPushingFromLeft;
         
         private float _xOffset;
 

@@ -37,8 +37,13 @@
 
     private PlayerAnimation HandlePushingAnim(PlayerAnimationInput input)
     {
-        if (!input._movingRight) return PlayerAnimation.Pull;
+        if (input._isPushingFromLeft)
+        {
+            if (!input._movingRight) return PlayerAnimation.Pull;
+            return PlayerAnimation.Push;
+        }
         
-        return PlayerAnimation.Push;
+        if (!input._movingRight) return PlayerAnimation.Push;
+        return PlayerAnimation.Pull;
     }
 }

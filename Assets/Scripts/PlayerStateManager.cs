@@ -55,9 +55,13 @@ public class PlayerStateManager : MonoBehaviour
 
     private void Update()
     {
+        bool isPushingFromLeft = false;
+        if (_curInteraction is PushInteractable pushInteractable)
+            isPushingFromLeft = pushInteractable.IsPushingFromLeft;
+        
         PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching, 
             _move.IsMoving, _isCalling, _move.MovingRight, _pickedUp,
-            _justPickedUp, _throwing);
+            _justPickedUp, _throwing, isPushingFromLeft);
         
         PlayerAnimation animation = _computer.Compute(input);
         _animationManager.PlayerAnimationUpdate(animation);
