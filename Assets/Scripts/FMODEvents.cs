@@ -1,0 +1,43 @@
+﻿using UnityEngine;
+using FMODUnity;
+
+namespace Audio.FMOD
+{
+    public class FMODEvents : MonoBehaviour
+    {
+        
+        [field: Header("PlayerSFX")]
+        [field: SerializeField] public EventReference PlayerCall { get; private set; }
+        [field: SerializeField] public EventReference PlayerFootsteps { get; private set; }
+        [field: SerializeField] public EventReference PlayerPickUp{ get; private set; }
+        // [field: SerializeField] public EventReference PlayerThrow { get; private set; }
+        [field: SerializeField] public EventReference PlayerDrag { get; private set; }
+        
+        [field: Header("DogSFX")]
+        [field: SerializeField] public EventReference DogBark { get; private set; }
+        [field: SerializeField] public EventReference DogFootsteps { get; private set; }
+        [field: SerializeField] public EventReference DogGrowl{ get; private set; }
+       
+        [field: Header("Music")]
+        [field: SerializeField] public EventReference Chapter0Music { get; private set; }
+        [field: SerializeField] public EventReference Chapter1Music { get; private set; }
+        [field: SerializeField] public EventReference Chapter2Music { get; private set; }
+
+        [field: Header("Ambiance")]
+        [field: SerializeField] public EventReference Ambiance { get; private set; }
+
+        public static FMODEvents Instance { get; private set; }
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+}
