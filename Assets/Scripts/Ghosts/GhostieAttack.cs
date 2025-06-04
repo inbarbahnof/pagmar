@@ -6,7 +6,7 @@ namespace Ghosts
 {
     public class GhostieAttack : MonoBehaviour
     {
-        [SerializeField] protected float attackSpeed = 3f; 
+        [SerializeField] protected float attackSpeed = 4.5f; 
         [SerializeField] protected float _attackRadius = 7f;
 
         protected Rigidbody2D _rb;

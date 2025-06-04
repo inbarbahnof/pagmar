@@ -81,10 +81,12 @@ namespace Dog
                 _dogBusy, _listenDistance, _foodIsClose, _canEatFood, _wantFood,
                 _petDistance, _isFollowingStick, _isStealthTargetClose, _needToStealth);
             
+            // print("can eat food " + _canEatFood +" is food close " + _foodIsClose);
+            
             DogState newState = _computer.Compute(curState, newInput);
             // print("_dogPlayerDistance " + _dogPlayerDistance);
 
-            if (curState != newState )//|| !_dogReachedTarget)  
+            if (curState != newState )  
             {
                 // print("cur state " + curState + " newState " + newState + " _dogReachedTarget " +_dogReachedTarget);
                 HandleDogStateChange(newState);
@@ -131,7 +133,8 @@ namespace Dog
                     break;
                 case (_, DogState.FollowFood):
                     curState = DogState.FollowFood;
-                    _dogFollowingTOI = true;
+                    print("dog following food");
+                    HandleDogFollowTOI();
                     _playerFollower.GoToFoodTarget(_targetGenerator.GetFoodTarget());
                     break;
                 case (_, DogState.FollowCall):
@@ -293,7 +296,6 @@ namespace Dog
 
         private void HandleDogFollow()
         {
-            _dogFollowingTOI = false;
             _dogFollowingTarget = true;
             _dogReachedTarget = false;
         }

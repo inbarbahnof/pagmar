@@ -70,20 +70,35 @@ public class GhostiesCircleObstacle : Obstacle
 
     public override void ResetObstacle()
     {
+        _foodTransformToIndex.Clear(); // Clear old mappings
+
         for (int i = 0; i < _foodPositions.Length; i++)
         {
             if (_spawnedFoods[i] != null)
             {
-                _spawnedFoods[i].transform.position = _foodPositions[i];
-                _spawnedFoods[i].gameObject.SetActive(true);
+                GameObject foodObj = _spawnedFoods[i].gameObject;
+
+                // Reset position and re-enable
+                foodObj.transform.position = _foodPositions[i];
+                foodObj.SetActive(true);
+
+                // Reset feeding state
                 _spawnedFoods[i].SetCanBeFed(false);
                 _spawnedFoods[i].GetComponent<Collider2D>().enabled = true;
+
+                // Re-subscribe to throw event
+                var interactable = foodObj.GetComponent<ThrowablePickUpInteractable>();
+                interactable.OnThrowComplete -= ThrowComplete; // Avoid double subscription
+                interactable.OnThrowComplete += ThrowComplete;
+
+                // Update transform-to-index mapping
+                _foodTransformToIndex[foodObj.transform] = i;
             }
         }
-        
+
         PickUpInteractableManager.instance.DropObject();
         PushInteractableManager.instance.StopPush();
-        
+
         _player.OnFinishedInteraction(PickUpInteractableManager.instance.CurPickUp);
         _pushObs.ResetObstacle();
     }
