@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
+using Audio.FMOD;
 using Interactables;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -122,6 +124,8 @@ public class PlayerStateManager : MonoBehaviour
         
         _move.SetCanMove(false);
         _move.UpdateMoveInput(Vector2.zero);
+        
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerCall);
         
         if (_waitToCallCoroutine != null) StopCoroutine(_waitToCallCoroutine);
             

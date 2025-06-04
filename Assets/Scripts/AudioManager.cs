@@ -14,7 +14,7 @@ namespace Audio.FMOD
         private List<EventInstance> _eventInstances;
         private List<StudioEventEmitter> _eventEmitters;
         
-        private EventInstance musicInstance;
+        public EventInstance musicInstance;
         private EventInstance ambianceInstance;
         
         private void Awake()
@@ -42,7 +42,7 @@ namespace Audio.FMOD
             ambianceInstance.start();
         }
         
-        public void PlayOneShot(EventReference sound, Vector3 pos, bool useDirection)
+        public void PlayOneShot(EventReference sound, Vector3 pos = default, bool useDirection = false)
         {
             if (useDirection)
             {
@@ -85,6 +85,7 @@ namespace Audio.FMOD
         
         public void SetParameter(EventInstance emitter, string parameterName, float parameterValue, bool isGlobal)
         {
+            print("setting parameter " + parameterName + " to " + parameterValue);
             if (isGlobal)
             {
                 RuntimeManager.StudioSystem.setParameterByName(parameterName, parameterValue);
