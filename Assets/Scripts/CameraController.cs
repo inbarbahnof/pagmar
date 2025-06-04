@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
     [Header("Zoom Values")]
     [SerializeField] private float zoomSpeed = 2f;
     [SerializeField] private float minFOV = 5f;
-    private float maxFOV = 7f;
+    [SerializeField] private float maxFOV = 7f;
     
     private Coroutine zoomCoroutine;
     

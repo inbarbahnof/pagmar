@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Audio.FMOD;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -19,11 +20,14 @@ namespace Interactables
         {
             if (_isThrowing) return;
             StartCoroutine(ThrowCoroutine(input));
+            
+            // TODO play throw sound
         }
 
         public override void DropObject(Vector2 worldTarget)
         {
             if (_food != null) _food.ActivateIfOnWalkable(worldTarget);
+            
             base.DropObject(worldTarget);
         }
 

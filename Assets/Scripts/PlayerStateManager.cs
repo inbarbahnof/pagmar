@@ -178,7 +178,11 @@ public class PlayerStateManager : MonoBehaviour
                 break;
             case (ThrowState.End):
                 SetState(PlayerState.Idle);
-                if (!_throwing) UpdatePickedUp(false);
+                if (!_throwing)
+                {
+                    UpdatePickedUp(false);
+                    AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPickUp);
+                }
                 break;
         }
     }

@@ -40,8 +40,6 @@ namespace Interactables
             transform.SetParent(originalParent);
             if (worldTarget != Vector2.zero) transform.position = worldTarget;
             
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPickUp);
-            
             if (_isThrowable) FinishInteraction();
             else StartCoroutine(FinishAction());
         }
@@ -49,6 +47,8 @@ namespace Interactables
         private IEnumerator FinishAction()
         {
             yield return new WaitForSeconds(0.1f);
+            
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPickUp);
             FinishInteraction();
         }
     }
