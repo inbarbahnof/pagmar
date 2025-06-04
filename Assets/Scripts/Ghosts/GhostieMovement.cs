@@ -59,12 +59,14 @@ namespace Ghosts
 
         public void Die()
         {
+            // print("Die");
             _isMoving = false;
             if (_coroutine != null) StopCoroutine(_coroutine);
         }
 
         public void ResetMovement()
         {
+            // print("ResetMovement");
             _isMoving = true;
             MoveAround();
         }
