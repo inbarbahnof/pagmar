@@ -37,7 +37,7 @@ namespace Interactables
         public void SetPushTarget(Vector2 target, Action onReachEvent)
         {
             _pushTarget = target;
-            Debug.Log("pushTarget: " + target);
+            // Debug.Log("pushTarget: " + target);
             OnReachedTarget += onReachEvent;
         }
 
@@ -83,7 +83,7 @@ namespace Interactables
             if (_pushTarget != Vector2.zero)
             {
                 float targetDist = Vector2.Distance(_curPushable.transform.position, _pushTarget);
-                Debug.Log("targetDist: " + targetDist);
+                // Debug.Log("targetDist: " + targetDist);
                 if (targetDist < 0.3f)
                 {
                     _curPushable.SetAtPos(_pushTarget.x);

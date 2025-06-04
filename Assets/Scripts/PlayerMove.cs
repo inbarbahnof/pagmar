@@ -82,6 +82,26 @@ public class PlayerMove : MonoBehaviour
         //     _lastPosition = currentPosition;
         // }
     }
+    
+    public void CheckIfNeedToFlipArt()
+    {
+        Vector3 scale = _playerArt.transform.localScale;
+        bool pushingFromLeft = _stateManager.IsPushingFromLeft;
+        bool facingRight = scale.x >= 0;
+
+        // If pushing from the left, player should face left (scale.x < 0)
+        if (pushingFromLeft && !facingRight)
+        {
+            scale.x = Mathf.Abs(scale.x);
+            _playerArt.transform.localScale = scale;
+        }
+        // If pushing from the right, player should face right (scale.x > 0)
+        else if (!pushingFromLeft && facingRight)
+        {
+            scale.x = -Mathf.Abs(scale.x);
+            _playerArt.transform.localScale = scale;
+        }
+    }
 
     public void SetIsPushing(bool push, Vector3 playerPos, bool stationary = false)
     {

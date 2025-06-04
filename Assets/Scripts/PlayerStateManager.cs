@@ -32,12 +32,14 @@ public class PlayerStateManager : MonoBehaviour
     private bool _pickedUp;
     private bool _justPickedUp;
     private bool _throwing;
+    private bool _isPushingFromLeft;
 
     private Coroutine _waitToCallCoroutine;
     
     private PlayerAnimationComputer _computer;
 
     public PlayerState CurrentState => curState;
+    public bool IsPushingFromLeft => _isPushingFromLeft;
 
     // public delegate void OnStateChange(PlayerState newState);
 
@@ -57,13 +59,13 @@ public class PlayerStateManager : MonoBehaviour
 
     private void Update()
     {
-        bool isPushingFromLeft = false;
         if (_curInteraction is PushInteractable pushInteractable)
-            isPushingFromLeft = pushInteractable.IsPushingFromLeft;
+            _isPushingFromLeft = pushInteractable.IsPushingFromLeft;
+        else _isPushingFromLeft = false;
         
         PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching, 
             _move.IsMoving, _isCalling, _move.MovingRight, _pickedUp,
-            _justPickedUp, _throwing, isPushingFromLeft);
+            _justPickedUp, _throwing, _isPushingFromLeft);
         
         PlayerAnimation animation = _computer.Compute(input);
         _animationManager.PlayerAnimationUpdate(animation);
@@ -201,6 +203,8 @@ public class PlayerStateManager : MonoBehaviour
     {
         if (interactable is PushInteractable push)
         {
+            _isPushingFromLeft = push.IsPushingFromLeft;
+            _move.CheckIfNeedToFlipArt();
             SetState(PlayerState.Push);
         }
     }
