@@ -120,6 +120,8 @@ public class PlayerStateManager : MonoBehaviour
 
     public void StartedCalling()
     {
+        if (_isCalling) return;
+        
         _isCalling = true;
         
         _move.SetCanMove(false);
