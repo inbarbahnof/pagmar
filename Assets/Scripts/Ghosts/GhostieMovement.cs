@@ -89,6 +89,13 @@ namespace Ghosts
             }
         }
 
+        public void MoveToPos(Vector3 pos)
+        {
+            _isRunningAway = true;
+            _isMoving = true;
+            _target = pos;
+        }
+
         private void FixedUpdate()
         {
             if (!_isMoving) return;

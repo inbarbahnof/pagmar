@@ -36,6 +36,14 @@ namespace Ghosts
                 _ghostieMovement.MoveAround();
             }
         }
+
+        public void MoveToPos(Vector3 pos)
+        {
+            _attacking = false;
+            _targetPlayer = null;
+            
+            _ghostieMovement.MoveToPos(pos);
+        }
         
         public virtual void Attack(Transform player)
         {
