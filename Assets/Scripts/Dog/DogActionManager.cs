@@ -16,7 +16,6 @@ namespace Dog
         [SerializeField] private TargetGenerator _targetGenerator;
         
         [Header("Distances For States")]
-        [SerializeField] private float _pushDistance = 2f;
         [SerializeField] private float _listenDistance = 6f;
         [SerializeField] private float _petDistance = 2f;
         [SerializeField] private float getAwayFromPlayerDis = 3f;
@@ -77,7 +76,7 @@ namespace Dog
             DogStateMachineInput newInput = new DogStateMachineInput(playerStateManager.CurrentState, 
                 GameManager.instance.ConnectionState,
                 _dogPlayerDistance, _dogReachedTarget,
-                _dogFollowingTarget, _dogFollowingTOI, _pushDistance,
+                _dogFollowingTarget, _dogFollowingTOI,
                 _dogBusy, _listenDistance, _foodIsClose, _canEatFood, _wantFood,
                 _petDistance, _isFollowingStick, _isStealthTargetClose, _needToStealth);
             
