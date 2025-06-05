@@ -71,12 +71,7 @@ namespace Dog
         
         private DogState HandlePlayerPushBehavior(DogState previousDogState, DogStateMachineInput machineInput)
         {
-            if (machineInput._playerDogDistance <= machineInput._pushDistance)
-            {
-                return DogState.Push;
-            }
-
-            return previousDogState;
+            return DogState.Push;
         }
     
         private DogState HandlePlayerWalkBehavior(DogState previousDogState, DogStateMachineInput machineInput)

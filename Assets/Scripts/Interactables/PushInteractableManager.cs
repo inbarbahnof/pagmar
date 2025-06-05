@@ -11,6 +11,7 @@ namespace Interactables
 
         [SerializeField] private Transform player;
         [SerializeField] private Transform dog;
+        [SerializeField] private float _pushDistance = 2f;
         
         private PlayerMove _playerMove;
         private DogActionManager _dogAction;
@@ -43,17 +44,20 @@ namespace Interactables
 
         public void TryStartPush(PushInteractable interactable, Vector3 playerPos, Vector3 dogPos)
         {
+            float playerDogDistance = Vector3.Distance(player.position, dog.position);
+            if (interactable.NeedDogToPush())
+            {
+                if (playerDogDistance > _pushDistance) return;
+                dog.position = dogPos;
+                _dogOffsetFromObject = interactable.transform.position - dog.position;
+            }
+            
             _isPushing = true;
             _playerMove.SetIsPushing(true, playerPos, interactable.GetStationary());
 
             _curPushable = interactable;
             _curPushable.SetOffset(playerPos.x);
-
-            if (interactable.NeedDogToPush())
-            {
-                dog.position = dogPos;
-                _dogOffsetFromObject = interactable.transform.position - dog.position;
-            }
+            
         }
 
         public void StopPush()
@@ -83,7 +87,7 @@ namespace Interactables
             if (_pushTarget != Vector2.zero)
             {
                 float targetDist = Vector2.Distance(_curPushable.transform.position, _pushTarget);
-                // Debug.Log("targetDist: " + targetDist);
+                //Debug.Log("targetDist: " + targetDist);
                 if (targetDist < 0.3f)
                 {
                     _curPushable.SetAtPos(_pushTarget.x);
@@ -101,7 +105,7 @@ namespace Interactables
             dog.GetComponent<SmoothMover>().MoveTo(dogTargetPos);
         }
 
-        public void ResetToCheckpoint(PushInteractable interactable)
+        public void ResetToCheckpoint(BaseInteractable interactable)
         {
             interactable.ResetToCheckpoint();
             StopPush();

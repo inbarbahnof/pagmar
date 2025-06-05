@@ -19,13 +19,12 @@ namespace Dog
         public bool _isStealthTargetClose;
         public bool _needToStealth;
 
-        public float _pushDistance;
         public float _listenDistance;
         public float _petDistance;
 
         public DogStateMachineInput(PlayerState playerState, int connectionStage,
             float playerDogDistance, bool dogReachedTarget, bool dogFollowingTarget, 
-            bool dogFollowingTOI, float pushDistance, bool dogBusy,
+            bool dogFollowingTOI, bool dogBusy,
             float listenDistance, bool isFoodClose, bool canEatFood,
             bool wantsFood, float petDistance, bool isFollowingStick, 
             bool isStealthTargetClose, bool needToStealth)
@@ -35,7 +34,6 @@ namespace Dog
             _dogReachedTarget = dogReachedTarget;
             _dogFollowingTarget = dogFollowingTarget;
             _dogFollowingTOI = dogFollowingTOI;
-            _pushDistance = pushDistance;
             _dogBusy = dogBusy;
             _listenDistance = listenDistance;
             _isFoodClose = isFoodClose;
