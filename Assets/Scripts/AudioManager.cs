@@ -85,7 +85,7 @@ namespace Audio.FMOD
         
         public void SetParameter(EventInstance emitter, string parameterName, float parameterValue, bool isGlobal)
         {
-            print("setting parameter " + parameterName + " to " + parameterValue);
+            // print("setting parameter " + parameterName + " to " + parameterValue);
             if (isGlobal)
             {
                 RuntimeManager.StudioSystem.setParameterByName(parameterName, parameterValue);

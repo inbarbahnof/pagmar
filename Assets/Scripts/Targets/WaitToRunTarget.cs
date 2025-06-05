@@ -7,11 +7,14 @@ namespace Targets
     public class WaitToRunTarget : Target
     {
         [SerializeField] private bool _isLast;
-        [SerializeField] private DogStealth2Obstacle _manager;
+        [SerializeField] private Stealth2Obstacle _manager2;
+        [SerializeField] private Stealth3Obstacle _manager3;
 
         public override void StartTargetAction()
         {
-            _manager.TargetReached(_isLast);
+            if (_manager2 != null) _manager2.TargetReached(_isLast);
+            
+            if (_manager3 != null) _manager3.TargetReached(_isLast);
             
             // if (_isLast) FinishTargetAction();
         }

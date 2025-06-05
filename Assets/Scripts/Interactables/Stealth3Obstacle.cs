@@ -1,26 +1,38 @@
 using System;
 using System.Collections;
 using System.Linq;
+using Audio.FMOD;
 using Dog;
 using Ghosts;
 using Targets;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Interactables
 {
-    public class DogStealth2Obstacle : Obstacle
+    public class Stealth3Obstacle : Obstacle
     {
         [SerializeField] private DogActionManager _dog;
         [SerializeField] private PlayerStealthManager _player;
         [SerializeField] private StickAreaDetector _areaDetector;
+        
+        [Header("Dog Stealth")]
         [SerializeField] private Target _lastTarget;
         [SerializeField] private Target[] _targets;
-        [SerializeField] private GhostMovement[] _ghosts;
+        [SerializeField] private GhostMovement[] _ghostsForDog;
+        
+        [Header("Player Stealth")]
+        [SerializeField] private GhostMovement[] _ghostsForPlayer;
+        [SerializeField] private Transform[] _ghostDistractionForPlayer;
+        
+        [Header("Sticks")]
         [SerializeField] private ThrowablePickUpInteractable[] _sticks;
 
-        private int _curTarget = 0;
+        private int _curDogTarget = 0;
+        private int _curPlayerBush = 0;
         private Vector3[] _stickPositions;
+        private bool _dogReachedFirstTarget;
 
         private void Start()
         {
@@ -46,20 +58,13 @@ namespace Interactables
             // reset camera
             CameraController.instance.FollowPlayer();
             
-            _curTarget = 0;
+            _curDogTarget = 0;
+            _curPlayerBush = 0;
             TargetGenerator.instance.SetStealthTarget(_targets[0]);
-            
-            // reset player
-            _player.SetProtected(false);
             
             // reset dog
             _dog.StealthObs(false);
-            
-            // // reset targets
-            foreach (var target in _targets)  
-            {
-                target.FinishTargetAction();
-            }
+            _dogReachedFirstTarget = false;
             
             // reset sticks positions
             for (int i = 0; i < _stickPositions.Length; i++)
@@ -68,21 +73,54 @@ namespace Interactables
             }
 
             // reset ghost positions
-            foreach (var ghost in _ghosts)  
+            foreach (var ghost in _ghostsForDog)  
             {
                 ghost.MoveAround();
             }
+            
+            // reset ghost positions
+            foreach (var ghost in _ghostsForPlayer)  
+            {
+                ghost.MoveAround();
+            }
+            
+            // // reset targets
+            foreach (var target in _targets)  
+            {
+                target.FinishTargetAction();
+            }
+        }
+
+        public void PlayerReachedStealth()
+        {
+            StartCoroutine(WaitForDogBark());
+        }
+
+        private IEnumerator WaitForDogBark()
+        {
+            if (_curDogTarget == 0) yield return new WaitUntil(() => _dogReachedFirstTarget);
+            
+            else yield return new WaitForSeconds(1f);
+            
+            // dog bark and bring ghost
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogBark);
+            
+            yield return new WaitForSeconds(0.5f);
+            
+            _ghostsForPlayer[_curPlayerBush].GoToTargetAndPause(_ghostDistractionForPlayer[_curPlayerBush]);
+            _curPlayerBush++;
         }
 
         public override void PlayerReachedTarget()
         {
-            _player.SetProtected(false);
             CameraController.instance.FollowPlayer();
         }
 
         public void TargetReached(bool isLast)
         {
-            if (!isLast) _curTarget++;
+            _dogReachedFirstTarget = true;
+            
+            if (!isLast) _curDogTarget++;
             else TargetGenerator.instance.SetStealthTarget(_lastTarget);
         }
 
@@ -100,10 +138,10 @@ namespace Interactables
         {
             if (!_areaDetector.didStickLand) return;
             
-            print("target changed to " + _targets[_curTarget].name);
-            TargetGenerator.instance.SetStealthTarget(_targets[_curTarget]);
+            print("target changed to " + _targets[_curDogTarget].name);
+            TargetGenerator.instance.SetStealthTarget(_targets[_curDogTarget]);
             
-            GhostMovement cur = _ghosts[_curTarget-1];
+            GhostMovement cur = _ghostsForDog[_curDogTarget-1];
             if (cur != null) cur.GoToTargetAndPause(stick);
         }
         

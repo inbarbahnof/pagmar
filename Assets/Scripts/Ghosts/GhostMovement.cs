@@ -67,6 +67,7 @@ namespace Ghosts
         public override bool StopGoingAround()
         {
             isGoingAround = false;
+            isGoingToTarget = false;
             return false;
         }
 
