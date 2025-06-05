@@ -14,7 +14,7 @@ namespace Targets
             
         public override void StartTargetAction()
         {
-            print("Dog started eating food");
+            // print("Dog started eating food");
             if (_dogTempComunication != null)
                 _dogTempComunication.SetActive(true);
             
@@ -35,7 +35,8 @@ namespace Targets
         {
             yield return new WaitForSeconds(1.5f);
             print("Dog finished eating food");
-            Destroy(gameObject);
+            
+            gameObject.SetActive(false);
             OnFoodEaten?.Invoke();
             FinishTargetAction();
         }

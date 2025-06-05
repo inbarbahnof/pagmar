@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 public class Trajectory : MonoBehaviour
 {
     [SerializeField] private int dotsNum;
-    [FormerlySerializedAs("ditsParent")] [SerializeField] private GameObject dotsParent;
+    [SerializeField] private GameObject dotsParent;
     [SerializeField] private GameObject dotPrefab;
     [SerializeField] private float dotSpacing;
 
@@ -32,7 +32,7 @@ public class Trajectory : MonoBehaviour
     {
         for (int i = 0; i < dotsNum; i++)
         {
-            _dotsList[i].position = Evaluate((float) i / dotsNum, startPoint, endPoint, controlPoint);
+            _dotsList[i].position = TrajectoryEvaluator.Evaluate((float) i / dotsNum, startPoint, endPoint, controlPoint);
         }
     }
 
@@ -46,10 +46,4 @@ public class Trajectory : MonoBehaviour
         }
     }
     
-    private Vector2 Evaluate(float t, Vector2 startPoint, Vector2 endPoint, Vector2 controlPoint)
-    {
-        Vector2 sc = Vector2.Lerp(startPoint, controlPoint, t);
-        Vector2 ce = Vector2.Lerp(controlPoint, endPoint, t);
-        return Vector2.Lerp(sc, ce, t);
-    }
 }

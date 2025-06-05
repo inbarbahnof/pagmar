@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 8462009740500779152}
   - component: {fileID: 3341439297436038234}
   - component: {fileID: 6222949353568404467}
+  - component: {fileID: 1364538461247343533}
   m_Layer: 0
-  m_Name: Circle
-  m_TagString: Untagged
+  m_Name: Death
+  m_TagString: Ghostie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,6 +83,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attack: {fileID: 2123686772605441957}
+  _movement: {fileID: 997506254591797113}
+  _canAttackDog: 0
+--- !u!114 &1364538461247343533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286610580926665560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95faac23efa3460593ae1a145ffa5d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _intireGhostie: {fileID: 7080431090092594224}
+  _detecror: {fileID: 7839447213806282766}
   _movement: {fileID: 997506254591797113}
 --- !u!1 &4924876290146459057
 GameObject:
@@ -219,10 +236,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d0a7277103fcb4ca8f0eb457659abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementType: 0
-  movementEase: 4
   radius: 2.5
+  movementType: 0
   speed: 1.5
+  _goesToRunPos: 0
+  _distanceToRun: 2
+  _waitForIdle: 1.5
   runAwayPoint: {x: 0, y: 0, z: 0}
   runAwaySpeed: 5
 --- !u!114 &2123686772605441957
@@ -237,7 +256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a64a0649dc1d74e9c77e12c633987a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 5
+  attackSpeed: 4.5
+  _attackRadius: 7
 --- !u!50 &1748362117836619842
 Rigidbody2D:
   serializedVersion: 5
@@ -367,7 +387,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attack: {fileID: 2123686772605441957}
-  _movement: {fileID: 997506254591797113}
 --- !u!58 &1568762613084190440
 CircleCollider2D:
   m_ObjectHideFlags: 0

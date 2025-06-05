@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Runtime.InteropServices;
 using Interactables;
 using Targets;
@@ -10,7 +11,6 @@ namespace Dog
     public class DogActionManager : MonoBehaviour
     {
         private DogState curState = DogState.Idle;
-        public DogState CurState => curState;
 
         [SerializeField] private PlayerStateManager playerStateManager;
         [SerializeField] private TargetGenerator _targetGenerator;
@@ -33,11 +33,18 @@ namespace Dog
         private bool _isFollowingStick;
         private bool _canEatFood;
         private bool _wantFood;
+        private bool _isDogProtected;
+        private bool _isStealthTargetClose;
+        private bool _needToStealth;
 
         private DogStateComputer _computer;
         private float _dogPlayerDistance;
+        
+        // getters
         public float DogPlayerDistance => _dogPlayerDistance;
         public float ListenDistance => _listenDistance;
+        public bool IsDogProtected => _isDogProtected;
+        public DogState CurState => curState;
 
         private void Start()
         {
@@ -50,6 +57,8 @@ namespace Dog
             _playerFollower.OnStartFollow += HandleDogFollow;
             _playerFollower.OnPerformingTargetAction += HandleDogOnAction;
             _playerFollower.OnFinishedTargetAction += HandleDogFinishedAction;
+            
+            PathTarget.OnDogProtectionChanged += HandleDogProtectionChanged;
 
             _playerTransform = playerStateManager.GetComponent<Transform>();
 
@@ -63,26 +72,34 @@ namespace Dog
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
             
             _canEatFood = _targetGenerator.GetFoodTarget() != null;
+            _isStealthTargetClose = _targetGenerator.GetStealthTarget(false) != null;
             
             DogStateMachineInput newInput = new DogStateMachineInput(playerStateManager.CurrentState, 
                 GameManager.instance.ConnectionState,
                 _dogPlayerDistance, _dogReachedTarget,
                 _dogFollowingTarget, _dogFollowingTOI, _pushDistance,
                 _dogBusy, _listenDistance, _foodIsClose, _canEatFood, _wantFood,
-                _petDistance, _isFollowingStick);
+                _petDistance, _isFollowingStick, _isStealthTargetClose, _needToStealth);
+            
+            // print("can eat food " + _canEatFood +" is food close " + _foodIsClose);
             
             DogState newState = _computer.Compute(curState, newInput);
             // print("_dogPlayerDistance " + _dogPlayerDistance);
 
-            if (curState != newState )//|| !_dogReachedTarget)
+            if (curState != newState )  
             {
                 // print("cur state " + curState + " newState " + newState + " _dogReachedTarget " +_dogReachedTarget);
                 HandleDogStateChange(newState);
+            }
+            else if (curState == DogState.Stealth && _targetGenerator.DidStealthTargetChange())
+            {
+                HandleStealthBehavior();
             }
         }
 
         public void SetWantsFood(bool want)
         {
+            //print("in SetWantsFood");
             _wantFood = want;
         }
 
@@ -90,8 +107,14 @@ namespace Dog
         {
             _playerFollower.ResetToCheckpoint(position);
             curState = DogState.Idle;
+            
+            StartCoroutine(DogResetPause());
+        }
 
-            StartWalkingAfterPlayer();
+        private IEnumerator DogResetPause()
+        {
+            yield return new WaitForSeconds(1f);
+            if (curState == DogState.Idle) StartWalkingAfterPlayer();
         }
 
         private void HandleDogStateChange(DogState newState)
@@ -102,11 +125,15 @@ namespace Dog
             
             switch (curState, newState)
             {
+                case (_, DogState.Stealth):
+                    HandleStealthBehavior();
+                    break;
                 case (_, DogState.WantFood):
                     HandleWantFoodBehavior();
                     break;
                 case (_, DogState.FollowFood):
                     curState = DogState.FollowFood;
+                    HandleDogFollowTOI();
                     _playerFollower.GoToFoodTarget(_targetGenerator.GetFoodTarget());
                     break;
                 case (_, DogState.FollowCall):
@@ -155,6 +182,13 @@ namespace Dog
             }
         }
 
+        private void HandleStealthBehavior()
+        {
+            curState = DogState.Stealth;
+            Target target = _targetGenerator.GetStealthTarget(true);
+            _playerFollower.GoToFoodTarget(target); 
+        }
+
         private void HandleWantFoodBehavior()
         {
             curState = DogState.WantFood;
@@ -184,6 +218,22 @@ namespace Dog
             curState = DogState.Idle;
         }
 
+        public void StealthObs(bool isStealth)
+        {
+            _needToStealth = isStealth;
+
+            if (!isStealth)
+            {
+                _playerFollower.StopGoingToTarget();
+                curState = DogState.Idle;
+            }
+        }
+        
+        public void HandleDogProtectionChanged(bool isProtected)
+        {
+            _isDogProtected = isProtected;
+        }
+
         public void FoodIsClose(Collider2D food)
         {
             _foodIsClose = true;
@@ -192,6 +242,8 @@ namespace Dog
 
         public void FoodIsFar(Collider2D food)
         {
+            if (_dogFollowingTOI) return;
+            
             _foodIsClose = false;
             _targetGenerator.NotifyFoodFar(food.GetComponent<FoodTarget>());
         }
@@ -202,14 +254,6 @@ namespace Dog
             _dogFollowingTarget = false;
             _dogFollowingTOI = false;
             _playerFollower.SetIsGoingToTarget(false);
-            // change to random idle animation 
-
-            // Target target = _targetGenerator.GenerateNewIdleTarget();
-            // if (target != null)
-            // {
-            //     _playerFollower.SetNextTarget(target);
-            //     _playerFollower.GoToNextTarget();
-            // }
         }
 
         private void StartWalkingAfterPlayer()
@@ -236,7 +280,6 @@ namespace Dog
         {
             _dogFollowingTOI = false;
             _dogBusy = true;
-            _foodIsClose = false;
             _dogReachedTarget = true;
             _isFollowingStick = false;
         }
@@ -245,14 +288,13 @@ namespace Dog
         {
             _dogFollowingTOI = false;
             _dogBusy = false;
-            _foodIsClose = false;
             _isFollowingStick = false;
             _wantFood = false;
+            _needToStealth = false;
         }
 
         private void HandleDogFollow()
         {
-            _dogFollowingTOI = false;
             _dogFollowingTarget = true;
             _dogReachedTarget = false;
         }

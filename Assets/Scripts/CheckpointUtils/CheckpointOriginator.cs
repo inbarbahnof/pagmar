@@ -10,25 +10,26 @@ namespace CheckpointUtils
     {
         [SerializeField] private PlayerMove player;
         [SerializeField] private DogActionManager dog;
+        private Vector3 dogRespawnOffset = new Vector3(-1f, -1f, 0f);
         private Obstacle _curObs = null;
     
         private CheckpointInfo _curCheckpointInfo;
-    
+
         private void Start()
         {
             _curCheckpointInfo = new CheckpointInfo(
                 transform.position, 
                 player.transform.position, 
-                dog.transform.position);
+                player.transform.position + dogRespawnOffset);
         }
 
-        public IMemento Save(Vector2 checkpointLoc, Vector2 playerRespawnPoint, Obstacle obstacle = null)
+        public IMemento Save(Vector2 checkpointLoc, Vector3 playerRespawnPoint, Obstacle obstacle = null)
         {
             _curObs = obstacle;
             _curCheckpointInfo = new CheckpointInfo(
                 checkpointLoc, 
                 playerRespawnPoint, 
-                dog.transform.position, 
+                playerRespawnPoint + dogRespawnOffset, 
                 _curObs);
             return new ConcreteMemento(_curCheckpointInfo);
         }
@@ -40,6 +41,7 @@ namespace CheckpointUtils
                 throw new Exception("Unknown memento class " + memento.ToString());
             }
             _curCheckpointInfo = memento.GetCheckpointInfo();
+            CameraController.instance.FollowPlayer();
             // restore player and dog
             player.ResetToCheckpoint(_curCheckpointInfo.PlayerRespawnLoc);
             dog.ResetToCheckpoint(_curCheckpointInfo.DogLoc);

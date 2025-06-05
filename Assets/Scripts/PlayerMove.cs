@@ -1,78 +1,142 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] private float _speed = 6f;
-    
-    private Vector2 _moveInput = Vector2.zero;
-    private Vector2 _prevMoveInput;
-    private Rigidbody2D _playerRb;
+    [SerializeField] private float _runSpeed = 4.7f;
+    [SerializeField] private float _pushSpeed = 3.7f;
+    [SerializeField] private GameObject _playerArt;
 
+    private Vector2 _moveInput = Vector2.zero;
+    private Rigidbody2D _playerRb;
     private PlayerStateManager _stateManager;
+
     private bool isMoving = false;
     private bool isPushing = false;
     private bool canMove = true;
-    
+    private bool movingRight = true;
+
+    private float _speed;
+
+    private Vector3 _lastPosition;
+
+    public bool IsMoving => isMoving;
+    public bool IsPushing => isPushing;
+    public bool MovingRight => movingRight;
+
     void Start()
     {
+        _speed = _runSpeed;
+        
         _playerRb = GetComponent<Rigidbody2D>();
         _stateManager = GetComponent<PlayerStateManager>();
+        _lastPosition = transform.position;
     }
 
     private void FixedUpdate()
     {
         if (canMove) Move();
+        FlipSpriteBasedOnMovement();
     }
 
     private void Move()
     {
         Vector2 movement = _playerRb.position + _moveInput * (_speed * Time.fixedDeltaTime);
         _playerRb.MovePosition(movement);
-        
+
         if (_moveInput != Vector2.zero)
         {
             if (!isMoving)
             {
                 isMoving = true;
-                
-                if (!isPushing) _stateManager.SetState(PlayerState.Walk);
-            }
-
-            if (!isPushing && Mathf.Sign(_moveInput.x) != Mathf.Sign(_prevMoveInput.x))
-            {
-                transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
-            }
-
-            if (!isPushing)
-            {
-                _prevMoveInput = _moveInput;
             }
         }
         else
         {
             isMoving = false;
-            if (!isPushing) _stateManager.SetState(PlayerState.Idle);
+        }
+
+        if (!isPushing)
+        {
+            _stateManager.UpdateWalking(isMoving);
         }
     }
 
-    public void SetIsPushing(bool push, Vector3 playerPos)
+    private void FlipSpriteBasedOnMovement()
+    {
+        if (Mathf.Abs(_moveInput.x) > 0.001f && !isPushing)
+        {
+            if (!isPushing)
+            {
+                float newScaleX = _moveInput.x > 0 ? 1 : -1;
+                _playerArt.transform.localScale = new Vector3(
+                    newScaleX * Mathf.Abs(_playerArt.transform.localScale.x),
+                    _playerArt.transform.localScale.y,
+                    _playerArt.transform.localScale.z
+                );
+            }
+        }
+        movingRight = _moveInput.x > 0;
+        // if (!isPushing)
+        // {
+        //     _lastPosition = currentPosition;
+        // }
+    }
+    
+    public void CheckIfNeedToFlipArt()
+    {
+        Vector3 scale = _playerArt.transform.localScale;
+        bool pushingFromLeft = _stateManager.IsPushingFromLeft;
+        bool facingRight = scale.x >= 0;
+
+        // If pushing from the left, player should face left (scale.x < 0)
+        if (pushingFromLeft && !facingRight)
+        {
+            scale.x = Mathf.Abs(scale.x);
+            _playerArt.transform.localScale = scale;
+        }
+        // If pushing from the right, player should face right (scale.x > 0)
+        else if (!pushingFromLeft && facingRight)
+        {
+            scale.x = -Mathf.Abs(scale.x);
+            _playerArt.transform.localScale = scale;
+        }
+    }
+
+    public void SetIsPushing(bool push, Vector3 playerPos, bool stationary = false)
     {
         isPushing = push;
 
         if (isPushing)
         {
-            _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionY;
-            transform.position = playerPos;
+            if (stationary) _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionX;
+            else _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionY;
+            GetComponent<SmoothMover>().MoveTo(playerPos);
+
+            _speed = _pushSpeed;
         }
         else
         {
             _playerRb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
+            _playerRb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+
+            _speed = _runSpeed;
         }
+    }
+
+    public void SetCanMove(bool move)
+    {
+        canMove = move;
     }
 
     public void SetIsSwinging(bool swing)
     {
         canMove = !isMoving;
+    }
+
+    public bool GetMoveDirRight()
+    {
+        return movingRight;
     }
 
     public void UpdateMoveInput(Vector2 moveInput)
@@ -87,5 +151,6 @@ public class PlayerMove : MonoBehaviour
         UpdateMoveInput(Vector2.zero);
         SetIsPushing(false, Vector3.zero);
         SetIsSwinging(false);
+        _stateManager.OnFinishedInteraction();
     }
 }

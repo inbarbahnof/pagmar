@@ -16,8 +16,10 @@ namespace Targets
         
         private FoodTarget _foodTarget;
         private Target _stickTarget;
-
         private WantFoodTarget _wantFoodTarget;
+        private Target _stealthTarget;
+
+        private bool _didStealthTargetChange;
         
         // private List<Target> idleTargets = new List<Target>();
 
@@ -49,6 +51,24 @@ namespace Targets
             {
                 playerTargets.Remove(target);
             }
+        }
+
+        public bool DidStealthTargetChange()
+        {
+            return _didStealthTargetChange && _stealthTarget != null;
+        }
+        
+        public void SetStealthTarget(Target target)
+        {
+            _didStealthTargetChange = true;
+            _stealthTarget = target;
+            print("stealth target set to " + target);
+        }
+
+        public Target GetStealthTarget(bool toFollow)
+        {
+            if (toFollow) _didStealthTargetChange = false;
+            return _stealthTarget;
         }
         
         public void SetStickTarget(Target target)
@@ -92,6 +112,7 @@ namespace Targets
         {
             if (_foodTarget != null && _foodTarget.CanBeFed)
                 return _foodTarget;
+                
             return null;
         }
 

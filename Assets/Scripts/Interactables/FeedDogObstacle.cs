@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Dog;
 using Targets;
 using UnityEngine;
@@ -7,16 +8,14 @@ namespace Interactables
 {
     public class FeedDogObstacle : Obstacle
     {
-        [SerializeField] private PickUpInteractable _food;
+        [SerializeField] private FoodPickUpInteractable _food;
         [SerializeField] private WantFoodTarget _wantFoodTarget;
         
         private void Awake()
         {
-            if (_food is FoodPickUpInteractable foodPickup)
-            {
-                foodPickup.OnDroppedOnWalkableSurface += HandleFoodDroppedWalkable;
-            }
+            _food.OnDroppedOnWalkableSurface += HandleFoodDroppedWalkable;
 
+            // StartCoroutine(SetListener());
             FoodTarget foodTarget = _food.GetComponent<FoodTarget>();
             if (foodTarget != null)
             {
@@ -29,7 +28,7 @@ namespace Interactables
             GetComponent<Collider2D>().enabled = false;
         }
         
-        private void HandleFoodDroppedWalkable(FoodPickUpInteractable food)
+        public void HandleFoodDroppedWalkable(FoodPickUpInteractable food)
         {
             _wantFoodTarget.FoodCanBeReached();
         }

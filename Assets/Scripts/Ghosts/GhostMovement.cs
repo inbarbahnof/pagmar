@@ -7,19 +7,13 @@ namespace Ghosts
     {
         [SerializeField] private Transform pointA;
         [SerializeField] private Transform pointB;
-        [SerializeField] private float _pauseAfterTarget = 1f;
+        [SerializeField] private float _pauseAfterTarget = 2f;
 
         private bool movingToB = true;
         private bool isGoingAround = true;
         private bool isGoingToTarget = false;
 
-        private Rigidbody2D _rb;
         private Vector3 _currentTarget;
-
-        private void Awake()
-        {
-            _rb = GetComponent<Rigidbody2D>();
-        }
 
         private void Start()
         {

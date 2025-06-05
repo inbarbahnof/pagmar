@@ -15,7 +15,7 @@ namespace Ghosts
             }
             else if(other.CompareTag("Dog"))
             {
-                _attack.StopAttacking(true);
+                _attack.StopAttacking(true, other.transform.position);
             }
         }
     }

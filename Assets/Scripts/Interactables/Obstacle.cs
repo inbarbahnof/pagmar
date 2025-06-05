@@ -12,5 +12,7 @@ namespace Interactables
         }
         
         public virtual void ResetObstacle() { }
+        
+        public virtual void PlayerReachedTarget(){}
     }
 }

@@ -143,6 +143,15 @@ namespace Dog
             GoToTarget(target);
         }
 
+        public void StopGoingToTarget()
+        {
+            if (currentTarget != null)
+                currentTarget.OnTargetActionComplete -= OnTargetActionComplete;
+
+            currentTarget = null;
+            agent.isStopped = true;
+        }
+
         public void SetStopProb(bool isStoping)
         {
             if (isStoping)

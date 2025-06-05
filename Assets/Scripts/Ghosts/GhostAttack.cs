@@ -8,10 +8,8 @@ namespace Ghosts
     {
         [SerializeField] private GhostMovement _ghostMovement;
         
-        public override void StopAttacking(bool isRunning)
+        public override void StopAttacking(bool isRunning, Vector3 dogPos)
         {
-            print("StopAttacking Ghost isRunning " + isRunning);
-            
             _attacking = false;
             _targetPlayer = null;
             
@@ -20,7 +18,7 @@ namespace Ghosts
         
         public override void Attack(Transform player)
         {
-            print("in attack player " + player.name + " attacking " + _attacking);
+            print("in attack " + player.name + " attacking " + _attacking);
             
             if (player == null || _attacking) return;
 

@@ -29,13 +29,13 @@ namespace Interactables
         public void AddInteractableObj(BaseInteractable interactable)
         {
             curInteractables.Add(interactable);
-            // print("inter added: " + interactable.name);
+            //print("inter added: " + interactable.name);
         }
 
         public void RemoveInteractable(BaseInteractable interactable)
         {
             curInteractables.Remove(interactable);
-            // print("inter removed: " + interactable + " at dist: " + Vector2.Distance(player.position, interactable.transform.position));
+            //print("inter removed: " + interactable + " at dist: " + Vector2.Distance(player.position, interactable.transform.position));
             if (curInteractableObj == interactable)
             {
                 curInteractableObj.SetHighlight(false);
@@ -74,18 +74,26 @@ namespace Interactables
         private void UpdateClosestInteractable()
         {
             if (curInteractables.Count == 0) return;
-            BaseInteractable closest = (curInteractableObj == null) ? curInteractables[0] : curInteractableObj;
-            float dist = Vector2.Distance(player.position, closest.transform.position);
+
+            BaseInteractable closest = null;
+            float minDist = float.MaxValue;
             foreach (BaseInteractable interactable in curInteractables)
             {
-                float curDist = Vector2.Distance(player.position, interactable.transform.position);
-                if (curDist < dist)
+                if (interactable == null)
                 {
-                    dist = curDist;
+                    curInteractables.Remove(interactable);
+                    continue;
+                }
+
+                float curDist = Vector2.Distance(player.position, interactable.transform.position);
+                if (curDist < minDist)
+                {
+                    minDist = curDist;
                     closest = interactable;
                 }
             }
 
+            if (closest == null) return;
             if (curInteractableObj != closest)
             {
                 if (curInteractableObj != null)
@@ -95,7 +103,6 @@ namespace Interactables
 
                 curInteractableObj = closest;
                 curInteractableObj.SetHighlight(true);
-                // print("curInteractableObj " + curInteractableObj.name);
             }
         }
 
@@ -108,7 +115,7 @@ namespace Interactables
                 curInteractableObj.SetHighlight(false);
                 interacting = true;
 
-                playerStateManager.SetStateAccordingToInteraction(curInteractableObj);
+                playerStateManager.UpdateCurInteraction(curInteractableObj);
             }
         }
 
@@ -130,7 +137,7 @@ namespace Interactables
                 curInteractableObj.SetHighlight(true);
             }
 
-            playerStateManager.SetState(PlayerState.Idle);
+            playerStateManager.OnFinishedInteraction(curInteractableObj);
         }
 
     }

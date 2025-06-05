@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Interactables
 {
@@ -14,7 +13,7 @@ namespace Interactables
         void Start()
         {
             _pushTarget = transform.position;
-            pushManager.SetPushTarget(_pushTarget, ReachedTarget);
+            interactable.SetPushTarget(_pushTarget, ReachedTarget);
         }
 
         public override void ReachedTarget()

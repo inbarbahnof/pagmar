@@ -10,20 +10,24 @@ namespace Dog
         {
             if (machineInput._wantsFood) return DogState.WantFood;
             
-            if (machineInput._isFoodClose && machineInput._canEatFood) return DogState.FollowFood;
+            if (machineInput._needToStealth ||
+                machineInput is { _playerState: PlayerState.Stealth, _isStealthTargetClose: true }) 
+                return DogState.Stealth;
+            
+            if (machineInput is { _isFoodClose: true, _canEatFood: true }) return DogState.FollowFood;
 
             if (machineInput._playerState == PlayerState.Throw || machineInput._isFollowingStick)
                 return DogState.FollowStick;
             
-            if (machineInput._playerState == PlayerState.Call && 
-                machineInput._playerDogDistance <= machineInput._listenDistance) 
-                return DogState.FollowCall;
-            
             if (machineInput._dogBusy) return DogState.OnTargetAction;
 
             if (machineInput._dogFollowingTOI) return DogState.FollowTOI;
+            
+            if (machineInput._playerState == PlayerState.Call && 
+                machineInput._playerDogDistance <= machineInput._listenDistance) 
+                return DogState.FollowCall;
 
-            if (machineInput._playerDogDistance > machineInput._listenDistance) return DogState.Idle;
+            // if (machineInput._playerDogDistance > machineInput._listenDistance) return DogState.Idle;
             
             switch (machineInput._playerState)
             {
