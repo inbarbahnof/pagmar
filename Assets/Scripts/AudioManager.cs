@@ -56,7 +56,7 @@ namespace Audio.FMOD
             }
         }
         
-        public EventInstance PlayLoopingSound(EventReference sound, Vector3 pos, bool useDirection)
+        public EventInstance PlayLoopingSound(EventReference sound, Vector3 pos = default, bool useDirection = false)
         {
             EventInstance instance = RuntimeManager.CreateInstance(sound);
     

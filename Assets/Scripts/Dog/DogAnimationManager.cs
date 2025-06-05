@@ -1,4 +1,9 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using Audio.FMOD;
+using FMOD.Studio;
+using Targets;
 using UnityEngine;
 
 namespace Dog
@@ -37,6 +42,22 @@ namespace Dog
                 moveXPrevDir = dirX;
                 lastPosition = currentPosition;
             }
+        }
+        
+        public IEnumerator DogBark()
+        {
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogBark);
+            yield return new WaitForSeconds(0.3f);
+        }
+        
+        public IEnumerator DogGrowl(float timeToGrowl)
+        {
+            EventInstance sound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.DogGrowl,
+                transform.position, true);
+            
+            yield return new WaitForSeconds(timeToGrowl);
+            
+            AudioManager.Instance.StopSound(sound);
         }
     }
 }
