@@ -7,13 +7,12 @@ namespace Interactables
         [SerializeField] private PushInteractableManager pushManager;
         [SerializeField] private PlayerDeathZone deathZone;
         [SerializeField] private PushInteractable interactable;
+        [SerializeField] private Transform pushTarget;
         
-        private Vector2 _pushTarget;
 
         void Start()
         {
-            _pushTarget = transform.position;
-            interactable.SetPushTarget(_pushTarget, ReachedTarget);
+            interactable.SetPushTarget(pushTarget.position, ReachedTarget);
         }
 
         public override void ReachedTarget()

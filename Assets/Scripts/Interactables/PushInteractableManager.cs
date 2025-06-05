@@ -89,7 +89,7 @@ namespace Interactables
                     _curPushable.SetAtPos(_pushTarget.x);
                     OnReachedTarget?.Invoke();
                     SetPushTarget(Vector2.zero, null);
-                    print("finished");
+                    //print("finished");
                     StopPush();
                 }
             }
