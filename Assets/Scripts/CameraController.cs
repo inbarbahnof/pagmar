@@ -70,13 +70,11 @@ public class CameraController : MonoBehaviour
 
     public void ZoomOut()
     {
-        print("in zoom out");
         StartZoom(maxFOV);
     }
     
     public void ZoomIn()
     {
-        print("in zoom in");
         StartZoom(minFOV);
     }
 }

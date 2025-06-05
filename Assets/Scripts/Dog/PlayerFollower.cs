@@ -213,7 +213,7 @@ namespace Dog
             if(stopProb != initialStopProb) stopProb = initialStopProb;
             
             isPerformingAction = false;
-            currentTarget.OnTargetActionComplete -= OnTargetActionComplete;
+            if (currentTarget != null) currentTarget.OnTargetActionComplete -= OnTargetActionComplete;
 
             if (nextTarget != null)
             {

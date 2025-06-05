@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Interactables;
 using UnityEngine;
 
 public class StickAreaDetector : MonoBehaviour
@@ -10,9 +11,8 @@ public class StickAreaDetector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Stick"))
+        if (other.CompareTag("Stick") && other.GetComponent<ThrowablePickUpInteractable>().IsThrowing)
         {
-            print("stick landed");
             _didStickLand = true;
             StartCoroutine(SwitchOffLand());
         }
