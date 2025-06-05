@@ -17,6 +17,11 @@ namespace Ghosts
             {
                 _attack.StopAttacking(true, other.transform.position);
             }
+            else if(other.CompareTag("Border"))
+            {
+                Vector3 pos = other.GetComponent<GhostieBorder>().GetGoToPos().position;
+                _attack.StopAttacking(true, pos);
+            }
         }
     }
 }
