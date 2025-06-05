@@ -20,7 +20,7 @@ namespace Ghosts
             else if(other.CompareTag("Border"))
             {
                 Vector3 pos = other.GetComponent<GhostieBorder>().GetGoToPos().position;
-                _attack.StopAttacking(true, pos);
+                _attack.MoveToPos(pos);
             }
         }
     }
