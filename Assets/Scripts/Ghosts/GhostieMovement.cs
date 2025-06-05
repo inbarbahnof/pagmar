@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -57,11 +58,14 @@ namespace Ghosts
             return false;
         }
 
-        public void Die()
+        public void Die(Vector3 pos, Cage cage)
         {
-            // print("Die");
+            print("movement Die");
             _isMoving = false;
             if (_coroutine != null) StopCoroutine(_coroutine);
+
+            transform.DOMove(pos, 1f).SetEase(Ease.Linear)
+                .OnComplete(cage.InvokeMethod);
         }
 
         public void ResetMovement()
@@ -104,7 +108,6 @@ namespace Ghosts
                     _isMoving = false;
                     if (_coroutine != null) StopCoroutine(_coroutine);
                     _coroutine = StartCoroutine(WaitToGoBackToIdle());
-                    _coroutine = null;
                 }
                 else
                 {
@@ -119,6 +122,7 @@ namespace Ghosts
             
             _isMoving = true;
             _isRunningAway = false;
+            _coroutine = null;
             MoveAround();
         }
 

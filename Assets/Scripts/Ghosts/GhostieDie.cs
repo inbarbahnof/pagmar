@@ -17,11 +17,17 @@ namespace Ghosts
             _initialPos = _intireGhostie.transform.position;
         }
         
-        public void Die()
+        public void Die(Vector3 pos, Cage cage)
         {
+            print("Ghostie die");
             _detecror.SetActive(false);
-            _movement.Die();
+            _movement.Die(pos, cage);
             _attackDetector.IsAttackEnabled(false);
+        }
+
+        public GameObject GetGhostie()
+        {
+            return _intireGhostie;
         }
 
         public void Live()
