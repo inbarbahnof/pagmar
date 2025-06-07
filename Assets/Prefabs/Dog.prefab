@@ -438,7 +438,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStateManager: {fileID: 0}
   _targetGenerator: {fileID: 0}
-  _pushDistance: 1.5
   _listenDistance: 7
   _petDistance: 2
   getAwayFromPlayerDis: 3
@@ -822,6 +821,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2606581116919676563}
     m_Modifications:
+    - target: {fileID: 3094342671309121880, guid: 6ded59b8451f38e42bf96839d1908b59, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6229137941761492755, guid: 6ded59b8451f38e42bf96839d1908b59, type: 3}
       propertyPath: m_Name
       value: DogArt
