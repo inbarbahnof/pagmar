@@ -71,7 +71,10 @@ namespace Dog
         
         private DogState HandlePlayerPushBehavior(DogState previousDogState, DogStateMachineInput machineInput)
         {
-            return DogState.Push;
+            // return DogState.Push;
+            if (machineInput._followingCall)
+                return DogState.Push;
+            return previousDogState;
         }
     
         private DogState HandlePlayerWalkBehavior(DogState previousDogState, DogStateMachineInput machineInput)

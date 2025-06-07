@@ -35,11 +35,12 @@ namespace Dog
         private bool _isDogProtected;
         private bool _isStealthTargetClose;
         private bool _needToStealth;
+        private bool _followingCall;
 
         private DogStateComputer _computer;
         private float _dogPlayerDistance;
 
-        private bool _isRunning;
+        private Coroutine _stopFollowCoroutine;
         
         // getters
         public float DogPlayerDistance => _dogPlayerDistance;
@@ -68,8 +69,8 @@ namespace Dog
 
         private void Update()
         {
-            // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
-            
+            print("dog State " + curState + " player state " + playerStateManager.CurrentState);
+            print("following call " + _followingCall);
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
             
             _canEatFood = _targetGenerator.GetFoodTarget() != null;
@@ -79,8 +80,9 @@ namespace Dog
                 GameManager.instance.ConnectionState,
                 _dogPlayerDistance, _dogReachedTarget,
                 _dogFollowingTarget, _dogFollowingTOI,
-                _dogBusy, _listenDistance, _foodIsClose, _canEatFood, _wantFood,
-                _petDistance, _isFollowingStick, _isStealthTargetClose, _needToStealth);
+                _dogBusy, _listenDistance, _foodIsClose, _canEatFood, 
+                _wantFood, _petDistance, _isFollowingStick, 
+                _isStealthTargetClose, _needToStealth, _followingCall);
             
             // print("can eat food " + _canEatFood +" is food close " + _foodIsClose);
             
@@ -144,6 +146,7 @@ namespace Dog
                     break;
                 case (_, DogState.FollowCall):
                     curState = DogState.FollowCall;
+                    _followingCall = true;
                     _playerFollower.GoToCallTarget(_targetGenerator.GetCallTarget());
                     break;
                 case (_, DogState.FollowStick):
@@ -297,6 +300,15 @@ namespace Dog
             _isFollowingStick = false;
             _wantFood = false;
             _needToStealth = false;
+            
+            if (_stopFollowCoroutine != null) StopCoroutine(_stopFollowCoroutine);
+            _stopFollowCoroutine = StartCoroutine(StopFollowCall());
+        }
+
+        private IEnumerator StopFollowCall()
+        {
+            yield return new WaitForSeconds(5f);
+            _followingCall = false;
         }
 
         private void HandleDogFollow()
