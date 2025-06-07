@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Audio.FMOD;
+using DG.Tweening;
 using Interactables;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,6 +11,7 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] private float _pickUpAnimTime = 0.5f;
     [SerializeField] private float _throwAnimTime = 0.867f;
     [SerializeField] private float _waitOnCallTime = 1f;
+    [SerializeField] private float _climbAnimTime = 2f;
     
     public enum ThrowState
     {
@@ -33,6 +35,7 @@ public class PlayerStateManager : MonoBehaviour
     private bool _justPickedUp;
     private bool _throwing;
     private bool _isPushingFromLeft;
+    private bool _isClimbing;
 
     private Coroutine _waitToCallCoroutine;
     
@@ -76,6 +79,29 @@ public class PlayerStateManager : MonoBehaviour
     public void UpdateAimAbility(bool canAim = false)
     {
         _isAbleToAim = canAim;
+    }
+
+    public void UpdateClimbing(Transform where1, Transform where2)
+    {
+        SetState(PlayerState.Climb);
+        _isClimbing = true;
+
+        transform.DOMove(where1.position, _climbAnimTime / 2).
+            OnComplete(() => Phase2(where2));
+        
+        StartCoroutine(WaitForClimbAnim());
+    }
+
+    private void Phase2(Transform where)
+    {
+        transform.DOMove(where.position, _climbAnimTime / 2);
+    }
+
+    private IEnumerator WaitForClimbAnim()
+    {
+        yield return new WaitForSeconds(_climbAnimTime);
+
+        _isClimbing = false;
     }
 
     public void UpdatePickedUp(bool pick)
@@ -194,7 +220,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private void SetState(PlayerState newState)
     {
-        if (curState == newState) return;
+        if (curState == newState || _isClimbing) return;
         
         if (_isAbleToAim) curState = PlayerState.Aim;
         else curState = newState;

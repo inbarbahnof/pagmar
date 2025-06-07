@@ -45,6 +45,10 @@ public class InputManager : MonoBehaviour
             _player.UpdateMoveInput(Vector2.zero);
             _aimControl.UpdateAimInput(inputVal);
         }
+        else if (_stateManager.CurrentState == PlayerState.Climb)
+        {
+            _player.UpdateMoveInput(Vector2.zero);
+        }
         else
         {
             _player.UpdateMoveInput(inputVal);

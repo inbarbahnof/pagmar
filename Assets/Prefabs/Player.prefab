@@ -294,6 +294,7 @@ MonoBehaviour:
   _pickUpAnimTime: 0.5
   _throwAnimTime: 0.867
   _waitOnCallTime: 0.9
+  _climbAnimTime: 2
 --- !u!114 &8220548381845869810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +357,8 @@ MonoBehaviour:
   walkingAnimSpeed: 1
   throwAnimSpeed: 1
   petAnimSpeed: 1
+  _climbUpEventName: ClimbUp
+  _climbRightEventName: ClimbRight
 --- !u!114 &4198250712665286360
 MonoBehaviour:
   m_ObjectHideFlags: 0

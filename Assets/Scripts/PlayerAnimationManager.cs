@@ -35,6 +35,13 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private float walkingAnimSpeed = 1f;
     [SerializeField] private float throwAnimSpeed = 1f;
     [SerializeField] private float petAnimSpeed = 1f;
+
+    [Header("Event Names")] 
+    [SerializeField] private string _climbUpEventName;
+    [SerializeField] private string _climbRightEventName;
+    
+    private Spine.EventData _climbUpEventData;
+    private Spine.EventData _climbRightEventData;
     
     private PlayerAnimation _curAnim;
     
@@ -45,8 +52,28 @@ public class PlayerAnimationManager : MonoBehaviour
     {
         spineAnimationState = skeletonAnimation.AnimationState;
         skeleton = skeletonAnimation.Skeleton;
+        
+        _climbUpEventData = skeletonAnimation.Skeleton.Data.FindEvent(_climbUpEventName);
+        _climbRightEventData = skeletonAnimation.Skeleton.Data.FindEvent(_climbRightEventName);
+        
+        skeletonAnimation.AnimationState.Event += HandleAnimationStateEvent;
     }
-
+    
+    private void HandleAnimationStateEvent (TrackEntry trackEntry, Spine.Event e) {
+        Debug.Log("Event fired! " + e.Data.Name);
+        //bool eventMatch = string.Equals(e.Data.Name, eventName, System.StringComparison.Ordinal); // Testing recommendation: String compare.
+        if (e.Data == _climbUpEventData)
+        {
+            // Handle climb up event
+            Debug.Log("Climb Up Event Triggered");
+        }
+        else if (e.Data == _climbRightEventData)
+        {
+            // Handle climb right event
+            Debug.Log("Climb Right Event Triggered");
+        }
+    }
+    
     public void PlayerAnimationUpdate(PlayerAnimation animation)
     {
         if (_curAnim != animation)
@@ -78,7 +105,6 @@ public class PlayerAnimationManager : MonoBehaviour
                     break;
                 case PlayerAnimation.Climb:
                     entry = spineAnimationState.SetAnimation(0, climbAnimName, false);
-                    spineAnimationState.AddAnimation(0, idleAnimName, true, 0);
                     if (entry != null) entry.TimeScale = climbAnimSpeed;
                     break;
                 case PlayerAnimation.Run:

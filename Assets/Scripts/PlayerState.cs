@@ -7,5 +7,6 @@
     Pet,
     Aim,
     Throw,
-    Stealth
+    Stealth,
+    Climb
 }
