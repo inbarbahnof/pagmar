@@ -81,20 +81,12 @@ public class PlayerStateManager : MonoBehaviour
         _isAbleToAim = canAim;
     }
 
-    public void UpdateClimbing(Transform where1, Transform where2)
+    public void UpdateClimbing()
     {
         SetState(PlayerState.Climb);
         _isClimbing = true;
-
-        transform.DOMove(where1.position, _climbAnimTime / 2).
-            OnComplete(() => Phase2(where2));
         
         StartCoroutine(WaitForClimbAnim());
-    }
-
-    private void Phase2(Transform where)
-    {
-        transform.DOMove(where.position, _climbAnimTime / 2);
     }
 
     private IEnumerator WaitForClimbAnim()

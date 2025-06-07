@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
@@ -60,18 +61,24 @@ public class PlayerAnimationManager : MonoBehaviour
     }
     
     private void HandleAnimationStateEvent (TrackEntry trackEntry, Spine.Event e) {
-        Debug.Log("Event fired! " + e.Data.Name);
-        //bool eventMatch = string.Equals(e.Data.Name, eventName, System.StringComparison.Ordinal); // Testing recommendation: String compare.
         if (e.Data == _climbUpEventData)
         {
-            // Handle climb up event
-            Debug.Log("Climb Up Event Triggered");
+            OnClimbUpEvent();
         }
         else if (e.Data == _climbRightEventData)
         {
-            // Handle climb right event
-            Debug.Log("Climb Right Event Triggered");
+            OnClimbRightEvent();
         }
+    }
+    
+    private void OnClimbUpEvent() {
+        Vector3 newPos = new Vector3(transform.position.x + 0.1f, transform.position.y + 0.3f, 0);
+        transform.DOMove(newPos, 0.53f);
+    }
+    
+    private void OnClimbRightEvent() {
+        Vector3 newPos = new Vector3(transform.position.x + 0.25f, transform.position.y + 0.1f, 0);
+        transform.DOMove(newPos, 0.5f);
     }
     
     public void PlayerAnimationUpdate(PlayerAnimation animation)
