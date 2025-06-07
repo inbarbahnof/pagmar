@@ -28,6 +28,7 @@ namespace Dog
 
         private float stopProb = 0.7f;
         private float initialStopProb;
+        private float initialSpeed;
 
         private void Start()
         {
@@ -36,6 +37,7 @@ namespace Dog
             agent.updateUpAxis = false;
 
             initialStopProb = stopProb;
+            initialSpeed = agent.speed;
         }
 
         void Update()
@@ -44,12 +46,6 @@ namespace Dog
                 return;
 
             float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
-            
-            // print("agent remaininig distance " + agent.remainingDistance);
-            // if (agent.hasPath && agent.remainingDistance <= agent.stoppingDistance + 0.1f && isGoingToTarget)
-            // {
-            //     print("agent reached target");
-            // }
             
             // Check if the dog reached the target
             if (distance <= targetDistance && isGoingToTarget)   
@@ -62,6 +58,13 @@ namespace Dog
                 agent.isStopped = false;
                 agent.SetDestination(currentTarget.transform.position);
             }
+        }
+
+        public void SetSpeed(float speed, bool normal)
+        {
+            if (normal) agent.speed = initialSpeed;
+            else
+                agent.speed = speed;
         }
 
         public void GoToNextTarget()

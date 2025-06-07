@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -17,8 +18,11 @@ public class PlayerMove : MonoBehaviour
     private bool movingRight = true;
 
     private float _speed;
-
-    private Vector3 _lastPosition;
+    
+    private bool isAutoRunning = false;
+    private Vector2 autoRunDirection = new Vector2(1f, -0.4f); // Right and slightly down
+    private float verticalInputFactor = 0.5f; 
+    private Coroutine autoRunStopCoroutine;
 
     public bool IsMoving => isMoving;
     public bool IsPushing => isPushing;
@@ -30,7 +34,38 @@ public class PlayerMove : MonoBehaviour
         
         _playerRb = GetComponent<Rigidbody2D>();
         _stateManager = GetComponent<PlayerStateManager>();
-        _lastPosition = transform.position;
+    }
+    
+    public void StopAutoRun(float duration = 1f)
+    {
+        if (autoRunStopCoroutine != null)
+        {
+            StopCoroutine(autoRunStopCoroutine);
+        }
+        autoRunStopCoroutine = StartCoroutine(GradualStopAutoRun(duration));
+    }
+    
+    private IEnumerator GradualStopAutoRun(float duration)
+    {
+        Vector2 startInput = _moveInput;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            _moveInput = Vector2.Lerp(startInput, Vector2.zero, t);
+            yield return null;
+        }
+
+        _moveInput = Vector2.zero;
+        isAutoRunning = false;
+    }
+    
+    public void StartAutoRunWithVerticalControl()
+    {
+        isAutoRunning = true;
+        _moveInput = autoRunDirection;
     }
 
     private void FixedUpdate()
@@ -141,7 +176,15 @@ public class PlayerMove : MonoBehaviour
 
     public void UpdateMoveInput(Vector2 moveInput)
     {
-        _moveInput = moveInput;
+        if (isAutoRunning)
+        {
+            // Only allow vertical influence (add slight control to the base autoRunDirection)
+            _moveInput = new Vector2(autoRunDirection.x, autoRunDirection.y + moveInput.y * verticalInputFactor);
+        }
+        else
+        {
+            _moveInput = moveInput;
+        }
     }
 
     public void ResetToCheckpoint(Vector2 pos)

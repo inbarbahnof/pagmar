@@ -38,6 +38,8 @@ namespace Dog
 
         private DogStateComputer _computer;
         private float _dogPlayerDistance;
+
+        private bool _isRunning;
         
         // getters
         public float DogPlayerDistance => _dogPlayerDistance;
@@ -100,6 +102,11 @@ namespace Dog
         {
             //print("in SetWantsFood");
             _wantFood = want;
+        }
+
+        public void Running()
+        {
+            _playerFollower.SetSpeed(5.5f,false);
         }
 
         public void ResetToCheckpoint(Vector2 position)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DogWaitForPlayer : MonoBehaviour
 {
     [SerializeField] private WantFoodTarget _wantFoodTarget;
+    [SerializeField] private bool _isRunning;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -12,7 +13,10 @@ public class DogWaitForPlayer : MonoBehaviour
         {
             print("wait for player");
             TargetGenerator.instance.SetWantFoodTarget(_wantFoodTarget);
-            other.GetComponent<DogActionManager>().SetWantsFood(true);
+            
+            DogActionManager dog = other.GetComponent<DogActionManager>();
+            dog.SetWantsFood(true);
+            if (_isRunning) dog.Running();
         }
     }
 
