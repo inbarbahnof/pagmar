@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class AimControl : MonoBehaviour
 {
@@ -20,6 +21,45 @@ public class AimControl : MonoBehaviour
     private const float inputDeadzone = 0.05f;
     private Vector2 _smoothedAimInput = Vector2.zero;
     [SerializeField] private float aimSmoothSpeed = 10f; // Higher = snappier
+    
+    /*private Coroutine _aimResetCoroutine;
+
+    public void UpdateAimInput(Vector2 input)
+    {
+        if (input.magnitude < inputDeadzone)
+        {
+            if (_aimResetCoroutine == null)
+            {
+                _aimResetCoroutine = StartCoroutine(DelayedStopAiming());
+            }
+
+            _aimInput = Vector2.zero;
+            trajectory.Hide();
+            return;
+        }
+
+        if (_aimResetCoroutine != null)
+        {
+            StopCoroutine(_aimResetCoroutine);
+            _aimResetCoroutine = null;
+        }
+
+        _aimInput = input;
+        _isAiming = true;
+    }
+
+    private IEnumerator DelayedStopAiming()
+    {
+        yield return new WaitForSeconds(1f);
+
+        // Check if the current input is still below the deadzone
+        if (_aimInput.magnitude < inputDeadzone)
+        {
+            _isAiming = false;
+        }
+
+        _aimResetCoroutine = null;
+    }*/
     
     public void UpdateAimInput(Vector2 input)
     {

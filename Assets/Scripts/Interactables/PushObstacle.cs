@@ -26,7 +26,6 @@ namespace Interactables
         public override void ResetObstacle()
         {
             pushManager.ResetToCheckpoint(interactable);
-            
             NavMeshManager.instance.ReBake();
             if (deathZone != null) deathZone.gameObject.SetActive(true);
         }

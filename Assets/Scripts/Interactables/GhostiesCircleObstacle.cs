@@ -8,7 +8,7 @@ using UnityEngine;
 public class GhostiesCircleObstacle : Obstacle
 {
     [SerializeField] private FoodTarget[] _food;
-    [SerializeField] private Obstacle _pushObs;
+    [SerializeField] private PushObstacle _pushObs;
     [SerializeField] private DogActionManager _dog;
     [SerializeField] private GhostieMovement[] _ghosties;
     [SerializeField] private PlayerStateManager _player;
@@ -99,7 +99,7 @@ public class GhostiesCircleObstacle : Obstacle
         PickUpInteractableManager.instance.DropObject();
         PushInteractableManager.instance.StopPush();
 
-        _player.OnFinishedInteraction(PickUpInteractableManager.instance.CurPickUp);
         _pushObs.ResetObstacle();
+        _player.OnFinishedInteraction(PickUpInteractableManager.instance.CurPickUp);
     }
 }

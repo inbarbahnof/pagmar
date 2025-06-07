@@ -113,6 +113,7 @@ public class PlayerStateManager : MonoBehaviour
     public void OnFinishedInteraction(BaseInteractable interactable = null)
     {
         SetState(PlayerState.Idle);
+        //UpdatePickedUp(false);
     }
 
     public void UpdatePetting()
