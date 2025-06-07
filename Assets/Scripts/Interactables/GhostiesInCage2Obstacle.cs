@@ -6,13 +6,15 @@ using UnityEngine;
 
 namespace Interactables
 {
-    public class GhostiesInCageObstacle : Obstacle
+    public class GhostiesInCage2Obstacle : Obstacle
     {
         [SerializeField] private Cage _cage;
         [SerializeField] private Transform _cageDropPos;
         [SerializeField] private float _dropDuration = 1.3f;
         [SerializeField] private GameObject _deathZoneToDestroy;
         [SerializeField] private GhostieDie[] _ghosties;
+
+        private bool _isZoomOut;
 
         private void Start()
         {
@@ -39,7 +41,17 @@ namespace Interactables
         {
             if (other.CompareTag("Player"))
             {
-                CameraController.instance.ZoomOut();
+                if (_isZoomOut)
+                {
+                    _isZoomOut = false;
+                    CameraController.instance.ZoomIn();
+                }
+                else
+                {
+                    _isZoomOut = true;
+                    CameraController.instance.ZoomOut();
+                }
+                
             }
         }
 
