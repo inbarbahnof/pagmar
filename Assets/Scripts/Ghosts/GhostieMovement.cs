@@ -60,7 +60,6 @@ namespace Ghosts
 
         public void Die(Vector3 pos, Cage cage)
         {
-            print("movement Die");
             _isMoving = false;
             if (_coroutine != null) StopCoroutine(_coroutine);
 

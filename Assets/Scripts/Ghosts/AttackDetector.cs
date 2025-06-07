@@ -34,7 +34,7 @@ namespace Ghosts
 
         public void IsAttackEnabled(bool enabled)
         {
-            print("IsAttackEnabled " + name + " " + enabled);
+            // print("IsAttackEnabled " + name + " " + enabled);
             _canAttack = enabled;
         }
     }

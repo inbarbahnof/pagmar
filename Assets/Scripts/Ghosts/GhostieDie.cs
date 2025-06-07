@@ -19,7 +19,6 @@ namespace Ghosts
         
         public void Die(Vector3 pos, Cage cage)
         {
-            print("Ghostie die");
             _detecror.SetActive(false);
             _movement.Die(pos, cage);
             _attackDetector.IsAttackEnabled(false);
