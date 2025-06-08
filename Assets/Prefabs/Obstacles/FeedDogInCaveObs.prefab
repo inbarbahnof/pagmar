@@ -607,6 +607,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 507665360089745949, guid: 368de2fb16fea7d40b84bc4c6bae82aa, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 507665360089745949, guid: 368de2fb16fea7d40b84bc4c6bae82aa, type: 3}
       propertyPath: m_SortingOrder
       value: 3
       objectReference: {fileID: 0}
@@ -720,9 +724,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 371244590126375767}
     m_Modifications:
+    - target: {fileID: 173381188890972788, guid: 855cd16a2c9546844bc96e3d028d6fcc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.59
+      objectReference: {fileID: 0}
     - target: {fileID: 1017895531141304914, guid: 855cd16a2c9546844bc96e3d028d6fcc, type: 3}
       propertyPath: m_Name
       value: Cave
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438166231753897638, guid: 855cd16a2c9546844bc96e3d028d6fcc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.6699982
       objectReference: {fileID: 0}
     - target: {fileID: 3957377222324493106, guid: 855cd16a2c9546844bc96e3d028d6fcc, type: 3}
       propertyPath: m_LocalPosition.x
