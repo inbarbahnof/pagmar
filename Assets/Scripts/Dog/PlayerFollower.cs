@@ -17,6 +17,8 @@ namespace Dog
         public event Action OnStartFollow;
 
         [SerializeField] private Transform player;
+        [SerializeField] private DogAnimationManager _animationManager;
+        private float minMoveAninmSpeed = 0.1f;
         
         private NavMeshAgent agent;
         private Target currentTarget;
@@ -42,6 +44,8 @@ namespace Dog
 
         void Update()
         {
+            _animationManager.UpdateMoving(!agent.isStopped);
+            
             if (currentTarget == null || isPerformingAction)
                 return;
 

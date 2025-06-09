@@ -2,6 +2,7 @@ using System.Collections;
 using Audio.FMOD;
 using CheckpointUtils;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int chapter;
     [SerializeField] private int connectionState;
     [SerializeField] private InputManager _playerInput;
+    [SerializeField] private CameraFade _cameraFade;
     public int ConnectionState => connectionState;
     
     void Start()
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
         else Debug.LogError("TOO MANY GAME MANAGERS!");
        
         PlayMusicAccordingToLevel();
+        _cameraFade.FadeOutOverTime(true);
     }
 
     private void PlayMusicAccordingToLevel()
@@ -53,6 +56,25 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         _playerInput.ChangeCallState(connectionState);
+    }
+
+    public void LevelEnd()
+    {
+        StartCoroutine(LevelEndCoroutine());
+    }
+
+    private IEnumerator LevelEndCoroutine()
+    {
+        Time.timeScale = 0;
+        _cameraFade.FadeOutOverTime();
+        yield return new WaitForSecondsRealtime(3f);
+        ChangeScene();
+    }
+    
+    public void ChangeScene()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     
 }

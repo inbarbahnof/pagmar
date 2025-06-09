@@ -44,14 +44,16 @@ namespace Interactables
 
         public void TryStartPush(PushInteractable interactable, Vector3 playerPos, Vector3 dogPos)
         {
-            float playerDogDistance = Vector3.Distance(player.position, dog.position);
-            if (interactable.NeedDogToPush())
+            if (dog is not null)
             {
-                if (playerDogDistance > _pushDistance) return;
-                dog.position = dogPos;
-                _dogOffsetFromObject = interactable.transform.position - dog.position;
+                float playerDogDistance = Vector3.Distance(player.position, dog.position);
+                if (interactable.NeedDogToPush())
+                {
+                    if (playerDogDistance > _pushDistance) return;
+                    dog.position = dogPos;
+                    _dogOffsetFromObject = interactable.transform.position - dog.position;
+                }
             }
-            
             _isPushing = true;
             _playerMove.SetIsPushing(true, playerPos, interactable.GetStationary());
 

@@ -81,13 +81,13 @@ public class PlayerAnimationManager : MonoBehaviour
         transform.DOMove(newPos, 0.5f);
     }
     
-    public void PlayerAnimationUpdate(PlayerAnimation animation)
+    public void PlayerAnimationUpdate(PlayerAnimation anim)
     {
-        if (_curAnim != animation)
+        if (_curAnim != anim)
         {
             TrackEntry entry = null;
             // print("switching from animation " + _curAnim +" to animation " + animation);
-            switch (animation)
+            switch (anim)
             {
                 case PlayerAnimation.Idle:
                     entry = spineAnimationState.SetAnimation(0, idleAnimName, true);
@@ -142,7 +142,7 @@ public class PlayerAnimationManager : MonoBehaviour
                     break;
             }
 
-            _curAnim = animation;
+            _curAnim = anim;
         }
     }
 }
