@@ -1,10 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SceneEndPoint : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        GameManager.instance.LevelEnd();
+        if (other.CompareTag("Player")) GameManager.instance.LevelEnd();
     }
 }

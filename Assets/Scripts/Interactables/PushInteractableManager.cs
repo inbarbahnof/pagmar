@@ -30,7 +30,7 @@ namespace Interactables
                 instance = this;
             }
             else Debug.LogError("TOO MANY PUSH INTERACTABLE MANAGERS!");
-
+            
             _playerMove = player.GetComponent<PlayerMove>();
             if (dog != null) _dogAction = dog.GetComponent<DogActionManager>();
         }
@@ -44,7 +44,7 @@ namespace Interactables
 
         public void TryStartPush(PushInteractable interactable, Vector3 playerPos, Vector3 dogPos)
         {
-            if (dog is not null)
+            if (dog != null)
             {
                 float playerDogDistance = Vector3.Distance(player.position, dog.position);
                 if (interactable.NeedDogToPush())

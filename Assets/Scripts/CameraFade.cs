@@ -7,10 +7,12 @@ public class CameraFade : MonoBehaviour
 {
     [SerializeField] private Image fade;
     [SerializeField] private float duration = 3f;
-    public Color startColor = new Color(0, 0, 0, 0);
-    public Color endColor = new Color(0, 0, 0, 1);
+    private readonly Color _startColor = new Color(0, 0, 0, 0);
+    private readonly Color _endColor = new Color(0, 0, 0, 1);
 
     private Coroutine _fadeOutCoroutine;
+
+    public float Duration => duration;
 
     private void Update()
     {
@@ -37,8 +39,8 @@ public class CameraFade : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         float time = 0f;
 
-        Color fromColor = reverse ? endColor : startColor;
-        Color toColor   = reverse ? startColor : endColor;
+        Color fromColor = reverse ? _endColor : _startColor;
+        Color toColor   = reverse ? _startColor : _endColor;
 
         while (time < duration)
         {

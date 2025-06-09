@@ -18,11 +18,13 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
-        if (checkpointManagerInstance == null)
-        {
-            checkpointManagerInstance = new CheckpointManager(GetComponent<CheckpointOriginator>());
-        }
-        else Debug.LogError("TOO MANY CHECKPOINT MANAGERS!");
+        // if (checkpointManagerInstance == null)
+        // {
+        //     checkpointManagerInstance = new CheckpointManager(GetComponent<CheckpointOriginator>());
+        // }
+        // else Debug.LogError("TOO MANY CHECKPOINT MANAGERS!");
+        
+        checkpointManagerInstance = new CheckpointManager(GetComponent<CheckpointOriginator>());
 
         if (instance == null)
         {
@@ -67,14 +69,18 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         _cameraFade.FadeOutOverTime();
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSecondsRealtime(_cameraFade.Duration);
         ChangeScene();
     }
     
-    public void ChangeScene()
+    private void ChangeScene()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        int nextSceneIdx = SceneManager.GetActiveScene().buildIndex + 1;
+        if (SceneManager.sceneCountInBuildSettings > nextSceneIdx)
+            
+            SceneManager.LoadScene(nextSceneIdx);
+        else print("end");
     }
     
 }
