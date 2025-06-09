@@ -20,7 +20,6 @@ public class NavMeshManager : MonoBehaviour
 
     public void ReBake()
     {
-        print("rebake");
         Surface2D.UpdateNavMesh(Surface2D.navMeshData);
     }
 }

@@ -23,7 +23,7 @@ namespace Interactables
 
         private void HandleGhostEnterCage()
         {
-            if (_cage.GhostiesInCage >= 2)
+            if (_cage.GhostiesInCage >= 1)
             {
                 _cage.transform.DOMove(_cageDropPos.position, _dropDuration)
                     .SetEase(Ease.OutBounce)
