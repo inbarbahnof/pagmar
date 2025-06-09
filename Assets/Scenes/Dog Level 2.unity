@@ -8132,17 +8132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ec8747e4fbb5644900e8f67a185966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1892569891 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2126287841468501225, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
-  m_PrefabInstance: {fileID: 2961544561598206256}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fa982fff3cb7824bb0a78bd46770bc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1894380536
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9503,30 +9492,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5184689463612672951, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
-      propertyPath: _animationName
-      value: Walk
-      objectReference: {fileID: 0}
     - target: {fileID: 6921637257308304299, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
       propertyPath: m_Name
       value: Dog
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182681234904935915, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7387765775840449282, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8767457203420734768, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1050567128}
-    - target: {fileID: 8767457203420734768, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
-      propertyPath: _animationManager
-      value: 
-      objectReference: {fileID: 1892569891}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
