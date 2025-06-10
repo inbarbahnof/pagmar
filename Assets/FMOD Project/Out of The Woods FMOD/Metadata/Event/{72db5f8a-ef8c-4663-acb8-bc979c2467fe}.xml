@@ -57,7 +57,7 @@
 			<destination>{e4072bfb-5bf2-4cc5-a64d-5b20aae8a6f3}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{979ab450-fc15-46d9-9db7-23ccdc762d9f}</destination>
+			<destination>{80dee397-5fe2-4f23-934b-98059cb7cb3a}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{848656e7-4650-4072-9ab7-8a9f85bdc048}" />
@@ -89,9 +89,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{aea942b4-6117-4c9e-8449-35ae46116507}">
-		<property name="volume">
-			<value>2.5</value>
-		</property>
 		<relationship name="effectChain">
 			<destination>{d9449d67-517d-47ac-8b90-8af0befdde2b}</destination>
 		</relationship>
@@ -129,6 +126,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{4aa62160-a828-4edf-b791-1edff6a92995}">
+		<property name="volume">
+			<value>2</value>
+		</property>
 		<property name="name">
 			<value>footsteps</value>
 		</property>
