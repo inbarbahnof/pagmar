@@ -5,6 +5,7 @@ using UnityEngine.Serialization;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float _runSpeed = 4.7f;
+    [SerializeField] private float _runFastSpeed = 5.5f;
     [SerializeField] private float _pushSpeed = 3.7f;
     [SerializeField] private GameObject _playerArt;
 
@@ -60,11 +61,13 @@ public class PlayerMove : MonoBehaviour
 
         _moveInput = Vector2.zero;
         isAutoRunning = false;
+        _speed = _runSpeed;
     }
     
     public void StartAutoRunWithVerticalControl()
     {
         isAutoRunning = true;
+        _speed = _runFastSpeed;
         _moveInput = autoRunDirection;
     }
 

@@ -76,6 +76,11 @@ public class PlayerStateManager : MonoBehaviour
         // print("player state " + curState);
     }
 
+    public void UpdatePlayerSpeed(bool isFast)
+    {
+        _animationManager.PlayerRunSpeed(isFast);
+    }
+
     public void UpdateAimAbility(bool canAim = false)
     {
         _isAbleToAim = canAim;

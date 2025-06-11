@@ -80,6 +80,12 @@ public class PlayerAnimationManager : MonoBehaviour
         Vector3 newPos = new Vector3(transform.position.x + 0.25f, transform.position.y + 0.1f, 0);
         transform.DOMove(newPos, 0.5f);
     }
+
+    public void PlayerRunSpeed(bool isFast)
+    {
+        if (isFast) runAnimSpeed = 1.5f;
+        else runAnimSpeed = 1.25f;
+    }
     
     public void PlayerAnimationUpdate(PlayerAnimation anim)
     {
