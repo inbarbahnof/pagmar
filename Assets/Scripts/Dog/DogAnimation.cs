@@ -3,6 +3,7 @@
     public enum DogAnimation
     {
         Idle,
-        Walk
+        Walk,
+        Run
     }
 }

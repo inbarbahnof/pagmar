@@ -67,7 +67,7 @@ public class PlayerStateManager : MonoBehaviour
         else _isPushingFromLeft = false;
         
         PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching, 
-            _move.IsMoving, _isCalling, _move.MovingRight, _pickedUp,
+            _move.IsMoving, _move.CanMove, _isCalling, _move.MovingRight, _pickedUp,
             _justPickedUp, _throwing, _isPushingFromLeft);
         
         PlayerAnimation animation = _computer.Compute(input);

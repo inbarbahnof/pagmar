@@ -18,12 +18,16 @@ namespace Dog
         [Header("Animation Names")] 
         [SerializeField] private string idleAnimName;
         [SerializeField] private string walkAnimName;
+        [SerializeField] private string runAnimName;
 
         [Header("Animation Speeds")] 
         [SerializeField] private float idleAnimSpeed = 1f;
         [SerializeField] private float walkAnimSpeed = 1f;
+        [SerializeField] private float runAnimSpeed = 1f;
 
         private DogAnimation _curAnim;
+        
+        private bool _isMoving;
 
         private Spine.AnimationState spineAnimationState;
         
@@ -33,16 +37,27 @@ namespace Dog
         private Vector3 lastPosition;
         private float moveXPrevDir;
 
-        private bool isMoving;
-
         private void Start()
         {
             _actionManager = GetComponent<DogActionManager>();
             lastPosition = transform.position;
             spineAnimationState = skeletonAnimation.AnimationState;
+
+            DogAnimationUpdate(DogAnimation.Idle);
         }
 
         private void Update()
+        {
+            CheckRotation();
+            
+            // animation state
+            UpdateMoving();
+            
+            DogAnimation cur = WitchAnimShouldBePlayed();
+            if (cur != _curAnim) DogAnimationUpdate(cur);
+        }
+
+        private void CheckRotation()
         {
             Vector3 currentPosition = transform.position;
             float dirX = currentPosition.x - lastPosition.x;
@@ -57,17 +72,30 @@ namespace Dog
                 );
             }
 
-            if (_actionManager.CurState != DogState.Push)
-            {
-                moveXPrevDir = dirX;
-                lastPosition = currentPosition;
-            }
+            // if (_actionManager.CurState != DogState.Push)
+            // {
+            //     moveXPrevDir = dirX;
+            //     lastPosition = currentPosition;
+            // }
         }
 
-        public void UpdateMoving(bool moving)
+        private void UpdateMoving()
         {
-            DogAnimation newState = moving ? DogAnimation.Walk : DogAnimation.Idle;
-            if (newState != _curAnim) DogAnimationUpdate(newState);
+            Vector3 currentPosition = transform.position;
+            float distanceMoved = Vector3.Distance(currentPosition, lastPosition);
+            _isMoving = distanceMoved > 0.02f;
+            lastPosition = currentPosition; 
+        }
+
+        private DogAnimation WitchAnimShouldBePlayed()
+        {
+            if (_isMoving)
+            {
+                if (_actionManager.IsRunning) return DogAnimation.Run;
+                return DogAnimation.Walk;
+            }
+            
+            return DogAnimation.Idle;
         }
         
         public IEnumerator DogBark()
@@ -88,24 +116,25 @@ namespace Dog
         
         public void DogAnimationUpdate(DogAnimation anim)
         {
-            if (_curAnim != anim)
+            TrackEntry entry = null;
+            // print("switching from animation " + _curAnim +" to animation " + anim);
+            switch (anim)
             {
-                TrackEntry entry = null;
-                // print("switching from animation " + _curAnim +" to animation " + anim);
-                switch (anim)
-                {
-                    case DogAnimation.Idle:
-                        entry = spineAnimationState.SetAnimation(0, idleAnimName, true);
-                        if (entry != null) entry.TimeScale = idleAnimSpeed;
-                        break;
-                    case DogAnimation.Walk:
-                        entry = spineAnimationState.SetAnimation(0, walkAnimName, true);
-                        if (entry != null) entry.TimeScale = walkAnimSpeed;
-                        break;
-                }
-
-                _curAnim = anim;
+                case DogAnimation.Idle:
+                    entry = spineAnimationState.SetAnimation(0, idleAnimName, true);
+                    if (entry != null) entry.TimeScale = idleAnimSpeed;
+                    break;
+                case DogAnimation.Walk:
+                    entry = spineAnimationState.SetAnimation(0, walkAnimName, true);
+                    if (entry != null) entry.TimeScale = walkAnimSpeed;
+                    break;
+                case DogAnimation.Run:
+                    entry = spineAnimationState.SetAnimation(0, runAnimName, true);
+                    if (entry != null) entry.TimeScale = runAnimSpeed;
+                    break;
             }
+
+            _curAnim = anim;
         }
     }
 }

@@ -48,6 +48,7 @@ namespace Dog
         public float ListenDistance => _listenDistance;
         public bool IsDogProtected => _isDogProtected;
         public DogState CurState => curState;
+        public bool IsRunning => _playerFollower.IsRunning;
 
         private void Start()
         {

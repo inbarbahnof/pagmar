@@ -26,6 +26,7 @@ public class PlayerMove : MonoBehaviour
     private Coroutine autoRunStopCoroutine;
 
     public bool IsMoving => isMoving;
+    public bool CanMove => canMove;
     public bool IsPushing => isPushing;
     public bool MovingRight => movingRight;
 

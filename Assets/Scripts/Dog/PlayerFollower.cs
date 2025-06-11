@@ -28,9 +28,13 @@ namespace Dog
         private bool isGoingToTarget = false;
         // private bool isTargetActionDone = false;
 
+        private bool _isRunning;
+
         private float stopProb = 0.7f;
         private float initialStopProb;
         private float initialSpeed;
+
+        public bool IsRunning => _isRunning;
 
         private void Start()
         {
@@ -44,8 +48,6 @@ namespace Dog
 
         void Update()
         {
-            _animationManager.UpdateMoving(!agent.isStopped);
-            
             if (currentTarget == null || isPerformingAction)
                 return;
 
@@ -67,9 +69,16 @@ namespace Dog
 
         public void SetSpeed(float speed, bool normal)
         {
-            if (normal) agent.speed = initialSpeed;
+            if (normal)
+            {
+                _isRunning = false;
+                agent.speed = initialSpeed;
+            }
             else
+            {
+                _isRunning = true;
                 agent.speed = speed;
+            }
         }
 
         public void GoToNextTarget()

@@ -33,6 +33,7 @@
     private PlayerAnimation HandleWalkAnim(PlayerAnimationInput input)
     {
         if (input._isCrouching) return PlayerAnimation.CrouchWalk;
+        if (!input._canMove) return PlayerAnimation.Idle;
         return PlayerAnimation.Run;
     }
 

@@ -457,8 +457,10 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 5184689463612672951}
   idleAnimName: Idle
   walkAnimName: Walk
+  runAnimName: Run
   idleAnimSpeed: 1
   walkAnimSpeed: 1
+  runAnimSpeed: 1
   art: {fileID: 5383646546148844883}
 --- !u!114 &4631522509052752445
 MonoBehaviour:
@@ -716,7 +718,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _actionManager: {fileID: 1538025327645606136}
-  _targetGenerator: {fileID: 0}
 --- !u!50 &3345117996108438016
 Rigidbody2D:
   serializedVersion: 5
