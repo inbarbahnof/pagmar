@@ -297,9 +297,10 @@ GameObject:
   - component: {fileID: 2986527382670562028}
   - component: {fileID: 7307591643191433319}
   - component: {fileID: 1568762613084190440}
+  - component: {fileID: 3824120406301899836}
   m_Layer: 0
   m_Name: Detector
-  m_TagString: Untagged
+  m_TagString: GhostieDetector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -423,3 +424,19 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &3824120406301899836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7839447213806282766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef40c131bec4b86890b2f2b93c3c6f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dogTempComunication: {fileID: 0}
+  distance: 2
+  isTOI: 0
+  _hoverTime: 2

@@ -36,6 +36,7 @@ namespace Dog
         private bool _isStealthTargetClose;
         private bool _needToStealth;
         private bool _followingCall;
+        private bool _isThereGhostie;
 
         private DogStateComputer _computer;
         private float _dogPlayerDistance;
@@ -69,12 +70,15 @@ namespace Dog
 
         private void Update()
         {
-            //print("dog State " + curState + " player state " + playerStateManager.CurrentState);
-            //print("following call " + _followingCall);
+            // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
+            // print("_isThereGhostie " + _isThereGhostie);
+            // print("following call " + _followingCall);
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
             
             _canEatFood = _targetGenerator.GetFoodTarget() != null;
             _isStealthTargetClose = _targetGenerator.GetStealthTarget(false) != null;
+
+            _isThereGhostie = _targetGenerator.IsThereGhositeClose();
             
             DogStateMachineInput newInput = new DogStateMachineInput(playerStateManager.CurrentState, 
                 GameManager.instance.ConnectionState,
@@ -82,7 +86,8 @@ namespace Dog
                 _dogFollowingTarget, _dogFollowingTOI,
                 _dogBusy, _listenDistance, _foodIsClose, _canEatFood, 
                 _wantFood, _petDistance, _isFollowingStick, 
-                _isStealthTargetClose, _needToStealth, _followingCall);
+                _isStealthTargetClose, _needToStealth, 
+                _followingCall, _isThereGhostie);
             
             // print("can eat food " + _canEatFood +" is food close " + _foodIsClose);
             
@@ -144,9 +149,15 @@ namespace Dog
                     HandleDogFollowTOI();
                     _playerFollower.GoToFoodTarget(_targetGenerator.GetFoodTarget());
                     break;
+                case (_, DogState.ChaseGhostie):
+                    curState = DogState.ChaseGhostie;
+                    _playerFollower.GoToFoodTarget(_targetGenerator.GetClosestGhostie(transform));
+                    break;
                 case (_, DogState.FollowCall):
                     curState = DogState.FollowCall;
                     _followingCall = true;
+                    if (_stopFollowCoroutine != null) StopCoroutine(_stopFollowCoroutine);
+                    _stopFollowCoroutine = StartCoroutine(StopFollowCall());
                     _playerFollower.GoToCallTarget(_targetGenerator.GetCallTarget());
                     break;
                 case (_, DogState.FollowStick):
@@ -300,14 +311,11 @@ namespace Dog
             _isFollowingStick = false;
             _wantFood = false;
             _needToStealth = false;
-            
-            if (_stopFollowCoroutine != null) StopCoroutine(_stopFollowCoroutine);
-            _stopFollowCoroutine = StartCoroutine(StopFollowCall());
         }
 
         private IEnumerator StopFollowCall()
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(4f);
             _followingCall = false;
         }
 

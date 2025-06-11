@@ -22,12 +22,10 @@ namespace Dog
             if (machineInput._dogBusy) return DogState.OnTargetAction;
 
             if (machineInput._dogFollowingTOI) return DogState.FollowTOI;
-            
-            if (machineInput._playerState == PlayerState.Call && 
-                machineInput._playerDogDistance <= machineInput._listenDistance) 
-                return DogState.FollowCall;
 
-            // if (machineInput._playerDogDistance > machineInput._listenDistance) return DogState.Idle;
+            if (machineInput._playerState == PlayerState.Call &&
+                machineInput._playerDogDistance <= machineInput._listenDistance)
+                return HandleCallBehavior(machineInput);
             
             switch (machineInput._playerState)
             {
@@ -42,6 +40,13 @@ namespace Dog
             }
             
             return previousDogState;
+        }
+
+        private DogState HandleCallBehavior(DogStateMachineInput input)
+        {
+            if (input._isThereGhostie) return DogState.ChaseGhostie;
+            
+            return DogState.FollowCall;
         }
 
         private DogState HandleThrowStickBehavior(DogState previousDogState, DogStateMachineInput machineInput)
@@ -88,6 +93,9 @@ namespace Dog
 
                 return previousDogState;
             }
+            
+            if (machineInput._followingCall)
+                return DogState.Follow;
 
             return DogState.Idle;
         }
@@ -97,6 +105,11 @@ namespace Dog
             if (machineInput._dogReachedTarget)
             {
                 return DogState.Idle;
+            }
+
+            if (previousDogState == DogState.ChaseGhostie)
+            {
+                return previousDogState;
             }
             
             return DogState.Follow;

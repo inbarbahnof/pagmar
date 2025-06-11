@@ -89,7 +89,7 @@ namespace Ghosts
                 Vector3 directionAwayFromDog = (transform.position - dogPosition).normalized;
                 Vector3 proposedTarget = transform.position + directionAwayFromDog * _distanceToRun;
                 
-                _target = EscapePositionManager.Instance.GetClosestEscapePoint(proposedTarget);
+                _target = EscapePositionManager.Instance.GetClosestEscapePoint(proposedTarget, transform.position);
             }
         }
 
