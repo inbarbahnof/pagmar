@@ -88,6 +88,9 @@ namespace Dog
 
                 return previousDogState;
             }
+            
+            if (machineInput._followingCall)
+                return DogState.Follow;
 
             return DogState.Idle;
         }

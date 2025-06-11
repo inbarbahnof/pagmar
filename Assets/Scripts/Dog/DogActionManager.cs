@@ -69,8 +69,8 @@ namespace Dog
 
         private void Update()
         {
-            //print("dog State " + curState + " player state " + playerStateManager.CurrentState);
-            //print("following call " + _followingCall);
+            print("dog State " + curState + " player state " + playerStateManager.CurrentState);
+            print("following call " + _followingCall);
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
             
             _canEatFood = _targetGenerator.GetFoodTarget() != null;
@@ -147,6 +147,8 @@ namespace Dog
                 case (_, DogState.FollowCall):
                     curState = DogState.FollowCall;
                     _followingCall = true;
+                    if (_stopFollowCoroutine != null) StopCoroutine(_stopFollowCoroutine);
+                    _stopFollowCoroutine = StartCoroutine(StopFollowCall());
                     _playerFollower.GoToCallTarget(_targetGenerator.GetCallTarget());
                     break;
                 case (_, DogState.FollowStick):
@@ -300,14 +302,11 @@ namespace Dog
             _isFollowingStick = false;
             _wantFood = false;
             _needToStealth = false;
-            
-            if (_stopFollowCoroutine != null) StopCoroutine(_stopFollowCoroutine);
-            _stopFollowCoroutine = StartCoroutine(StopFollowCall());
         }
 
         private IEnumerator StopFollowCall()
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(4f);
             _followingCall = false;
         }
 

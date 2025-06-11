@@ -64,6 +64,7 @@ namespace Interactables
             
             _cage.ResetCage();
             CameraController.instance.ZoomIn();
+            _isZoomOut = false;
         }
             
     }
