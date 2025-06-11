@@ -2,6 +2,7 @@
 
 using System.Collections;
 using Audio.FMOD;
+using Dog;
 using UnityEngine;
 
 namespace Targets
@@ -15,7 +16,7 @@ namespace Targets
             FinishTargetAction();
         }
 
-        public override void StartTargetAction()
+        public override void StartTargetAction(PlayerFollower dog)
         {
             StartCoroutine(HoverOverTarget());
             print("attack target behavior");

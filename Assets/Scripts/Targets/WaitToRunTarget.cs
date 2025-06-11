@@ -1,4 +1,5 @@
-﻿using Interactables;
+﻿using Dog;
+using Interactables;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,7 +11,7 @@ namespace Targets
         [SerializeField] private Stealth2Obstacle _manager2;
         [SerializeField] private Stealth3Obstacle _manager3;
 
-        public override void StartTargetAction()
+        public override void StartTargetAction(PlayerFollower dog)
         {
             if (_manager2 != null) _manager2.TargetReached(_isLast);
             

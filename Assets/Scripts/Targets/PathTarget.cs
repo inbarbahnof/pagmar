@@ -15,7 +15,7 @@ namespace Targets
 
         private bool isDogOnPath;
 
-        public override void StartTargetAction()
+        public override void StartTargetAction(PlayerFollower dog)
         {
             isDogOnPath = true;
             follower.SetCurPath(pathCreator, this);

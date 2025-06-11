@@ -211,7 +211,7 @@ namespace Dog
             isGoingToTarget = false;
             
             OnPerformingTargetAction?.Invoke();
-            currentTarget.StartTargetAction();
+            currentTarget.StartTargetAction(this);
         }
 
         private void OnTargetActionComplete()

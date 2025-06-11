@@ -30,7 +30,11 @@ namespace Audio.FMOD
         
         public void PlayMusic(EventReference music)
         {
-            musicInstance.stop(STOP_MODE.IMMEDIATE);
+            if (musicInstance.isValid())
+            {
+                musicInstance.stop(STOP_MODE.ALLOWFADEOUT);
+                musicInstance.release();
+            }
             
             musicInstance = RuntimeManager.CreateInstance(music);
             musicInstance.start();
@@ -38,22 +42,39 @@ namespace Audio.FMOD
 
         public void PlayAmbiance(EventReference music)
         {
+            if (ambianceInstance.isValid())
+            {
+                ambianceInstance.stop(STOP_MODE.ALLOWFADEOUT);
+                ambianceInstance.release();
+            }
+            
             ambianceInstance = RuntimeManager.CreateInstance(music);
             ambianceInstance.start();
         }
         
         public void PlayOneShot(EventReference sound, Vector3 pos = default, bool useDirection = false)
         {
+            // if (useDirection)
+            // {
+            //     // Play 3D sound with a fixed position
+            //     RuntimeManager.PlayOneShot(sound, pos);
+            // }
+            // else
+            // {
+            //     // Play 2D sound
+            //     RuntimeManager.PlayOneShot(sound);
+            // }
+            
+            EventInstance instance = RuntimeManager.CreateInstance(sound);
             if (useDirection)
             {
                 // Play 3D sound with a fixed position
-                RuntimeManager.PlayOneShot(sound, pos);
+                instance.set3DAttributes(pos.To3DAttributes());
+                // RuntimeManager.PlayOneShot(sound, pos);
             }
-            else
-            {
-                // Play 2D sound
-                RuntimeManager.PlayOneShot(sound);
-            }
+
+            instance.start();
+            instance.release();
         }
         
         public EventInstance PlayLoopingSound(EventReference sound, Vector3 pos = default, bool useDirection = false)
@@ -62,7 +83,7 @@ namespace Audio.FMOD
     
             if (useDirection)
             {
-                instance.set3DAttributes(RuntimeUtils.To3DAttributes(pos));
+                instance.set3DAttributes(pos.To3DAttributes());
             }
 
             instance.start();  // Starts playing the sound

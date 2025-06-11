@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Dog;
 using UnityEngine;
 using Interactables;
 
@@ -12,7 +13,7 @@ namespace Targets
         [SerializeField] private bool canBeFed;
         public bool CanBeFed => canBeFed;
             
-        public override void StartTargetAction()
+        public override void StartTargetAction(PlayerFollower dog)
         {
             // print("Dog started eating food");
             if (_dogTempComunication != null)

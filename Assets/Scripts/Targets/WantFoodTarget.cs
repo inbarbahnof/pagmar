@@ -1,4 +1,5 @@
 ﻿using Audio.FMOD;
+using Dog;
 using UnityEngine;
 
 namespace Targets
@@ -8,7 +9,7 @@ namespace Targets
         [SerializeField] private bool _isFoodClose;
         
         private bool _foodCanBeReached = false;
-        public override void StartTargetAction()
+        public override void StartTargetAction(PlayerFollower dog)
         {
             if (_foodCanBeReached) FinishTargetAction();
             
@@ -16,7 +17,8 @@ namespace Targets
             if (_dogTempComunication != null)
                 _dogTempComunication.SetActive(true);
             
-            if (_isFoodClose) AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogBark);
+            if (_isFoodClose) AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogBark,
+                dog.transform.position, true);
         }
 
         public void FoodCanBeReached()

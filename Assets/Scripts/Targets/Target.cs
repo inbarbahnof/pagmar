@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Dog;
 using UnityEngine;
 
 namespace Targets
@@ -19,7 +20,7 @@ namespace Targets
         }
 
         // started the action
-        public virtual void StartTargetAction()
+        public virtual void StartTargetAction(PlayerFollower dog)
         {
             FinishTargetAction();
         }
