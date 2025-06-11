@@ -69,7 +69,7 @@
 			<destination>{71e62a04-7915-42cf-aabb-2cc1a8e8c17a}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{979ab450-fc15-46d9-9db7-23ccdc762d9f}</destination>
+			<destination>{b0ab63be-adee-4960-9608-885401b65a3b}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{961d6683-5015-4fc9-a7c1-167e778e3d8b}" />
@@ -181,11 +181,14 @@
 		<property name="length">
 			<value>220</value>
 		</property>
+		<property name="volume">
+			<value>5</value>
+		</property>
 		<relationship name="fadeOutCurve">
 			<destination>{39dfbd72-3747-40ff-aa40-cb455a64d868}</destination>
 		</relationship>
 		<relationship name="audioFile">
-			<destination>{bbc9e532-b529-46fa-ab23-3d0dab7ef9a2}</destination>
+			<destination>{3577d9a1-22bd-4e83-92c8-0d78e1d878cd}</destination>
 		</relationship>
 	</object>
 	<object class="TransitionSourceSound" id="{36b17d3b-7cbc-46f3-8e68-88ccbd013e20}">
@@ -222,6 +225,9 @@
 		<property name="length">
 			<value>220</value>
 		</property>
+		<property name="volume">
+			<value>5</value>
+		</property>
 		<relationship name="fadeOutCurve">
 			<destination>{8720233a-5e77-4483-86dc-5f6b2a3e608f}</destination>
 		</relationship>
@@ -246,6 +252,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{c044555b-2332-47de-a4c5-64c5bfd0696e}">
+		<property name="volume">
+			<value>-3</value>
+		</property>
 		<property name="name">
 			<value>Piano PAD</value>
 		</property>
@@ -264,10 +273,10 @@
 			<value>59.5</value>
 		</property>
 		<property name="length">
-			<value>67</value>
+			<value>62</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{173ee4b3-38d3-4129-9458-ff77d0e607da}</destination>
+			<destination>{889d9078-27f5-4bf1-8822-942551966554}</destination>
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{528729d8-462e-48f5-8487-1555b3fda20b}">
@@ -278,13 +287,13 @@
 			<value>75</value>
 		</property>
 		<property name="start">
-			<value>67</value>
+			<value>62</value>
 		</property>
 		<property name="length">
 			<value>26</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{c8787a2a-d55e-4a0d-8851-84457b96cd03}</destination>
+			<destination>{9cd787e9-8f84-405a-a8d9-28c0948d9893}</destination>
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{103ab4b8-83c6-4756-aadc-ad59833d05c1}">
@@ -295,13 +304,13 @@
 			<value>75</value>
 		</property>
 		<property name="start">
-			<value>93</value>
+			<value>88</value>
 		</property>
 		<property name="length">
-			<value>43.5</value>
+			<value>48</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{39f1d23f-5242-4b4f-85fb-da3b839bf920}</destination>
+			<destination>{6f7be0af-d9d2-4014-95d4-7a1fc238dd4c}</destination>
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{75f08d06-6ecf-4c27-b1a1-6750881c57e9}">
@@ -312,27 +321,27 @@
 			<value>75</value>
 		</property>
 		<property name="start">
-			<value>136.5</value>
+			<value>136</value>
 		</property>
 		<property name="length">
-			<value>50.5</value>
+			<value>48</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{f76d1fd2-f84d-4206-8875-ac2fc456576c}</destination>
+			<destination>{ef798872-82cb-4115-92fe-fe0c97662499}</destination>
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{17219911-1029-426d-a78a-e0e982397930}">
 		<property name="start">
-			<value>187</value>
+			<value>184</value>
 		</property>
 		<property name="length">
-			<value>33</value>
+			<value>36</value>
 		</property>
 		<relationship name="fadeOutCurve">
 			<destination>{40c5b1bd-964a-4e18-a9e6-f0b2908fb313}</destination>
 		</relationship>
 		<relationship name="audioFile">
-			<destination>{7a133415-5f26-4c90-b5f2-f4eabd67174f}</destination>
+			<destination>{a5a7a13c-7469-40eb-8f97-c86c38d85ea4}</destination>
 		</relationship>
 	</object>
 	<object class="TransitionSourceSound" id="{36c944c7-5ce7-455e-9052-71602a225570}">
@@ -353,7 +362,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{95257989-1bf1-410c-8465-39606a9b18e6}">
 		<property name="volume">
-			<value>2</value>
+			<value>4</value>
 		</property>
 		<property name="name">
 			<value>Oboe</value>
@@ -761,7 +770,7 @@
 			<value>0.99011299435028244</value>
 		</property>
 		<property name="value">
-			<value>5</value>
+			<value>0</value>
 		</property>
 	</object>
 </objects>

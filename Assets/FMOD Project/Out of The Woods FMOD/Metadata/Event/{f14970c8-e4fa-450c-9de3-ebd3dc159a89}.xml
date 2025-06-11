@@ -56,10 +56,14 @@
 			<destination>{d3121ef5-184f-4d44-b984-3c27fb9881a4}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{979ab450-fc15-46d9-9db7-23ccdc762d9f}</destination>
+			<destination>{300b6176-f2aa-45cf-ab0a-0d1445d16246}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{5e6f7e91-f974-41e0-b94a-f25a55fa8023}" />
+	<object class="EventAutomatableProperties" id="{5e6f7e91-f974-41e0-b94a-f25a55fa8023}">
+		<property name="maximumDistance">
+			<value>45</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{f943f35b-65f9-49cc-9105-4bebc4ea1312}" />
 	<object class="GroupTrack" id="{95fc57c4-d0c2-4455-be43-25182da2afd9}">
 		<relationship name="modules">
@@ -80,6 +84,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{fe25a4e5-576d-4eb6-9b89-511e9dea08a3}">
+		<property name="volume">
+			<value>4</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{1d7eea85-327b-436a-ba41-27a31c8d94db}</destination>
 		</relationship>
@@ -134,10 +141,16 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{1d7eea85-327b-436a-ba41-27a31c8d94db}">
 		<relationship name="effects">
+			<destination>{1243c322-1a24-46b2-8061-b6877a7d8ae0}</destination>
 			<destination>{73a72b9c-2134-4b35-aa98-5e78868c90c7}</destination>
+			<destination>{2feab3b1-a8b3-4176-a954-d3dcd5396361}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{f3830143-ae11-48ae-a1ef-65b06f55cb97}" />
+	<object class="MixerBusPanner" id="{f3830143-ae11-48ae-a1ef-65b06f55cb97}">
+		<property name="overridingOutputFormat">
+			<value>1</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{a70a94b7-5cee-42f5-af4f-8c75c8ce63c8}" />
 	<object class="SingleSound" id="{74e5b148-960e-4f42-b6ff-dee7a9207453}">
 		<relationship name="audioFile">
@@ -190,6 +203,28 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{97351126-b7e4-403a-9378-0bd8ff60ba74}" />
+	<object class="CompressorEffect" id="{1243c322-1a24-46b2-8061-b6877a7d8ae0}">
+		<property name="threshold">
+			<value>-20.5</value>
+		</property>
+		<property name="ratio">
+			<value>2</value>
+		</property>
+		<property name="attackTime">
+			<value>3</value>
+		</property>
+		<property name="releaseTime">
+			<value>90</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{73a72b9c-2134-4b35-aa98-5e78868c90c7}" />
+	<object class="ProxyEffect" id="{2feab3b1-a8b3-4176-a954-d3dcd5396361}">
+		<property name="inputFormat">
+			<value>1</value>
+		</property>
+		<relationship name="preset">
+			<destination>{64eba102-2ee0-4f37-9d09-4076687f097b}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{519d0d9d-adda-4243-b03f-e40dd114900f}" />
 </objects>

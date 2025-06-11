@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EffectPreset" id="{64eba102-2ee0-4f37-9d09-4076687f097b}">
+		<property name="name">
+			<value>Point Source - Mono</value>
+		</property>
+		<relationship name="folder">
+			<destination>{760b98b5-6e49-4f6d-825b-3ee568eaaf64}</destination>
+		</relationship>
+		<relationship name="effect">
+			<destination>{7faf90d9-f52c-48fb-bca0-d60c5b1fe596}</destination>
+		</relationship>
+	</object>
+	<object class="SpatialiserEffect" id="{7faf90d9-f52c-48fb-bca0-d60c5b1fe596}">
+		<property name="minimumDistance">
+			<value>360</value>
+		</property>
+		<property name="maximumDistance">
+			<value>480</value>
+		</property>
+		<property name="extentMode">
+			<value>2</value>
+		</property>
+		<property name="soundSize">
+			<value>0.949999928</value>
+		</property>
+		<property name="userPanDirection">
+			<value>-99.4623184</value>
+		</property>
+	</object>
+</objects>
