@@ -11,13 +11,15 @@ namespace Targets
     {
         public static TargetGenerator instance;
         
-        [FormerlySerializedAs("targets")] [SerializeField] private List<Target> playerTargets = new List<Target>();
+        [FormerlySerializedAs("targets")] 
+        [SerializeField] private List<Target> playerTargets = new List<Target>();
         [SerializeField] private Target _callTarget;
         
         private FoodTarget _foodTarget;
         private Target _stickTarget;
         private WantFoodTarget _wantFoodTarget;
         private Target _stealthTarget;
+        private List<Target> _ghostiesTargets = new List<Target>();
 
         private bool _didStealthTargetChange;
         
@@ -89,6 +91,49 @@ namespace Targets
         public WantFoodTarget GetWantFoodTarget()
         {
             return _wantFoodTarget;
+        }
+
+        public void AddToGhostiesTargets(Target ghostie)
+        {
+            if (!_ghostiesTargets.Contains(ghostie))
+            {
+                print("added ghostie target " + ghostie);
+                _ghostiesTargets.Add(ghostie);
+            }
+        }
+
+        public void RemoveFromGhostiesTargets(Target target)
+        {
+            print("removed ghostie target " + target);
+            _ghostiesTargets.Remove(target);
+        }
+
+        public bool IsThereGhositeClose()
+        {
+            return _ghostiesTargets.Count > 0;
+        }
+
+        public Target GetClosestGhostie(Transform dog)
+        {
+            if (_ghostiesTargets == null || _ghostiesTargets.Count == 0 || dog == null)
+                return null;
+
+            Target closest = null;
+            float minDistance = float.MaxValue;
+
+            foreach (Target ghost in _ghostiesTargets)
+            {
+                if (ghost == null) continue;
+
+                float dist = Vector3.Distance(ghost.transform.position, dog.position);
+                if (dist < minDistance)
+                {
+                    minDistance = dist;
+                    closest = ghost;
+                }
+            }
+
+            return closest;
         }
 
         public void SetFoodTarget(FoodTarget target)

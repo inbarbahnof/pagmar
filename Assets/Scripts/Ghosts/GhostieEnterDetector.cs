@@ -13,7 +13,15 @@ namespace Ghosts
             {
                 _attack.Attack(other.transform);
             }
-            else if(other.CompareTag("Dog"))
+            // else if(other.CompareTag("Dog"))
+            // {
+            //     _attack.StopAttacking(true, other.transform.position);
+            // }
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if(other.CompareTag("Dog"))
             {
                 _attack.StopAttacking(true, other.transform.position);
             }

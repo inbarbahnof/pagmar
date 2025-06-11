@@ -30,7 +30,7 @@
             }
         }
 
-        public Vector3 GetClosestEscapePoint(Vector3 proposedTarget)
+        public Vector3 GetClosestEscapePoint(Vector3 proposedTarget, Vector3 ghostiePos)
         {
             if (_escapePoints == null || _escapePoints.Length == 0)
                 return proposedTarget; // fallback
@@ -40,6 +40,12 @@
 
             foreach (var point in _escapePoints)
             {
+                if (Vector3.Distance(point.position, ghostiePos) < 0.5f)
+                {
+                    // Skip this point – ghostie is already at or too close to it
+                    continue;
+                }
+                
                 float dist = Vector3.Distance(proposedTarget, point.position);
                 if (dist < minDist)
                 {

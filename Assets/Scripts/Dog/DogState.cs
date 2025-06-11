@@ -13,6 +13,7 @@
         GetAwayFromPlayer,
         OnTargetAction,
         Push,
-        Stealth
+        Stealth,
+        ChaseGhostie
     }
 }
