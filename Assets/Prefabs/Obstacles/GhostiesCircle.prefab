@@ -180,6 +180,7 @@ MonoBehaviour:
   - {fileID: 4778839341062326884}
   - {fileID: 8192891095370097894}
   - {fileID: 2513373396060675113}
+  _player: {fileID: 0}
 --- !u!1001 &802055050918464221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -710,6 +711,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PushWDogWithGhostiesObs
       objectReference: {fileID: 0}
+    - target: {fileID: 7665922440158160949, guid: d0201b625b503ed42b8aa40c496dde9d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8188717348578282293, guid: d0201b625b503ed42b8aa40c496dde9d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.852235
@@ -754,13 +759,37 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 6727292340574139274, guid: d0201b625b503ed42b8aa40c496dde9d, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3110378634286932616, guid: d0201b625b503ed42b8aa40c496dde9d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 750413065235247695}
   m_SourcePrefab: {fileID: 100100000, guid: d0201b625b503ed42b8aa40c496dde9d, type: 3}
 --- !u!4 &1543135927334838061 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8188717348578282293, guid: d0201b625b503ed42b8aa40c496dde9d, type: 3}
   m_PrefabInstance: {fileID: 7263878462299558936}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5756781313643968144 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3110378634286932616, guid: d0201b625b503ed42b8aa40c496dde9d, type: 3}
+  m_PrefabInstance: {fileID: 7263878462299558936}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &750413065235247695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5756781313643968144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!114 &8978979282620503264 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1753524149815738616, guid: d0201b625b503ed42b8aa40c496dde9d, type: 3}

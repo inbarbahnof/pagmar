@@ -19,7 +19,7 @@ namespace Ghosts
         [SerializeField] private bool _goesToRunPos;
         [SerializeField] private float _distanceToRun = 2;
         [SerializeField] private float _waitForIdle = 1.5f;
-        [SerializeField] private Vector3 runAwayPoint;
+        [SerializeField] private Transform runAwayPoint;
         [SerializeField] private float runAwaySpeed = 5f;
 
         protected Vector3 _initialPosition;
@@ -82,7 +82,7 @@ namespace Ghosts
 
             if (_goesToRunPos)
             {
-                _target = runAwayPoint;
+                _target = runAwayPoint.position;
             }
             else
             {
