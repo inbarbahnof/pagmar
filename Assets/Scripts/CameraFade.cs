@@ -36,7 +36,7 @@ public class CameraFade : MonoBehaviour
 
     private IEnumerator LerpColor(bool reverse)
     {
-        yield return new WaitForSecondsRealtime(1f);
+        if (reverse) yield return new WaitForSecondsRealtime(2f);
         float time = 0f;
 
         Color fromColor = reverse ? _endColor : _startColor;

@@ -108,7 +108,7 @@ namespace Dog
 
         public void Running()
         {
-            _playerFollower.SetSpeed(5.5f,false);
+            _playerFollower.SetSpeed(6.5f,false);
         }
 
         public void ResetToCheckpoint(Vector2 position)

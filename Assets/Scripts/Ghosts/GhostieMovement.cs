@@ -73,18 +73,23 @@ namespace Ghosts
             _isMoving = true;
             MoveAround();
         }
-
+        
         public void MoveAwayFromDog(Vector3 dogPosition)
         {
             StopGoingAround();
             _isRunningAway = true;
             _isMoving = true;
 
-            if (_goesToRunPos) _target = runAwayPoint;
+            if (_goesToRunPos)
+            {
+                _target = runAwayPoint;
+            }
             else
             {
                 Vector3 directionAwayFromDog = (transform.position - dogPosition).normalized;
-                _target = transform.position + directionAwayFromDog * _distanceToRun;
+                Vector3 proposedTarget = transform.position + directionAwayFromDog * _distanceToRun;
+                
+                _target = EscapePositionManager.Instance.GetClosestEscapePoint(proposedTarget);
             }
         }
 

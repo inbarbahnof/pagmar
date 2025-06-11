@@ -19,7 +19,9 @@ namespace Targets
                 _dogTempComunication.SetActive(true);
             
             // turn off the pickability
-            InteractableManager.instance.RemoveInteractable(GetComponent<FoodPickUpInteractable>());
+            FoodPickUpInteractable foodPickUpInteractable = GetComponent<FoodPickUpInteractable>();
+            
+            if (foodPickUpInteractable != null) InteractableManager.instance.RemoveInteractable(foodPickUpInteractable);
             GetComponent<Collider2D>().enabled = false;
             
             // eat the target

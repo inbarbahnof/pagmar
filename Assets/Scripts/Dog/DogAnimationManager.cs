@@ -6,7 +6,7 @@ using FMOD.Studio;
 using Spine;
 using Spine.Unity;
 using Targets;
-using UnityEditor.Rendering;
+// using UnityEditor.Rendering;
 using UnityEngine;
 
 namespace Dog
@@ -91,7 +91,7 @@ namespace Dog
             if (_curAnim != anim)
             {
                 TrackEntry entry = null;
-                print("switching from animation " + _curAnim +" to animation " + anim);
+                // print("switching from animation " + _curAnim +" to animation " + anim);
                 switch (anim)
                 {
                     case DogAnimation.Idle:
