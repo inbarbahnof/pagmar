@@ -16,6 +16,11 @@ namespace Interactables
 
         public override void StopInteractPress()
         {
+            
+        }
+
+        public void StopInteraction()
+        {
             base.FinishInteraction();
         }
 
@@ -24,6 +29,7 @@ namespace Interactables
             if (other.CompareTag("Player"))
             {
                 _collider.SetActive(true);
+                
             }
         }
     }

@@ -77,7 +77,7 @@ public class PlayerAnimationManager : MonoBehaviour
     }
     
     private void OnClimbRightEvent() {
-        Vector3 newPos = new Vector3(transform.position.x + 0.25f, transform.position.y + 0.1f, 0);
+        Vector3 newPos = new Vector3(transform.position.x + 0.3f, transform.position.y + 0.1f, 0);
         transform.DOMove(newPos, 0.5f);
     }
 

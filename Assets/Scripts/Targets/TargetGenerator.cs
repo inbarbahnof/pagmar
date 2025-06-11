@@ -97,14 +97,14 @@ namespace Targets
         {
             if (!_ghostiesTargets.Contains(ghostie))
             {
-                print("added ghostie target " + ghostie);
+                // print("added ghostie target " + ghostie);
                 _ghostiesTargets.Add(ghostie);
             }
         }
 
         public void RemoveFromGhostiesTargets(Target target)
         {
-            print("removed ghostie target " + target);
+            // print("removed ghostie target " + target);
             _ghostiesTargets.Remove(target);
         }
 

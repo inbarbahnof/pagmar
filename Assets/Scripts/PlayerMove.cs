@@ -66,6 +66,7 @@ public class PlayerMove : MonoBehaviour
     
     public void StartAutoRunWithVerticalControl()
     {
+        canMove = true;
         isAutoRunning = true;
         _speed = _runFastSpeed;
         _moveInput = autoRunDirection;
