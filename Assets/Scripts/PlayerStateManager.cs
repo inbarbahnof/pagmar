@@ -99,6 +99,7 @@ public class PlayerStateManager : MonoBehaviour
         yield return new WaitForSeconds(_climbAnimTime);
 
         _isClimbing = false;
+        ClimbInteractableManager.instance.StopInteraction();
     }
 
     public void UpdatePickedUp(bool pick)
