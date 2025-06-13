@@ -18,7 +18,7 @@ namespace Ghosts
         
         public override void Attack(Transform player)
         {
-            print("in attack " + player.name + " attacking " + _attacking);
+            // print("in attack " + player.name + " attacking " + _attacking);
             
             if (player == null || _attacking) return;
 

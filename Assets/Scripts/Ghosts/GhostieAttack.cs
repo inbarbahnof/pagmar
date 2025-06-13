@@ -8,12 +8,15 @@ namespace Ghosts
     {
         [SerializeField] protected float attackSpeed = 4.5f; 
         [SerializeField] protected float _attackRadius = 7f;
+        [SerializeField] protected bool _keepDistance;
+        protected float _desiredDistanceFromPlayer = 5f;
 
         protected Rigidbody2D _rb;
         protected GhostieMovement _ghostieMovement;
         protected Transform _targetPlayer;
         protected bool _attacking = false;
         protected Vector3 _initialPos;
+        protected Vector2 _attackOffset;
         
         private void Awake()
         {
@@ -37,6 +40,16 @@ namespace Ghosts
             }
         }
 
+        public void SetKeepDistance(bool keep)
+        {
+            _keepDistance = keep;
+        }
+        
+        public void SetAttackSpeed(float speed)
+        {
+            attackSpeed = speed;
+        }
+        
         public void MoveToPos(Vector3 pos)
         {
             _attacking = false;
@@ -52,6 +65,8 @@ namespace Ghosts
             if (player == null || _attacking) return;
             
             bool isRunning = _ghostieMovement.StopGoingAround();
+            
+            _attackOffset = UnityEngine.Random.insideUnitCircle.normalized;
 
             if (!isRunning)
             {
@@ -64,16 +79,38 @@ namespace Ghosts
         {
             if (_attacking && _targetPlayer != null)
             {
-                if (Vector3.Distance(transform.position, _initialPos) <= _attackRadius
-                    && Vector3.Distance(_targetPlayer.position, transform.position) <= _attackRadius )
+                float currentDistance = Vector3.Distance(transform.position, _targetPlayer.position);
+                float initialDistance = Vector3.Distance(transform.position, _initialPos);
+
+                if (initialDistance <= _attackRadius && currentDistance <= _attackRadius)
                 {
-                    Vector2 newPos = Vector2.MoveTowards(
-                        transform.position,
-                        _targetPlayer.position,
-                        attackSpeed * Time.fixedDeltaTime
-                    );
-                
-                    _rb.MovePosition(newPos);
+                    if (_keepDistance) // When keeping distance, stop moving if close enough
+                    {
+                        if (currentDistance > _desiredDistanceFromPlayer)
+                        {
+                            Vector3 targetPosWithOffset = _targetPlayer.position + (Vector3)_attackOffset;
+                            
+                            Vector2 newPos = Vector2.MoveTowards(
+                                transform.position,
+                                targetPosWithOffset,
+                                attackSpeed * Time.fixedDeltaTime
+                            );
+                            _rb.MovePosition(newPos);
+                        }
+                        else
+                        {
+                            _rb.linearVelocity = Vector2.zero;
+                        }
+                    }
+                    else
+                    {
+                        Vector2 newPos = Vector2.MoveTowards(
+                            transform.position,
+                            _targetPlayer.position,
+                            attackSpeed * Time.fixedDeltaTime
+                        );
+                        _rb.MovePosition(newPos);
+                    }
                 }
                 else
                 {
