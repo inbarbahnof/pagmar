@@ -19,12 +19,29 @@ namespace Dog
         [SerializeField] private string idleAnimName;
         [SerializeField] private string walkAnimName;
         [SerializeField] private string runAnimName;
+        [SerializeField] private string eatAnimName;
+        [SerializeField] private string growlAnimName;
+        [SerializeField] private string happyCrouchAnimName;
+        [SerializeField] private string idleCrouchAnimName;
+        [SerializeField] private string jumpAnimName;
+        [SerializeField] private string listenAnimName;
+        [SerializeField] private string sniffAnimName;
+        [SerializeField] private string walkCrouchAnimName;
 
         [Header("Animation Speeds")] 
         [SerializeField] private float idleAnimSpeed = 1f;
         [SerializeField] private float walkAnimSpeed = 1f;
-        [SerializeField] private float runAnimSpeed = 1f;
-
+        [SerializeField] private float runAnimSpeed = 1.5f;
+        [SerializeField] private float eatAnimSpeed = 0.8f;
+        [SerializeField] private float growlAnimSpeed = 1f;
+        [SerializeField] private float happyCrouchAnimSpeed = 1f;
+        [SerializeField] private float idleCrouchAnimSpeed = 1f;
+        [SerializeField] private float jumpAnimSpeed = 1f;
+        [SerializeField] private float listenAnimSpeed = 1f;
+        [SerializeField] private float sniffAnimSpeed = 0.8f;
+        [SerializeField] private float walkCrouchAnimSpeed = 0.8f;
+        
+        
         private DogAnimation _curAnim;
         
         private bool _isMoving;

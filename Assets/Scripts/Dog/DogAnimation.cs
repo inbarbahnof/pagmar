@@ -4,6 +4,15 @@
     {
         Idle,
         Walk,
-        Run
+        Run,
+        Bark,
+        Eat,
+        Growl,
+        HappyCrouch,
+        IdleCrouch,
+        Jump,
+        Listen,
+        Sniff,
+        WalkCrouch
     }
 }
