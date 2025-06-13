@@ -83,7 +83,7 @@ namespace Dog
         {
             Vector3 currentPosition = transform.position;
             float distanceMoved = Vector3.Distance(currentPosition, lastPosition);
-            _isMoving = distanceMoved > 0.02f;
+            _isMoving = distanceMoved > 0.03f;
             lastPosition = currentPosition; 
         }
 
@@ -100,7 +100,8 @@ namespace Dog
         
         public IEnumerator DogBark()
         {
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogBark);
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogBark, 
+                transform.position, true);
             yield return new WaitForSeconds(0.3f);
         }
         
