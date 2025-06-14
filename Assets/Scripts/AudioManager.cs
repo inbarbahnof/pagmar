@@ -40,6 +40,15 @@ namespace Audio.FMOD
             musicInstance.start();
         }
 
+        public void StopMusic()
+        {
+            if (musicInstance.isValid())
+            {
+                musicInstance.stop(STOP_MODE.ALLOWFADEOUT);
+                musicInstance.release();
+            }
+        }
+
         public void PlayAmbiance(EventReference music)
         {
             if (ambianceInstance.isValid())

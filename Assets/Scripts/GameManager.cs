@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         _cameraFade.FadeOutOverTime();
+        AudioManager.Instance.StopMusic();
         yield return new WaitForSecondsRealtime(_cameraFade.Duration);
         ChangeScene();
     }
