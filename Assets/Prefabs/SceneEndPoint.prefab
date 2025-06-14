@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5234787814763371842}
   - component: {fileID: 938348154698333554}
   - component: {fileID: 3580695699215994173}
+  - component: {fileID: 8735184862516754263}
   m_Layer: 0
   m_Name: SceneEndPoint
   m_TagString: Untagged
@@ -147,3 +148,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d3567d8a484b78a9d3a87cc26afe79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8735184862516754263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908801222583239690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144977d2486d862468fe5b4e59f47a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3580695699215994173}
+        m_TargetAssemblyTypeName: SceneEndPoint, Assembly-CSharp
+        m_MethodName: EndScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1

@@ -7,7 +7,7 @@ namespace Targets
 {
     public class Target : MonoBehaviour
     {
-        [SerializeField] protected GameObject _dogTempComunication;
+        [SerializeField] protected GameObject _dogTempComunication = null;
         [SerializeField] private float distance = 0.6f;
         [SerializeField] protected bool isTOI = true;
 
