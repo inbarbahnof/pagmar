@@ -66,7 +66,11 @@ namespace Ghosts
             _dead = true;
             
             transform.DOMove(pos, 1f).SetEase(Ease.Linear)
-                .OnComplete(cage.InvokeMethod);
+                .OnComplete(() =>
+                {
+                    cage.InvokeMethod();
+                    transform.SetParent(cage.transform);
+                });
         }
 
         public void ResetMovement()

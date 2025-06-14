@@ -455,6 +455,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 5184689463612672951}
+  _barkAnimationTime: 0.4
+  _growlAnimationTime: 2
   idleAnimName: Idle
   walkAnimName: Walk
   runAnimName: Run
@@ -466,6 +468,7 @@ MonoBehaviour:
   listenAnimName: Listen
   sniffAnimName: Sniff
   walkCrouchAnimName: WalkCrouch
+  barkAnimName: Bark
   idleAnimSpeed: 1
   walkAnimSpeed: 1
   runAnimSpeed: 1.5
@@ -475,6 +478,7 @@ MonoBehaviour:
   idleCrouchAnimSpeed: 1
   jumpAnimSpeed: 1
   listenAnimSpeed: 1
+  barkAnimSpeed: 1
   sniffAnimSpeed: 0.8
   walkCrouchAnimSpeed: 0.8
   art: {fileID: 5383646546148844883}

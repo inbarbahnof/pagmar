@@ -114,6 +114,11 @@ namespace Dog
             _animationManager.DogBark();
         }
 
+        public void Growl()
+        {
+            _animationManager.DogGrowl();
+        }
+
         public void SetWantsFood(bool want)
         {
             //print("in SetWantsFood");
@@ -164,6 +169,8 @@ namespace Dog
                 case (_, DogState.ChaseGhostie):
                     curState = DogState.ChaseGhostie;
                     _playerFollower.GoToFoodTarget(_targetGenerator.GetClosestGhostie(transform));
+                    Running(true);
+                    Bark();
                     break;
                 case (_, DogState.FollowCall):
                     curState = DogState.FollowCall;

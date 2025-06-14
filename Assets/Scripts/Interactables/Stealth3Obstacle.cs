@@ -32,8 +32,10 @@ namespace Interactables
         private int _curDogTarget = 0;
         private int _curPlayerBush = 0;
         private Vector3[] _stickPositions;
+        
         private bool _dogReachedFirstTarget;
         private bool _playerReachedCurrentTarget = false;
+        private Coroutine _dogDistraction;
 
         private void Start()
         {
@@ -96,7 +98,9 @@ namespace Interactables
         public void PlayerReachedStealth()
         {
             _playerReachedCurrentTarget = false;
-            StartCoroutine(WaitForDogBark());
+            
+            if (_dogDistraction != null) StopCoroutine(_dogDistraction);
+            _dogDistraction = StartCoroutine(WaitForDogBark());
         }
 
         private IEnumerator WaitForDogBark()
@@ -115,7 +119,7 @@ namespace Interactables
                     _ghostsForPlayer[_curPlayerBush].GoToTargetAndPause(_ghostDistractionForPlayer[_curPlayerBush]);
                 }
 
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(5f);
             }
 
             _curPlayerBush++;

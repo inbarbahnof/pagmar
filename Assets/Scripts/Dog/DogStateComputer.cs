@@ -20,6 +20,10 @@ namespace Dog
                 return DogState.FollowStick;
             
             if (machineInput._dogBusy && machineInput._connectionStage <= 2) return DogState.OnTargetAction;
+            
+            if (previousDogState == DogState.ChaseGhostie && 
+                machineInput is { _isThereGhostie: true, _connectionStage: >= 3 , _dogReachedTarget: false})
+                return previousDogState;
 
             if (machineInput._dogFollowingTOI) return DogState.FollowTOI;
 

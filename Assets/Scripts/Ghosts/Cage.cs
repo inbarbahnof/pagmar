@@ -6,6 +6,7 @@ namespace Ghosts
 {
     public class Cage : MonoBehaviour
     {
+        [SerializeField] private Transform _cageGoTo;
         public event Action OnGhostEnterCage;
         
         private int _ghostsInCage;
@@ -25,8 +26,6 @@ namespace Ghosts
                 );
                 
                 GhostieDie die = other.GetComponent<GhostieDie>();
-                die.Die(transform.position + randomOffset, this);
-
                 GameObject ghostie = die.GetGhostie();
                 
                 // turn the cage into ghostie parent
@@ -35,6 +34,8 @@ namespace Ghosts
                 
                 ghostieTransform.SetParent(transform);
                 _ghostiesInCage.Add(ghostieTransform);
+                
+                die.Die(transform.position + randomOffset, this);
                 
                 _ghostsInCage++;
             }

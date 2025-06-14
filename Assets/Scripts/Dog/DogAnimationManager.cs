@@ -15,6 +15,10 @@ namespace Dog
     {
         [SerializeField] SkeletonAnimation skeletonAnimation;
 
+        [Header("Animation Times")]
+        [SerializeField] private float _barkAnimationTime = 0.4f;
+        [SerializeField] private float _growlAnimationTime = 2f;
+        
         [Header("Animation Names")] 
         [SerializeField] private string idleAnimName;
         [SerializeField] private string walkAnimName;
@@ -27,6 +31,7 @@ namespace Dog
         [SerializeField] private string listenAnimName;
         [SerializeField] private string sniffAnimName;
         [SerializeField] private string walkCrouchAnimName;
+        [SerializeField] private string barkAnimName;
 
         [Header("Animation Speeds")] 
         [SerializeField] private float idleAnimSpeed = 1f;
@@ -38,6 +43,7 @@ namespace Dog
         [SerializeField] private float idleCrouchAnimSpeed = 1f;
         [SerializeField] private float jumpAnimSpeed = 1f;
         [SerializeField] private float listenAnimSpeed = 1f;
+        [SerializeField] private float barkAnimSpeed = 1f;
         [SerializeField] private float sniffAnimSpeed = 0.8f;
         [SerializeField] private float walkCrouchAnimSpeed = 0.8f;
         
@@ -45,6 +51,8 @@ namespace Dog
         private DogAnimation _curAnim;
         
         private bool _isMoving;
+        private bool _barking;
+        private bool _growling;
 
         private Spine.AnimationState spineAnimationState;
         
@@ -88,12 +96,6 @@ namespace Dog
                     art.transform.localScale.z
                 );
             }
-
-            // if (_actionManager.CurState != DogState.Push)
-            // {
-            //     moveXPrevDir = dirX;
-            //     lastPosition = currentPosition;
-            // }
         }
 
         private void UpdateMoving()
@@ -111,25 +113,46 @@ namespace Dog
                 if (_actionManager.IsRunning) return DogAnimation.Run;
                 return DogAnimation.Walk;
             }
+
+            if (_growling) return DogAnimation.Growl;
             
             return DogAnimation.Idle;
         }
+
+        public void DogBark()
+        {
+            StartCoroutine(Bark());
+        }
         
-        public IEnumerator DogBark()
+        public IEnumerator Bark()
         {
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogBark, 
                 transform.position, true);
+
+            _barking = true;
+            TrackEntry entry = null;
+            entry = spineAnimationState.SetAnimation(1, barkAnimName, false);
+            if (entry != null) entry.TimeScale = barkAnimSpeed;
             
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(_barkAnimationTime);
+            
+            _barking = false;
+        }
+
+        public void DogGrowl()
+        {
+            StartCoroutine(Growl());
         }
         
-        public IEnumerator DogGrowl(float timeToGrowl)
+        private IEnumerator Growl()
         {
             EventInstance sound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.DogGrowl,
                 transform.position, true);
+            _growling = true;
             
-            yield return new WaitForSeconds(timeToGrowl);
-            
+            yield return new WaitForSeconds(_growlAnimationTime);
+
+            _growling = false;
             AudioManager.Instance.StopSound(sound);
         }
         
@@ -150,6 +173,10 @@ namespace Dog
                 case DogAnimation.Run:
                     entry = spineAnimationState.SetAnimation(0, runAnimName, true);
                     if (entry != null) entry.TimeScale = runAnimSpeed;
+                    break;
+                case DogAnimation.Growl:
+                    entry = spineAnimationState.SetAnimation(0, growlAnimName, false);
+                    if (entry != null) entry.TimeScale = growlAnimSpeed;
                     break;
             }
 
