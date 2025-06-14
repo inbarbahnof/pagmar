@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float _runSpeed = 4.7f;
-    [SerializeField] private float _runFastSpeed = 5.5f;
+    [SerializeField] private float _runFastSpeed = 6f;
     [SerializeField] private float _pushSpeed = 3.7f;
     [SerializeField] private GameObject _playerArt;
 
@@ -26,6 +26,7 @@ public class PlayerMove : MonoBehaviour
     private Coroutine autoRunStopCoroutine;
 
     public bool IsMoving => isMoving;
+    public bool CanMove => canMove;
     public bool IsPushing => isPushing;
     public bool MovingRight => movingRight;
 
@@ -61,14 +62,31 @@ public class PlayerMove : MonoBehaviour
 
         _moveInput = Vector2.zero;
         isAutoRunning = false;
-        _speed = _runSpeed;
+        UpdatePlayerRunning(false);
+    }
+
+    public void UpdatePlayerRunning(bool isRunning)
+    {
+        if (isRunning)
+        {
+            _speed = _runFastSpeed;
+            _stateManager.UpdatePlayerSpeed(true);
+        }
+        else
+        {
+            _speed = _runSpeed;
+            _stateManager.UpdatePlayerSpeed(false);
+        }
     }
     
     public void StartAutoRunWithVerticalControl()
     {
+        canMove = true;
         isAutoRunning = true;
-        _speed = _runFastSpeed;
+        
         _moveInput = autoRunDirection;
+        
+        UpdatePlayerRunning(true);
     }
 
     private void FixedUpdate()

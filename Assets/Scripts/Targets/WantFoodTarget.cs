@@ -16,9 +16,8 @@ namespace Targets
             print("Dog reached want food");
             if (_dogTempComunication != null)
                 _dogTempComunication.SetActive(true);
-            
-            if (_isFoodClose) AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogBark,
-                dog.transform.position, true);
+
+            if (_isFoodClose) dog.GetComponent<DogAnimationManager>().DogBark();
         }
 
         public void FoodCanBeReached()

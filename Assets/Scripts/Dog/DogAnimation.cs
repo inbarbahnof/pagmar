@@ -3,6 +3,16 @@
     public enum DogAnimation
     {
         Idle,
-        Walk
+        Walk,
+        Run,
+        Bark,
+        Eat,
+        Growl,
+        HappyCrouch,
+        IdleCrouch,
+        Jump,
+        Listen,
+        Sniff,
+        WalkCrouch
     }
 }

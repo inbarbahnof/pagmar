@@ -67,7 +67,7 @@ public class PlayerStateManager : MonoBehaviour
         else _isPushingFromLeft = false;
         
         PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching, 
-            _move.IsMoving, _isCalling, _move.MovingRight, _pickedUp,
+            _move.IsMoving, _move.CanMove, _isCalling, _move.MovingRight, _pickedUp,
             _justPickedUp, _throwing, _isPushingFromLeft);
         
         PlayerAnimation animation = _computer.Compute(input);
@@ -99,7 +99,7 @@ public class PlayerStateManager : MonoBehaviour
         yield return new WaitForSeconds(_climbAnimTime);
 
         _isClimbing = false;
-        ClimbInteractableManager.instance.StopInteraction();
+        // ClimbInteractableManager.instance.StopInteraction();
     }
 
     public void UpdatePickedUp(bool pick)

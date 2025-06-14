@@ -23,7 +23,7 @@ namespace Ghosts
             else if (other.CompareTag("Dog"))
             {
                 bool isProtected = other.GetComponent<DogActionManager>().IsDogProtected;
-                print("dog protected " + isProtected);
+                // print("dog protected " + isProtected);
                 if (!isProtected)
                 {
                     _attack.Attack(other.transform);

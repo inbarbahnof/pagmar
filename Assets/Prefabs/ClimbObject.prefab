@@ -1,5 +1,103 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &503732533372353749
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8866426255958261611}
+  - component: {fileID: 3843658728656150753}
+  - component: {fileID: 4180081249610614987}
+  m_Layer: 0
+  m_Name: TriggerToFInishInteraction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8866426255958261611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503732533372353749}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.39, y: 0.21, z: 0.15074858}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8744900242307771354}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &3843658728656150753
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503732533372353749}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.40242004, y: 1.1873717}
+      - {x: 0.46872807, y: 0.26864076}
+      - {x: 2.1603913, y: -1.5193461}
+      - {x: 2.560968, y: -1.4025543}
+      - {x: 0.056777, y: 1.155395}
+  m_UseDelaunayMesh: 0
+--- !u!114 &4180081249610614987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503732533372353749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd0a02340d8562f4499d133a5c52d209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _climb: {fileID: 0}
 --- !u!1 &1760941776471369583
 GameObject:
   m_ObjectHideFlags: 0
@@ -26,7 +124,7 @@ Transform:
   m_GameObject: {fileID: 1760941776471369583}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.18718529, y: -0.4661069, z: 0.31184793}
+  m_LocalPosition: {x: -0.21, y: -0.48, z: 0.31184793}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -78,7 +176,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.39368725, y: 0.7615137}
+    - - {x: -0.10742569, y: 0.43335152}
+      - {x: -0.40338802, y: 0.7033067}
       - {x: -0.7753983, y: 1.1163518}
       - {x: -0.7981806, y: 1.041439}
       - {x: -0.20689774, y: 0.46514463}
@@ -88,8 +187,9 @@ PolygonCollider2D:
       - {x: 0.8667145, y: -0.23192406}
       - {x: 0.9673281, y: -0.30468798}
       - {x: 1.1415339, y: -0.41709423}
-      - {x: 0.998497, y: -0.21620607}
-      - {x: 0.4757557, y: 0.040992677}
+      - {x: 0.9730644, y: 0.026089191}
+      - {x: 0.73656464, y: 0.123334885}
+      - {x: 0.45635033, y: 0.0070385337}
   m_UseDelaunayMesh: 0
 --- !u!1 &2679138289290494234
 GameObject:
@@ -125,6 +225,7 @@ Transform:
   - {fileID: 2015113748416443041}
   - {fileID: 2270365679669706648}
   - {fileID: 6747023084942857843}
+  - {fileID: 8866426255958261611}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8143532468426600742
@@ -140,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 5373412894795349090}
-  interactionRange: 1.5
+  interactionRange: 1.4
   _collider: {fileID: 1760941776471369583}
 --- !u!60 &3226049695774109921
 PolygonCollider2D:
@@ -188,18 +289,18 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.115273476, y: -0.4302826}
-      - {x: -0.20680094, y: -0.37781572}
-      - {x: -0.6044364, y: -0.030416012}
-      - {x: -0.80029297, y: 0.32023096}
-      - {x: -1.0478086, y: 0.55179834}
-      - {x: -1.0104795, y: 0.39485052}
-      - {x: -0.84431505, y: 0.29605687}
-      - {x: -0.7316103, y: 0.030496597}
-      - {x: -0.41838646, y: -0.23663282}
-      - {x: -0.23794937, y: -0.4187479}
-      - {x: 0.11223233, y: -0.67390037}
-      - {x: 0.08704758, y: -0.5672222}
+    - - {x: -0.11527347, y: -0.4302826}
+      - {x: -0.19317484, y: -0.35056686}
+      - {x: -0.5602355, y: -0.047446728}
+      - {x: -0.80916595, y: 0.26157713}
+      - {x: -1.0478086, y: 0.47960877}
+      - {x: -1.0486531, y: 0.3675833}
+      - {x: -0.8739476, y: 0.22048032}
+      - {x: -0.5639467, y: -0.16261435}
+      - {x: -0.33281898, y: -0.32963324}
+      - {x: -0.27067184, y: -0.46237564}
+      - {x: 0.14115155, y: -0.7094104}
+      - {x: 0.23559189, y: -0.656612}
   m_UseDelaunayMesh: 0
 --- !u!1001 &3957951726876346005
 PrefabInstance:

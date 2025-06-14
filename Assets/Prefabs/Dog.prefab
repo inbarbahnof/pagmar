@@ -457,8 +457,26 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 5184689463612672951}
   idleAnimName: Idle
   walkAnimName: Walk
+  runAnimName: Run
+  eatAnimName: Eat
+  growlAnimName: Growl
+  happyCrouchAnimName: HappyCrouch
+  idleCrouchAnimName: IdleCrouch
+  jumpAnimName: Jump
+  listenAnimName: Listen
+  sniffAnimName: Sniff
+  walkCrouchAnimName: WalkCrouch
   idleAnimSpeed: 1
   walkAnimSpeed: 1
+  runAnimSpeed: 1.5
+  eatAnimSpeed: 0.8
+  growlAnimSpeed: 1
+  happyCrouchAnimSpeed: 1
+  idleCrouchAnimSpeed: 1
+  jumpAnimSpeed: 1
+  listenAnimSpeed: 1
+  sniffAnimSpeed: 0.8
+  walkCrouchAnimSpeed: 0.8
   art: {fileID: 5383646546148844883}
 --- !u!114 &4631522509052752445
 MonoBehaviour:
@@ -716,7 +734,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _actionManager: {fileID: 1538025327645606136}
-  _targetGenerator: {fileID: 0}
 --- !u!50 &3345117996108438016
 Rigidbody2D:
   serializedVersion: 5

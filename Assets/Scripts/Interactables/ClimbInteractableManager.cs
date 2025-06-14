@@ -27,7 +27,7 @@ namespace Interactables
 
         public void StopInteraction()
         {
-            _curInteraction.StopInteractPress();
+            _curInteraction.StopInteraction();
         }
     }
 }

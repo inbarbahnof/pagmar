@@ -48,6 +48,7 @@ namespace Dog
         public float ListenDistance => _listenDistance;
         public bool IsDogProtected => _isDogProtected;
         public DogState CurState => curState;
+        public bool IsRunning => _playerFollower.IsRunning;
 
         private void Start()
         {
@@ -111,9 +112,12 @@ namespace Dog
             _wantFood = want;
         }
 
-        public void Running()
+        public void Running(bool isRunning)
         {
-            _playerFollower.SetSpeed(6.5f,false);
+            if (isRunning)
+                _playerFollower.SetSpeed(7.5f,false);
+            else
+                _playerFollower.SetSpeed(7.5f,true);
         }
 
         public void ResetToCheckpoint(Vector2 position)
