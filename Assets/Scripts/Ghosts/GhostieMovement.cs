@@ -28,6 +28,7 @@ namespace Ghosts
         private Vector3 _target;
         private bool _isRunningAway = false;
         private bool _isMoving = false;
+        private bool _dead;
 
         private Coroutine _coroutine;
 
@@ -62,7 +63,8 @@ namespace Ghosts
         {
             _isMoving = false;
             if (_coroutine != null) StopCoroutine(_coroutine);
-
+            _dead = true;
+            
             transform.DOMove(pos, 1f).SetEase(Ease.Linear)
                 .OnComplete(cage.InvokeMethod);
         }
@@ -71,6 +73,7 @@ namespace Ghosts
         {
             // print("ResetMovement");
             _isMoving = true;
+            _dead = false;
             MoveAround();
         }
         
@@ -97,6 +100,7 @@ namespace Ghosts
         {
             _isRunningAway = true;
             _isMoving = true;
+            _dead = false;
             _target = pos;
         }
 
@@ -114,7 +118,7 @@ namespace Ghosts
 
             if (Vector2.Distance(_rb.position, _target) < 0.05f)
             {
-                if (_isRunningAway)
+                if (_isRunningAway && !_dead)
                 {
                     _isMoving = false;
                     if (_coroutine != null) StopCoroutine(_coroutine);
@@ -133,7 +137,7 @@ namespace Ghosts
             
             _isMoving = true;
             _isRunningAway = false;
-            _coroutine = null;
+            _dead = false;
             MoveAround();
         }
 

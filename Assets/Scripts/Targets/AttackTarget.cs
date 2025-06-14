@@ -20,7 +20,8 @@ namespace Targets
         {
             StartCoroutine(HoverOverTarget());
             print("attack target behavior");
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogBark);
+            
+            dog.GetComponent<DogActionManager>().Bark();
         }
     }
 }

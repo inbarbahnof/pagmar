@@ -70,7 +70,7 @@ namespace Dog
             // animation state
             UpdateMoving();
             
-            DogAnimation cur = WitchAnimShouldBePlayed();
+            DogAnimation cur = WhichAnimShouldBePlayed();
             if (cur != _curAnim) DogAnimationUpdate(cur);
         }
 
@@ -104,7 +104,7 @@ namespace Dog
             lastPosition = currentPosition; 
         }
 
-        private DogAnimation WitchAnimShouldBePlayed()
+        private DogAnimation WhichAnimShouldBePlayed()
         {
             if (_isMoving)
             {
@@ -119,6 +119,7 @@ namespace Dog
         {
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogBark, 
                 transform.position, true);
+            
             yield return new WaitForSeconds(0.3f);
         }
         
