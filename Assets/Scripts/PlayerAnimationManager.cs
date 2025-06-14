@@ -1,6 +1,7 @@
 using System.Collections;
 using Audio.FMOD;
 using DG.Tweening;
+using FMOD.Studio;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
@@ -48,6 +49,7 @@ public class PlayerAnimationManager : MonoBehaviour
     private Spine.EventData _footstepsEventData;
     
     private PlayerAnimation _curAnim;
+    private EventInstance _dragSound;
     
     private Spine.AnimationState spineAnimationState;
     private Spine.Skeleton skeleton;
@@ -100,6 +102,12 @@ public class PlayerAnimationManager : MonoBehaviour
     {
         if (_curAnim != anim)
         {
+            if (_curAnim == PlayerAnimation.Pull || _curAnim == PlayerAnimation.Push)
+            {
+                AudioManager.Instance.StopSound(_dragSound);
+                _dragSound = default;
+            }
+            
             TrackEntry entry = null;
             // print("switching from animation " + _curAnim +" to animation " + animation);
             switch (anim)
@@ -113,10 +121,14 @@ public class PlayerAnimationManager : MonoBehaviour
                     if (entry != null) entry.TimeScale = callAnimSpeed;
                     break;
                 case PlayerAnimation.Push:
+                    if (!_dragSound.isValid())
+                        _dragSound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.PlayerDrag);
                     entry = spineAnimationState.SetAnimation(0, pushAnimName, true);
                     if (entry != null) entry.TimeScale = pushAnimSpeed;
                     break;
                 case PlayerAnimation.Pull:
+                    if (!_dragSound.isValid())
+                        _dragSound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.PlayerDrag);
                     entry = spineAnimationState.SetAnimation(0, pullAnimName, true);
                     if (entry != null) entry.TimeScale = pullAnimSpeed;
                     break;
@@ -146,6 +158,7 @@ public class PlayerAnimationManager : MonoBehaviour
                     if (entry != null) entry.TimeScale = walkingAnimSpeed;
                     break;
                 case PlayerAnimation.Throw:
+                    AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerThrow);
                     entry = spineAnimationState.SetAnimation(0, throwAnimName, false);
                     spineAnimationState.AddAnimation(0, idleAnimName, true, 0);
                     if (entry != null) entry.TimeScale = throwAnimSpeed;
