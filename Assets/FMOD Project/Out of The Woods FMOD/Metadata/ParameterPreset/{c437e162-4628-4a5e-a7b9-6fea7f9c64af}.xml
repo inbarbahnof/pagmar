@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{c437e162-4628-4a5e-a7b9-6fea7f9c64af}">
+		<property name="name">
+			<value>Drag Mode</value>
+		</property>
+		<relationship name="folder">
+			<destination>{00ded247-c94b-49cf-b59a-964c13cbe83c}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{2974b958-add5-47db-8c28-164f3a846591}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{2974b958-add5-47db-8c28-164f3a846591}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>wood</value>
+			<value>trap</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
