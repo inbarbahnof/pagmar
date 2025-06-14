@@ -17,7 +17,7 @@ namespace Targets
             if (_dogTempComunication != null)
                 _dogTempComunication.SetActive(true);
 
-            if (_isFoodClose) dog.GetComponent<DogAnimationManager>().DogBark();
+            if (_isFoodClose) dog.GetComponent<DogActionManager>().Bark();
         }
 
         public void FoodCanBeReached()

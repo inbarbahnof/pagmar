@@ -40,6 +40,7 @@ namespace Dog
 
         private DogStateComputer _computer;
         private float _dogPlayerDistance;
+        private DogAnimationManager _animationManager;
 
         private Coroutine _stopFollowCoroutine;
         
@@ -65,6 +66,8 @@ namespace Dog
             PathTarget.OnDogProtectionChanged += HandleDogProtectionChanged;
 
             _playerTransform = playerStateManager.GetComponent<Transform>();
+
+            _animationManager = GetComponent<DogAnimationManager>();
 
             StartWalkingAfterPlayer();
         }
@@ -104,6 +107,11 @@ namespace Dog
             {
                 HandleStealthBehavior();
             }
+        }
+
+        public void Bark()
+        {
+            _animationManager.DogBark();
         }
 
         public void SetWantsFood(bool want)
