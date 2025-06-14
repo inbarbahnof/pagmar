@@ -48,6 +48,11 @@ namespace Dog
         [SerializeField] private float sniffAnimSpeed = 0.8f;
         [SerializeField] private float walkCrouchAnimSpeed = 0.8f;
         
+        [Header("Event Names")] 
+        [SerializeField] private string _footstepsEventName;
+    
+        private Spine.EventData _footstepsEventData;
+        
         
         private DogAnimation _curAnim;
         
@@ -70,8 +75,21 @@ namespace Dog
             _actionManager = GetComponent<DogActionManager>();
             lastPosition = transform.position;
             spineAnimationState = skeletonAnimation.AnimationState;
+            
+            _footstepsEventData = skeletonAnimation.Skeleton.Data.FindEvent(_footstepsEventName);
 
+            skeletonAnimation.AnimationState.Event += HandleAnimationStateEvent;
+            
             DogAnimationUpdate(DogAnimation.Idle);
+        }
+        
+        private void HandleAnimationStateEvent (TrackEntry trackEntry, Spine.Event e)
+        {
+            if (e.Data == _footstepsEventData)
+            {
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogFootsteps, 
+                    transform.position, true);
+            }
         }
 
         private void Update()

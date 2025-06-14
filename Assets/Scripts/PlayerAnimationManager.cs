@@ -1,4 +1,5 @@
 using System.Collections;
+using Audio.FMOD;
 using DG.Tweening;
 using Spine;
 using Spine.Unity;
@@ -40,9 +41,11 @@ public class PlayerAnimationManager : MonoBehaviour
     [Header("Event Names")] 
     [SerializeField] private string _climbUpEventName;
     [SerializeField] private string _climbRightEventName;
+    [SerializeField] private string _footstepsEventName;
     
     private Spine.EventData _climbUpEventData;
     private Spine.EventData _climbRightEventData;
+    private Spine.EventData _footstepsEventData;
     
     private PlayerAnimation _curAnim;
     
@@ -56,6 +59,7 @@ public class PlayerAnimationManager : MonoBehaviour
         
         _climbUpEventData = skeletonAnimation.Skeleton.Data.FindEvent(_climbUpEventName);
         _climbRightEventData = skeletonAnimation.Skeleton.Data.FindEvent(_climbRightEventName);
+        _footstepsEventData = skeletonAnimation.Skeleton.Data.FindEvent(_footstepsEventName);
         
         skeletonAnimation.AnimationState.Event += HandleAnimationStateEvent;
     }
@@ -68,6 +72,11 @@ public class PlayerAnimationManager : MonoBehaviour
         else if (e.Data == _climbRightEventData)
         {
             OnClimbRightEvent();
+        }
+        else if (e.Data == _footstepsEventData)
+        {
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerFootsteps, 
+                transform.position, true);
         }
     }
     
