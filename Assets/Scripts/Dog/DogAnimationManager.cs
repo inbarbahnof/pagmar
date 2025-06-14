@@ -129,6 +129,14 @@ namespace Dog
         public void DogStartSniff()
         {
             _sniffing = true;
+
+            StartCoroutine(StopSniffing());
+        }
+
+        private IEnumerator StopSniffing()
+        {
+            yield return new WaitForSeconds(2f);
+            _sniffing = false;
         }
         
         public void DogFinishSniff()
@@ -178,6 +186,7 @@ namespace Dog
         
         private IEnumerator Growl()
         {
+            _sniffing = false;
             EventInstance sound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.DogGrowl,
                 transform.position, true);
             _growling = true;

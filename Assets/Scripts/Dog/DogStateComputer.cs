@@ -30,6 +30,8 @@ namespace Dog
             if (machineInput._playerState == PlayerState.Call &&
                 machineInput._playerDogDistance <= machineInput._listenDistance)
                 return HandleCallBehavior(machineInput);
+
+            if (machineInput._followingCall) return DogState.FollowCall;
             
             switch (machineInput._playerState)
             {
@@ -106,7 +108,7 @@ namespace Dog
 
         private DogState HandlePlayerIdleBehavior(DogState previousDogState, DogStateMachineInput machineInput)
         {
-            if (machineInput._dogReachedTarget)
+            if (machineInput._dogReachedTarget && machineInput._connectionStage < 4)
             {
                 return DogState.Idle;
             }
