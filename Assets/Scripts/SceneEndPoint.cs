@@ -2,8 +2,8 @@
 
 public class SceneEndPoint : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    public void EndScene()
     {
-        if (other.CompareTag("Player")) GameManager.instance.LevelEnd();
+        GameManager.instance.LevelEnd();
     }
 }

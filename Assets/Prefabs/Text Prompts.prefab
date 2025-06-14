@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4660829912239330426}
   - component: {fileID: 4951637000194605513}
   - component: {fileID: 5881079912605641928}
+  - component: {fileID: 3782835740368402163}
   m_Layer: 0
   m_Name: PushTxtTrigger
   m_TagString: Untagged
@@ -94,6 +95,34 @@ MonoBehaviour:
   text: {fileID: 7385326209527806638}
   secondText: {fileID: 0}
   showTime: 3
+  glowSpeed: 2
+--- !u!114 &3782835740368402163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217670473468223349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144977d2486d862468fe5b4e59f47a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5881079912605641928}
+        m_TargetAssemblyTypeName: TextAppear, Assembly-CSharp
+        m_MethodName: ShowText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &1340072066515333358
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,6 +134,7 @@ GameObject:
   - component: {fileID: 5695833588833309551}
   - component: {fileID: 8595982138729826481}
   - component: {fileID: 2365019758713122094}
+  - component: {fileID: 7239393271344138447}
   m_Layer: 0
   m_Name: ThrowTxtTrigger
   m_TagString: Untagged
@@ -188,6 +218,34 @@ MonoBehaviour:
   text: {fileID: 9029757645442081314}
   secondText: {fileID: 4904257852873521244}
   showTime: 3
+  glowSpeed: 2
+--- !u!114 &7239393271344138447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340072066515333358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144977d2486d862468fe5b4e59f47a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2365019758713122094}
+        m_TargetAssemblyTypeName: TextAppear, Assembly-CSharp
+        m_MethodName: ShowText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &1709535882180804452
 GameObject:
   m_ObjectHideFlags: 0
