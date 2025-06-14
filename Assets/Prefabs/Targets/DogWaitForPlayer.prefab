@@ -95,6 +95,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wantFoodTarget: {fileID: 3400367071645880882}
+  _isRunning: 0
+  _runFromGhosties: {fileID: 0}
+  _finalObstacle: {fileID: 0}
 --- !u!50 &4374858851509626029
 Rigidbody2D:
   serializedVersion: 5
@@ -132,6 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5947506623062498542}
   - component: {fileID: 3400367071645880882}
+  - component: {fileID: 4537272632891223979}
   m_Layer: 0
   m_Name: WantFoodTarget
   m_TagString: Untagged
@@ -169,6 +173,34 @@ MonoBehaviour:
   _dogTempComunication: {fileID: 0}
   distance: 0.8
   isTOI: 0
+  _isFoodClose: 0
+--- !u!50 &4537272632891223979
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5945060441133919334}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &7866916076877572220
 GameObject:
   m_ObjectHideFlags: 0

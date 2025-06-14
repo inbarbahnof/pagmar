@@ -21,7 +21,7 @@ public class DogWaitForPlayer : MonoBehaviour
             
             if (_isRunning) dog.Running(true);
             
-            if (_runFromGhosties != null) _runFromGhosties.StartsRunning();
+            // if (_runFromGhosties != null) _runFromGhosties.StartsRunning();
             if (_finalObstacle != null) _finalObstacle.StopKeepingDistance();
         }
     }
