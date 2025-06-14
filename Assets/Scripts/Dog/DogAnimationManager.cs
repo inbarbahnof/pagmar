@@ -18,6 +18,7 @@ namespace Dog
         [Header("Animation Times")]
         [SerializeField] private float _barkAnimationTime = 0.4f;
         [SerializeField] private float _growlAnimationTime = 2f;
+        [SerializeField] private float _eatAnimationTime = 0.733f;
         
         [Header("Animation Names")] 
         [SerializeField] private string idleAnimName;
@@ -53,6 +54,8 @@ namespace Dog
         private bool _isMoving;
         private bool _barking;
         private bool _growling;
+        private bool _eating;
+        private bool _sniffing;
 
         private Spine.AnimationState spineAnimationState;
         
@@ -108,6 +111,10 @@ namespace Dog
 
         private DogAnimation WhichAnimShouldBePlayed()
         {
+            if (_eating) return DogAnimation.Eat;
+
+            if (_sniffing) return DogAnimation.Sniff;
+            
             if (_isMoving)
             {
                 if (_actionManager.IsRunning) return DogAnimation.Run;
@@ -117,6 +124,16 @@ namespace Dog
             if (_growling) return DogAnimation.Growl;
             
             return DogAnimation.Idle;
+        }
+
+        public void DogStartSniff()
+        {
+            _sniffing = true;
+        }
+        
+        public void DogFinishSniff()
+        {
+            _sniffing = false;
         }
 
         public void DogBark()
@@ -142,6 +159,21 @@ namespace Dog
         public void DogGrowl()
         {
             StartCoroutine(Growl());
+        }
+
+        public void DogEat()
+        {
+            StartCoroutine(Eat());
+        }
+
+        private IEnumerator Eat()
+        {
+            // TODO play eat sound
+            _eating = true;
+            
+            yield return new WaitForSeconds(_eatAnimationTime);
+            
+            _eating = false;
         }
         
         private IEnumerator Growl()
@@ -177,6 +209,14 @@ namespace Dog
                 case DogAnimation.Growl:
                     entry = spineAnimationState.SetAnimation(0, growlAnimName, false);
                     if (entry != null) entry.TimeScale = growlAnimSpeed;
+                    break;
+                case DogAnimation.Eat:
+                    entry = spineAnimationState.SetAnimation(0, eatAnimName, false);
+                    if (entry != null) entry.TimeScale = eatAnimSpeed;
+                    break;
+                case DogAnimation.Sniff:
+                    entry = spineAnimationState.SetAnimation(0, sniffAnimName, true);
+                    if (entry != null) entry.TimeScale = sniffAnimSpeed;
                     break;
             }
 

@@ -26,6 +26,7 @@ namespace Targets
             GetComponent<Collider2D>().enabled = false;
             
             // eat the target
+            dog.GetComponent<DogAnimationManager>().DogEat();
             StartCoroutine(EatTarget());
         }
 
@@ -36,8 +37,7 @@ namespace Targets
         
         private IEnumerator EatTarget()
         {
-            yield return new WaitForSeconds(1.5f);
-            print("Dog finished eating food");
+            yield return new WaitForSeconds(0.7f);
             
             gameObject.SetActive(false);
             OnFoodEaten?.Invoke();

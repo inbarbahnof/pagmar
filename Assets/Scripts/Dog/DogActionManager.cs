@@ -198,6 +198,7 @@ namespace Dog
                     break;
                 case (_,DogState.FollowTOI):
                     curState = DogState.FollowTOI;
+                    Running(false);
                     break;
                 case (_, DogState.Push):
                     curState = DogState.Push;
@@ -206,12 +207,14 @@ namespace Dog
                     break;
                 case (DogState.FollowTOI, DogState.Follow):
                     Target newTarget = _targetGenerator.GenerateNewTarget();
+                    Running(false);
                     _playerFollower.SetNextTarget(newTarget);
                     break;
                 case (_, DogState.Follow):
                     Target newTarget1 = _targetGenerator.GenerateNewTarget();
                     curState = DogState.Follow;
                     _dogReachedTarget = false;
+                    Running(false);
                     _playerFollower.SetNextTarget(newTarget1);
                     _playerFollower.GoToNextTarget();
                     break;
