@@ -3710,6 +3710,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7872756758183839491, guid: 8698d026da8a31947aba475764118e03, type: 3}
   m_PrefabInstance: {fileID: 632372683}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &634386430 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5383646546148844883, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
+  m_PrefabInstance: {fileID: 1887335571}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &634386435
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634386430}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &641630702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5207,7 +5234,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dogSequence: {fileID: 1774571782}
   ghostieSequence: {fileID: 1832395787}
-  textDelayTime: 1
 --- !u!4 &924704997
 Transform:
   m_ObjectHideFlags: 0
@@ -5243,10 +5269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9361d1b4d44d71a539d6276e632574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 521331614}
-  secondText: {fileID: 0}
-  showTime: 5
-  glowSpeed: 2
 --- !u!4 &942783320 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8188717348578282293, guid: d0201b625b503ed42b8aa40c496dde9d, type: 3}
@@ -10788,6 +10810,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -8759490147219212655, guid: e5197170547e9114d9f72bb19c4f3c33, type: 2}
     value: {fileID: 1483706851}
+  - key: {fileID: 6262372537870450047, guid: e5197170547e9114d9f72bb19c4f3c33, type: 2}
+    value: {fileID: 634386435}
   m_ExposedReferences:
     m_References:
     - 210c7c92426d2954487e55749ae99101: {fileID: 419365130}
@@ -11628,7 +11652,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5383646546148844883, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 634386435}
   m_SourcePrefab: {fileID: 100100000, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
 --- !u!1001 &1894195542
 PrefabInstance:
