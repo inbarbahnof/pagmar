@@ -40,7 +40,7 @@
 
             foreach (var point in _escapePoints)
             {
-                if (Vector3.Distance(point.position, ghostiePos) < 1f)
+                if (Vector3.Distance(point.position, ghostiePos) < 2f)
                 {
                     // Skip this point – ghostie is already at or too close to it
                     continue;

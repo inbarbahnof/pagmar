@@ -33,6 +33,7 @@ namespace Interactables
         private int _curPlayerBush = 0;
         private Vector3[] _stickPositions;
         private bool _dogReachedFirstTarget;
+        private bool _playerReachedCurrentTarget = false;
 
         private void Start()
         {
@@ -60,6 +61,7 @@ namespace Interactables
             
             _curDogTarget = 0;
             _curPlayerBush = 0;
+            _playerReachedCurrentTarget = false;
             TargetGenerator.instance.SetStealthTarget(_targets[0]);
             
             // reset dog
@@ -93,22 +95,36 @@ namespace Interactables
 
         public void PlayerReachedStealth()
         {
+            _playerReachedCurrentTarget = false;
             StartCoroutine(WaitForDogBark());
         }
 
         private IEnumerator WaitForDogBark()
         {
-            if (_curDogTarget == 0) yield return new WaitUntil(() => _dogReachedFirstTarget);
-            
-            else yield return new WaitForSeconds(1f);
-            
-            // dog bark and bring ghost
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogBark);
-            
-            yield return new WaitForSeconds(0.5f);
-            
-            _ghostsForPlayer[_curPlayerBush].GoToTargetAndPause(_ghostDistractionForPlayer[_curPlayerBush]);
+            if (_curDogTarget == 0)
+                yield return new WaitUntil(() => _dogReachedFirstTarget);
+            else
+                yield return new WaitForSeconds(1f);
+
+            while (!_playerReachedCurrentTarget)
+            {
+                _dog.Bark();
+
+                if (_curPlayerBush < _ghostsForPlayer.Length)
+                {
+                    _ghostsForPlayer[_curPlayerBush].GoToTargetAndPause(_ghostDistractionForPlayer[_curPlayerBush]);
+                }
+
+                yield return new WaitForSeconds(2f);
+            }
+
             _curPlayerBush++;
+            _playerReachedCurrentTarget = false;
+        }
+
+        public void PlayerReachedNextTarget()
+        {
+            _playerReachedCurrentTarget = true;
         }
 
         public override void PlayerReachedTarget()

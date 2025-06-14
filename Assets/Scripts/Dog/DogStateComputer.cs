@@ -19,7 +19,7 @@ namespace Dog
             if (machineInput._playerState == PlayerState.Throw || machineInput._isFollowingStick)
                 return DogState.FollowStick;
             
-            if (machineInput._dogBusy) return DogState.OnTargetAction;
+            if (machineInput._dogBusy && machineInput._connectionStage <= 2) return DogState.OnTargetAction;
 
             if (machineInput._dogFollowingTOI) return DogState.FollowTOI;
 
