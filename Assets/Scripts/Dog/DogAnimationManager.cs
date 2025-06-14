@@ -112,14 +112,14 @@ namespace Dog
         private DogAnimation WhichAnimShouldBePlayed()
         {
             if (_eating) return DogAnimation.Eat;
-
-            if (_sniffing) return DogAnimation.Sniff;
             
             if (_isMoving)
             {
                 if (_actionManager.IsRunning) return DogAnimation.Run;
                 return DogAnimation.Walk;
             }
+            
+            if (_sniffing) return DogAnimation.Sniff;
 
             if (_growling) return DogAnimation.Growl;
             
@@ -162,6 +162,7 @@ namespace Dog
             yield return new WaitForSeconds(_barkAnimationTime);
             
             _barking = false;
+            spineAnimationState.ClearTrack(1);
         }
 
         public void DogGrowl()
@@ -178,15 +179,17 @@ namespace Dog
         {
             // TODO play eat sound
             _eating = true;
+            print("eating");
             
             yield return new WaitForSeconds(_eatAnimationTime);
-            
+            print("stop eating");
             _eating = false;
         }
         
         private IEnumerator Growl()
         {
             _sniffing = false;
+            
             EventInstance sound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.DogGrowl,
                 transform.position, true);
             _growling = true;

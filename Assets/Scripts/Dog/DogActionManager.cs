@@ -44,6 +44,8 @@ namespace Dog
 
         private Coroutine _stopFollowCoroutine;
         
+        private bool _movementEnabled = true;
+        
         // getters
         public float DogPlayerDistance => _dogPlayerDistance;
         public float ListenDistance => _listenDistance;
@@ -69,7 +71,7 @@ namespace Dog
 
             _animationManager = GetComponent<DogAnimationManager>();
 
-            StartWalkingAfterPlayer();
+            if (_movementEnabled) StartWalkingAfterPlayer();
         }
 
         private void Update()
@@ -77,6 +79,8 @@ namespace Dog
             // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
             // print("_isThereGhostie " + _isThereGhostie);
             // print("following call " + _followingCall);
+            if (!_movementEnabled) return;
+            
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
             
             _canEatFood = _targetGenerator.GetFoodTarget() != null;
@@ -106,6 +110,22 @@ namespace Dog
             else if (curState == DogState.Stealth && _targetGenerator.DidStealthTargetChange())
             {
                 HandleStealthBehavior();
+            }
+        }
+        
+        public void SetMovementEnabled(bool enabled)
+        {
+            _movementEnabled = enabled;
+
+            if (!enabled)
+            {
+                _playerFollower.StopGoingToTarget();
+                _playerFollower.SetIsGoingToTarget(false);
+                _playerFollower.SetSpeed(0f, true); // Optional: stop animations immediately
+            }
+            else
+            {
+                StartWalkingAfterPlayer();
             }
         }
 
@@ -149,6 +169,8 @@ namespace Dog
 
         private void HandleDogStateChange(DogState newState)
         {
+            if (!_movementEnabled) return;
+            
             // print("swap from " + curState + " to " + newState);
             if (curState == DogState.Push)
                 _playerFollower.SetStopProb(false);
@@ -320,6 +342,7 @@ namespace Dog
 
         private void HandleDogOnAction()
         {
+            _playerFollower.SetSpeed(1f, true);
             _dogFollowingTOI = false;
             _dogBusy = true;
             _dogReachedTarget = true;
@@ -328,6 +351,7 @@ namespace Dog
 
         private void HandleDogFinishedAction()
         {
+            _playerFollower.SetSpeed(1f, true);
             _dogFollowingTOI = false;
             _dogBusy = false;
             _isFollowingStick = false;
@@ -349,6 +373,7 @@ namespace Dog
 
         private void HandleDogIdle()
         {
+            _playerFollower.SetSpeed(1f, true);
             _dogFollowingTOI = false;
             _dogFollowingTarget = false;
             _dogReachedTarget = true;
