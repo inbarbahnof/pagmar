@@ -6,8 +6,11 @@ namespace Interactables
     {
         [SerializeField] private GameObject highlightEffect;
         [SerializeField] protected float interactionRange = 1.5f;
-        
+
+        protected bool _canInteract = true;
         private Vector3 ogPos;
+        
+        public bool CanInteract => _canInteract;
 
         private void Start()
         {
@@ -16,7 +19,10 @@ namespace Interactables
         
         public float InteractionRange => interactionRange;
 
-        // private bool _isInteracting = false;
+        public void SetCanInteract(bool can)
+        {
+            _canInteract = can;
+        }
 
         /// <summary>
         /// Controlls highlight of interactable obj, turned on when player can interact and off otherwise.
