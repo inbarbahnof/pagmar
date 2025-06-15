@@ -8,9 +8,6 @@ using UnityEngine.AI;
 
 public class PlayerStateManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _pickUpParent;
-    [SerializeField] private Transform _aimPickUpPos;
-    
     [SerializeField] private float _pickUpAnimTime = 0.5f;
     [SerializeField] private float _throwAnimTime = 0.867f;
     [SerializeField] private float _waitOnCallTime = 1f;
@@ -54,8 +51,6 @@ public class PlayerStateManager : MonoBehaviour
     private void Start()
     {
         GetManagers();
-
-        _initialPickUpParentPos = _pickUpParent.transform.localPosition;
     }
 
     private void GetManagers()
@@ -91,13 +86,6 @@ public class PlayerStateManager : MonoBehaviour
     public void UpdateAimAbility(bool canAim = false)
     {
         _isAbleToAim = canAim;
-
-        if (_isAbleToAim)
-            _pickUpParent.transform.localPosition = _aimPickUpPos.localPosition;
-        else
-        {
-            _pickUpParent.transform.localPosition = _initialPickUpParentPos;
-        }
     }
 
     public void UpdateClimbing()
@@ -113,7 +101,6 @@ public class PlayerStateManager : MonoBehaviour
         yield return new WaitForSeconds(_climbAnimTime);
 
         _isClimbing = false;
-        // ClimbInteractableManager.instance.StopInteraction();
     }
 
     public void UpdatePickedUp(bool pick)
@@ -122,12 +109,6 @@ public class PlayerStateManager : MonoBehaviour
         
         _justPickedUp = true;
         StartCoroutine(WaitForPickUpAnim());
-        
-        // if (_pickedUp)
-        // {
-        //     _justPickedUp = true;
-        //     StartCoroutine(WaitForPickUpAnim());
-        // }
     }
     
     private IEnumerator WaitForThrowingAnim()

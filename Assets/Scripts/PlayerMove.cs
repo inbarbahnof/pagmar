@@ -129,24 +129,17 @@ public class PlayerMove : MonoBehaviour
 
     private void FlipSpriteBasedOnMovement()
     {
-        print("try fliping _moveInput.x " + _moveInput.x +" isPushing " + isPushing);
         if (Mathf.Abs(_moveInput.x) > 0.001f && !isPushing)
         {
-            print("enter first");
-            if (!isPushing)
-            {
-                print("fliping art");
-                float newScaleX = _moveInput.x > 0 ? 1 : -1;
-                _playerArt.transform.localScale = new Vector3(
-                    newScaleX * Mathf.Abs(_playerArt.transform.localScale.x),
-                    _playerArt.transform.localScale.y,
-                    _playerArt.transform.localScale.z
-                );
-            }
+            float newScaleX = _moveInput.x > 0 ? 1 : -1;
+            _playerArt.transform.localScale = new Vector3(
+                newScaleX * Mathf.Abs(_playerArt.transform.localScale.x),
+                _playerArt.transform.localScale.y,
+                _playerArt.transform.localScale.z
+            );
         }
-        if (Mathf.Abs(_aimInput.x) > 0.001f && !isPushing)
+        else if (Mathf.Abs(_aimInput.x) > 0.001f && !isPushing)
         {
-            print("fliping art");
             float newScaleX = _aimInput.x > 0 ? 1 : -1;
             _playerArt.transform.localScale = new Vector3(
                 newScaleX * Mathf.Abs(_playerArt.transform.localScale.x),
@@ -154,11 +147,8 @@ public class PlayerMove : MonoBehaviour
                 _playerArt.transform.localScale.z
             );
         }
+        
         movingRight = _moveInput.x > 0;
-        // if (!isPushing)
-        // {
-        //     _lastPosition = currentPosition;
-        // }
     }
     
     public void CheckIfNeedToFlipArt()

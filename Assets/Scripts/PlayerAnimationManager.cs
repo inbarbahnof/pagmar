@@ -11,6 +11,7 @@ using UnityEngine.Serialization;
 public class PlayerAnimationManager : MonoBehaviour
 {
     [SerializeField] SkeletonAnimation skeletonAnimation;
+    [SerializeField] private Transform heldObject;
     
     [Header("Animation Names")]
     [SerializeField] private string idleAnimName;
@@ -55,6 +56,9 @@ public class PlayerAnimationManager : MonoBehaviour
     
     private PlayerAnimation _curAnim;
     private EventInstance _dragSound;
+
+    private string _holdBoneName = "F Arm Palm";
+    private Bone handBone;
     
     private Spine.AnimationState spineAnimationState;
     private Spine.Skeleton skeleton;
@@ -70,6 +74,8 @@ public class PlayerAnimationManager : MonoBehaviour
         _pickUpEventData = skeletonAnimation.Skeleton.Data.FindEvent(_pickUpEventName);
         
         skeletonAnimation.AnimationState.Event += HandleAnimationStateEvent;
+        
+        handBone = skeletonAnimation.Skeleton.FindBone(_holdBoneName);
     }
     
     private void HandleAnimationStateEvent (TrackEntry trackEntry, Spine.Event e) {
@@ -90,6 +96,20 @@ public class PlayerAnimationManager : MonoBehaviour
         {
             print("pickup event");
             PickUpInteractableManager.instance.PickUpCurrentObject();
+        }
+    }
+    
+    void LateUpdate()
+    {
+        if(_curAnim != PlayerAnimation.Aim)
+        {
+            Vector3 worldPos = skeletonAnimation.transform.TransformPoint(new Vector3(handBone.WorldX, handBone.WorldY - 0.1f, 0));
+            heldObject.position = worldPos;
+        }
+        else
+        {
+            Vector3 worldPos = skeletonAnimation.transform.TransformPoint(new Vector3(handBone.WorldX, handBone.WorldY + 0.1f, 0));
+            heldObject.position = worldPos;
         }
     }
     

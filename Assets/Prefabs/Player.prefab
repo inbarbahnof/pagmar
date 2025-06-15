@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &549687476981043041
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 126960104061326006}
-  m_Layer: 0
-  m_Name: AimPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &126960104061326006
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549687476981043041}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.25600052, y: 0.6470001, z: 0.6747326}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3670087948830583748}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &725460822689590145
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pickUpParent: {fileID: 4850159602726226621}
-  _aimPickUpPos: {fileID: 126960104061326006}
+  _aimPickUpPos: {fileID: 0}
   _pickUpAnimTime: 0.5
   _throwAnimTime: 0.833
   _waitOnCallTime: 0.9
@@ -367,6 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 1843310930805674207}
+  heldObject: {fileID: 7328353952192761471}
   idleAnimName: Idle
   callAnimName: Call
   pushAnimName: Push
@@ -775,9 +745,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6374609478747475555, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3011476563840709860}
-    - targetCorrespondingSourceObject: {fileID: 6374609478747475555, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 126960104061326006}
     - targetCorrespondingSourceObject: {fileID: 6374609478747475555, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7328353952192761471}
