@@ -8,6 +8,7 @@ using Spine.Unity;
 using Targets;
 // using UnityEditor.Rendering;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Dog
 {
@@ -140,7 +141,9 @@ namespace Dog
             if (_sniffing) return DogAnimation.Sniff;
 
             if (_growling) return DogAnimation.Growl;
-            
+
+
+            // if (Random.value < 0.4f) return DogAnimation.Listen;
             return DogAnimation.Idle;
         }
 

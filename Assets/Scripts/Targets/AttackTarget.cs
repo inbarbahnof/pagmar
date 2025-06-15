@@ -9,14 +9,6 @@ namespace Targets
 {
     public class AttackTarget : Target
     {
-        [SerializeField] private float _hoverTime = 2f;
-        
-        private IEnumerator HoverOverTarget()
-        {
-            yield return new WaitForSeconds(_hoverTime);
-            FinishTargetAction();
-        }
-
         public override void StartTargetAction(PlayerFollower dog)
         {
             DogActionManager manager = dog.GetComponent<DogActionManager>();
@@ -24,9 +16,7 @@ namespace Targets
             manager.Growl();
             manager.Running(false);
             
-            if (gameObject.activeSelf) StartCoroutine(HoverOverTarget());
-            else FinishTargetAction();
-            
+            FinishTargetAction();
         }
     }
 }

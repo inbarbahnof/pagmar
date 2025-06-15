@@ -52,7 +52,7 @@ namespace Interactables
 
         public void PickUpCurrentObject()
         {
-            if (_curPickUp.IsPickedUp) _curPickUp.PhysicallyPickUp(_pickUpParent);
+            if (_curPickUp != null && _curPickUp.IsPickedUp) _curPickUp.PhysicallyPickUp(_pickUpParent);
         }
         
         public void Interact(PickUpInteractable pickup)

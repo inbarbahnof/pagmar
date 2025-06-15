@@ -96,7 +96,6 @@ public class PlayerAnimationManager : MonoBehaviour
         }
         if (e.Data == _pickUpEventData)
         {
-            print("pickup event");
             PickUpInteractableManager.instance.PickUpCurrentObject();
         }
     }
