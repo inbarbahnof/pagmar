@@ -12,6 +12,7 @@ public class PlayerAnimationManager : MonoBehaviour
 {
     [SerializeField] SkeletonAnimation skeletonAnimation;
     [SerializeField] private Transform heldObject;
+    [SerializeField] private GameObject _holdingHand;
     
     [Header("Animation Names")]
     [SerializeField] private string idleAnimName;
@@ -56,6 +57,7 @@ public class PlayerAnimationManager : MonoBehaviour
     
     private PlayerAnimation _curAnim;
     private EventInstance _dragSound;
+    private bool _isHolding;
 
     private string _holdBoneName = "F Arm Palm";
     private Bone handBone;
@@ -101,12 +103,12 @@ public class PlayerAnimationManager : MonoBehaviour
     
     void LateUpdate()
     {
-        if(_curAnim != PlayerAnimation.Aim)
+        if(_curAnim != PlayerAnimation.Aim && _isHolding)
         {
-            Vector3 worldPos = skeletonAnimation.transform.TransformPoint(new Vector3(handBone.WorldX, handBone.WorldY - 0.05f, 0));
+            Vector3 worldPos = skeletonAnimation.transform.TransformPoint(new Vector3(handBone.WorldX, handBone.WorldY - 0.1f, 0));
             heldObject.position = worldPos;
         }
-        else
+        else 
         {
             Vector3 worldPos = skeletonAnimation.transform.TransformPoint(new Vector3(handBone.WorldX, handBone.WorldY + 0.1f, 0));
             heldObject.position = worldPos;
@@ -164,6 +166,8 @@ public class PlayerAnimationManager : MonoBehaviour
                     if (entry != null) entry.TimeScale = pullAnimSpeed;
                     break;
                 case PlayerAnimation.PickUp:
+                    _isHolding = !_isHolding;
+                    _holdingHand.SetActive(_isHolding);
                     entry = spineAnimationState.SetAnimation(0, pickUpAnimName, false);
                     spineAnimationState.AddAnimation(0, idleAnimName, true, 0);
                     if (entry != null) entry.TimeScale = pickUpAnimSpeed;
@@ -189,10 +193,13 @@ public class PlayerAnimationManager : MonoBehaviour
                     if (entry != null) entry.TimeScale = walkingAnimSpeed;
                     break;
                 case PlayerAnimation.Aim:
+                    _holdingHand.SetActive(false);
                     entry = spineAnimationState.SetAnimation(0, aimAnimName, true);
                     if (entry != null) entry.TimeScale = aimAnimSpeed;
                     break;
                 case PlayerAnimation.Throw:
+                    _holdingHand.SetActive(false);
+                    _isHolding = false;
                     AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerThrow);
                     entry = spineAnimationState.SetAnimation(0, throwAnimName, false);
                     spineAnimationState.AddAnimation(0, idleAnimName, true, 0);

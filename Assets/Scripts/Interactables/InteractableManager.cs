@@ -86,7 +86,7 @@ namespace Interactables
                 }
 
                 float curDist = Vector2.Distance(player.position, interactable.transform.position);
-                if (curDist < minDist)
+                if (curDist < minDist && interactable.CanInteract)
                 {
                     minDist = curDist;
                     closest = interactable;
