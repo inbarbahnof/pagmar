@@ -6766,7 +6766,11 @@ PlayableDirector:
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
-  m_SceneBindings: []
+  m_SceneBindings:
+  - key: {fileID: -8484638137424061202, guid: 096186eed67ce484cb47c837abab33d5, type: 2}
+    value: {fileID: 6206195499498904297}
+  - key: {fileID: 6425659067326405526, guid: 096186eed67ce484cb47c837abab33d5, type: 2}
+    value: {fileID: 6206195499498904298}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1153970975
@@ -14469,7 +14473,10 @@ PrefabInstance:
     - {fileID: 7282520057425440520, guid: 9839d545bdf45bc4a98f1cfcbdb0d7ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1810158106228689958, guid: 9839d545bdf45bc4a98f1cfcbdb0d7ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6206195499498904298}
   m_SourcePrefab: {fileID: 100100000, guid: 9839d545bdf45bc4a98f1cfcbdb0d7ed, type: 3}
 --- !u!114 &6206195499498904293 stripped
 MonoBehaviour:
@@ -14515,6 +14522,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedc0199c20c8a741b850e842c817688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6206195499498904297 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1843310930805674207, guid: 9839d545bdf45bc4a98f1cfcbdb0d7ed, type: 3}
+  m_PrefabInstance: {fileID: 6206195499498904292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &6206195499498904298
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050567125}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &6603215882994883128
 PrefabInstance:
   m_ObjectHideFlags: 0
