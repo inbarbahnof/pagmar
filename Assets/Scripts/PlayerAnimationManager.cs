@@ -103,7 +103,7 @@ public class PlayerAnimationManager : MonoBehaviour
     {
         if(_curAnim != PlayerAnimation.Aim)
         {
-            Vector3 worldPos = skeletonAnimation.transform.TransformPoint(new Vector3(handBone.WorldX, handBone.WorldY - 0.1f, 0));
+            Vector3 worldPos = skeletonAnimation.transform.TransformPoint(new Vector3(handBone.WorldX, handBone.WorldY - 0.05f, 0));
             heldObject.position = worldPos;
         }
         else

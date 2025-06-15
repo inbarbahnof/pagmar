@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6984065202642101850}
   - component: {fileID: 7409446493191166503}
   - component: {fileID: 2526979486671946938}
-  - component: {fileID: 4697892384506423852}
+  - component: {fileID: 9187257452774232294}
   m_Layer: 0
   m_Name: Scripts&collider
   m_TagString: Untagged
@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
---- !u!70 &4697892384506423852
-CapsuleCollider2D:
+--- !u!60 &9187257452774232294
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -172,9 +172,28 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.12, y: 0}
-  m_Size: {x: 1.54, y: 1.06}
-  m_Direction: 1
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.32346296, y: 0.2360897}
+      - {x: 0.21166898, y: 0.7689781}
+      - {x: -0.3970632, y: 0.6909237}
+      - {x: -0.53758645, y: 0.42633438}
+      - {x: -1.1263709, y: -0.07966614}
+      - {x: -0.5, y: -0.15623093}
+      - {x: -0.1925332, y: -0.6059036}
+      - {x: 0.32461736, y: -0.18078423}
+      - {x: 0.8633148, y: -0.29803848}
+  m_UseDelaunayMesh: 0
 --- !u!1001 &6907883145442724309
 PrefabInstance:
   m_ObjectHideFlags: 0

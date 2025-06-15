@@ -123,7 +123,7 @@ namespace Dog
         {
             Vector3 currentPosition = transform.position;
             float distanceMoved = Vector3.Distance(currentPosition, lastPosition);
-            _isMoving = distanceMoved > 0.03f;
+            _isMoving = distanceMoved > 0.02f;
             lastPosition = currentPosition; 
         }
 

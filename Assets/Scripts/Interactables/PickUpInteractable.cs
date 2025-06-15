@@ -46,16 +46,23 @@ namespace Interactables
         public virtual void DropObject(Vector2 worldTarget)
         {
             isPickedUp = false;
-            transform.SetParent(originalParent);
-            if (worldTarget != Vector2.zero) transform.position = worldTarget;
             
-            if (_isThrowable) FinishInteraction();
-            else StartCoroutine(FinishAction());
+            if (_isThrowable && worldTarget != Vector2.zero)
+            {
+                transform.SetParent(originalParent);
+                if (worldTarget != Vector2.zero) transform.position = worldTarget;
+                FinishInteraction();
+            }
+            
+            else StartCoroutine(FinishAction(worldTarget));
         }
 
-        private IEnumerator FinishAction()
+        private IEnumerator FinishAction(Vector2 worldTarget)
         {
             yield return new WaitForSeconds(0.1f);
+            
+            transform.SetParent(originalParent);
+            if (worldTarget != Vector2.zero) transform.position = worldTarget;
             
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPickUp);
             FinishInteraction();
