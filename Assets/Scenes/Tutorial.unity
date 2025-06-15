@@ -1594,7 +1594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7872756758183839491, guid: 8698d026da8a31947aba475764118e03, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.39
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 7872756758183839491, guid: 8698d026da8a31947aba475764118e03, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13003,7 +13003,7 @@ GameObject:
   - component: {fileID: 2032859554}
   - component: {fileID: 2032859553}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: CamCol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13039,11 +13039,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 10.675062, y: -0.17655945}
+  m_Offset: {x: 25.50737, y: -0.24002504}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -13053,7 +13053,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 15.342068, y: 12.761583}
+  m_Size: {x: 31.488586, y: 5.5265446}
   m_EdgeRadius: 0
 --- !u!4 &2032859554
 Transform:
@@ -14691,11 +14691,11 @@ PrefabInstance:
       objectReference: {fileID: 1050567128}
     - target: {fileID: 7777086046178666412, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.3033857
+      value: 7.661133
       objectReference: {fileID: 0}
     - target: {fileID: 7777086046178666412, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.064209
+      value: 11.820933
       objectReference: {fileID: 0}
     - target: {fileID: 7777086046178666412, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14744,11 +14744,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoundingShape2D: {fileID: 0}
+  BoundingShape2D: {fileID: 2032859553}
   Damping: 0.5
   SlowingDistance: 5
   OversizeWindow:
-    Enabled: 0
+    Enabled: 1
     MaxWindowSize: 0
     Padding: 0
   m_LegacyMaxWindowSize: -2
