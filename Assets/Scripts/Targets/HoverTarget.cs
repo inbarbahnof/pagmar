@@ -14,14 +14,20 @@ namespace Targets
         private IEnumerator HoverOverTarget()
         {
             yield return new WaitForSeconds(_hoverTime);
-            _dog.DogFinishSniff();
+            
+            if (isTOI) 
+                _dog.DogFinishSniff();
+            
             FinishTargetAction();
         }
 
         public override void StartTargetAction(PlayerFollower dog)
         {
-            _dog = dog.GetComponent<DogAnimationManager>();
-            _dog.DogStartSniff();
+            if (isTOI)
+            {
+                _dog = dog.GetComponent<DogAnimationManager>();
+                _dog.DogStartSniff();
+            }
             
             StartCoroutine(HoverOverTarget());
         }

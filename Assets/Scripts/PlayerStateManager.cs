@@ -8,6 +8,9 @@ using UnityEngine.AI;
 
 public class PlayerStateManager : MonoBehaviour
 {
+    [SerializeField] private GameObject _pickUpParent;
+    [SerializeField] private Transform _aimPickUpPos;
+    
     [SerializeField] private float _pickUpAnimTime = 0.5f;
     [SerializeField] private float _throwAnimTime = 0.867f;
     [SerializeField] private float _waitOnCallTime = 1f;
@@ -36,8 +39,10 @@ public class PlayerStateManager : MonoBehaviour
     private bool _throwing;
     private bool _isPushingFromLeft;
     private bool _isClimbing;
+    private bool _isAiming;
 
     private Coroutine _waitToCallCoroutine;
+    private Vector3 _initialPickUpParentPos;
     
     private PlayerAnimationComputer _computer;
 
@@ -49,6 +54,8 @@ public class PlayerStateManager : MonoBehaviour
     private void Start()
     {
         GetManagers();
+
+        _initialPickUpParentPos = _pickUpParent.transform.localPosition;
     }
 
     private void GetManagers()
@@ -65,15 +72,15 @@ public class PlayerStateManager : MonoBehaviour
         if (_curInteraction is PushInteractable pushInteractable)
             _isPushingFromLeft = pushInteractable.IsPushingFromLeft;
         else _isPushingFromLeft = false;
+
+        _isAiming = curState == PlayerState.Aim;
         
         PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching, 
             _move.IsMoving, _move.CanMove, _isCalling, _move.MovingRight, _pickedUp,
-            _justPickedUp, _throwing, _isPushingFromLeft);
+            _justPickedUp, _throwing, _isPushingFromLeft, _isAiming);
         
         PlayerAnimation animation = _computer.Compute(input);
         _animationManager.PlayerAnimationUpdate(animation);
-        
-        // print("player state " + curState);
     }
 
     public void UpdatePlayerSpeed(bool isFast)
@@ -84,6 +91,13 @@ public class PlayerStateManager : MonoBehaviour
     public void UpdateAimAbility(bool canAim = false)
     {
         _isAbleToAim = canAim;
+
+        if (_isAbleToAim)
+            _pickUpParent.transform.localPosition = _aimPickUpPos.localPosition;
+        else
+        {
+            _pickUpParent.transform.localPosition = _initialPickUpParentPos;
+        }
     }
 
     public void UpdateClimbing()

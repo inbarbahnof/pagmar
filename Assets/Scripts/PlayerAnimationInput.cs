@@ -12,10 +12,11 @@ public struct PlayerAnimationInput
     public bool _justPickedUp;
     public bool _throwing;
     public bool _isPushingFromLeft;
+    public bool _isAiming;
 
     public PlayerAnimationInput(PlayerState playerState, bool isCrouching, 
         bool isMoving,bool canMove, bool isCalling, bool movingRight, bool didPickUp,
-        bool justPickedUp, bool throwing, bool isPushingFromLeft)
+        bool justPickedUp, bool throwing, bool isPushingFromLeft,bool isAiming)
     {
         _playerState = playerState;
         _isCrouching = isCrouching;
@@ -27,5 +28,6 @@ public struct PlayerAnimationInput
         _justPickedUp = justPickedUp;
         _throwing = throwing;
         _isPushingFromLeft = isPushingFromLeft;
+        _isAiming = isAiming;
     }
 }

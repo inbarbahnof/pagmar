@@ -26,10 +26,19 @@ namespace Interactables
 
         public virtual void PickUpObject(Transform parent)
         {
-            transform.SetParent(parent);
-            transform.DOLocalMove(Vector3.zero, 0.1f)
-                .SetEase(Ease.OutQuad);
+            // transform.SetParent(parent);
+            // transform.DOLocalMove(Vector3.zero, 0.08f)
+            //     .SetEase(Ease.OutQuad);
             isPickedUp = true;
+            
+            // AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPickUp);
+        }
+
+        public void PhysicallyPickUp(Transform parent)
+        {
+            transform.SetParent(parent);
+            transform.DOLocalMove(Vector3.zero, 0.08f)
+                .SetEase(Ease.OutQuad);
             
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPickUp);
         }

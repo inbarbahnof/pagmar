@@ -2,6 +2,7 @@ using System.Collections;
 using Audio.FMOD;
 using DG.Tweening;
 using FMOD.Studio;
+using Interactables;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private string crouchWalkAnimName;
     [SerializeField] private string walkingAnimName;
     [SerializeField] private string throwAnimName;
+    [SerializeField] private string aimAnimName;
     [SerializeField] private string petAnimName;
     
     [Header("Animation Speeds")]
@@ -37,16 +39,19 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private float crouchWalkAnimSpeed = 1f;
     [SerializeField] private float walkingAnimSpeed = 1f;
     [SerializeField] private float throwAnimSpeed = 1f;
+    [SerializeField] private float aimAnimSpeed = 1f;
     [SerializeField] private float petAnimSpeed = 1f;
 
     [Header("Event Names")] 
     [SerializeField] private string _climbUpEventName;
     [SerializeField] private string _climbRightEventName;
     [SerializeField] private string _footstepsEventName;
+    [SerializeField] private string _pickUpEventName;
     
     private Spine.EventData _climbUpEventData;
     private Spine.EventData _climbRightEventData;
     private Spine.EventData _footstepsEventData;
+    private Spine.EventData _pickUpEventData;
     
     private PlayerAnimation _curAnim;
     private EventInstance _dragSound;
@@ -62,6 +67,7 @@ public class PlayerAnimationManager : MonoBehaviour
         _climbUpEventData = skeletonAnimation.Skeleton.Data.FindEvent(_climbUpEventName);
         _climbRightEventData = skeletonAnimation.Skeleton.Data.FindEvent(_climbRightEventName);
         _footstepsEventData = skeletonAnimation.Skeleton.Data.FindEvent(_footstepsEventName);
+        _pickUpEventData = skeletonAnimation.Skeleton.Data.FindEvent(_pickUpEventName);
         
         skeletonAnimation.AnimationState.Event += HandleAnimationStateEvent;
     }
@@ -79,6 +85,11 @@ public class PlayerAnimationManager : MonoBehaviour
         {
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerFootsteps, 
                 transform.position, true);
+        }
+        if (e.Data == _pickUpEventData)
+        {
+            print("pickup event");
+            PickUpInteractableManager.instance.PickUpCurrentObject();
         }
     }
     
@@ -156,6 +167,10 @@ public class PlayerAnimationManager : MonoBehaviour
                 case PlayerAnimation.Walking:
                     entry = spineAnimationState.SetAnimation(0, walkingAnimName, true);
                     if (entry != null) entry.TimeScale = walkingAnimSpeed;
+                    break;
+                case PlayerAnimation.Aim:
+                    entry = spineAnimationState.SetAnimation(0, aimAnimName, true);
+                    if (entry != null) entry.TimeScale = aimAnimSpeed;
                     break;
                 case PlayerAnimation.Throw:
                     AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerThrow);
