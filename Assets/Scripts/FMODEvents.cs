@@ -8,9 +8,9 @@ namespace Audio.FMOD
         
         [field: Header("PlayerSFX")]
         [field: SerializeField] public EventReference PlayerCall { get; private set; }
-        [field: SerializeField] public EventReference PlayerFootsteps { get; private set; }
+        [field: SerializeField] public EventReference PlayerFootsteps { get; private set; } 
         [field: SerializeField] public EventReference PlayerPickUp{ get; private set; }
-        // [field: SerializeField] public EventReference PlayerThrow { get; private set; }
+        [field: SerializeField] public EventReference PlayerThrow { get; private set; }
         [field: SerializeField] public EventReference PlayerDrag { get; private set; }
         
         [field: Header("DogSFX")]

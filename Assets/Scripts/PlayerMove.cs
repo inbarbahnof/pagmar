@@ -1,4 +1,7 @@
 using System.Collections;
+using Audio.FMOD;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -170,6 +173,7 @@ public class PlayerMove : MonoBehaviour
             GetComponent<SmoothMover>().MoveTo(playerPos);
 
             _speed = _pushSpeed;
+
         }
         else
         {
