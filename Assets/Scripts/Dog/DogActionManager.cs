@@ -123,7 +123,7 @@ namespace Dog
             {
                 _playerFollower.StopGoingToTarget();
                 _playerFollower.SetIsGoingToTarget(false);
-                _playerFollower.SetSpeed(0f, true); // Optional: stop animations immediately
+                _playerFollower.SetSpeed(true); // Optional: stop animations immediately
             }
             else
             {
@@ -150,9 +150,9 @@ namespace Dog
         public void Running(bool isRunning)
         {
             if (isRunning)
-                _playerFollower.SetSpeed(7.5f,false);
+                _playerFollower.SetSpeed(false);
             else
-                _playerFollower.SetSpeed(7.5f,true);
+                _playerFollower.SetSpeed(true);
         }
 
         public void ResetToCheckpoint(Vector2 position)
@@ -256,9 +256,7 @@ namespace Dog
 
         private IEnumerator ZeroChageGhostie()
         {
-            print("start zero coroutine");
             yield return new WaitForSeconds(15f);
-            print("stop zero coroutine");
             _numberChaseGhostie = 0;
         }
 
@@ -358,7 +356,7 @@ namespace Dog
 
         private void HandleDogOnAction()
         {
-            _playerFollower.SetSpeed(1f, true);
+            _playerFollower.SetSpeed(true);
             _dogFollowingTOI = false;
             _dogBusy = true;
             _dogReachedTarget = true;
@@ -367,7 +365,7 @@ namespace Dog
 
         private void HandleDogFinishedAction()
         {
-            _playerFollower.SetSpeed(1f, true);
+            _playerFollower.SetSpeed(true);
             _dogFollowingTOI = false;
             _dogBusy = false;
             _isFollowingStick = false;
@@ -389,7 +387,7 @@ namespace Dog
 
         private void HandleDogIdle()
         {
-            _playerFollower.SetSpeed(1f, true);
+            _playerFollower.SetSpeed(true);
             _dogFollowingTOI = false;
             _dogFollowingTarget = false;
             _dogReachedTarget = true;

@@ -18,7 +18,8 @@ namespace Dog
 
         [SerializeField] private Transform player;
         [SerializeField] private DogAnimationManager _animationManager;
-        private float minMoveAninmSpeed = 0.1f;
+        [SerializeField] private float _walkSpeed = 3.5f;
+        [SerializeField] private float _runSpeed = 7.5f;
         
         private NavMeshAgent agent;
         private Target currentTarget;
@@ -67,17 +68,17 @@ namespace Dog
             }
         }
 
-        public void SetSpeed(float speed, bool normal)
+        public void SetSpeed(bool walking)
         {
-            if (normal)
+            if (walking)
             {
                 _isRunning = false;
-                agent.speed = initialSpeed;
+                agent.speed = _walkSpeed;
             }
             else
             {
                 _isRunning = true;
-                agent.speed = speed;
+                agent.speed = _runSpeed;
             }
         }
 
