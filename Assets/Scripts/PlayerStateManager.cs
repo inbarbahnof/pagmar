@@ -36,8 +36,10 @@ public class PlayerStateManager : MonoBehaviour
     private bool _throwing;
     private bool _isPushingFromLeft;
     private bool _isClimbing;
+    private bool _isAiming;
 
     private Coroutine _waitToCallCoroutine;
+    private Vector3 _initialPickUpParentPos;
     
     private PlayerAnimationComputer _computer;
 
@@ -65,15 +67,15 @@ public class PlayerStateManager : MonoBehaviour
         if (_curInteraction is PushInteractable pushInteractable)
             _isPushingFromLeft = pushInteractable.IsPushingFromLeft;
         else _isPushingFromLeft = false;
+
+        _isAiming = curState == PlayerState.Aim;
         
         PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching, 
             _move.IsMoving, _move.CanMove, _isCalling, _move.MovingRight, _pickedUp,
-            _justPickedUp, _throwing, _isPushingFromLeft);
+            _justPickedUp, _throwing, _isPushingFromLeft, _isAiming);
         
         PlayerAnimation animation = _computer.Compute(input);
         _animationManager.PlayerAnimationUpdate(animation);
-        
-        // print("player state " + curState);
     }
 
     public void UpdatePlayerSpeed(bool isFast)
@@ -99,7 +101,6 @@ public class PlayerStateManager : MonoBehaviour
         yield return new WaitForSeconds(_climbAnimTime);
 
         _isClimbing = false;
-        // ClimbInteractableManager.instance.StopInteraction();
     }
 
     public void UpdatePickedUp(bool pick)
@@ -108,12 +109,6 @@ public class PlayerStateManager : MonoBehaviour
         
         _justPickedUp = true;
         StartCoroutine(WaitForPickUpAnim());
-        
-        // if (_pickedUp)
-        // {
-        //     _justPickedUp = true;
-        //     StartCoroutine(WaitForPickUpAnim());
-        // }
     }
     
     private IEnumerator WaitForThrowingAnim()

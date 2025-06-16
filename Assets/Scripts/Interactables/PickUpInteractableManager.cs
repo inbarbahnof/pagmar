@@ -1,4 +1,6 @@
 ﻿using System;
+using Spine;
+using Spine.Unity;
 using Targets;
 using UnityEngine;
 
@@ -10,7 +12,8 @@ namespace Interactables
         
         public event Action OnReachedTarget;
         public event Action OnPickedUp;
-
+        
+        [SerializeField] SkeletonAnimation skeletonAnimation;
         [SerializeField] private GameObject player;
         [SerializeField] private AimControl aimControl;
 
@@ -23,6 +26,9 @@ namespace Interactables
         private bool _isAbleToAim;
         private PickUpInteractable _curPickUp;
         public PickUpInteractable CurPickUp => _curPickUp;
+        
+        private Spine.AnimationState spineAnimationState;
+        private Spine.Skeleton skeleton;
         
         void Start()
         {
@@ -43,13 +49,18 @@ namespace Interactables
             OnReachedTarget += onReachEvent;
             OnPickedUp += onPickedUp;
         }
+
+        public void PickUpCurrentObject()
+        {
+            if (_curPickUp != null && _curPickUp.IsPickedUp) _curPickUp.PhysicallyPickUp(_pickUpParent);
+        }
         
         public void Interact(PickUpInteractable pickup)
         {
             if (!pickup.IsPickedUp)
             {
                 _curPickUp = pickup;
-                pickup.PickUpObject(_pickUpParent);
+                _curPickUp.PickUpObject(_pickUpParent);
                 _playerStateManager.UpdatePickedUp(true);
                 OnPickedUp?.Invoke();
             }

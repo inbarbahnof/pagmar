@@ -68,6 +68,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LevelEndCoroutine());
     }
 
+    public void TurnToPhase2()
+    {
+        connectionState = 2;
+    }
+
     private IEnumerator LevelEndCoroutine()
     {
         Time.timeScale = 0;

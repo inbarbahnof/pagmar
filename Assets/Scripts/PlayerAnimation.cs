@@ -11,5 +11,6 @@
     Pull,
     Push,
     Run,
-    Throw
+    Throw,
+    Aim
 }

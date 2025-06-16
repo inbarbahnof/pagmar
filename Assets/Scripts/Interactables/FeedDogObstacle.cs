@@ -31,6 +31,7 @@ namespace Interactables
         public void HandleFoodDroppedWalkable(FoodPickUpInteractable food)
         {
             _wantFoodTarget.FoodCanBeReached();
+            _food.SetCanInteract(false);
         }
 
         public override void ResetObstacle()

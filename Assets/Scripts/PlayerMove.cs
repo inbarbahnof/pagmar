@@ -22,6 +22,7 @@ public class PlayerMove : MonoBehaviour
     private bool movingRight = true;
 
     private float _speed;
+    private Vector2 _aimInput;
     
     private bool isAutoRunning = false;
     private Vector2 autoRunDirection = new Vector2(1f, -0.4f); // Right and slightly down
@@ -121,25 +122,33 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    public void UpdateAimInput(Vector2 input)
+    {
+        _aimInput = input;
+    }
+
     private void FlipSpriteBasedOnMovement()
     {
         if (Mathf.Abs(_moveInput.x) > 0.001f && !isPushing)
         {
-            if (!isPushing)
-            {
-                float newScaleX = _moveInput.x > 0 ? 1 : -1;
-                _playerArt.transform.localScale = new Vector3(
-                    newScaleX * Mathf.Abs(_playerArt.transform.localScale.x),
-                    _playerArt.transform.localScale.y,
-                    _playerArt.transform.localScale.z
-                );
-            }
+            float newScaleX = _moveInput.x > 0 ? 1 : -1;
+            _playerArt.transform.localScale = new Vector3(
+                newScaleX * Mathf.Abs(_playerArt.transform.localScale.x),
+                _playerArt.transform.localScale.y,
+                _playerArt.transform.localScale.z
+            );
         }
+        else if (Mathf.Abs(_aimInput.x) > 0.001f && !isPushing)
+        {
+            float newScaleX = _aimInput.x > 0 ? 1 : -1;
+            _playerArt.transform.localScale = new Vector3(
+                newScaleX * Mathf.Abs(_playerArt.transform.localScale.x),
+                _playerArt.transform.localScale.y,
+                _playerArt.transform.localScale.z
+            );
+        }
+        
         movingRight = _moveInput.x > 0;
-        // if (!isPushing)
-        // {
-        //     _lastPosition = currentPosition;
-        // }
     }
     
     public void CheckIfNeedToFlipArt()

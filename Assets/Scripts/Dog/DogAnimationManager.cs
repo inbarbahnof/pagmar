@@ -8,6 +8,7 @@ using Spine.Unity;
 using Targets;
 // using UnityEditor.Rendering;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Dog
 {
@@ -61,6 +62,7 @@ namespace Dog
         private bool _growling;
         private bool _eating;
         private bool _sniffing;
+        private bool _listening;
 
         private Spine.AnimationState spineAnimationState;
         
@@ -123,13 +125,19 @@ namespace Dog
         {
             Vector3 currentPosition = transform.position;
             float distanceMoved = Vector3.Distance(currentPosition, lastPosition);
-            _isMoving = distanceMoved > 0.03f;
+            _isMoving = distanceMoved > 0.02f;
             lastPosition = currentPosition; 
         }
 
         private DogAnimation WhichAnimShouldBePlayed()
         {
             if (_eating) return DogAnimation.Eat;
+
+            if (_actionManager.IsDogProtected)
+            {
+                if (_isMoving) return DogAnimation.WalkCrouch;
+                return DogAnimation.IdleCrouch;
+            }
             
             if (_isMoving)
             {
@@ -140,6 +148,8 @@ namespace Dog
             if (_sniffing) return DogAnimation.Sniff;
 
             if (_growling) return DogAnimation.Growl;
+
+            if (_listening || Random.value < 0.4f) return DogAnimation.Listen;
             
             return DogAnimation.Idle;
         }
@@ -197,10 +207,7 @@ namespace Dog
         {
             // TODO play eat sound
             _eating = true;
-            print("eating");
-            
             yield return new WaitForSeconds(_eatAnimationTime);
-            print("stop eating");
             _eating = false;
         }
         
@@ -220,6 +227,9 @@ namespace Dog
         
         public void DogAnimationUpdate(DogAnimation anim)
         {
+            if (anim != DogAnimation.Listen) _listening = false;
+            else _listening = true;
+            
             TrackEntry entry = null;
             // print("switching from animation " + _curAnim +" to animation " + anim);
             switch (anim)
@@ -247,6 +257,18 @@ namespace Dog
                 case DogAnimation.Sniff:
                     entry = spineAnimationState.SetAnimation(0, sniffAnimName, true);
                     if (entry != null) entry.TimeScale = sniffAnimSpeed;
+                    break;
+                case DogAnimation.Listen:
+                    entry = spineAnimationState.SetAnimation(0, listenAnimName, true);
+                    if (entry != null) entry.TimeScale = listenAnimSpeed;
+                    break;
+                case DogAnimation.IdleCrouch:
+                    entry = spineAnimationState.SetAnimation(0, idleCrouchAnimName, true);
+                    if (entry != null) entry.TimeScale = idleCrouchAnimSpeed;
+                    break;
+                case DogAnimation.WalkCrouch:
+                    entry = spineAnimationState.SetAnimation(0, walkCrouchAnimName, true);
+                    if (entry != null) entry.TimeScale = walkCrouchAnimSpeed;
                     break;
             }
 

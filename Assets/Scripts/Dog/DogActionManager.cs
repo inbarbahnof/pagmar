@@ -37,12 +37,14 @@ namespace Dog
         private bool _needToStealth;
         private bool _followingCall;
         private bool _isThereGhostie;
+        private int _numberChaseGhostie;
 
         private DogStateComputer _computer;
         private float _dogPlayerDistance;
         private DogAnimationManager _animationManager;
 
         private Coroutine _stopFollowCoroutine;
+        private Coroutine _chaseGhostieCoroutine;
         
         private bool _movementEnabled = true;
         
@@ -77,7 +79,7 @@ namespace Dog
         private void Update()
         {
             // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
-            // print("_isThereGhostie " + _isThereGhostie);
+            // print("_numberChaseGhostie " + _numberChaseGhostie);
             // print("following call " + _followingCall);
             if (!_movementEnabled) return;
             
@@ -95,7 +97,7 @@ namespace Dog
                 _dogBusy, _listenDistance, _foodIsClose, _canEatFood, 
                 _wantFood, _petDistance, _isFollowingStick, 
                 _isStealthTargetClose, _needToStealth, 
-                _followingCall, _isThereGhostie);
+                _followingCall, _isThereGhostie, _numberChaseGhostie);
             
             // print("can eat food " + _canEatFood +" is food close " + _foodIsClose);
             
@@ -121,7 +123,7 @@ namespace Dog
             {
                 _playerFollower.StopGoingToTarget();
                 _playerFollower.SetIsGoingToTarget(false);
-                _playerFollower.SetSpeed(0f, true); // Optional: stop animations immediately
+                _playerFollower.SetSpeed(true); // Optional: stop animations immediately
             }
             else
             {
@@ -148,15 +150,18 @@ namespace Dog
         public void Running(bool isRunning)
         {
             if (isRunning)
-                _playerFollower.SetSpeed(7.5f,false);
+                _playerFollower.SetSpeed(false);
             else
-                _playerFollower.SetSpeed(7.5f,true);
+                _playerFollower.SetSpeed(true);
         }
 
         public void ResetToCheckpoint(Vector2 position)
         {
             _playerFollower.ResetToCheckpoint(position);
             curState = DogState.Idle;
+            _numberChaseGhostie = 0;
+            
+            if (_chaseGhostieCoroutine != null) StopCoroutine(_chaseGhostieCoroutine);
             
             StartCoroutine(DogResetPause());
         }
@@ -190,6 +195,9 @@ namespace Dog
                     break;
                 case (_, DogState.ChaseGhostie):
                     curState = DogState.ChaseGhostie;
+                    _numberChaseGhostie++;
+                    if (_chaseGhostieCoroutine == null) 
+                        _chaseGhostieCoroutine = StartCoroutine(ZeroChageGhostie());
                     _playerFollower.GoToFoodTarget(_targetGenerator.GetClosestGhostie(transform));
                     Running(true);
                     Bark();
@@ -244,6 +252,12 @@ namespace Dog
                     HandleIdleBehavior();
                     break;
             }
+        }
+
+        private IEnumerator ZeroChageGhostie()
+        {
+            yield return new WaitForSeconds(15f);
+            _numberChaseGhostie = 0;
         }
 
         private void HandleStealthBehavior()
@@ -342,7 +356,7 @@ namespace Dog
 
         private void HandleDogOnAction()
         {
-            _playerFollower.SetSpeed(1f, true);
+            _playerFollower.SetSpeed(true);
             _dogFollowingTOI = false;
             _dogBusy = true;
             _dogReachedTarget = true;
@@ -351,7 +365,7 @@ namespace Dog
 
         private void HandleDogFinishedAction()
         {
-            _playerFollower.SetSpeed(1f, true);
+            _playerFollower.SetSpeed(true);
             _dogFollowingTOI = false;
             _dogBusy = false;
             _isFollowingStick = false;
@@ -373,7 +387,7 @@ namespace Dog
 
         private void HandleDogIdle()
         {
-            _playerFollower.SetSpeed(1f, true);
+            _playerFollower.SetSpeed(true);
             _dogFollowingTOI = false;
             _dogFollowingTarget = false;
             _dogReachedTarget = true;

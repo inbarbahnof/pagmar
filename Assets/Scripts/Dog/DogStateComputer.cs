@@ -22,7 +22,7 @@ namespace Dog
             if (machineInput._dogBusy && machineInput._connectionStage <= 2) return DogState.OnTargetAction;
             
             if (previousDogState == DogState.ChaseGhostie && 
-                machineInput is { _isThereGhostie: true, _connectionStage: >= 3 , _dogReachedTarget: false})
+                machineInput is { _isThereGhostie: true , _dogReachedTarget: false})
                 return previousDogState;
 
             if (machineInput._dogFollowingTOI) return DogState.FollowTOI;
@@ -50,7 +50,14 @@ namespace Dog
 
         private DogState HandleCallBehavior(DogStateMachineInput input)
         {
-            if (input._isThereGhostie) return DogState.ChaseGhostie;
+            if (input._isThereGhostie)
+            {
+                if ((input._connectionStage == 1 && input._chaseGhostieNumber < 1) ||
+                (input._connectionStage > 1 && input._chaseGhostieNumber < 10))
+                {
+                    return DogState.ChaseGhostie;
+                }
+            }
             
             return DogState.FollowCall;
         }
@@ -108,7 +115,7 @@ namespace Dog
 
         private DogState HandlePlayerIdleBehavior(DogState previousDogState, DogStateMachineInput machineInput)
         {
-            if (machineInput._dogReachedTarget && machineInput._connectionStage < 4)
+            if (machineInput._dogReachedTarget && machineInput._connectionStage < 3)
             {
                 return DogState.Idle;
             }

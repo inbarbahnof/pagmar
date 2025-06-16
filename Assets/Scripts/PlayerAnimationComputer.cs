@@ -10,6 +10,8 @@
         if (input._justPickedUp) return PlayerAnimation.PickUp;
 
         if (input._throwing) return PlayerAnimation.Throw;
+
+        if (input._isAiming) return PlayerAnimation.Aim;
         
         switch (input._playerState)
         {

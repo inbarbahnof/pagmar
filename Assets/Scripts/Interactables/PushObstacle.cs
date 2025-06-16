@@ -8,6 +8,7 @@ namespace Interactables
         [SerializeField] private PlayerDeathZone deathZone;
         [SerializeField] private PushInteractable interactable;
         [SerializeField] private Transform pushTarget;
+        [SerializeField] private GameObject climbObject;
         
 
         void Start()
@@ -18,17 +19,24 @@ namespace Interactables
         public override void ReachedTarget()
         {
             base.ReachedTarget();
-            
-            if (deathZone != null) deathZone.gameObject.SetActive(false);
-            NavMeshManager.instance.ReBake();
+            SwapToClimb(true);
         }
 
         public override void ResetObstacle()
         {
             pushManager.ResetToCheckpoint(interactable);
-            NavMeshManager.instance.ReBake();
-            if (deathZone != null) deathZone.gameObject.SetActive(true);
+            SwapToClimb(false);
         }
-        
+
+        private void SwapToClimb(bool climb)
+        {
+            if (deathZone != null) deathZone.gameObject.SetActive(!climb);
+            if (climbObject)
+            {
+                climbObject.SetActive(climb);
+                interactable.gameObject.SetActive(!climb);
+            }
+            NavMeshManager.instance.ReBake();
+        }
     }
 }

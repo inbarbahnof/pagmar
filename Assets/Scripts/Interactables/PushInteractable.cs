@@ -5,9 +5,7 @@ namespace Interactables
 {
     public class PushInteractable : BaseInteractable
     {
-        [SerializeField] protected bool _needDogToPush = false;
         [SerializeField] protected Transform playerPosToPush;
-        [SerializeField] protected Transform dogPosToPush;
         [SerializeField] protected bool _isPushingFromLeft = true;
         
         private Vector2 _pushTarget;
@@ -17,7 +15,6 @@ namespace Interactables
         protected bool Stationary = false;
         public bool GetStationary() => Stationary;
         
-        public bool NeedDogToPush() => _needDogToPush;
         public bool IsPushingFromLeft => _isPushingFromLeft;
         
         private float _xOffset;
@@ -25,7 +22,7 @@ namespace Interactables
         public override void Interact()
         {
             if (hasTarget) PushInteractableManager.instance.SetPushTarget(_pushTarget, OnReachedTarget);
-            PushInteractableManager.instance.TryStartPush(this, playerPosToPush.position, dogPosToPush.position);
+            PushInteractableManager.instance.TryStartPush(this, playerPosToPush.position);
             base.Interact();
         }
 

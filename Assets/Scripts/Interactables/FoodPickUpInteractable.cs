@@ -8,6 +8,7 @@ namespace Interactables
     public class FoodPickUpInteractable : PickUpInteractable
     {
         public event Action<FoodPickUpInteractable> OnDroppedOnWalkableSurface;
+        [SerializeField] private SpriteRenderer _food;
         
         private FoodTarget _foodTarget;
 
