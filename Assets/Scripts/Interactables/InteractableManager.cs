@@ -35,7 +35,7 @@ namespace Interactables
         public void RemoveInteractable(BaseInteractable interactable)
         {
             curInteractables.Remove(interactable);
-            //print("inter removed: " + interactable + " at dist: " + Vector2.Distance(player.position, interactable.transform.position));
+            print("inter removed: " + interactable + " at dist: " + Vector2.Distance(player.position, interactable.transform.position));
             if (curInteractableObj == interactable)
             {
                 curInteractableObj.SetHighlight(false);
@@ -64,7 +64,7 @@ namespace Interactables
                 
                     if (dist > interactionRange)
                     {
-                        // print("removing " + interactable.name + " at distance " + dist);
+                        print("removing " + interactable.name + " at distance " + dist);
                         RemoveInteractable(interactable);
                     }
                 }

@@ -42,18 +42,8 @@ namespace Interactables
             OnReachedTarget += onReachEvent;
         }
 
-        public void TryStartPush(PushInteractable interactable, Vector3 playerPos, Vector3 dogPos)
+        public void TryStartPush(PushInteractable interactable, Vector3 playerPos)
         {
-            if (dog != null)
-            {
-                float playerDogDistance = Vector3.Distance(player.position, dog.position);
-                if (interactable.NeedDogToPush())
-                {
-                    if (playerDogDistance > _pushDistance) return;
-                    dog.position = dogPos;
-                    _dogOffsetFromObject = interactable.transform.position - dog.position;
-                }
-            }
             _isPushing = true;
             _playerMove.SetIsPushing(true, playerPos, interactable.GetStationary());
 
@@ -73,18 +63,7 @@ namespace Interactables
         {
             if (!_isPushing || _curPushable == null) return;
             
-            if (_curPushable.NeedDogToPush() && _dogAction.CurState != DogState.Push)
-            {
-                // print("dog not pushing");
-                return;
-            }
-            
             _curPushable.PushObject(player.position.x, _playerMove.GetMoveDirRight());
-
-            if (_curPushable.NeedDogToPush())
-            {
-                PushDog();
-            }
 
             if (_pushTarget != Vector2.zero)
             {
@@ -99,12 +78,6 @@ namespace Interactables
                     StopPush();
                 }
             }
-        }
-        
-        private void PushDog()
-        {
-            Vector3 dogTargetPos = _curPushable.transform.position - _dogOffsetFromObject;
-            dog.GetComponent<SmoothMover>().MoveTo(dogTargetPos);
         }
 
         public void ResetToCheckpoint(BaseInteractable interactable)
