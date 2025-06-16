@@ -1,5 +1,7 @@
 using System;
+using Audio.FMOD;
 using Dog;
+using FMOD.Studio;
 using UnityEngine;
 
 namespace Interactables
@@ -22,6 +24,8 @@ namespace Interactables
         private bool _isPushing = false;
 
         private Vector2 _pushTarget;
+        
+        private EventInstance _dragSound;
         
         void Start()
         {
@@ -46,7 +50,16 @@ namespace Interactables
         {
             _isPushing = true;
             _playerMove.SetIsPushing(true, playerPos, interactable.GetStationary());
-
+            
+            if (!_dragSound.isValid())
+            {
+                _dragSound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.PlayerDrag);
+                // if (interactable.pushKind == PushInteractable.PushKind.Wood)
+                    // AudioManager.Instance.SetParameter(_dragSound, "Drag Mode", "wood", false);
+                // else AudioManager.Instance.SetParameter(_dragSound, "Drag Mode", "trap", false);
+                // SetParameter(EventInstance emitter, string parameterName, float parameterValue, bool isGlobal)
+            }
+            
             _curPushable = interactable;
             _curPushable.SetOffset(playerPos.x);
             
@@ -57,6 +70,9 @@ namespace Interactables
             _isPushing = false;
             _curPushable = null;
             _playerMove.SetIsPushing(false, Vector3.zero);
+            
+            AudioManager.Instance.StopSound(_dragSound);
+            _dragSound = default;
         }
 
         void Update()

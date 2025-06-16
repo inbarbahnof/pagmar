@@ -52,6 +52,9 @@ public class GameManager : MonoBehaviour
             case 3:
                 AudioManager.Instance.PlayMusic(FMODEvents.Instance.Chapter3Music);
                 break;
+            case 4:
+                AudioManager.Instance.PlayMusic(FMODEvents.Instance.Chapter4Music);
+                break;
         }
         
         AudioManager.Instance.PlayAmbiance(FMODEvents.Instance.Ambiance);

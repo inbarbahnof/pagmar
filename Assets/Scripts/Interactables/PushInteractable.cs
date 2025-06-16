@@ -8,12 +8,21 @@ namespace Interactables
         [SerializeField] protected Transform playerPosToPush;
         [SerializeField] protected bool _isPushingFromLeft = true;
         
+        public enum PushKind
+        {
+            Wood,
+            Trap
+        }
+
+        [SerializeField] protected PushKind _pushKind;
+        
         private Vector2 _pushTarget;
         public event Action OnReachedTarget;
         private bool hasTarget;
         
         protected bool Stationary = false;
         public bool GetStationary() => Stationary;
+        public PushKind pushKind => _pushKind;
         
         public bool IsPushingFromLeft => _isPushingFromLeft;
         

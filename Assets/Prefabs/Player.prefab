@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: CallTarget
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 725460822689590145}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1, y: 0.74, z: 0}
+  m_LocalPosition: {x: 0.84, y: 0.66, z: 0}
   m_LocalScale: {x: 1, y: 0.51695615, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -68,6 +68,7 @@ GameObject:
   - component: {fileID: 1930956038802629493}
   - component: {fileID: 1612652190619567834}
   - component: {fileID: 8182647766433154001}
+  - component: {fileID: 3279934088923669474}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -482,6 +483,22 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.38}
   m_Size: {x: 0.48, y: 0.28}
   m_Direction: 1
+--- !u!208 &3279934088923669474
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810158106228689958}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.42, y: 0.69, z: 0.42}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3875658489770806721
 GameObject:
   m_ObjectHideFlags: 0
