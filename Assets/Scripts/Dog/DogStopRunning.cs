@@ -8,7 +8,7 @@ namespace Dog
         {
             if (other.CompareTag("Dog"))
             {
-                other.GetComponent<PlayerFollower>().SetSpeed(1f, true);
+                other.GetComponent<PlayerFollower>().SetSpeed(true);
             }
         }
     }
