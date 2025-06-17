@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{465d7052-74ae-4113-9f3a-5390733eb060}">
+		<property name="name">
+			<value>Stealth Mode</value>
+		</property>
+		<relationship name="folder">
+			<destination>{00ded247-c94b-49cf-b59a-964c13cbe83c}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{bc50154b-e778-445a-a3b8-3c9b4692c896}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{bc50154b-e778-445a-a3b8-3c9b4692c896}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeedDescending">
+			<value>20</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>
