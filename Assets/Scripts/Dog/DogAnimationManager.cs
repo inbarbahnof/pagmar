@@ -63,6 +63,7 @@ namespace Dog
         private bool _eating;
         private bool _sniffing;
         private bool _listening;
+        private bool _wantFood;
 
         private Spine.AnimationState spineAnimationState;
         
@@ -144,6 +145,8 @@ namespace Dog
                 if (_actionManager.IsRunning) return DogAnimation.Run;
                 return DogAnimation.Walk;
             }
+
+            if (_wantFood) return DogAnimation.HappyCrouch;
             
             if (_sniffing) return DogAnimation.Sniff;
 
@@ -170,6 +173,19 @@ namespace Dog
         public void DogFinishSniff()
         {
             _sniffing = false;
+        }
+
+        public void DogWaitForFood()
+        {
+            _wantFood = true;
+
+            StartCoroutine(WaitToAnimation());
+        }
+
+        private IEnumerator WaitToAnimation()
+        {
+            yield return new WaitForSeconds(2f);
+            _wantFood = false;
         }
 
         public void DogBark()
@@ -269,6 +285,10 @@ namespace Dog
                 case DogAnimation.WalkCrouch:
                     entry = spineAnimationState.SetAnimation(0, walkCrouchAnimName, true);
                     if (entry != null) entry.TimeScale = walkCrouchAnimSpeed;
+                    break;
+                case DogAnimation.HappyCrouch:
+                    entry = spineAnimationState.SetAnimation(0, happyCrouchAnimName, true);
+                    if (entry != null) entry.TimeScale = happyCrouchAnimSpeed;
                     break;
             }
 

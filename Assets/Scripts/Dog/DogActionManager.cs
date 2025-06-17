@@ -78,8 +78,8 @@ namespace Dog
 
         private void Update()
         {
-            // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
-            // print("_numberChaseGhostie " + _numberChaseGhostie);
+            print("dog State " + curState + " player state " + playerStateManager.CurrentState);
+            
             // print("following call " + _followingCall);
             if (!_movementEnabled) return;
             
@@ -134,6 +134,25 @@ namespace Dog
         public void Bark()
         {
             _animationManager.DogBark();
+        }
+
+        public void WaitUntilEating()
+        {
+            StartCoroutine(WantFoodBehavior());
+        }
+
+        private IEnumerator WantFoodBehavior()
+        {
+            while (curState == DogState.WantFood)
+            {
+                Bark();
+
+                yield return new WaitForSeconds(0.4f);
+                
+                _animationManager.DogWaitForFood();
+                
+                yield return new WaitForSeconds(2f);
+            }
         }
 
         public void Growl()
@@ -256,7 +275,7 @@ namespace Dog
 
         private IEnumerator ZeroChageGhostie()
         {
-            yield return new WaitForSeconds(15f);
+            yield return new WaitForSeconds(11f);
             _numberChaseGhostie = 0;
         }
 

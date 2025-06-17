@@ -97,7 +97,7 @@ namespace Dog
     
         private DogState HandlePlayerWalkBehavior(DogState previousDogState, DogStateMachineInput machineInput)
         {
-            if (machineInput._connectionStage > 1)
+            if (machineInput._connectionStage > 2)
             {
                 if (previousDogState != DogState.FollowTOI)
                 {

@@ -15,8 +15,7 @@ namespace Targets
         {
             yield return new WaitForSeconds(_hoverTime);
             
-            if (isTOI) 
-                _dog.DogFinishSniff();
+            if (isTOI) _dog.DogFinishSniff();
             
             FinishTargetAction();
         }
