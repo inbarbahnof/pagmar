@@ -9,6 +9,7 @@ namespace Interactables
         [SerializeField] private PushInteractable interactable;
         [SerializeField] private Transform pushTarget;
         [SerializeField] private GameObject climbObject;
+        [SerializeField] private bool _isJumping;
         
 
         void Start()
@@ -36,7 +37,7 @@ namespace Interactables
                 climbObject.SetActive(climb);
                 interactable.gameObject.SetActive(!climb);
             }
-            NavMeshManager.instance.ReBake();
+            if (!_isJumping) NavMeshManager.instance.ReBake();
         }
     }
 }

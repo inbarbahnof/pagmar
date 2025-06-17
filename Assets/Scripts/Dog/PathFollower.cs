@@ -10,10 +10,18 @@ namespace Dog
     public class PathFollower : MonoBehaviour
     {
         public float speed = 3f;
+        
         private float distanceTravelled;
         private bool isOnPath = false;
         private PathCreator pathCreator;
         private PathTarget _target;
+        private DogAnimationManager _animationManager;
+
+        private void Start()
+        {
+            _animationManager = GetComponent<DogAnimationManager>();
+            print("animation manager " +_animationManager);
+        }
 
         private void Update()
         {
@@ -30,6 +38,7 @@ namespace Dog
             
             if (distanceTravelled < pathLength)
             {
+                _animationManager.DogJumping(true);
                 Vector3 pos = pathCreator.path.GetPointAtDistance(distanceTravelled, EndOfPathInstruction.Stop);
                 transform.position = pos;
             }
@@ -38,6 +47,7 @@ namespace Dog
                 _target.FinishTargetAction();
                 Vector3 pos = pathCreator.path.GetPointAtDistance(pathLength, EndOfPathInstruction.Stop);
                 transform.position = pos;
+                _animationManager.DogJumping(false);
                 
                 var agent = GetComponent<NavMeshAgent>();
                 if (agent != null) agent.Warp(pos);
