@@ -54,6 +54,8 @@ namespace Interactables
             transform.position = input.endPoint;
             _isThrowing = false;
             
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ObjectFall);
+            
             if (_food != null) _food.ActivateIfOnWalkable(transform.position);
             
             OnThrowComplete?.Invoke(transform);

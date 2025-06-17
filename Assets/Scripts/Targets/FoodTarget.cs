@@ -37,7 +37,7 @@ namespace Targets
         
         private IEnumerator EatTarget()
         {
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.8f);
             
             gameObject.SetActive(false);
             OnFoodEaten?.Invoke();
