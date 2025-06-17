@@ -1,11 +1,14 @@
 using System;
+using Audio.FMOD;
 using Dog;
+using FMOD.Studio;
 using UnityEngine;
 
 public class StealthObject : MonoBehaviour
 {
     private PlayerStealthManager _curStealthManager;
     private DogActionManager _curDogActionManager;
+    private EventInstance _bushSound;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -13,13 +16,15 @@ public class StealthObject : MonoBehaviour
         {
             _curStealthManager = other.GetComponent<PlayerStealthManager>();
            _curStealthManager.SetStealthMode(true);
-           //print("player in stealth mode");
+           if (!_bushSound.isValid()) 
+               _bushSound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.BushRustle);
         }
         else if (other.CompareTag("Dog"))
         {
             _curDogActionManager = other.GetComponent<DogActionManager>();
             _curDogActionManager.HandleDogProtectionChanged(true);
-            //print("dog in stealth mode");
+            if (!_bushSound.isValid()) 
+                _bushSound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.BushRustle);
         }
     }
     
@@ -29,13 +34,17 @@ public class StealthObject : MonoBehaviour
         {
             _curStealthManager.SetStealthMode(false);
             _curStealthManager = null;
-            //print("player exit stealth mode");
+            
+            AudioManager.Instance.StopSound(_bushSound);
+            _bushSound = default;
         }
         else if (other.CompareTag("Dog"))
         {
             _curDogActionManager.HandleDogProtectionChanged(false);
             _curDogActionManager = null;
-            //print("dog exit stealth mode");
+            
+            AudioManager.Instance.StopSound(_bushSound);
+            _bushSound = default;
         }
     }
 }

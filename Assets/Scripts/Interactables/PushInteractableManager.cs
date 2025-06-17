@@ -54,10 +54,11 @@ namespace Interactables
             if (!_dragSound.isValid())
             {
                 _dragSound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.PlayerDrag);
-                // if (interactable.pushKind == PushInteractable.PushKind.Wood)
-                    // AudioManager.Instance.SetParameter(_dragSound, "Drag Mode", "wood", false);
-                // else AudioManager.Instance.SetParameter(_dragSound, "Drag Mode", "trap", false);
-                // SetParameter(EventInstance emitter, string parameterName, float parameterValue, bool isGlobal)
+                if (interactable.pushKind == PushInteractable.PushKind.Wood)
+                    AudioManager.Instance.SetStringParameter(_dragSound,
+                        "Drag Mode", "wood", false);
+                else AudioManager.Instance.SetStringParameter(_dragSound,
+                    "Drag Mode", "trap", false);
             }
             
             _curPushable = interactable;

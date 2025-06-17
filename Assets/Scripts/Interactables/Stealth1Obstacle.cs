@@ -1,5 +1,6 @@
 using System;
 using Audio.FMOD;
+using Dog;
 using Targets;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ namespace Interactables
     {
         [SerializeField] private GameObject _ghost;
         [SerializeField] private Target _stealthTarget;
+        [SerializeField] private PlayerStealthManager _player;
+        [SerializeField] private DogActionManager _dog;
 
         private bool _didGhostAppear;
         
@@ -26,19 +29,25 @@ namespace Interactables
         {
             CameraController.instance.ZoomIn();
             _stealthTarget.FinishTargetAction();
+            
+            _dog.ChangeCrouching(false);
+            _player.StealthObstacle(false);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (_didGhostAppear && other.CompareTag("Dog"))
+            if (_didGhostAppear && other.CompareTag("Player"))
             {
                 CameraController.instance.ZoomOut();
+                _player.StealthObstacle(true);
+                _dog.ChangeCrouching(true);
             }
         }
 
         public override void PlayerReachedTarget()
         {
             CameraController.instance.FollowPlayer();
+            _player.StealthObstacle(false);
         }
     }
 }

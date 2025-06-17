@@ -139,7 +139,7 @@ namespace Interactables
         public void TargetReached(bool isLast)
         {
             _dogReachedFirstTarget = true;
-            
+            print("target reached");
             if (!isLast) _curDogTarget++;
             else TargetGenerator.instance.SetStealthTarget(_lastTarget);
         }

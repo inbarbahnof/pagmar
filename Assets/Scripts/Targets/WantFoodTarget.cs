@@ -13,7 +13,6 @@ namespace Targets
         {
             if (_foodCanBeReached) FinishTargetAction();
             
-            print("Dog reached want food");
             if (_dogTempComunication != null)
                 _dogTempComunication.SetActive(true);
 

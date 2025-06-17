@@ -38,6 +38,7 @@ namespace Dog
         private bool _followingCall;
         private bool _isThereGhostie;
         private int _numberChaseGhostie;
+        private bool _crouching;
 
         private DogStateComputer _computer;
         private float _dogPlayerDistance;
@@ -52,6 +53,7 @@ namespace Dog
         public float DogPlayerDistance => _dogPlayerDistance;
         public float ListenDistance => _listenDistance;
         public bool IsDogProtected => _isDogProtected;
+        public bool Crouching => _crouching;
         public DogState CurState => curState;
         public bool IsRunning => _playerFollower.IsRunning;
 
@@ -78,7 +80,7 @@ namespace Dog
 
         private void Update()
         {
-            print("dog State " + curState + " player state " + playerStateManager.CurrentState);
+            // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
             
             // print("following call " + _followingCall);
             if (!_movementEnabled) return;
@@ -329,6 +331,11 @@ namespace Dog
         public void HandleDogProtectionChanged(bool isProtected)
         {
             _isDogProtected = isProtected;
+        }
+
+        public void ChangeCrouching(bool crouch)
+        {
+            _crouching = crouch;
         }
 
         public void FoodIsClose(Collider2D food)

@@ -10829,6 +10829,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3650608561491c8e9ee5fa880f4680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &982133052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5801529399540210820, guid: 1e47e7fef18ec414aa96962837a6abd6, type: 3}
+  m_PrefabInstance: {fileID: 7584162020740953314}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &982133056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982133052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144977d2486d862468fe5b4e59f47a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6206195499498904310}
+        m_TargetAssemblyTypeName: PlayerStealthManager, Assembly-CSharp
+        m_MethodName: StealthObstacle
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1892569885}
+        m_TargetAssemblyTypeName: Dog.DogActionManager, Assembly-CSharp
+        m_MethodName: ChangeCrouching
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &985390741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78103,6 +78147,14 @@ PrefabInstance:
       value: StealthObs1
       objectReference: {fileID: 0}
     - target: {fileID: 3396882977877099375, guid: 1e47e7fef18ec414aa96962837a6abd6, type: 3}
+      propertyPath: _dog
+      value: 
+      objectReference: {fileID: 1892569885}
+    - target: {fileID: 3396882977877099375, guid: 1e47e7fef18ec414aa96962837a6abd6, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 6206195499498904310}
+    - target: {fileID: 3396882977877099375, guid: 1e47e7fef18ec414aa96962837a6abd6, type: 3}
       propertyPath: _stealthTarget
       value: 
       objectReference: {fileID: 6206195499498904295}
@@ -78206,7 +78258,10 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 4105444237629759541, guid: 1e47e7fef18ec414aa96962837a6abd6, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5801529399540210820, guid: 1e47e7fef18ec414aa96962837a6abd6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 982133056}
   m_SourcePrefab: {fileID: 100100000, guid: 1e47e7fef18ec414aa96962837a6abd6, type: 3}
 --- !u!1001 &8002646639366495534
 PrefabInstance:

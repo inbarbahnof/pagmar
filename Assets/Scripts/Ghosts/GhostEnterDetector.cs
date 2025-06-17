@@ -16,7 +16,7 @@ namespace Ghosts
                 if (!other.GetComponent<PlayerStealthManager>().isProtected)
                 {
                     _attack.Attack(other.transform);
-                    AudioManager.Instance.SetParameter(AudioManager.Instance.musicInstance,
+                    AudioManager.Instance.SetFloatParameter(AudioManager.Instance.musicInstance,
                         "Intensity", 1, false);
                 }
             }
@@ -27,7 +27,7 @@ namespace Ghosts
                 if (!isProtected)
                 {
                     _attack.Attack(other.transform);
-                    AudioManager.Instance.SetParameter(AudioManager.Instance.musicInstance,
+                    AudioManager.Instance.SetFloatParameter(AudioManager.Instance.musicInstance,
                         "Intensity", 1, false);
                 }
             }
@@ -36,7 +36,7 @@ namespace Ghosts
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.CompareTag("Dog") || other.CompareTag("Player"))
-                AudioManager.Instance.SetParameter(AudioManager.Instance.musicInstance,
+                AudioManager.Instance.SetFloatParameter(AudioManager.Instance.musicInstance,
                 "Intensity", 0, false);
         }
     }

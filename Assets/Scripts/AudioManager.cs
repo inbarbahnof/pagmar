@@ -113,7 +113,19 @@ namespace Audio.FMOD
             return emitter;
         }
         
-        public void SetParameter(EventInstance emitter, string parameterName, float parameterValue, bool isGlobal)
+        public void SetStringParameter(EventInstance emitter, string parameterName, string parameterValue, bool isGlobal)
+        {
+            if (isGlobal)
+            {
+                RuntimeManager.StudioSystem.setParameterByNameWithLabel(parameterName, parameterValue);
+            }
+            else
+            {
+                emitter.setParameterByNameWithLabel(parameterName, parameterValue);
+            }
+        }
+        
+        public void SetFloatParameter(EventInstance emitter, string parameterName, float parameterValue, bool isGlobal)
         {
             // print("setting parameter " + parameterName + " to " + parameterValue);
             if (isGlobal)

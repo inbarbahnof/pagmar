@@ -135,7 +135,7 @@ namespace Dog
         {
             if (_eating) return DogAnimation.Eat;
 
-            if (_actionManager.IsDogProtected)
+            if (_actionManager.Crouching)
             {
                 if (_isMoving) return DogAnimation.WalkCrouch;
                 return DogAnimation.IdleCrouch;

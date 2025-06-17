@@ -1,3 +1,4 @@
+using Audio.FMOD;
 using UnityEngine;
 
 public class PlayerStealthManager : MonoBehaviour
@@ -15,7 +16,18 @@ public class PlayerStealthManager : MonoBehaviour
     public void SetStealthMode(bool isInStealth)
     {
         _isProtected = isInStealth;
-        _playerStateManager.UpdateStealth(_isProtected);
+    }
+
+    public void StealthObstacle(bool isInStealth)
+    {
+        _playerStateManager.UpdateStealth(isInStealth);
+        
+        if (isInStealth) 
+            AudioManager.Instance.SetFloatParameter(default,
+                "Stealth Mode", 1, true);
+        else
+            AudioManager.Instance.SetFloatParameter(default,
+                "Stealth Mode", 0, true);
     }
 
     public void SetProtected(bool isInStealth)
