@@ -14,7 +14,7 @@ public class RunFromGhosties : MonoBehaviour
         if (other.CompareTag("Dog"))
         {
             _didDogPass = true;
-            print("dog passed");
+            // print("dog passed");
             
             if (_playerWaiting) StartsRunning();
         }
@@ -24,13 +24,13 @@ public class RunFromGhosties : MonoBehaviour
             {
                 if (!_didDogPass)
                 {
-                    print("waiting");
+                    // print("waiting");
                     _playerWaiting = true;
                     _playerMove.SetCanMove(false);
                 }
                 else
                 {
-                    print("running");
+                    // print("running");
                     StartsRunning();
                 }
             }
