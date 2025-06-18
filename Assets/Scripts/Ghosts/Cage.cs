@@ -19,11 +19,8 @@ namespace Ghosts
         {
             if (other.CompareTag("Ghostie"))
             {
-                Vector3 randomOffset = new Vector3(
-                    UnityEngine.Random.Range(-0.5f, 0.5f),
-                    UnityEngine.Random.Range(-0.5f, 0.5f),
-                    0f
-                );
+                Vector3 randomOffset = 
+                    new Vector3(UnityEngine.Random.Range(-0.2f, 0.2f), 0f, 0f);
                 
                 GhostieDie die = other.GetComponent<GhostieDie>();
                 GameObject ghostie = die.GetGhostie();

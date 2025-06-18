@@ -35,17 +35,20 @@ namespace Ghosts
         public void Die(Vector3 pos, Cage cage)
         {
             _detecror.SetActive(false);
-            _movement.Die(pos, cage);
+            _movement.Die(pos, cage, this);
             _attackDetector.IsAttackEnabled(false);
-            
-            foreach (var bone in _bones)
-            {
-                bone.bodyType = RigidbodyType2D.Dynamic;
-            }
             
             foreach (var effect in _vfx)
             {
                 effect.Stop();
+            }
+        }
+
+        public void DropBones()
+        {
+            foreach (var bone in _bones)
+            {
+                bone.bodyType = RigidbodyType2D.Dynamic;
             }
         }
 
@@ -70,7 +73,7 @@ namespace Ghosts
                 _bones[i].bodyType = RigidbodyType2D.Kinematic;
                 _bones[i].transform.localPosition = _initialBonePositions[i];
                 _bones[i].transform.localRotation = _initialBoneRotations[i];
-                _bones[i].velocity = Vector2.zero;
+                _bones[i].linearVelocity = Vector2.zero;
                 _bones[i].angularVelocity = 0f;
             }
             

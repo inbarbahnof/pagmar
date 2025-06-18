@@ -10,7 +10,7 @@ namespace Interactables
     public class ThrowStickOnFoodObstacle : MonoBehaviour
     {
         [SerializeField] private FoodPickUpInteractable _food;
-        [SerializeField] private GameObject _stick;
+        [SerializeField] private ThrowablePickUpInteractable _stick;
         [SerializeField] private FeedDogObstacle _feedDogObstacle;
         [SerializeField] private Transform _dropFoodPos;
         [SerializeField] private Transform _dropStickPos;
@@ -29,6 +29,10 @@ namespace Interactables
             
             _feedDogObstacle.HandleFoodDroppedWalkable(_food);
             _food.FoodCanBeFed();
+            
+            _food.SetCanInteract(false);
+            _stick.SetCanInteract(false);
+            
             TargetGenerator.instance.NotifyFoodNearby(_food.GetComponent<FoodTarget>());
 
             _stealth.GhostAppear();
