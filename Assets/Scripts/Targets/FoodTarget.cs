@@ -21,9 +21,12 @@ namespace Targets
             
             // turn off the pickability
             FoodPickUpInteractable foodPickUpInteractable = GetComponent<FoodPickUpInteractable>();
-            foodPickUpInteractable.SetCanInteract(false);
             
-            if (foodPickUpInteractable != null) InteractableManager.instance.RemoveInteractable(foodPickUpInteractable);
+            if (foodPickUpInteractable != null)
+            {
+                InteractableManager.instance.RemoveInteractable(foodPickUpInteractable);
+                foodPickUpInteractable.SetCanInteract(false);
+            }
             GetComponent<Collider2D>().enabled = false;
             
             // eat the target
