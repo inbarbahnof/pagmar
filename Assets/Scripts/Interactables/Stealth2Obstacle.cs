@@ -100,7 +100,7 @@ namespace Interactables
         {
             if (!_areaDetector.didStickLand) return;
             
-            print("target changed to " + _targets[_curTarget].name);
+            // print("target changed to " + _targets[_curTarget].name);
             TargetGenerator.instance.SetStealthTarget(_targets[_curTarget]);
             
             GhostMovement cur = _ghosts[_curTarget-1];

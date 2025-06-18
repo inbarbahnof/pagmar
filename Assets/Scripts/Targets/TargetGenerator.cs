@@ -69,7 +69,7 @@ namespace Targets
 
         public Target GetStealthTarget(bool toFollow)
         {
-            if (toFollow) _didStealthTargetChange = false;
+            if (toFollow && _stealthTarget != _callTarget) _didStealthTargetChange = false;
             return _stealthTarget;
         }
         
