@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Targets;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Dog
@@ -20,6 +21,7 @@ namespace Dog
         [SerializeField] private DogAnimationManager _animationManager;
         [SerializeField] private float _walkSpeed = 3.5f;
         [SerializeField] private float _runSpeed = 7.5f;
+        [SerializeField] private float _crouchSpeed = 2.8f;
         
         private NavMeshAgent agent;
         private Target currentTarget;
@@ -66,6 +68,12 @@ namespace Dog
                 agent.isStopped = false;
                 agent.SetDestination(currentTarget.transform.position);
             }
+        }
+
+        public void SetStealth(bool stealth)
+        {
+            if (stealth) agent.speed = _crouchSpeed;
+            else agent.speed = _walkSpeed;
         }
 
         public void SetSpeed(bool walking)

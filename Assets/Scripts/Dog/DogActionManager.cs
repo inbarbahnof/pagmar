@@ -5,6 +5,7 @@ using Interactables;
 using Targets;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Dog
 {
@@ -147,8 +148,9 @@ namespace Dog
                 yield return new WaitForSeconds(0.4f);
                 
                 _animationManager.DogWaitForFood();
-                
-                yield return new WaitForSeconds(2f);
+
+                float wait = Random.Range(2f, 4f);
+                yield return new WaitForSeconds(wait);
             }
         }
 
@@ -331,6 +333,7 @@ namespace Dog
         public void ChangeCrouching(bool crouch)
         {
             _crouching = crouch;
+            _playerFollower.SetStealth(crouch);
         }
 
         public void FoodIsClose(Collider2D food)

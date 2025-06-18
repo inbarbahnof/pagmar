@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerStealthManager : MonoBehaviour
 {
     private PlayerStateManager _playerStateManager;
+    private PlayerMove _playerMove;
     private bool _isProtected;
 
     public bool isProtected => _isProtected; 
@@ -11,6 +12,7 @@ public class PlayerStealthManager : MonoBehaviour
     private void Start()
     {
         _playerStateManager = GetComponent<PlayerStateManager>();
+        _playerMove = GetComponent<PlayerMove>();
     }
 
     public void SetStealthMode(bool isInStealth)
@@ -28,6 +30,7 @@ public class PlayerStealthManager : MonoBehaviour
     public void StealthObstacle(bool isInStealth)
     {
         _playerStateManager.UpdateStealth(isInStealth);
+        _playerMove.UpdateCrouch(isInStealth);
     }
 
     public void SetProtected(bool isInStealth)
