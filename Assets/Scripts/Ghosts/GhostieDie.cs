@@ -70,7 +70,7 @@ namespace Ghosts
                 _bones[i].bodyType = RigidbodyType2D.Kinematic;
                 _bones[i].transform.localPosition = _initialBonePositions[i];
                 _bones[i].transform.localRotation = _initialBoneRotations[i];
-                _bones[i].velocity = Vector2.zero;
+                _bones[i].linearVelocity = Vector2.zero;
                 _bones[i].angularVelocity = 0f;
             }
             
