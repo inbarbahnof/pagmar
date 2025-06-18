@@ -81,8 +81,6 @@ namespace Dog
         private void Update()
         {
             // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
-            
-            // print("following call " + _followingCall);
             if (!_movementEnabled) return;
             
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
@@ -101,12 +99,9 @@ namespace Dog
                 _isStealthTargetClose, _needToStealth, 
                 _followingCall, _isThereGhostie, _numberChaseGhostie);
             
-            // print("can eat food " + _canEatFood +" is food close " + _foodIsClose);
-            
             DogState newState = _computer.Compute(curState, newInput);
-            // print("_dogPlayerDistance " + _dogPlayerDistance);
 
-            if (curState != newState )  
+            if (curState != newState)  
             {
                 // print("cur state " + curState + " newState " + newState + " _dogReachedTarget " +_dogReachedTarget);
                 HandleDogStateChange(newState);
