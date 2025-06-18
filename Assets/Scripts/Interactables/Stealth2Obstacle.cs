@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using Audio.FMOD;
 using Dog;
 using Ghosts;
 using Targets;
@@ -46,6 +47,10 @@ namespace Interactables
             // reset camera
             CameraController.instance.FollowPlayer();
             
+            // reset sound
+            AudioManager.Instance.SetFloatParameter(default,
+                "Stealth Mode", 1, false);
+            
             _curTarget = 0;
             TargetGenerator.instance.SetStealthTarget(_targets[0]);
             
@@ -54,6 +59,7 @@ namespace Interactables
             
             // reset dog
             _dog.StealthObs(false);
+            _dog.ChangeCrouching(false);
             
             // // reset targets
             foreach (var target in _targets)  
@@ -78,6 +84,10 @@ namespace Interactables
         {
             _player.SetProtected(false);
             CameraController.instance.FollowPlayer();
+            _dog.ChangeCrouching(false);
+            
+            AudioManager.Instance.SetFloatParameter(default,
+                "Stealth Mode", 1, false);
         }
 
         public void TargetReached(bool isLast)
@@ -92,7 +102,11 @@ namespace Interactables
             {
                 TargetGenerator.instance.SetStealthTarget(_targets[0]);
                 _dog.StealthObs(true);
+                _dog.ChangeCrouching(true);
                 CameraController.instance.FollowPlayerAndDog();
+                
+                AudioManager.Instance.SetFloatParameter(default,
+                    "Stealth Mode", 1, true);
             }
         }
 

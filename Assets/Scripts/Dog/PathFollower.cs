@@ -20,7 +20,6 @@ namespace Dog
         private void Start()
         {
             _animationManager = GetComponent<DogAnimationManager>();
-            print("animation manager " +_animationManager);
         }
 
         private void Update()

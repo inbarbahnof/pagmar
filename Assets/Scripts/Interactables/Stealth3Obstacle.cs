@@ -68,7 +68,10 @@ namespace Interactables
             
             // reset dog
             _dog.StealthObs(false);
+            _dog.ChangeCrouching(false);
             _dogReachedFirstTarget = false;
+            
+            _player.StealthObstacle(false);
             
             // reset sticks positions
             for (int i = 0; i < _stickPositions.Length; i++)
@@ -134,12 +137,13 @@ namespace Interactables
         public override void PlayerReachedTarget()
         {
             CameraController.instance.FollowPlayer();
+            _dog.ChangeCrouching(false);
+            _player.StealthObstacle(false);
         }
 
         public void TargetReached(bool isLast)
         {
             _dogReachedFirstTarget = true;
-            print("target reached");
             if (!isLast) _curDogTarget++;
             else TargetGenerator.instance.SetStealthTarget(_lastTarget);
         }
@@ -150,7 +154,9 @@ namespace Interactables
             {
                 TargetGenerator.instance.SetStealthTarget(_targets[0]);
                 _dog.StealthObs(true);
+                _dog.ChangeCrouching(true);
                 CameraController.instance.FollowPlayerAndDog();
+                _player.StealthObstacle(true);
             }
         }
 
@@ -158,7 +164,7 @@ namespace Interactables
         {
             if (!_areaDetector.didStickLand) return;
             
-            print("target changed to " + _targets[_curDogTarget].name);
+            // print("target changed to " + _targets[_curDogTarget].name);
             TargetGenerator.instance.SetStealthTarget(_targets[_curDogTarget]);
             
             GhostMovement cur = _ghostsForDog[_curDogTarget-1];
