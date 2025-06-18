@@ -16,11 +16,6 @@ public class PlayerStealthManager : MonoBehaviour
     public void SetStealthMode(bool isInStealth)
     {
         _isProtected = isInStealth;
-    }
-
-    public void StealthObstacle(bool isInStealth)
-    {
-        _playerStateManager.UpdateStealth(isInStealth);
         
         if (isInStealth) 
             AudioManager.Instance.SetFloatParameter(default,
@@ -28,6 +23,11 @@ public class PlayerStealthManager : MonoBehaviour
         else
             AudioManager.Instance.SetFloatParameter(default,
                 "Stealth Mode", 0, true);
+    }
+
+    public void StealthObstacle(bool isInStealth)
+    {
+        _playerStateManager.UpdateStealth(isInStealth);
     }
 
     public void SetProtected(bool isInStealth)

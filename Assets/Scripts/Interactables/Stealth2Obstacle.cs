@@ -47,10 +47,6 @@ namespace Interactables
             // reset camera
             CameraController.instance.FollowPlayer();
             
-            // reset sound
-            AudioManager.Instance.SetFloatParameter(default,
-                "Stealth Mode", 1, false);
-            
             _curTarget = 0;
             TargetGenerator.instance.SetStealthTarget(_targets[0]);
             
@@ -85,9 +81,6 @@ namespace Interactables
             _player.SetProtected(false);
             CameraController.instance.FollowPlayer();
             _dog.ChangeCrouching(false);
-            
-            AudioManager.Instance.SetFloatParameter(default,
-                "Stealth Mode", 1, false);
         }
 
         public void TargetReached(bool isLast)
@@ -104,9 +97,6 @@ namespace Interactables
                 _dog.StealthObs(true);
                 _dog.ChangeCrouching(true);
                 CameraController.instance.FollowPlayerAndDog();
-                
-                AudioManager.Instance.SetFloatParameter(default,
-                    "Stealth Mode", 1, true);
             }
         }
 
