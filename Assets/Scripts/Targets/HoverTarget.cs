@@ -8,7 +8,8 @@ namespace Targets
     public class HoverTarget : Target
     {
         [SerializeField] private float _hoverTime = 2f;
-
+        [SerializeField] private bool _isPet;
+        
         private DogAnimationManager _dog;
         
         private IEnumerator HoverOverTarget()
@@ -26,6 +27,14 @@ namespace Targets
             {
                 _dog = dog.GetComponent<DogAnimationManager>();
                 _dog.DogStartSniff();
+            }
+
+            if (_isPet)
+            {
+                _dog = dog.GetComponent<DogAnimationManager>();
+                
+                if(GameManager.instance.ConnectionState > 3) _dog.PetBehavior();
+                else _dog.DogGrowl(transform, true);
             }
             
             StartCoroutine(HoverOverTarget());

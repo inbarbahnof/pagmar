@@ -70,6 +70,7 @@ namespace Ghosts
                 {
                     cage.InvokeMethod();
                     transform.SetParent(cage.transform);
+                    die.DropBones();
                 });
         }
 

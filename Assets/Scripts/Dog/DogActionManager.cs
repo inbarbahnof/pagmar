@@ -40,10 +40,12 @@ namespace Dog
         private bool _isThereGhostie;
         private int _numberChaseGhostie;
         private bool _crouching;
+        private bool _chasingGhostie;
 
         private DogStateComputer _computer;
         private float _dogPlayerDistance;
         private DogAnimationManager _animationManager;
+        private SmoothMover _mover;
 
         private Coroutine _stopFollowCoroutine;
         private Coroutine _chaseGhostieCoroutine;
@@ -63,6 +65,7 @@ namespace Dog
             _computer = new DogStateComputer();
 
             _playerFollower = GetComponent<PlayerFollower>();
+            _mover = GetComponent<SmoothMover>();
 
             _playerFollower.OnIdleAfterTarget += HandleDogIdle;
             _playerFollower.OnStartFollowTOI += HandleDogFollowTOI;
@@ -81,7 +84,7 @@ namespace Dog
 
         private void Update()
         {
-            // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
+            print("dog State " + curState + " player state " + playerStateManager.CurrentState);
             if (!_movementEnabled) return;
             
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
@@ -98,7 +101,8 @@ namespace Dog
                 _dogBusy, _listenDistance, _foodIsClose, _canEatFood, 
                 _wantFood, _petDistance, _isFollowingStick, 
                 _isStealthTargetClose, _needToStealth, 
-                _followingCall, _isThereGhostie, _numberChaseGhostie);
+                _followingCall, _isThereGhostie, _numberChaseGhostie, 
+                _chasingGhostie, _animationManager.Petting);
             
             DogState newState = _computer.Compute(curState, newInput);
 
@@ -154,9 +158,10 @@ namespace Dog
             }
         }
 
-        public void Growl()
+        public void Growl(Transform growlAt, bool atPlayer)
         {
-            _animationManager.DogGrowl();
+            if (!atPlayer) _animationManager.DogGrowl(growlAt, atPlayer);
+            else _playerFollower.GoToFoodTarget(_targetGenerator.GetPetTarget());
         }
 
         public void SetWantsFood(bool want)
@@ -219,6 +224,7 @@ namespace Dog
                     _playerFollower.GoToFoodTarget(_targetGenerator.GetClosestGhostie(transform));
                     Running(true);
                     Bark();
+                    _chasingGhostie = true;
                     break;
                 case (_, DogState.FollowCall):
                     curState = DogState.FollowCall;
@@ -230,9 +236,9 @@ namespace Dog
                 case (_, DogState.FollowStick):
                     HandleFollowStickBehavior();
                     break;
-                case (_, DogState.GetAwayFromPlayer):
-                    curState = DogState.GetAwayFromPlayer;
-                    GetAwayFromPlayer();
+                case (_, DogState.Growl):
+                    curState = DogState.Growl;
+                    Growl(_playerTransform, true);
                     break;
                 case (_, DogState.Pet):
                     curState = DogState.Pet;
@@ -302,7 +308,7 @@ namespace Dog
 
         private void HandlePetBehavior()
         {
-            
+            _playerFollower.GoToFoodTarget(_targetGenerator.GetPetTarget());
         }
 
         private void GetAwayFromPlayer()
@@ -393,6 +399,7 @@ namespace Dog
             _dogFollowingTOI = false;
             _dogBusy = false;
             _isFollowingStick = false;
+            _chasingGhostie = false;
             _wantFood = false;
             _needToStealth = false;
         }

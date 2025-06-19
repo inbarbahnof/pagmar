@@ -17,6 +17,8 @@ namespace Ghosts
         private Vector3 _initialPos;
         private Vector3[] _initialBonePositions;
         private Quaternion[] _initialBoneRotations;
+        private SpriteRenderer[] _boneRenderers;
+        private int[] _initialSortingOrders;
 
         private void Awake()
         {
@@ -25,10 +27,14 @@ namespace Ghosts
             
             _initialBonePositions = new Vector3[_bones.Length];
             _initialBoneRotations = new Quaternion[_bones.Length];
+            _boneRenderers = new SpriteRenderer[_bones.Length];
+            _initialSortingOrders = new int[_bones.Length];
             for (int i = 0; i < _bones.Length; i++)
             {
                 _initialBonePositions[i] = _bones[i].transform.localPosition;
                 _initialBoneRotations[i] = _bones[i].transform.localRotation;
+                _boneRenderers[i] = _bones[i].GetComponent<SpriteRenderer>();
+                _initialSortingOrders[i] = _boneRenderers[i].sortingOrder;
             }
         }
         
@@ -49,6 +55,11 @@ namespace Ghosts
             foreach (var bone in _bones)
             {
                 bone.bodyType = RigidbodyType2D.Dynamic;
+            }
+            
+            foreach (var renderer in _boneRenderers)
+            {
+                renderer.sortingOrder = 4;
             }
         }
 
@@ -75,6 +86,7 @@ namespace Ghosts
                 _bones[i].transform.localRotation = _initialBoneRotations[i];
                 _bones[i].linearVelocity = Vector2.zero;
                 _bones[i].angularVelocity = 0f;
+                _boneRenderers[i].sortingOrder = _initialSortingOrders[i];
             }
             
             _intireGhostie.transform.position = _initialPos;

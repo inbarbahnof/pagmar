@@ -14,6 +14,7 @@ namespace Targets
         [FormerlySerializedAs("targets")] 
         [SerializeField] private List<Target> playerTargets = new List<Target>();
         [SerializeField] private Target _callTarget;
+        [SerializeField] private Target _petTarget;
         
         private FoodTarget _foodTarget;
         private Target _stickTarget;
@@ -58,6 +59,11 @@ namespace Targets
         public bool DidStealthTargetChange()
         {
             return _didStealthTargetChange && _stealthTarget != null;
+        }
+
+        public Target GetPetTarget()
+        {
+            return _petTarget;
         }
         
         public void SetStealthTarget(Target target)
