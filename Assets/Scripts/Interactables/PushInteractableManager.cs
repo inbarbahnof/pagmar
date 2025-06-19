@@ -13,7 +13,6 @@ namespace Interactables
 
         [SerializeField] private Transform player;
         [SerializeField] private Transform dog;
-        [SerializeField] private float _pushDistance = 2f;
         
         private PlayerMove _playerMove;
         private DogActionManager _dogAction;
