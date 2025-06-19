@@ -124,7 +124,7 @@ namespace Dog
             {
                 _playerFollower.StopGoingToTarget();
                 _playerFollower.SetIsGoingToTarget(false);
-                _playerFollower.SetSpeed(true); // Optional: stop animations immediately
+                _playerFollower.SetSpeed(true);
             }
             else
             {

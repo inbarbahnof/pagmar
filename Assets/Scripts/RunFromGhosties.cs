@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Dog;
 using UnityEngine;
 
@@ -6,8 +7,10 @@ public class RunFromGhosties : MonoBehaviour
 {
     [SerializeField] private bool _isRunning;
     [SerializeField] private PlayerMove _playerMove;
+    
     private bool _didDogPass;
     private bool _playerWaiting;
+    private Coroutine _slowMotion;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -48,5 +51,18 @@ public class RunFromGhosties : MonoBehaviour
         
         _playerMove.StartAutoRunWithVerticalControl();
         CameraController.instance.ZoomOut();
+        
+        if (_slowMotion == null) _slowMotion = StartCoroutine(SlowMotion());
+    }
+    
+    private IEnumerator SlowMotion()
+    {
+        Time.timeScale = 0.7f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+
+        yield return new WaitForSecondsRealtime(12f);
+
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
     }
 }

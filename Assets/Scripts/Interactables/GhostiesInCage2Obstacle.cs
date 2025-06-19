@@ -26,7 +26,7 @@ namespace Interactables
             if (_cage.GhostiesInCage >= 1)
             {
                 _cage.transform.DOMove(_cageDropPos.position, _dropDuration)
-                    .SetEase(Ease.OutBounce)
+                    .SetEase(Ease.InCubic)
                     .OnComplete(AfterCageDrop);
             }
         }
