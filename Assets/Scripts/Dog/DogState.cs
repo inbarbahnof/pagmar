@@ -10,7 +10,7 @@
         FollowStick,
         WantFood,
         Pet,
-        GetAwayFromPlayer,
+        Growl,
         OnTargetAction,
         Push,
         Stealth,

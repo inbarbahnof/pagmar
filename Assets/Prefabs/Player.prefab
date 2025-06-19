@@ -48,6 +48,7 @@ MonoBehaviour:
   distance: 0.8
   isTOI: 0
   _hoverTime: 1
+  _isPet: 0
 --- !u!1 &1810158106228689958
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,6 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _runSpeed: 5
   _runFastSpeed: 6
+  _crouchSpeed: 4
   _pushSpeed: 3.7
   _playerArt: {fileID: 2333882633315783233}
 --- !u!114 &7531407140655005662
@@ -297,6 +299,7 @@ MonoBehaviour:
   _throwAnimTime: 0.833
   _waitOnCallTime: 0.9
   _climbAnimTime: 2
+  _cantPetAnimTime: 0.8
 --- !u!114 &8220548381845869810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,6 +353,7 @@ MonoBehaviour:
   throwAnimName: Throw
   aimAnimName: HoldThrow
   petAnimName: Pet
+  cantPetAnimName: NoPet
   idleAnimSpeed: 1
   callAnimSpeed: 2
   pushAnimSpeed: 1
@@ -363,6 +367,7 @@ MonoBehaviour:
   throwAnimSpeed: 1
   aimAnimSpeed: 1
   petAnimSpeed: 1
+  cantPetAnimSpeed: 1
   _climbUpEventName: ClimbUp
   _climbRightEventName: ClimbRight
   _footstepsEventName: Footstep
@@ -499,6 +504,55 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0
+--- !u!1 &3234447135663971902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2290255487795479851}
+  - component: {fileID: 3575879375219637470}
+  m_Layer: 0
+  m_Name: PetPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2290255487795479851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3234447135663971902}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.34, y: 0.247, z: -0.071371034}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3670087948830583748}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3575879375219637470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3234447135663971902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d1dd6999eea4941b49ac7d149465a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dogTempComunication: {fileID: 0}
+  distance: 0.6
+  isTOI: 0
+  _hoverTime: 2
+  _isPet: 1
 --- !u!1 &3875658489770806721
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,6 +908,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6374609478747475555, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3011476563840709860}
+    - targetCorrespondingSourceObject: {fileID: 6374609478747475555, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2290255487795479851}
     - targetCorrespondingSourceObject: {fileID: 6374609478747475555, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7328353952192761471}

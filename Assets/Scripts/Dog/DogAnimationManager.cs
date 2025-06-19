@@ -15,6 +15,7 @@ namespace Dog
     public class DogAnimationManager : MonoBehaviour
     {
         [SerializeField] SkeletonAnimation skeletonAnimation;
+        [SerializeField] private Transform playerTransform;
 
         [Header("Animation Times")]
         [SerializeField] private float _barkAnimationTime = 0.4f;
@@ -34,6 +35,8 @@ namespace Dog
         [SerializeField] private string sniffAnimName;
         [SerializeField] private string walkCrouchAnimName;
         [SerializeField] private string barkAnimName;
+        [SerializeField] private string digAnimName;
+        [SerializeField] private string petAnimName;
 
         [Header("Animation Speeds")] 
         [SerializeField] private float idleAnimSpeed = 1f;
@@ -48,12 +51,13 @@ namespace Dog
         [SerializeField] private float barkAnimSpeed = 1f;
         [SerializeField] private float sniffAnimSpeed = 0.8f;
         [SerializeField] private float walkCrouchAnimSpeed = 0.8f;
+        [SerializeField] private float digAnimSpeed = 1f;
+        [SerializeField] private float petAnimSpeed = 1f;
         
         [Header("Event Names")] 
         [SerializeField] private string _footstepsEventName;
     
         private Spine.EventData _footstepsEventData;
-        
         
         private DogAnimation _curAnim;
         
@@ -64,7 +68,10 @@ namespace Dog
         private bool _listening;
         private bool _wantFood;
         private bool _isJumping;
+        private bool _petting;
 
+        public bool Petting => _petting;
+        
         private Spine.AnimationState spineAnimationState;
         
         [SerializeField] private GameObject art;
@@ -72,6 +79,10 @@ namespace Dog
         private DogActionManager _actionManager;
         private Vector3 lastPosition;
         private float moveXPrevDir;
+        
+        private DogAnimation _currentIdleBehavior = DogAnimation.Idle;
+        private float _nextIdleBehaviorChangeTime = 0f;
+        private float _idleBehaviorDuration = 2.5f;
 
         private void Start()
         {
@@ -97,9 +108,7 @@ namespace Dog
 
         private void Update()
         {
-            CheckRotation();
-            
-            // animation state
+            if (!_petting) CheckRotation();
             UpdateMoving();
             
             DogAnimation cur = WhichAnimShouldBePlayed();
@@ -134,6 +143,8 @@ namespace Dog
         {
             if (_eating) return DogAnimation.Eat;
 
+            if (_petting) return DogAnimation.Pet;
+
             if (_actionManager.Crouching)
             {
                 if (_isMoving) return DogAnimation.WalkCrouch;
@@ -153,10 +164,38 @@ namespace Dog
             if (_sniffing) return DogAnimation.Sniff;
 
             if (_growling) return DogAnimation.Growl;
-
-            if (_listening || Random.value < 0.4f) return DogAnimation.Listen;
             
-            return DogAnimation.Idle;
+            if (Time.time >= _nextIdleBehaviorChangeTime)
+            {
+                _currentIdleBehavior = PickRandomIdleBehavior();
+                _nextIdleBehaviorChangeTime = Time.time + _idleBehaviorDuration;
+            }
+
+            return _currentIdleBehavior;
+        }
+        
+        private DogAnimation PickRandomIdleBehavior()
+        {
+            DogAnimation[] idleOptions = {
+                DogAnimation.Idle,
+                DogAnimation.Listen,
+                DogAnimation.Dig
+            };
+
+            int index = Random.Range(0, idleOptions.Length);
+            return idleOptions[index];
+        }
+
+        public void PetBehavior()
+        {
+            _petting = true;
+            StartCoroutine(PetCorutine());
+        }
+
+        private IEnumerator PetCorutine()
+        {
+            yield return new WaitForSeconds(2f);
+            _petting = false;
         }
 
         public void DogStartSniff()
@@ -248,9 +287,6 @@ namespace Dog
         
         public void DogAnimationUpdate(DogAnimation anim)
         {
-            if (anim != DogAnimation.Listen) _listening = false;
-            else _listening = true;
-            
             TrackEntry entry = null;
             // print("switching from animation " + _curAnim +" to animation " + anim);
             switch (anim)
@@ -299,9 +335,33 @@ namespace Dog
                     entry = spineAnimationState.SetAnimation(0, jumpAnimName, false);
                     if (entry != null) entry.TimeScale = jumpAnimSpeed;
                     break;
+                case DogAnimation.Dig:
+                    entry = spineAnimationState.SetAnimation(0, digAnimName, true);
+                    if (entry != null) entry.TimeScale = digAnimSpeed;
+                    break;
+                case DogAnimation.Pet:
+                    entry = spineAnimationState.SetAnimation(0, petAnimName, true);
+                    if (entry != null) entry.TimeScale = petAnimSpeed;
+                    
+                    FaceTowardsPlayer();
+                    break;
             }
 
             _curAnim = anim;
+        }
+        
+        private void FaceTowardsPlayer()
+        {
+            if (!playerTransform) return;
+
+            float direction = playerTransform.position.x - transform.position.x;
+            float newScaleX = direction > 0 ? 1 : -1;
+
+            art.transform.localScale = new Vector3(
+                newScaleX * Mathf.Abs(art.transform.localScale.x),
+                art.transform.localScale.y,
+                art.transform.localScale.z
+            );
         }
     }
 }

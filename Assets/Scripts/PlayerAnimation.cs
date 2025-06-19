@@ -7,6 +7,7 @@
     CrouchIdle,
     CrouchWalk,
     Pet,
+    GoBackFromPet,
     PickUp,
     Pull,
     Push,

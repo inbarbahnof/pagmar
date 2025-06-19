@@ -2,10 +2,13 @@
 {
     public PlayerAnimation Compute(PlayerAnimationInput input)
     {
-        // TODO climb, pet, walk animations
         if (input._playerState == PlayerState.Climb) return PlayerAnimation.Climb;
         
         if (input._isCalling) return PlayerAnimation.Call;
+
+        if (input._petting) return PlayerAnimation.Pet;
+        
+        if (input._goingBackFromPet) return PlayerAnimation.GoBackFromPet;
 
         if (input._justPickedUp) return PlayerAnimation.PickUp;
 

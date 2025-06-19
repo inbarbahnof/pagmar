@@ -13,6 +13,8 @@
         Jump,
         Listen,
         Sniff,
-        WalkCrouch
+        WalkCrouch,
+        Dig,
+        Pet
     }
 }

@@ -29,7 +29,6 @@ namespace Dog
         private float targetDistance;
         private bool isPerformingAction = false;
         private bool isGoingToTarget = false;
-        // private bool isTargetActionDone = false;
 
         private bool _isRunning;
 
@@ -39,8 +38,12 @@ namespace Dog
 
         public bool IsRunning => _isRunning;
 
+        private DogActionManager _actionManager;
+
         private void Start()
         {
+            _actionManager = GetComponent<DogActionManager>();
+            
             agent = GetComponent<NavMeshAgent>();
             agent.updateRotation = false;
             agent.updateUpAxis = false;
@@ -205,7 +208,7 @@ namespace Dog
             Target potentialTarget = other.GetComponent<Target>();
             if (potentialTarget != null && potentialTarget.IsTOI)
             {
-                if (other.CompareTag("Jump") || Random.value < stopProb)
+                if (_actionManager.CurState != DogState.ChaseGhostie && Random.value < stopProb)
                 {
                     if (currentTarget != null)
                         currentTarget.OnTargetActionComplete -= OnTargetActionComplete;

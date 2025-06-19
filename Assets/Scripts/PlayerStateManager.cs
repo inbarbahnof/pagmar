@@ -12,6 +12,7 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] private float _throwAnimTime = 0.867f;
     [SerializeField] private float _waitOnCallTime = 1f;
     [SerializeField] private float _climbAnimTime = 2f;
+    [SerializeField] private float _cantPetAnimTime = 0.8f;
     
     public enum ThrowState
     {
@@ -37,6 +38,8 @@ public class PlayerStateManager : MonoBehaviour
     private bool _isPushingFromLeft;
     private bool _isClimbing;
     private bool _isAiming;
+    private bool _petting;
+    private bool _goingBackFromPet;
 
     private Coroutine _waitToCallCoroutine;
     private Vector3 _initialPickUpParentPos;
@@ -71,8 +74,9 @@ public class PlayerStateManager : MonoBehaviour
         _isAiming = curState == PlayerState.Aim;
         
         PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching, 
-            _move.IsMoving, _move.CanMove, _isCalling, _move.MovingRight, _pickedUp,
-            _justPickedUp, _throwing, _isPushingFromLeft, _isAiming);
+            _move.IsMoving, _move.CanMove, _isCalling, _move.MovingRight, 
+            _pickedUp, _justPickedUp, _throwing, _isPushingFromLeft, 
+            _isAiming, _petting, _goingBackFromPet);
         
         PlayerAnimation animation = _computer.Compute(input);
         _animationManager.PlayerAnimationUpdate(animation);
@@ -132,12 +136,32 @@ public class PlayerStateManager : MonoBehaviour
     public void OnFinishedInteraction(BaseInteractable interactable = null)
     {
         SetState(PlayerState.Idle);
-        //UpdatePickedUp(false);
     }
 
     public void UpdatePetting()
     {
         SetState(PlayerState.Pet);
+        _petting = true;
+
+        StartCoroutine(WaitToStopPet());
+    }
+
+    private IEnumerator WaitToStopPet()
+    {
+        float time;
+        if (GameManager.instance.ConnectionState > 3) time = 2f;
+        else time = 1f;
+        
+        yield return new WaitForSeconds(time);
+
+        _petting = false;
+
+        if (GameManager.instance.ConnectionState < 3)
+        {
+            _goingBackFromPet = true;
+            yield return new WaitForSeconds(_cantPetAnimTime);
+            _goingBackFromPet = false;
+        }
     }
 
     public void StartedCalling()
@@ -213,7 +237,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private void SetState(PlayerState newState)
     {
-        if (curState == newState || _isClimbing) return;
+        if (curState == newState || _isClimbing || _petting) return;
         
         if (_isAbleToAim) curState = PlayerState.Aim;
         else curState = newState;

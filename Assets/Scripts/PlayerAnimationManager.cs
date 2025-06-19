@@ -28,6 +28,7 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private string throwAnimName;
     [SerializeField] private string aimAnimName;
     [SerializeField] private string petAnimName;
+    [SerializeField] private string cantPetAnimName;
     
     [Header("Animation Speeds")]
     [SerializeField] private float idleAnimSpeed = 1f;
@@ -43,6 +44,7 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private float throwAnimSpeed = 1f;
     [SerializeField] private float aimAnimSpeed = 1f;
     [SerializeField] private float petAnimSpeed = 1f;
+    [SerializeField] private float cantPetAnimSpeed = 1f;
 
     [Header("Event Names")] 
     [SerializeField] private string _climbUpEventName;
@@ -194,9 +196,12 @@ public class PlayerAnimationManager : MonoBehaviour
                     if (entry != null) entry.TimeScale = throwAnimSpeed;
                     break;
                 case PlayerAnimation.Pet:
-                    entry = spineAnimationState.SetAnimation(0, petAnimName, false);
-                    spineAnimationState.AddAnimation(0, idleAnimName, true, 0);
+                    entry = spineAnimationState.SetAnimation(0, petAnimName, true);
                     if (entry != null) entry.TimeScale = petAnimSpeed;
+                    break;
+                case PlayerAnimation.GoBackFromPet:
+                    entry = spineAnimationState.SetAnimation(0, cantPetAnimName, false);
+                    if (entry != null) entry.TimeScale = cantPetAnimSpeed;
                     break;
             }
 
