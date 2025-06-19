@@ -32,8 +32,15 @@ namespace Interactables
         {
             _wantFoodTarget.FoodCanBeReached();
             _food.SetCanInteract(false);
+            StartCoroutine(TurnOffInteractacle());
         }
 
+        private IEnumerator TurnOffInteractacle()
+        {
+            yield return new WaitForSeconds(0.05f);
+            InteractableManager.instance.RemoveInteractable(_food);
+        }
+        
         public override void ResetObstacle()
         {
             _food.ResetToCheckpoint();
