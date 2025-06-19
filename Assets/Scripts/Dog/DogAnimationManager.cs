@@ -58,7 +58,6 @@ namespace Dog
         private DogAnimation _curAnim;
         
         private bool _isMoving;
-        private bool _barking;
         private bool _growling;
         private bool _eating;
         private bool _sniffing;
@@ -206,14 +205,12 @@ namespace Dog
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogBark, 
                 transform.position, true);
 
-            _barking = true;
             TrackEntry entry = null;
             entry = spineAnimationState.SetAnimation(1, barkAnimName, false);
             if (entry != null) entry.TimeScale = barkAnimSpeed;
             
             yield return new WaitForSeconds(_barkAnimationTime);
             
-            _barking = false;
             spineAnimationState.ClearTrack(1);
         }
 

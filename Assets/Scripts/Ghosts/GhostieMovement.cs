@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -62,31 +63,14 @@ namespace Ghosts
             _isMoving = false;
             if (_coroutine != null) StopCoroutine(_coroutine);
             _dead = true;
+            pos = new Vector3(pos.x, pos.y, transform.position.z);
             
-            if (_coroutine != null) StopCoroutine(_coroutine);
-            _coroutine = StartCoroutine(DieMoveCoroutine(pos, cage, die));
-        }
-        
-        private IEnumerator DieMoveCoroutine(Vector3 targetPos, Cage cage, GhostieDie die)
-        {
-            float duration = 1f;
-            float elapsed = 0f;
-
-            Vector2 start = _rb.position;
-
-            while (elapsed < duration)
-            {
-                elapsed += Time.fixedDeltaTime;
-                float t = Mathf.Clamp01(elapsed / duration);
-                Vector2 newPos = Vector2.Lerp(start, targetPos, t);
-                _rb.MovePosition(newPos);
-                yield return new WaitForFixedUpdate();
-            }
-
-            _rb.MovePosition(targetPos);
-            transform.SetParent(cage.transform);
-            cage.InvokeMethod();
-            die.DropBones();
+            transform.DOMove(pos, 1f).SetEase(Ease.Linear)
+                .OnComplete(() =>
+                {
+                    cage.InvokeMethod();
+                    transform.SetParent(cage.transform);
+                });
         }
 
         public void ResetMovement()
