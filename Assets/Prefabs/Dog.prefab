@@ -444,7 +444,7 @@ MonoBehaviour:
   playerStateManager: {fileID: 0}
   _targetGenerator: {fileID: 0}
   _listenDistance: 10
-  _petDistance: 2
+  _petDistance: 1
   getAwayFromPlayerDis: 3
 --- !u!114 &2126287841468501225
 MonoBehaviour:
@@ -459,6 +459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 5184689463612672951}
+  playerTransform: {fileID: 0}
   _barkAnimationTime: 0.4
   _growlAnimationTime: 2
   _eatAnimationTime: 0.733
@@ -476,6 +477,7 @@ MonoBehaviour:
   barkAnimName: Bark
   digAnimName: Dig
   petAnimName: Pet
+  afterEatAnimName: AfterFood
   idleAnimSpeed: 1
   walkAnimSpeed: 1
   runAnimSpeed: 1.5
@@ -490,6 +492,7 @@ MonoBehaviour:
   walkCrouchAnimSpeed: 0.7
   digAnimSpeed: 1
   petAnimSpeed: 1
+  afterEatAnimSpeed: 1
   _footstepsEventName: Footstep
   art: {fileID: 5383646546148844883}
 --- !u!114 &4631522509052752445

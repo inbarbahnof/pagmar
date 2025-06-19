@@ -17,6 +17,7 @@ namespace Targets
             
             if (_manager3 != null) _manager3.TargetReached(_isLast);
             
+            dog.GetComponent<DogActionManager>().ChangeCrouching(true);
             // if (_isLast) FinishTargetAction();
         }
         

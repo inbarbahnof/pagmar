@@ -86,7 +86,11 @@ namespace Interactables
         public void TargetReached(bool isLast)
         {
             if (!isLast) _curTarget++;
-            else TargetGenerator.instance.SetStealthTarget(_lastTarget);
+            else
+            {
+                TargetGenerator.instance.SetStealthTarget(_lastTarget);
+                _dog.ChangeCrouching(false);
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -95,7 +99,6 @@ namespace Interactables
             {
                 TargetGenerator.instance.SetStealthTarget(_targets[0]);
                 _dog.StealthObs(true);
-                _dog.ChangeCrouching(true);
                 CameraController.instance.FollowPlayerAndDog();
             }
         }

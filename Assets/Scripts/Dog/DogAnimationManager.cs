@@ -37,6 +37,7 @@ namespace Dog
         [SerializeField] private string barkAnimName;
         [SerializeField] private string digAnimName;
         [SerializeField] private string petAnimName;
+        [SerializeField] private string afterEatAnimName;
 
         [Header("Animation Speeds")] 
         [SerializeField] private float idleAnimSpeed = 1f;
@@ -53,6 +54,7 @@ namespace Dog
         [SerializeField] private float walkCrouchAnimSpeed = 0.8f;
         [SerializeField] private float digAnimSpeed = 1f;
         [SerializeField] private float petAnimSpeed = 1f;
+        [SerializeField] private float afterEatAnimSpeed = 1f;
         
         [Header("Event Names")] 
         [SerializeField] private string _footstepsEventName;
@@ -64,6 +66,7 @@ namespace Dog
         private bool _isMoving;
         private bool _growling;
         private bool _eating;
+        private bool _afterEat;
         private bool _sniffing;
         private bool _listening;
         private bool _wantFood;
@@ -142,16 +145,15 @@ namespace Dog
         private DogAnimation WhichAnimShouldBePlayed()
         {
             if (_eating) return DogAnimation.Eat;
-
+            if (_afterEat) return DogAnimation.AfterEat;
             if (_petting) return DogAnimation.Pet;
+            if (_isJumping) return DogAnimation.Jump;
 
             if (_actionManager.Crouching)
             {
                 if (_isMoving) return DogAnimation.WalkCrouch;
                 return DogAnimation.IdleCrouch;
             }
-
-            if (_isJumping) return DogAnimation.Jump;
             
             if (_isMoving)
             {
@@ -160,9 +162,7 @@ namespace Dog
             }
 
             if (_wantFood) return DogAnimation.HappyCrouch;
-            
             if (_sniffing) return DogAnimation.Sniff;
-
             if (_growling) return DogAnimation.Growl;
             
             if (Time.time >= _nextIdleBehaviorChangeTime)
@@ -271,6 +271,10 @@ namespace Dog
             _eating = true;
             yield return new WaitForSeconds(_eatAnimationTime);
             _eating = false;
+
+            _afterEat = true;
+            yield return new WaitForSeconds(1f);
+            _afterEat = false;
         }
         
         private IEnumerator Growl()
@@ -345,6 +349,10 @@ namespace Dog
                     entry = spineAnimationState.SetAnimation(0, petAnimName, true);
                     if (entry != null) entry.TimeScale = petAnimSpeed;
                     FaceTowardsTransform(playerTransform);
+                    break;
+                case DogAnimation.AfterEat:
+                    entry = spineAnimationState.SetAnimation(0, afterEatAnimName, false);
+                    if (entry != null) entry.TimeScale = afterEatAnimSpeed;
                     break;
             }
 
