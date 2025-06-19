@@ -32,7 +32,9 @@ namespace Targets
             if (_isPet)
             {
                 _dog = dog.GetComponent<DogAnimationManager>();
-                _dog.PetBehavior();
+                
+                if(GameManager.instance.ConnectionState > 3) _dog.PetBehavior();
+                else _dog.DogGrowl(transform, true);
             }
             
             StartCoroutine(HoverOverTarget());

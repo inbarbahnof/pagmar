@@ -158,9 +158,10 @@ namespace Dog
             }
         }
 
-        public void Growl(Transform growlAt)
+        public void Growl(Transform growlAt, bool atPlayer)
         {
-            _animationManager.DogGrowl(growlAt);
+            if (!atPlayer) _animationManager.DogGrowl(growlAt, atPlayer);
+            else _playerFollower.GoToFoodTarget(_targetGenerator.GetPetTarget());
         }
 
         public void SetWantsFood(bool want)
@@ -237,7 +238,7 @@ namespace Dog
                     break;
                 case (_, DogState.Growl):
                     curState = DogState.Growl;
-                    Growl(_playerTransform);
+                    Growl(_playerTransform, true);
                     break;
                 case (_, DogState.Pet):
                     curState = DogState.Pet;

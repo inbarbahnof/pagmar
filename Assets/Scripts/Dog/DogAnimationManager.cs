@@ -253,9 +253,10 @@ namespace Dog
             spineAnimationState.ClearTrack(1);
         }
 
-        public void DogGrowl(Transform growlAt)
+        public void DogGrowl(Transform growlAt, bool atPlayer)
         {
-            FaceTowardsTransform(growlAt);
+            if (atPlayer) FaceTowardsTransform(playerTransform);
+            else FaceTowardsTransform(growlAt);
             StartCoroutine(Growl());
         }
 

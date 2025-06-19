@@ -13,7 +13,7 @@ namespace Targets
         {
             DogActionManager manager = dog.GetComponent<DogActionManager>();
             
-            manager.Growl(transform);
+            manager.Growl(transform, false);
             manager.Running(false);
             
             FinishTargetAction();
