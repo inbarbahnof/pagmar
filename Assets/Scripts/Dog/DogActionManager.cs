@@ -19,7 +19,6 @@ namespace Dog
         [Header("Distances For States")]
         [SerializeField] private float _listenDistance = 6f;
         [SerializeField] private float _petDistance = 2f;
-        [SerializeField] private float getAwayFromPlayerDis = 3f;
 
         private PlayerFollower _playerFollower;
         private Transform _playerTransform;
@@ -84,7 +83,7 @@ namespace Dog
 
         private void Update()
         {
-            print("dog State " + curState + " player state " + playerStateManager.CurrentState);
+            // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
             if (!_movementEnabled) return;
             
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
@@ -309,15 +308,6 @@ namespace Dog
         private void HandlePetBehavior()
         {
             _playerFollower.GoToFoodTarget(_targetGenerator.GetPetTarget());
-        }
-
-        private void GetAwayFromPlayer()
-        {
-            Vector2 directionAway = (transform.position - _playerTransform.position).normalized;
-            Vector2 newPos = (Vector2)transform.position + directionAway * getAwayFromPlayerDis;
-            transform.position = newPos;
-            
-            curState = DogState.Idle;
         }
 
         public void StealthObs(bool isStealth)
