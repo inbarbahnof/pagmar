@@ -108,7 +108,7 @@ namespace Dog
 
         private void Update()
         {
-            if (!_petting) CheckRotation();
+            if (!_petting && !_growling) CheckRotation();
             UpdateMoving();
             
             DogAnimation cur = WhichAnimShouldBePlayed();
@@ -253,8 +253,9 @@ namespace Dog
             spineAnimationState.ClearTrack(1);
         }
 
-        public void DogGrowl()
+        public void DogGrowl(Transform growlAt)
         {
+            FaceTowardsTransform(growlAt);
             StartCoroutine(Growl());
         }
 
@@ -342,19 +343,16 @@ namespace Dog
                 case DogAnimation.Pet:
                     entry = spineAnimationState.SetAnimation(0, petAnimName, true);
                     if (entry != null) entry.TimeScale = petAnimSpeed;
-                    
-                    FaceTowardsPlayer();
+                    FaceTowardsTransform(playerTransform);
                     break;
             }
 
             _curAnim = anim;
         }
         
-        private void FaceTowardsPlayer()
+        private void FaceTowardsTransform(Transform FaceTo)
         {
-            if (!playerTransform) return;
-
-            float direction = playerTransform.position.x - transform.position.x;
+            float direction = FaceTo.position.x - transform.position.x;
             float newScaleX = direction > 0 ? 1 : -1;
 
             art.transform.localScale = new Vector3(
