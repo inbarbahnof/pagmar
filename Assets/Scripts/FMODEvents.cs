@@ -8,6 +8,7 @@ namespace Audio.FMOD
         [field: Header("GeneralSFX")]
         [field: SerializeField] public EventReference ObjectFall { get; private set; }
         [field: SerializeField] public EventReference BushRustle { get; private set; }
+        [field: SerializeField] public EventReference GhostieSound { get; private set; }
         
         [field: Header("PlayerSFX")]
         [field: SerializeField] public EventReference PlayerCall { get; private set; }

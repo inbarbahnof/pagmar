@@ -1,5 +1,8 @@
 using System.Collections;
+using Audio.FMOD;
 using DG.Tweening;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -28,7 +31,7 @@ namespace Ghosts
         private bool _isRunningAway = false;
         private bool _isMoving = false;
         private bool _dead;
-
+        
         private Coroutine _coroutine;
 
         protected void Awake()
