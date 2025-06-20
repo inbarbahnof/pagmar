@@ -30885,44 +30885,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4633922910088718229, guid: 0a2cfa9573aff26458c4e164657706c6, type: 3}
   m_PrefabInstance: {fileID: 1023997681}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1026323956 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1413393299442258733, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-  m_PrefabInstance: {fileID: 1859212423}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1026323957 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
   m_PrefabInstance: {fileID: 1859212423}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1026323958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1026323956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 144977d2486d862468fe5b4e59f47a08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 924704996}
-        m_TargetAssemblyTypeName: DogMeetManager, Assembly-CSharp
-        m_MethodName: ShowGhostiesSequence
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-  turnOffAfterTrigger: 0
 --- !u!1 &1026474084
 GameObject:
   m_ObjectHideFlags: 0
@@ -40575,10 +40542,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1413393299442258733, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1026323958}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
 --- !u!4 &1859722880 stripped
 Transform:
@@ -40854,7 +40818,7 @@ PrefabInstance:
       objectReference: {fileID: 6206195499498904296}
     - target: {fileID: 2606581116919676563, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 87.6
+      value: 174.3
       objectReference: {fileID: 0}
     - target: {fileID: 2606581116919676563, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
       propertyPath: m_LocalPosition.y
