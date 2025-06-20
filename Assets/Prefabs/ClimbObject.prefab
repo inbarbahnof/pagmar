@@ -97,7 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0a02340d8562f4499d133a5c52d209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _climb: {fileID: 0}
 --- !u!1 &1760941776471369583
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,6 +230,7 @@ Transform:
   - {fileID: 1394359578840300168}
   - {fileID: 3488102259709466517}
   - {fileID: 7735506011797505883}
+  - {fileID: 7376660372274708015}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8143532468426600742
@@ -247,7 +247,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 5373412894795349090}
   interactionRange: 1.4
-  _collider: {fileID: 1760941776471369583}
+  col: {fileID: 1760941776471369583}
+  playerClimbPos: {fileID: 7376660372274708015}
 --- !u!60 &3226049695774109921
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -307,6 +308,37 @@ PolygonCollider2D:
       - {x: 0.09777844, y: -0.7431464}
       - {x: 0.23559189, y: -0.656612}
   m_UseDelaunayMesh: 0
+--- !u!1 &7697973358444813837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7376660372274708015}
+  m_Layer: 0
+  m_Name: PlayerClimbPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7376660372274708015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7697973358444813837}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8744900242307771354}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8097965304787878812
 GameObject:
   m_ObjectHideFlags: 0

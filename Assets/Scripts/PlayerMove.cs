@@ -110,7 +110,7 @@ public class PlayerMove : MonoBehaviour
     {
         Vector2 movement = _playerRb.position + _moveInput * (_speed * Time.fixedDeltaTime);
         _playerRb.MovePosition(movement);
-
+        print(_moveInput);
         if (_moveInput != Vector2.zero)
         {
             if (!isMoving)
@@ -198,6 +198,18 @@ public class PlayerMove : MonoBehaviour
 
             _speed = _runSpeed;
         }
+    }
+
+    public float GetReadyToClimb(Vector2 playerPos)
+    {
+        float waitTime = GetComponent<SmoothMover>().MoveTo(playerPos);
+        _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionY;
+        return waitTime;
+    }
+
+    public void FinishClimb()
+    {
+        _playerRb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
     }
 
     public void SetCanMove(bool move)

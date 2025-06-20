@@ -12,13 +12,14 @@ public class SmoothMover : MonoBehaviour
     /// Moves the GameObject to the target position with easing.
     /// </summary>
     /// <param name="targetPosition">Target world position (2D)</param>
-    public void MoveTo(Vector2 targetPosition)
+    public float MoveTo(Vector2 targetPosition)
     {
         // Stop any previous movement
         if (moveCoroutine != null)
             StopCoroutine(moveCoroutine);
 
         moveCoroutine = StartCoroutine(MoveRoutine(targetPosition));
+        return moveDuration;
     }
 
     private IEnumerator MoveRoutine(Vector2 target)

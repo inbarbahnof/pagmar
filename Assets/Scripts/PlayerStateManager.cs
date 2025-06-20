@@ -103,7 +103,6 @@ public class PlayerStateManager : MonoBehaviour
     private IEnumerator WaitForClimbAnim()
     {
         yield return new WaitForSeconds(_climbAnimTime);
-
         _isClimbing = false;
     }
 
