@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +10,7 @@ public class EventTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player")) triggerAction?.Invoke();
-        if (turnOffAfterTrigger) gameObject.SetActive(false);
+        if (turnOffAfterTrigger) gameObject.GetComponent<Collider2D>().enabled = false;
     }
+    
 }
