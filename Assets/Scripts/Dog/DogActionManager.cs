@@ -5,6 +5,7 @@ using Interactables;
 using Targets;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Dog
@@ -49,7 +50,7 @@ namespace Dog
         private Coroutine _stopFollowCoroutine;
         private Coroutine _chaseGhostieCoroutine;
         
-        private bool _movementEnabled = true;
+        [SerializeField] private bool movementEnabled = true;
         
         // getters
         public float DogPlayerDistance => _dogPlayerDistance;
@@ -78,13 +79,14 @@ namespace Dog
 
             _animationManager = GetComponent<DogAnimationManager>();
 
-            if (_movementEnabled) StartWalkingAfterPlayer();
+            if (movementEnabled) StartWalkingAfterPlayer();
+            else SetMovementEnabled(false);
         }
 
         private void Update()
         {
             // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
-            if (!_movementEnabled) return;
+            if (!movementEnabled) return;
             
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
             
@@ -118,7 +120,7 @@ namespace Dog
         
         public void SetMovementEnabled(bool enabled)
         {
-            _movementEnabled = enabled;
+            movementEnabled = enabled;
 
             if (!enabled)
             {
@@ -197,7 +199,7 @@ namespace Dog
 
         private void HandleDogStateChange(DogState newState)
         {
-            if (!_movementEnabled) return;
+            if (!movementEnabled) return;
             
             // print("swap from " + curState + " to " + newState);
             if (curState == DogState.Push)
