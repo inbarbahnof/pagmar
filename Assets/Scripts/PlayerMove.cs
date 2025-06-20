@@ -21,6 +21,7 @@ public class PlayerMove : MonoBehaviour
     private bool isPushing = false;
     private bool canMove = true;
     private bool movingRight = true;
+    private bool _standing;
 
     private float _speed;
     private Vector2 _aimInput;
@@ -34,6 +35,7 @@ public class PlayerMove : MonoBehaviour
     public bool CanMove => canMove;
     public bool IsPushing => isPushing;
     public bool MovingRight => movingRight;
+    public bool Standing => _standing;
 
     void Start()
     {
@@ -110,7 +112,7 @@ public class PlayerMove : MonoBehaviour
     {
         Vector2 movement = _playerRb.position + _moveInput * (_speed * Time.fixedDeltaTime);
         _playerRb.MovePosition(movement);
-        print(_moveInput);
+        // print(_moveInput);
         if (_moveInput != Vector2.zero)
         {
             if (!isMoving)
@@ -156,6 +158,7 @@ public class PlayerMove : MonoBehaviour
         }
         
         movingRight = _moveInput.x > 0;
+        _standing = _moveInput == Vector2.zero;
     }
     
     public void CheckIfNeedToFlipArt()

@@ -13,5 +13,8 @@
     Push,
     Run,
     Throw,
-    Aim
+    Aim,
+    NarrowPass,
+    Drop,
+    HoldPush
 }

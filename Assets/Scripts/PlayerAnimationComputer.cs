@@ -3,7 +3,7 @@
     public PlayerAnimation Compute(PlayerAnimationInput input)
     {
         if (input._playerState == PlayerState.Climb) return PlayerAnimation.Climb;
-        
+        if (input._playerState == PlayerState.Drop) return PlayerAnimation.Drop;
         if (input._isCalling) return PlayerAnimation.Call;
 
         if (input._petting) return PlayerAnimation.Pet;
@@ -31,19 +31,21 @@
     private PlayerAnimation HandleStealthAnim(PlayerAnimationInput input)
     {
         if (input._isMoving) return PlayerAnimation.CrouchWalk;
-        
         return PlayerAnimation.CrouchIdle;
     }
 
     private PlayerAnimation HandleWalkAnim(PlayerAnimationInput input)
     {
         if (input._isCrouching) return PlayerAnimation.CrouchWalk;
+        if (input._narrowPass) return PlayerAnimation.NarrowPass;
         if (!input._canMove) return PlayerAnimation.Idle;
         return PlayerAnimation.Run;
     }
 
     private PlayerAnimation HandlePushingAnim(PlayerAnimationInput input)
     {
+        if (input._standing) return PlayerAnimation.HoldPush;
+        
         if (input._isPushingFromLeft)
         {
             if (!input._movingRight) return PlayerAnimation.Pull;

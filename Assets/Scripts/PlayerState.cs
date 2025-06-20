@@ -8,5 +8,6 @@
     Aim,
     Throw,
     Stealth,
-    Climb
+    Climb,
+    Drop
 }

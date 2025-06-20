@@ -39,7 +39,7 @@ namespace Interactables
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            print("zoom out " + _isZoomOut);
+            // print("zoom out " + _isZoomOut);
             if (other.CompareTag("Player"))
             {
                 if (_isZoomOut)

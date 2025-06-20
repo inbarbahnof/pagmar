@@ -131,16 +131,15 @@ namespace Dog
             switch (GameManager.instance.ConnectionState)
             {
                 case 1:
-                    return 0.4f;
+                    return 0.5f;
                 case 2:
-                    return 0.3f;
+                    return 0.5f;
                 case 3:
-                    return 0.1f;
+                    return 0.3f;
                 case 4:
-                    return 0;
+                    return 0.1f;
             }
-
-            return 0;
+            return 0.5f;
         }
 
         private void GoToTarget(Target target)

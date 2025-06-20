@@ -13,6 +13,7 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] private float _waitOnCallTime = 1f;
     [SerializeField] private float _climbAnimTime = 2f;
     [SerializeField] private float _cantPetAnimTime = 0.8f;
+    [SerializeField] private float _dropAnimTime = 0.7f;
     
     public enum ThrowState
     {
@@ -40,6 +41,8 @@ public class PlayerStateManager : MonoBehaviour
     private bool _isAiming;
     private bool _petting;
     private bool _goingBackFromPet;
+    private bool _narrowPass;
+    private bool _dropping;
 
     private Coroutine _waitToCallCoroutine;
     private Vector3 _initialPickUpParentPos;
@@ -75,8 +78,8 @@ public class PlayerStateManager : MonoBehaviour
         
         PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching, 
             _move.IsMoving, _move.CanMove, _isCalling, _move.MovingRight, 
-            _pickedUp, _justPickedUp, _throwing, _isPushingFromLeft, 
-            _isAiming, _petting, _goingBackFromPet);
+            _move.Standing, _pickedUp, _justPickedUp, _throwing, _isPushingFromLeft, 
+            _isAiming, _petting, _goingBackFromPet, _narrowPass);
         
         PlayerAnimation animation = _computer.Compute(input);
         _animationManager.PlayerAnimationUpdate(animation);
@@ -92,6 +95,19 @@ public class PlayerStateManager : MonoBehaviour
         _isAbleToAim = canAim;
     }
 
+    public void UpdateDropping()
+    {
+        SetState(PlayerState.Drop);
+        _dropping = true;
+        StartCoroutine(WaitForDropAnim());
+    }
+    
+    private IEnumerator WaitForDropAnim()
+    {
+        yield return new WaitForSeconds(_dropAnimTime);
+        _dropping = false;
+    }
+    
     public void UpdateClimbing()
     {
         SetState(PlayerState.Climb);
@@ -140,27 +156,34 @@ public class PlayerStateManager : MonoBehaviour
     public void UpdatePetting()
     {
         SetState(PlayerState.Pet);
-        _petting = true;
+        
+        _move.SetCanMove(false);
+        _move.UpdateMoveInput(Vector2.zero);
+        
+        if (GameManager.instance.ConnectionState < 4) StartCoroutine(NoPet());
+        else StartCoroutine(WaitToStopPet());
+    }
 
-        StartCoroutine(WaitToStopPet());
+    private IEnumerator NoPet()
+    {
+        _goingBackFromPet = true;
+        yield return new WaitForSeconds(_cantPetAnimTime);
+        _goingBackFromPet = false;
+        
+        _move.SetCanMove(true);
     }
 
     private IEnumerator WaitToStopPet()
     {
-        float time;
-        if (GameManager.instance.ConnectionState > 3) time = 2f;
-        else time = 1f;
-        
-        yield return new WaitForSeconds(time);
-
+        _petting = true;
+        yield return new WaitForSeconds(2f);
         _petting = false;
-
-        if (GameManager.instance.ConnectionState < 3)
-        {
-            _goingBackFromPet = true;
-            yield return new WaitForSeconds(_cantPetAnimTime);
-            _goingBackFromPet = false;
-        }
+        _move.SetCanMove(true);
+    }
+    
+    public void OnNarrowPass(bool inRoad)
+    {
+        _narrowPass = inRoad;
     }
 
     public void StartedCalling()
@@ -236,7 +259,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private void SetState(PlayerState newState)
     {
-        if (curState == newState || _isClimbing || _petting) return;
+        if (curState == newState || _isClimbing || _petting || _dropping) return;
         
         if (_isAbleToAim) curState = PlayerState.Aim;
         else curState = newState;

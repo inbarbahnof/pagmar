@@ -21,7 +21,10 @@ namespace Audio.FMOD
         [field: SerializeField] public EventReference DogBark { get; private set; }
         [field: SerializeField] public EventReference DogFootsteps { get; private set; }
         [field: SerializeField] public EventReference DogGrowl{ get; private set; }
-       
+        // [field: SerializeField] public EventReference DogSniff{ get; private set; }
+        // [field: SerializeField] public EventReference DogScared{ get; private set; }
+        // [field: SerializeField] public EventReference DogEat{ get; private set; }
+
         [field: Header("Music")]
         [field: SerializeField] public EventReference Chapter0Music { get; private set; }
         [field: SerializeField] public EventReference Chapter1Music { get; private set; }

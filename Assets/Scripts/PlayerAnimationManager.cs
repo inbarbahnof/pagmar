@@ -29,6 +29,9 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private string aimAnimName;
     [SerializeField] private string petAnimName;
     [SerializeField] private string cantPetAnimName;
+    [SerializeField] private string dropAnimName;
+    [SerializeField] private string narrowPassAnimName;
+    [SerializeField] private string holdPushAnimName;
     
     [Header("Animation Speeds")]
     [SerializeField] private float idleAnimSpeed = 1f;
@@ -45,6 +48,9 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private float aimAnimSpeed = 1f;
     [SerializeField] private float petAnimSpeed = 1f;
     [SerializeField] private float cantPetAnimSpeed = 1f;
+    [SerializeField] private float dropAnimSpeed = 1f;
+    [SerializeField] private float narrowPassAnimSpeed = 1f;
+    [SerializeField] private float holdPushAnimSpeed = 1f;
 
     [Header("Event Names")] 
     [SerializeField] private string _climbUpEventName;
@@ -125,6 +131,12 @@ public class PlayerAnimationManager : MonoBehaviour
         transform.DOMove(newPos, 0.5f);
     }
 
+    private void OnDrop()
+    {
+        Vector3 newPos = new Vector3(transform.position.x - 0.7f, transform.position.y - 0.4f, 0);
+        transform.DOMove(newPos, 0.7f);
+    }
+
     public void PlayerRunSpeed(bool isFast)
     {
         if (isFast) runAnimSpeed = 1.5f;
@@ -202,6 +214,19 @@ public class PlayerAnimationManager : MonoBehaviour
                 case PlayerAnimation.GoBackFromPet:
                     entry = spineAnimationState.SetAnimation(0, cantPetAnimName, false);
                     if (entry != null) entry.TimeScale = cantPetAnimSpeed;
+                    break;
+                case PlayerAnimation.NarrowPass:
+                    entry = spineAnimationState.SetAnimation(0, narrowPassAnimName, true);
+                    if (entry != null) entry.TimeScale = narrowPassAnimSpeed;
+                    break;
+                case PlayerAnimation.HoldPush:
+                    entry = spineAnimationState.SetAnimation(0, holdPushAnimName, true);
+                    if (entry != null) entry.TimeScale = holdPushAnimSpeed;
+                    break;
+                case PlayerAnimation.Drop:
+                    entry = spineAnimationState.SetAnimation(0, dropAnimName, false);
+                    if (entry != null) entry.TimeScale = dropAnimSpeed;
+                    OnDrop();
                     break;
             }
 

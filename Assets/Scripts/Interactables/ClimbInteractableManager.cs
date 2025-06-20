@@ -23,10 +23,11 @@ namespace Interactables
             _playerMove = _playerStateManager.gameObject.GetComponent<PlayerMove>();
         }
 
-        public void Climb(ClimbObject cur, Vector2 playerPos)
+        public void Climb(ClimbObject cur, Vector2 playerPos, bool isClimbing)
         {
             _curInteraction = cur;
-            StartCoroutine(StartClimb(playerPos));
+            if (isClimbing) StartCoroutine(StartClimb(playerPos));
+            else _playerStateManager.UpdateDropping();
         }
 
         public IEnumerator StartClimb(Vector2 playerPos)
@@ -41,7 +42,6 @@ namespace Interactables
 
         public void StopInteraction()
         {
-            _curInteraction.StopInteraction();
             _playerMove.FinishClimb();
         }
     }

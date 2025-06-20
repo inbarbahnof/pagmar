@@ -8,6 +8,7 @@ public struct PlayerAnimationInput
     public bool _canMove;
     public bool _isCalling;
     public bool _movingRight;
+    public bool _standing;
     public bool _didPickUp;
     public bool _justPickedUp;
     public bool _throwing;
@@ -15,11 +16,13 @@ public struct PlayerAnimationInput
     public bool _isAiming;
     public bool _petting;
     public bool _goingBackFromPet;
+    public bool _narrowPass;
 
     public PlayerAnimationInput(PlayerState playerState, bool isCrouching, 
-        bool isMoving,bool canMove, bool isCalling, bool movingRight, bool didPickUp,
+        bool isMoving,bool canMove, bool isCalling, bool movingRight,
+        bool standing, bool didPickUp,
         bool justPickedUp, bool throwing, bool isPushingFromLeft,
-        bool isAiming, bool petting, bool goingBackFromPet)
+        bool isAiming, bool petting, bool goingBackFromPet, bool narrowPass)
     {
         _playerState = playerState;
         _isCrouching = isCrouching;
@@ -34,5 +37,7 @@ public struct PlayerAnimationInput
         _isAiming = isAiming;
         _petting = petting;
         _goingBackFromPet = goingBackFromPet;
+        _narrowPass = narrowPass;
+        _standing = standing;
     }
 }
