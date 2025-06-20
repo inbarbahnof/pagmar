@@ -50,7 +50,7 @@ namespace Dog
         private Coroutine _stopFollowCoroutine;
         private Coroutine _chaseGhostieCoroutine;
         
-        [SerializeField] private bool movementEnabled = true;
+        private bool movementEnabled = true;
         
         // getters
         public float DogPlayerDistance => _dogPlayerDistance;
@@ -80,7 +80,6 @@ namespace Dog
             _animationManager = GetComponent<DogAnimationManager>();
 
             if (movementEnabled) StartWalkingAfterPlayer();
-            else SetMovementEnabled(false);
         }
 
         private void Update()
