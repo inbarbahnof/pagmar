@@ -8,6 +8,8 @@ public class DogMeetManager : MonoBehaviour
 {
     [SerializeField] private PlayableDirector dogSequence;
     [SerializeField] private PlayableDirector ghostieSequence;
+    [SerializeField] private PlayerMove playerMove;
+    private bool _playerHiding;
     
     public void ShowDogSequence()
     {
@@ -18,11 +20,18 @@ public class DogMeetManager : MonoBehaviour
         // on camera pan stop allow player controls and show 'hide' prompt
     }
 
+    public void PlayerHiding()
+    {
+        _playerHiding = true;
+        playerMove.SetCanMove(false);
+    }
+    
     public void ShowGhostiesSequence()
     {
         // activate upon player reached bush
         // freeze player
         // play sequence to pam cam left and activate ghosties them move dog and scatter
+        while (!_playerHiding) { }
         ghostieSequence.Play();
     }
 }

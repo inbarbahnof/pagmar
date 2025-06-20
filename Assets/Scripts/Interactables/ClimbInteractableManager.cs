@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Interactables
@@ -7,6 +8,7 @@ namespace Interactables
         public static ClimbInteractableManager instance;
 
         [SerializeField] private PlayerStateManager _playerStateManager;
+        private PlayerMove _playerMove;
 
         private ClimbObject _curInteraction;
         
@@ -17,17 +19,30 @@ namespace Interactables
                 instance = this;
             }
             else Debug.LogError("TOO MANY PUSH INTERACTABLE MANAGERS!");
+
+            _playerMove = _playerStateManager.gameObject.GetComponent<PlayerMove>();
         }
 
-        public void Climb(ClimbObject cur)
+        public void Climb(ClimbObject cur, Vector2 playerPos)
         {
             _curInteraction = cur;
+            StartCoroutine(StartClimb(playerPos));
+        }
+
+        public IEnumerator StartClimb(Vector2 playerPos)
+        {
+            if (playerPos != Vector2.zero)
+            {
+                float waitTime = _playerMove.GetReadyToClimb(playerPos);
+                yield return new WaitForSeconds(waitTime);
+            }
             _playerStateManager.UpdateClimbing();
         }
 
         public void StopInteraction()
         {
             _curInteraction.StopInteraction();
+            _playerMove.FinishClimb();
         }
     }
 }

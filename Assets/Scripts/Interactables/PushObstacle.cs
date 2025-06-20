@@ -5,7 +5,7 @@ namespace Interactables
     public class PushObstacle : Obstacle
     {
         [SerializeField] private PushInteractableManager pushManager;
-        [SerializeField] private PlayerDeathZone deathZone;
+        [SerializeField] private GameObject colMid;
         [SerializeField] private PushInteractable interactable;
         [SerializeField] private Transform pushTarget;
         [SerializeField] private GameObject climbObject;
@@ -31,7 +31,7 @@ namespace Interactables
 
         private void SwapToClimb(bool climb)
         {
-            if (deathZone != null) deathZone.gameObject.SetActive(!climb);
+            if (colMid != null) colMid.SetActive(!climb);
             if (climbObject)
             {
                 climbObject.SetActive(climb);

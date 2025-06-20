@@ -6,12 +6,15 @@ namespace Interactables
 {
     public class ClimbObject : BaseInteractable
     {
-        [SerializeField] private GameObject _collider;
+        [SerializeField] private GameObject col;
+        [SerializeField] private Transform playerClimbPos;
 
         public override void Interact()
         {
-            ClimbInteractableManager.instance.Climb(this);
-            _collider.SetActive(false);
+            Vector2 playerPos = playerClimbPos.position;
+            if (playerClimbPos.position == transform.position) playerPos = Vector2.zero;
+            ClimbInteractableManager.instance.Climb(this, playerPos);
+            col.SetActive(false);
         }
 
         public override void StopInteractPress()
@@ -28,8 +31,7 @@ namespace Interactables
         {
             if (other.CompareTag("Player"))
             {
-                _collider.SetActive(true);
-                
+                col.SetActive(true);
             }
         }
     }
