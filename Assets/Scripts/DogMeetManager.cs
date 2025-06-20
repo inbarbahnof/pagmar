@@ -31,7 +31,18 @@ public class DogMeetManager : MonoBehaviour
         // activate upon player reached bush
         // freeze player
         // play sequence to pam cam left and activate ghosties them move dog and scatter
-        while (!_playerHiding) { }
+        StartCoroutine(WaitToShowGhostiesCoroutine());
+    }
+
+    private IEnumerator WaitToShowGhostiesCoroutine()
+    {
+        float startTime = Time.time;
+        float timeout = 10f;
+        while (!_playerHiding && Time.time - startTime < timeout)
+        {
+            yield return null; // wait one frame
+        }
+
         ghostieSequence.Play();
     }
 }
