@@ -86,7 +86,18 @@ namespace Dog
         private DogAnimation _currentIdleBehavior = DogAnimation.Idle;
         private float _nextIdleBehaviorChangeTime = 0f;
         private float _idleBehaviorDuration = 2.5f;
-
+        private bool _animationEnabled = true;
+        
+        public void SetAnimationEnabled(bool enabled)
+        {
+            _animationEnabled = enabled;
+            
+            if (!enabled)
+            {
+                spineAnimationState.ClearTracks();
+            }
+        }
+        
         private void Start()
         {
             _actionManager = GetComponent<DogActionManager>();
@@ -111,6 +122,8 @@ namespace Dog
 
         private void Update()
         {
+            if (!_animationEnabled) return;
+            
             if (!_petting && !_growling) CheckRotation();
             UpdateMoving();
             

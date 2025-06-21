@@ -84,7 +84,10 @@ namespace Dog
 
         private void Update()
         {
-            // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
+            print("dog State " + curState + " player state " + playerStateManager.CurrentState);
+            print("_chasingGhostie " + _chasingGhostie + 
+                  " _dogReachedTarget " + _dogReachedTarget + 
+                  " _numberChaseGhostie " + _numberChaseGhostie);
             if (!movementEnabled) return;
             
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
@@ -127,9 +130,11 @@ namespace Dog
                 _playerFollower.StopGoingToTarget();
                 _playerFollower.SetIsGoingToTarget(false);
                 _playerFollower.SetSpeed(true);
+                _animationManager.SetAnimationEnabled(false);
             }
             else
             {
+                _animationManager.SetAnimationEnabled(true);
                 StartWalkingAfterPlayer();
             }
         }
@@ -221,7 +226,7 @@ namespace Dog
                     curState = DogState.ChaseGhostie;
                     _numberChaseGhostie++;
                     if (_chaseGhostieCoroutine == null) 
-                        _chaseGhostieCoroutine = StartCoroutine(ZeroChageGhostie());
+                        _chaseGhostieCoroutine = StartCoroutine(ZeroChaseGhostie());
                     _playerFollower.GoToFoodTarget(_targetGenerator.GetClosestGhostie(transform));
                     Running(true);
                     Bark();
@@ -279,7 +284,7 @@ namespace Dog
             }
         }
 
-        private IEnumerator ZeroChageGhostie()
+        private IEnumerator ZeroChaseGhostie()
         {
             yield return new WaitForSeconds(11f);
             _numberChaseGhostie = 0;
