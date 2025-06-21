@@ -8,12 +8,15 @@ using Spine.Unity;
 using Targets;
 // using UnityEditor.Rendering;
 using UnityEngine;
+using Event = UnityEngine.Event;
 using Random = UnityEngine.Random;
 
 namespace Dog
 {
     public class DogAnimationManager : MonoBehaviour
     {
+        // public Action onDoneEating;
+        
         [SerializeField] SkeletonAnimation skeletonAnimation;
         [SerializeField] private Transform playerTransform;
 
@@ -273,22 +276,24 @@ namespace Dog
             StartCoroutine(Growl());
         }
 
-        public void DogEat(Transform food)
+        public void DogEat(Transform foodTransform, Action onDoneEating)
         {
-            StartCoroutine(Eat(food));
+            FaceTowardsTransform(foodTransform); // Optional: turn to face the food
+            StartCoroutine(Eat(onDoneEating));
         }
 
-        private IEnumerator Eat(Transform food)
+        private IEnumerator Eat(Action onDoneEating)
         {
             // TODO play eat sound
-            FaceTowardsTransform(food);
             _eating = true;
             yield return new WaitForSeconds(_eatAnimationTime);
             _eating = false;
 
             _afterEat = true;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.8f);
             _afterEat = false;
+            
+            onDoneEating?.Invoke();
         }
         
         private IEnumerator Growl()

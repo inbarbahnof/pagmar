@@ -33,8 +33,16 @@ namespace Targets
             _collider.enabled = false;
             
             // eat the target
-            dog.GetComponent<DogAnimationManager>().DogEat(transform);
-            StartCoroutine(EatTarget());
+            // dog.GetComponent<DogAnimationManager>().DogEat(transform);
+            // if (gameObject.activeSelf) StartCoroutine(EatTarget());
+            // else FinishTargetAction();
+            
+            dog.GetComponent<DogAnimationManager>().DogEat(transform, () =>
+            {
+                OnFoodEaten?.Invoke();
+                FinishTargetAction();
+                _art.gameObject.SetActive(false);
+            });
         }
 
         public PickUpInteractable GetPickup()

@@ -28,7 +28,6 @@ public class PlayerStateManager : MonoBehaviour
     private BaseInteractable _curInteraction;
     private PlayerMove _move;
     private InputManager _inputManager;
-
     
     private bool _isCrouching;
     private bool _isAbleToAim;
@@ -184,6 +183,7 @@ public class PlayerStateManager : MonoBehaviour
     public void OnNarrowPass(bool inRoad)
     {
         _narrowPass = inRoad;
+        _move.UpdateNarrowPass(inRoad);
     }
 
     public void StartedCalling()

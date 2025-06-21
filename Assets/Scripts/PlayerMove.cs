@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float _runSpeed = 4.7f;
     [SerializeField] private float _runFastSpeed = 6f;
     [SerializeField] private float _crouchSpeed = 4f;
+    [SerializeField] private float _narrowPassSpeed = 4f;
     [SerializeField] private float _pushSpeed = 3.7f;
     [SerializeField] private GameObject _playerArt;
 
@@ -84,6 +85,12 @@ public class PlayerMove : MonoBehaviour
             _speed = _runSpeed;
             _stateManager.UpdatePlayerSpeed(false);
         }
+    }
+
+    public void UpdateNarrowPass(bool narrow)
+    {
+        if (narrow) _speed = _narrowPassSpeed;
+        else _speed = _runSpeed;
     }
 
     public void UpdateCrouch(bool crouch)

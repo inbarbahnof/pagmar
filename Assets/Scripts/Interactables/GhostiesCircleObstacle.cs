@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class GhostiesCircleObstacle : Obstacle
 {
+    [SerializeField] private ThrowablePickUpInteractable[] _foodInteractables;
     [SerializeField] private FoodTarget[] _food;
     [SerializeField] private PushObstacle _pushObs;
     [SerializeField] private DogActionManager _dog;
@@ -14,27 +15,29 @@ public class GhostiesCircleObstacle : Obstacle
     [SerializeField] private PlayerStateManager _player;
 
     private Vector3[] _foodPositions;
-    private FoodTarget[] _spawnedFoods;
+    private ThrowablePickUpInteractable[] _spawnedFoods;
     private Dictionary<Transform, int> _foodTransformToIndex;
+    private bool[] _foodWasEaten;
 
     private void Start()
     {
-        _foodPositions = new Vector3[_food.Length];
-        _spawnedFoods = new FoodTarget[_food.Length];
+        _foodPositions = new Vector3[_foodInteractables.Length];
+        _spawnedFoods = new ThrowablePickUpInteractable[_foodInteractables.Length];
+        _foodWasEaten = new bool[_food.Length];
 
         _foodTransformToIndex = new Dictionary<Transform, int>();
 
-        for (int i = 0; i < _food.Length; i++)
+        for (int i = 0; i < _foodInteractables.Length; i++)
         {
             _foodPositions[i] = _food[i].transform.position;
 
             int index = i;
-            _food[i].OnFoodEaten += () => RespawnFood(index);
-            ThrowablePickUpInteractable interactable = _food[i].GetComponent<ThrowablePickUpInteractable>();
+            _food[i].OnFoodEaten += () => _foodWasEaten[index] = true;
+            ThrowablePickUpInteractable interactable = _foodInteractables[i];
             interactable.OnThrowComplete += ThrowComplete;
 
-            _foodTransformToIndex[_food[i].transform] = i;
-            _spawnedFoods[i] = _food[i];
+            _foodTransformToIndex[_foodInteractables[i].transform] = i;
+            _spawnedFoods[i] = _foodInteractables[i];
         }
     }
 
@@ -49,15 +52,16 @@ public class GhostiesCircleObstacle : Obstacle
 
     private void RespawnFood(int index)
     {
-        FoodTarget oldFood = _spawnedFoods[index];
+        ThrowablePickUpInteractable oldFood = _spawnedFoods[index];
 
         GameObject newFood = Instantiate(oldFood.gameObject, _foodPositions[index], Quaternion.identity);
-        FoodTarget foodTarget = newFood.GetComponent<FoodTarget>();
+        FoodTargetGetter foodTargetGetter = newFood.GetComponent<FoodTargetGetter>();
+        FoodTarget foodTarget = foodTargetGetter.GetFoodTarget();
 
         foodTarget.SetCanBeFed(false);
         foodTarget.OnFoodEaten += () => RespawnFood(index);
 
-        _spawnedFoods[index] = foodTarget;
+        _spawnedFoods[index] = newFood.GetComponent<ThrowablePickUpInteractable>();
     }
 
     public void GhostiesRun()
@@ -70,30 +74,17 @@ public class GhostiesCircleObstacle : Obstacle
 
     public override void ResetObstacle()
     {
-        _foodTransformToIndex.Clear(); // Clear old mappings
-
-        for (int i = 0; i < _foodPositions.Length; i++)
+        for (int i = 0; i < _food.Length; i++)
         {
-            if (_spawnedFoods[i] != null)
-            {
-                GameObject foodObj = _spawnedFoods[i].gameObject;
+            // Reactivate the original food
+            var foodObj = _foodInteractables[i].gameObject;
+            foodObj.transform.position = _foodPositions[i];
+            foodObj.SetActive(true);
 
-                // Reset position and re-enable
-                foodObj.transform.position = _foodPositions[i];
-                foodObj.SetActive(true);
-
-                // Reset feeding state
-                _spawnedFoods[i].SetCanBeFed(false);
-                _spawnedFoods[i].GetComponent<Collider2D>().enabled = true;
-
-                // Re-subscribe to throw event
-                var interactable = foodObj.GetComponent<ThrowablePickUpInteractable>();
-                interactable.OnThrowComplete -= ThrowComplete; // Avoid double subscription
-                interactable.OnThrowComplete += ThrowComplete;
-
-                // Update transform-to-index mapping
-                _foodTransformToIndex[foodObj.transform] = i;
-            }
+            // Also re-enable art & collider
+            _foodInteractables[i].GetComponent<Collider2D>().enabled = true;
+            _food[i].SetCanBeFed(false);
+            _food[i].GetPickup().gameObject.SetActive(true);
         }
 
         PickUpInteractableManager.instance.DropObject();
