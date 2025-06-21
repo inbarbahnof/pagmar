@@ -33,7 +33,7 @@ namespace Dog
                     if (m_Method == OffMeshLinkMoveMethod.NormalSpeed)
                         yield return StartCoroutine(NormalSpeed(agent));
                     else if (m_Method == OffMeshLinkMoveMethod.Parabola)
-                        yield return StartCoroutine(Parabola(agent, 1.3f, 1.3f));
+                        yield return StartCoroutine(Parabola(agent, 0.2f, 0.7f));
                     else if (m_Method == OffMeshLinkMoveMethod.Curve)
                         yield return StartCoroutine(Curve(agent, 0.5f));
                     agent.CompleteOffMeshLink();
@@ -56,7 +56,9 @@ namespace Dog
         IEnumerator Parabola(NavMeshAgent agent, float height, float duration)
         {
             OffMeshLinkData data = agent.currentOffMeshLinkData;
-            Vector3 startPos = agent.transform.position;
+            Vector3 startPos = new Vector3(agent.transform.position.x - 0.1f, 
+                agent.transform.position.y - 0.52f,
+                agent.transform.position.z);
             Vector3 endPos = data.endPos;
             
             _animationManager.DogJumping(true);
@@ -69,6 +71,8 @@ namespace Dog
                 normalizedTime += Time.deltaTime / duration;
                 yield return null;
             }
+
+            yield return new WaitForSeconds(0.3f);
             
             _animationManager.DogJumping(false);
         }

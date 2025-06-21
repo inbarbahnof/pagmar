@@ -166,7 +166,6 @@ GameObject:
   - component: {fileID: 1538025327645606136}
   - component: {fileID: 2126287841468501225}
   - component: {fileID: 4631522509052752445}
-  - component: {fileID: 901099514093134551}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Dog
@@ -373,14 +372,14 @@ MonoBehaviour:
   growlAnimSpeed: 1
   happyCrouchAnimSpeed: 1
   idleCrouchAnimSpeed: 1
-  jumpAnimSpeed: 1
+  jumpAnimSpeed: 1.2
   listenAnimSpeed: 1
   barkAnimSpeed: 1
   sniffAnimSpeed: 0.8
   walkCrouchAnimSpeed: 0.7
   digAnimSpeed: 1
   petAnimSpeed: 1
-  afterEatAnimSpeed: 1
+  afterEatAnimSpeed: 0.7
   _footstepsEventName: Footstep
   art: {fileID: 5383646546148844883}
 --- !u!114 &4631522509052752445
@@ -417,25 +416,6 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &901099514093134551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6921637257308304299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d02618fa4c7249b29a76cc8a38d39c5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Method: 2
-  m_Curve:
-    serializedVersion: 2
-    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

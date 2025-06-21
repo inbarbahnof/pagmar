@@ -235,6 +235,13 @@ namespace Dog
         public void DogJumping(bool jump)
         {
             _isJumping = jump;
+            StartCoroutine(FinishJump());
+        }
+
+        private IEnumerator FinishJump()
+        {
+            yield return new WaitForSeconds(1f);
+            _isJumping = false;
         }
 
         public void DogWaitForFood()
@@ -288,9 +295,11 @@ namespace Dog
             _eating = true;
             yield return new WaitForSeconds(_eatAnimationTime);
             _eating = false;
-
+            
+            // TODO destroy food
+            
             _afterEat = true;
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(1.3f);
             _afterEat = false;
             
             onDoneEating?.Invoke();
