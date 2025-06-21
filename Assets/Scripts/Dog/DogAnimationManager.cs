@@ -127,7 +127,7 @@ namespace Dog
         {
             if (!_animationEnabled) return;
             
-            if (!_petting && !_growling) CheckRotation();
+            if (!_petting && !_growling && !_eating && !_afterEat) CheckRotation();
             UpdateMoving();
             
             DogAnimation cur = WhichAnimShouldBePlayed();
@@ -283,17 +283,19 @@ namespace Dog
             StartCoroutine(Growl());
         }
 
-        public void DogEat(Transform foodTransform, Action onDoneEating)
+        public void DogEat(Transform foodTransform, Action DestroyFood, Action onDoneEating)
         {
-            FaceTowardsTransform(foodTransform); // Optional: turn to face the food
-            StartCoroutine(Eat(onDoneEating));
+            FaceTowardsTransform(foodTransform);
+            StartCoroutine(Eat(DestroyFood, onDoneEating));
         }
 
-        private IEnumerator Eat(Action onDoneEating)
+        private IEnumerator Eat(Action DestroyFood, Action onDoneEating)
         {
             // TODO play eat sound
             _eating = true;
             yield return new WaitForSeconds(_eatAnimationTime);
+            
+            DestroyFood?.Invoke();
             _eating = false;
             
             // TODO destroy food

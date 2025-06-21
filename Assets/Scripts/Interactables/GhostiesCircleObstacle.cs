@@ -15,29 +15,22 @@ public class GhostiesCircleObstacle : Obstacle
     [SerializeField] private PlayerStateManager _player;
 
     private Vector3[] _foodPositions;
-    private ThrowablePickUpInteractable[] _spawnedFoods;
     private Dictionary<Transform, int> _foodTransformToIndex;
-    private bool[] _foodWasEaten;
 
     private void Start()
     {
         _foodPositions = new Vector3[_foodInteractables.Length];
-        _spawnedFoods = new ThrowablePickUpInteractable[_foodInteractables.Length];
-        _foodWasEaten = new bool[_food.Length];
 
         _foodTransformToIndex = new Dictionary<Transform, int>();
 
         for (int i = 0; i < _foodInteractables.Length; i++)
         {
             _foodPositions[i] = _food[i].transform.position;
-
-            int index = i;
-            _food[i].OnFoodEaten += () => _foodWasEaten[index] = true;
+            
             ThrowablePickUpInteractable interactable = _foodInteractables[i];
             interactable.OnThrowComplete += ThrowComplete;
 
             _foodTransformToIndex[_foodInteractables[i].transform] = i;
-            _spawnedFoods[i] = _foodInteractables[i];
         }
     }
 
@@ -50,19 +43,19 @@ public class GhostiesCircleObstacle : Obstacle
         }
     }
 
-    private void RespawnFood(int index)
-    {
-        ThrowablePickUpInteractable oldFood = _spawnedFoods[index];
-
-        GameObject newFood = Instantiate(oldFood.gameObject, _foodPositions[index], Quaternion.identity);
-        FoodTargetGetter foodTargetGetter = newFood.GetComponent<FoodTargetGetter>();
-        FoodTarget foodTarget = foodTargetGetter.GetFoodTarget();
-
-        foodTarget.SetCanBeFed(false);
-        foodTarget.OnFoodEaten += () => RespawnFood(index);
-
-        _spawnedFoods[index] = newFood.GetComponent<ThrowablePickUpInteractable>();
-    }
+    // private void RespawnFood(int index)
+    // {
+    //     ThrowablePickUpInteractable oldFood = _spawnedFoods[index];
+    //
+    //     GameObject newFood = Instantiate(oldFood.gameObject, _foodPositions[index], Quaternion.identity);
+    //     FoodTargetGetter foodTargetGetter = newFood.GetComponent<FoodTargetGetter>();
+    //     FoodTarget foodTarget = foodTargetGetter.GetFoodTarget();
+    //
+    //     foodTarget.SetCanBeFed(false);
+    //     foodTarget.OnFoodEaten += () => RespawnFood(index);
+    //
+    //     _spawnedFoods[index] = newFood.GetComponent<ThrowablePickUpInteractable>();
+    // }
 
     public void GhostiesRun()
     {

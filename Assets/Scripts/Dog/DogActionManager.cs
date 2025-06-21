@@ -84,7 +84,7 @@ namespace Dog
 
         private void Update()
         {
-            //print("dog State " + curState + " player state " + playerStateManager.CurrentState);
+            // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
             //print("_chasingGhostie " + _chasingGhostie + 
             //           " _dogReachedTarget " + _dogReachedTarget + 
             //           " _numberChaseGhostie " + _numberChaseGhostie);

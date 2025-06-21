@@ -23,7 +23,7 @@ namespace Targets
                 _dogTempComunication.SetActive(true);
             
             // turn off the pickability
-            FoodPickUpInteractable foodPickUpInteractable = GetComponent<FoodPickUpInteractable>();
+            FoodPickUpInteractable foodPickUpInteractable = _pickUp.GetComponent<FoodPickUpInteractable>();
             
             if (foodPickUpInteractable != null)
             {
@@ -32,17 +32,13 @@ namespace Targets
             }
             _collider.enabled = false;
             
-            // eat the target
-            // dog.GetComponent<DogAnimationManager>().DogEat(transform);
-            // if (gameObject.activeSelf) StartCoroutine(EatTarget());
-            // else FinishTargetAction();
-            
-            dog.GetComponent<DogAnimationManager>().DogEat(transform, () =>
-            {
+            dog.GetComponent<DogAnimationManager>().DogEat(_pickUp.transform, 
+                () => {_art.gameObject.SetActive(false);}
+                ,() => {
                 OnFoodEaten?.Invoke();
                 FinishTargetAction();
-                _art.gameObject.SetActive(false);
-            });
+                canBeFed = false;
+                });
         }
 
         public PickUpInteractable GetPickup()
