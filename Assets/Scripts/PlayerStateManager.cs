@@ -50,6 +50,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public PlayerState CurrentState => curState;
     public bool IsPushingFromLeft => _isPushingFromLeft;
+    public bool IsClimbing => _isClimbing;
 
     // public delegate void OnStateChange(PlayerState newState);
 

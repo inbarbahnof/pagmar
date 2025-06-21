@@ -33,7 +33,8 @@ namespace Interactables
             _food.SetCanInteract(false);
             _stick.SetCanInteract(false);
             
-            TargetGenerator.instance.NotifyFoodNearby(_food.GetComponent<FoodTarget>());
+            TargetGenerator.instance.NotifyFoodNearby(
+                _food.GetComponent<FoodTargetGetter>().GetFoodTarget());
 
             _stealth.GhostAppear();
         }

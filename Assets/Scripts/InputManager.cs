@@ -11,6 +11,9 @@ public class InputManager : MonoBehaviour
     private PlayerInput _input;
     private AimControl _aimControl;
     
+    private Vector2 _lastAimInput = Vector2.zero;
+    private Coroutine _retainAimCoroutine;
+    
     private void Awake()
     {
         _input = GetComponent<PlayerInput>();
@@ -43,10 +46,26 @@ public class InputManager : MonoBehaviour
         if (_stateManager.CurrentState == PlayerState.Aim)
         {
             _player.UpdateMoveInput(Vector2.zero);
-            _player.UpdateAimInput(inputVal);
-            _aimControl.UpdateAimInput(inputVal);
+            
+            if (inputVal != Vector2.zero)
+            {
+                _lastAimInput = inputVal;
+                _player.UpdateAimInput(inputVal);
+                _aimControl.UpdateAimInput(inputVal);
+
+                if (_retainAimCoroutine != null)
+                {
+                    StopCoroutine(_retainAimCoroutine);
+                    _retainAimCoroutine = null;
+                }
+            }
+            else
+            {
+                if (_retainAimCoroutine == null)
+                    _retainAimCoroutine = StartCoroutine(RetainLastAimInput());
+            }
         }
-        else if (_stateManager.CurrentState == PlayerState.Climb)
+        else if (_stateManager.IsClimbing)
         {
             _player.UpdateMoveInput(Vector2.zero);
         }
@@ -54,6 +73,19 @@ public class InputManager : MonoBehaviour
         {
             _player.UpdateMoveInput(inputVal);
         }
+    }
+    
+    private IEnumerator RetainLastAimInput()
+    {
+        _player.UpdateAimInput(_lastAimInput);
+        _aimControl.UpdateAimInput(_lastAimInput);
+
+        yield return new WaitForSeconds(0.5f);
+
+        _player.UpdateAimInput(Vector2.zero);
+        _aimControl.UpdateAimInput(Vector2.zero);
+
+        _retainAimCoroutine = null;
     }
 
     public void OnInteract(InputAction.CallbackContext context)

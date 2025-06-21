@@ -15,7 +15,9 @@ namespace Targets
         [SerializeField] private List<Target> playerTargets = new List<Target>();
         [SerializeField] private Target _callTarget;
         [SerializeField] private Target _petTarget;
+        [SerializeField] private List<Target> targetsOfInterest = new List<Target>();
         
+        private float _TOI_DetectionRadius = 10f;
         private FoodTarget _foodTarget;
         private Target _stickTarget;
         private WantFoodTarget _wantFoodTarget;
@@ -23,8 +25,6 @@ namespace Targets
         private List<Target> _ghostiesTargets = new List<Target>();
 
         private bool _didStealthTargetChange;
-        
-        // private List<Target> idleTargets = new List<Target>();
 
         private void Start()
         {
@@ -137,6 +137,30 @@ namespace Targets
                 }
             }
 
+            return closest;
+        }
+        
+        public Target GetNearbyTOI(Transform dogTransform)
+        {
+            if (dogTransform == null || targetsOfInterest.Count == 0)
+                return null;
+
+            float minDistance = float.MaxValue;
+            Target closest = null;
+
+            foreach (var target in targetsOfInterest)
+            {
+                if (target == null) continue;
+
+                float dist = Vector2.Distance(target.transform.position, dogTransform.position);
+                
+                if (dist <= _TOI_DetectionRadius && dist < minDistance && dist > 1)
+                {
+                    minDistance = dist;
+                    closest = target;
+                }
+            }
+            // print("closest " + closest.name);
             return closest;
         }
 

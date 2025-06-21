@@ -202,6 +202,21 @@ namespace Dog
             yield return new WaitForSeconds(1.5f);
         }
 
+        public void GoToTOI(Target potentialTarget)
+        {
+            if (currentTarget != null)
+                currentTarget.OnTargetActionComplete -= OnTargetActionComplete;
+
+            nextTarget = currentTarget;
+            currentTarget = potentialTarget;
+            targetDistance = currentTarget.GetDistance();
+            currentTarget.OnTargetActionComplete += OnTargetActionComplete;
+            isPerformingAction = false;
+            isGoingToTarget = true;
+
+            OnStartFollowTOI?.Invoke();
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             Target potentialTarget = other.GetComponent<Target>();
@@ -209,17 +224,7 @@ namespace Dog
             {
                 if (_actionManager.CurState != DogState.ChaseGhostie && Random.value < stopProb)
                 {
-                    if (currentTarget != null)
-                        currentTarget.OnTargetActionComplete -= OnTargetActionComplete;
-
-                    nextTarget = currentTarget;
-                    currentTarget = potentialTarget;
-                    targetDistance = currentTarget.GetDistance();
-                    currentTarget.OnTargetActionComplete += OnTargetActionComplete;
-                    isPerformingAction = false;
-                    isGoingToTarget = true;
-
-                    OnStartFollowTOI?.Invoke();
+                    GoToTOI(potentialTarget);
                 }
             }
         }

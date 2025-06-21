@@ -73,6 +73,8 @@ namespace Interactables
             
             _player.StealthObstacle(false);
             
+            InteractableManager.instance.OnStopInteract();
+            
             // reset sticks positions
             for (int i = 0; i < _stickPositions.Length; i++)
             {

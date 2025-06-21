@@ -85,9 +85,7 @@ namespace Dog
         private void Update()
         {
             // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
-            //print("_chasingGhostie " + _chasingGhostie + 
-            //           " _dogReachedTarget " + _dogReachedTarget + 
-            //           " _numberChaseGhostie " + _numberChaseGhostie);
+            // print("_dogFollowingTOI " + _dogFollowingTOI);
             if (!movementEnabled) return;
             
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
@@ -364,10 +362,21 @@ namespace Dog
 
         private void HandleIdleBehavior()
         {
-            curState = DogState.Idle;
-            _dogFollowingTarget = false;
-            _dogFollowingTOI = false;
-            _playerFollower.SetIsGoingToTarget(false);
+            if (Random.value < 0.3f)
+            {
+                Target target = _targetGenerator.GetNearbyTOI(transform);
+                if (target != null)
+                {
+                    _playerFollower.GoToTOI(target);
+                }
+            }
+            else
+            {
+                curState = DogState.Idle;
+                _dogFollowingTarget = false;
+                _dogFollowingTOI = false;
+                _playerFollower.SetIsGoingToTarget(false);
+            }
         }
 
         private void StartWalkingAfterPlayer()

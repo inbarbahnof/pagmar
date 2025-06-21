@@ -57,6 +57,8 @@ namespace Interactables
             _dog.StealthObs(false);
             _dog.ChangeCrouching(false);
             
+            InteractableManager.instance.OnStopInteract();
+            
             // // reset targets
             foreach (var target in _targets)  
             {
