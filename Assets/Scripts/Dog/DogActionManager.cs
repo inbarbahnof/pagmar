@@ -223,14 +223,7 @@ namespace Dog
                     _playerFollower.GoToFoodTarget(_targetGenerator.GetFoodTarget());
                     break;
                 case (_, DogState.ChaseGhostie):
-                    curState = DogState.ChaseGhostie;
-                    _numberChaseGhostie++;
-                    if (_chaseGhostieCoroutine == null) 
-                        _chaseGhostieCoroutine = StartCoroutine(ZeroChaseGhostie());
-                    _playerFollower.GoToFoodTarget(_targetGenerator.GetClosestGhostie(transform));
-                    Running(true);
-                    Bark();
-                    _chasingGhostie = true;
+                    HandleChaseGhostie();
                     break;
                 case (_, DogState.FollowCall):
                     curState = DogState.FollowCall;
@@ -282,6 +275,21 @@ namespace Dog
                     HandleIdleBehavior();
                     break;
             }
+        }
+
+        private void HandleChaseGhostie()
+        {
+            curState = DogState.ChaseGhostie;
+            _numberChaseGhostie++;
+            
+            if (_chaseGhostieCoroutine != null)
+                StopCoroutine(_chaseGhostieCoroutine);
+            _chaseGhostieCoroutine = StartCoroutine(ZeroChaseGhostie());
+            
+            _playerFollower.GoToFoodTarget(_targetGenerator.GetClosestGhostie(transform));
+            Running(true);
+            Bark();
+            _chasingGhostie = true;
         }
 
         private IEnumerator ZeroChaseGhostie()

@@ -12,14 +12,14 @@ namespace Dog
         {
             if (_dogActionManager.DogPlayerDistance <= _dogActionManager.ListenDistance)
             {
-                if (ui.activeSelf)
+                if (ui != null && ui.activeSelf)
                 {
                     ui.SetActive(false);
                 }
             }
             else
             {
-                if (!ui.activeSelf)
+                if (ui != null && !ui.activeSelf)
                 {
                     ui.SetActive(true);
                 }

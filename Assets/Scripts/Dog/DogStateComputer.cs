@@ -19,6 +19,9 @@ namespace Dog
             if (machineInput._playerState == PlayerState.Throw || machineInput._isFollowingStick)
                 return DogState.FollowStick;
             
+            if(machineInput._playerState == PlayerState.Pet || machineInput._isPetting) 
+                return HandlePlayerPetBehavior(previousDogState, machineInput);
+            
             if (machineInput._dogBusy && 
                 (!machineInput._isThereGhostie || machineInput._chasingGhostie)) 
                 return DogState.OnTargetAction;
@@ -26,9 +29,6 @@ namespace Dog
             if (previousDogState == DogState.ChaseGhostie && 
                 machineInput is { _isThereGhostie: true , _dogReachedTarget: false})
                 return previousDogState;
-            
-            if(machineInput._playerState == PlayerState.Pet || machineInput._isPetting) 
-                return HandlePlayerPetBehavior(previousDogState, machineInput);
 
             if (machineInput._dogFollowingTOI) return DogState.FollowTOI;
 

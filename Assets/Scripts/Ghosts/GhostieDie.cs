@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using Targets;
+using UnityEngine;
 using UnityEngine.VFX;
 
 namespace Ghosts
@@ -8,6 +10,7 @@ namespace Ghosts
         [SerializeField] private GameObject _intireGhostie;
         [SerializeField] private GameObject _detecror;
         [SerializeField] private GhostieMovement _movement;
+        [SerializeField] private AttackTarget _target;
         
         [Header("Die Art")]
         [SerializeField] private Rigidbody2D[] _bones;
@@ -43,11 +46,18 @@ namespace Ghosts
             _detecror.SetActive(false);
             _movement.Die(pos, cage, this);
             _attackDetector.IsAttackEnabled(false);
+            StartCoroutine(WaitToFinishTargetAction());
             
             foreach (var effect in _vfx)
             {
                 effect.Stop();
             }
+        }
+
+        private IEnumerator WaitToFinishTargetAction()
+        {
+            yield return new WaitForSeconds(2f);
+            _target.FinishTargetAction();
         }
 
         public void DropBones()
