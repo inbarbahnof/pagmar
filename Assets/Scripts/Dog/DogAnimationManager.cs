@@ -273,14 +273,15 @@ namespace Dog
             StartCoroutine(Growl());
         }
 
-        public void DogEat()
+        public void DogEat(Transform food)
         {
-            StartCoroutine(Eat());
+            StartCoroutine(Eat(food));
         }
 
-        private IEnumerator Eat()
+        private IEnumerator Eat(Transform food)
         {
             // TODO play eat sound
+            FaceTowardsTransform(food);
             _eating = true;
             yield return new WaitForSeconds(_eatAnimationTime);
             _eating = false;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Targets;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,13 +10,7 @@ namespace Interactables
     {
         public event Action<FoodPickUpInteractable> OnDroppedOnWalkableSurface;
         [SerializeField] private SpriteRenderer _food;
-        
-        private FoodTarget _foodTarget;
-
-        private void Awake()
-        {
-            _foodTarget = GetComponent<FoodTarget>();
-        }
+        [SerializeField] private FoodTarget _foodTarget;
 
         public override void PickUpObject(Transform parent)
         {
@@ -36,8 +31,18 @@ namespace Interactables
             
             if (isWalkable)
             {
+                StartCoroutine(WaitToTransformScale());
                 _foodTarget.SetCanBeFed(true);
-                OnDroppedOnWalkableSurface?.Invoke(this);
+            }
+        }
+
+        private IEnumerator WaitToTransformScale()
+        {
+            yield return new WaitForSeconds(0.1f);
+            OnDroppedOnWalkableSurface?.Invoke(this);
+            if (transform.localScale.x < 0)
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
         }
 

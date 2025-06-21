@@ -9,9 +9,11 @@ namespace Targets
 {
     public class AttackTarget : Target
     {
+        [SerializeField] private float _waitToFinishInteract = 1f;
+        
         private IEnumerator WaitToFinish()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(_waitToFinishInteract);
             FinishTargetAction();
         }
         

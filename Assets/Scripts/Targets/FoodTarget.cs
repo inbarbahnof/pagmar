@@ -11,6 +11,9 @@ namespace Targets
         public event Action OnFoodEaten;
         
         [SerializeField] private bool canBeFed;
+        [SerializeField] private PickUpInteractable _pickUp;
+        [SerializeField] private Collider2D _collider;
+        [SerializeField] private GameObject _art;
         public bool CanBeFed => canBeFed;
             
         public override void StartTargetAction(PlayerFollower dog)
@@ -27,11 +30,16 @@ namespace Targets
                 InteractableManager.instance.RemoveInteractable(foodPickUpInteractable);
                 foodPickUpInteractable.SetCanInteract(false);
             }
-            GetComponent<Collider2D>().enabled = false;
+            _collider.enabled = false;
             
             // eat the target
-            dog.GetComponent<DogAnimationManager>().DogEat();
+            dog.GetComponent<DogAnimationManager>().DogEat(transform);
             StartCoroutine(EatTarget());
+        }
+
+        public PickUpInteractable GetPickup()
+        {
+            return _pickUp;
         }
 
         public void SetCanBeFed(bool can)
@@ -41,11 +49,11 @@ namespace Targets
         
         private IEnumerator EatTarget()
         {
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(1.2f);
             
-            gameObject.SetActive(false);
             OnFoodEaten?.Invoke();
             FinishTargetAction();
+            _art.gameObject.SetActive(false);
         }
     }
 }

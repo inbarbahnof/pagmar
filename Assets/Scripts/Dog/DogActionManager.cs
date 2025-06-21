@@ -350,7 +350,8 @@ namespace Dog
         public void FoodIsClose(Collider2D food)
         {
             _foodIsClose = true;
-            _targetGenerator.NotifyFoodNearby(food.GetComponent<FoodTarget>());
+            FoodTargetGetter getter = food.GetComponent<FoodTargetGetter>();
+            _targetGenerator.NotifyFoodNearby(getter.GetFoodTarget());
         }
 
         public void FoodIsFar(Collider2D food)

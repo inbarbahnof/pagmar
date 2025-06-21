@@ -147,7 +147,7 @@ namespace Targets
         
         public void NotifyFoodNearby(FoodTarget food)
         {
-            PickUpInteractable pickUp = food.GetComponent<PickUpInteractable>();
+            PickUpInteractable pickUp = food.GetPickup();
 
             if (pickUp != null)
             {
