@@ -16,6 +16,7 @@
         WalkCrouch,
         Dig,
         Pet,
-        AfterEat
+        AfterEat,
+        AirSniff
     }
 }

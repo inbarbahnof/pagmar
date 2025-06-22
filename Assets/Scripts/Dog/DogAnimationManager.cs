@@ -41,6 +41,7 @@ namespace Dog
         [SerializeField] private string digAnimName;
         [SerializeField] private string petAnimName;
         [SerializeField] private string afterEatAnimName;
+        [SerializeField] private string airSniffAnimName;
 
         [Header("Animation Speeds")] 
         [SerializeField] private float idleAnimSpeed = 1f;
@@ -58,6 +59,7 @@ namespace Dog
         [SerializeField] private float digAnimSpeed = 1f;
         [SerializeField] private float petAnimSpeed = 1f;
         [SerializeField] private float afterEatAnimSpeed = 1f;
+        [SerializeField] private float airSniffAnimSpeed = 1f;
         
         [Header("Event Names")] 
         [SerializeField] private string _footstepsEventName;
@@ -76,6 +78,7 @@ namespace Dog
         private bool _isJumping;
         private bool _petting;
         private bool _digging;
+        private bool _airSniff;
 
         public bool Petting => _petting;
         
@@ -178,6 +181,7 @@ namespace Dog
                 return DogAnimation.Walk;
             }
 
+            if (_airSniff) return DogAnimation.AirSniff;
             if (_wantFood) return DogAnimation.HappyCrouch;
             if (_sniffing) return DogAnimation.Sniff;
             if (_digging) return DogAnimation.Dig;
@@ -225,7 +229,6 @@ namespace Dog
         public void DogStartSniff()
         {
             _sniffing = true;
-
             StartCoroutine(StopSniffing());
         }
 
@@ -247,6 +250,18 @@ namespace Dog
             StartCoroutine(FinishJump());
         }
 
+        public void DogAirSniff()
+        {
+            _airSniff = true;
+            StartCoroutine(FinishAirSniff());
+        }
+        
+        private IEnumerator FinishAirSniff()
+        {
+            yield return new WaitForSeconds(1.2f);
+            _airSniff = false;
+        }
+
         private IEnumerator FinishJump()
         {
             yield return new WaitForSeconds(1f);
@@ -256,7 +271,6 @@ namespace Dog
         public void DogWaitForFood()
         {
             _wantFood = true;
-
             StartCoroutine(WaitToAnimation());
         }
 
@@ -271,7 +285,7 @@ namespace Dog
             StartCoroutine(Bark());
         }
         
-        public IEnumerator Bark()
+        private IEnumerator Bark()
         {
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogBark, 
                 transform.position, true);
@@ -306,8 +320,6 @@ namespace Dog
             
             DestroyFood?.Invoke();
             _eating = false;
-            
-            // TODO destroy food
             
             _afterEat = true;
             yield return new WaitForSeconds(1.3f);
@@ -392,6 +404,10 @@ namespace Dog
                 case DogAnimation.AfterEat:
                     entry = spineAnimationState.SetAnimation(0, afterEatAnimName, false);
                     if (entry != null) entry.TimeScale = afterEatAnimSpeed;
+                    break;
+                case DogAnimation.AirSniff:
+                    entry = spineAnimationState.SetAnimation(0, airSniffAnimName, true);
+                    if (entry != null) entry.TimeScale = airSniffAnimSpeed;
                     break;
             }
 

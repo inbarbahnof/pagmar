@@ -228,7 +228,7 @@ namespace Dog
                     HandleStealthBehavior();
                     break;
                 case (_, DogState.WantFood):
-                    HandleWantFoodBehavior();
+                    StartCoroutine(HandleWantFoodBehavior());
                     break;
                 case (_, DogState.FollowFood):
                     curState = DogState.FollowFood;
@@ -318,8 +318,13 @@ namespace Dog
             _playerFollower.GoToFoodTarget(target); 
         }
 
-        private void HandleWantFoodBehavior()
+        private IEnumerator HandleWantFoodBehavior()
         {
+            _playerFollower.StopGoingToTarget();
+            _playerFollower.SetIsGoingToTarget(false);
+            _animationManager.DogAirSniff();
+            yield return new WaitForSeconds(1.2f);
+            
             curState = DogState.WantFood;
             WantFoodTarget target = _targetGenerator.GetWantFoodTarget();
             _playerFollower.GoToFoodTarget(target); 
