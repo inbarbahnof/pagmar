@@ -336,6 +336,7 @@ MonoBehaviour:
   _dogTempComunication: {fileID: 0}
   distance: 2
   isTOI: 0
+  _waitToFinishInteract: 1
 --- !u!70 &1116290695946784345
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -544,6 +545,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2896416841716315003, guid: 546b0af74d937054bbf1e9cf3eba290d, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896416841716315003, guid: 546b0af74d937054bbf1e9cf3eba290d, type: 3}
+      propertyPath: m_GravityScale
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3573002781799918041, guid: 546b0af74d937054bbf1e9cf3eba290d, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3573002781799918041, guid: 546b0af74d937054bbf1e9cf3eba290d, type: 3}
+      propertyPath: m_GravityScale
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3976998078510823546, guid: 546b0af74d937054bbf1e9cf3eba290d, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -551,6 +568,14 @@ PrefabInstance:
     - target: {fileID: 4476059885123630318, guid: 546b0af74d937054bbf1e9cf3eba290d, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6557843852753926963, guid: 546b0af74d937054bbf1e9cf3eba290d, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6557843852753926963, guid: 546b0af74d937054bbf1e9cf3eba290d, type: 3}
+      propertyPath: m_GravityScale
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7754761588616838319, guid: 546b0af74d937054bbf1e9cf3eba290d, type: 3}
       propertyPath: m_LocalPosition.x
