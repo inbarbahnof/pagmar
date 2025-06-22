@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -126,6 +127,23 @@ namespace Interactables
             {
                 curInteractableObj.StopInteractPress();
             }
+        }
+        
+        public void FinishPickupInteraction(PickUpInteractable pickup, Vector2 worldTarget, Transform parent)
+        {
+            StartCoroutine(FinishPickupCoroutine(pickup, worldTarget, parent));
+        }
+
+        private IEnumerator FinishPickupCoroutine(PickUpInteractable pickup, Vector2 worldTarget, Transform parent)
+        {
+            yield return new WaitForSeconds(0.2f);
+
+            pickup.transform.SetParent(parent);
+            if (worldTarget != Vector2.zero)
+                pickup.transform.position = worldTarget;
+
+            Audio.FMOD.AudioManager.Instance.PlayOneShot(Audio.FMOD.FMODEvents.Instance.PlayerPickUp);
+            pickup.FinishInteraction();
         }
 
         public void OnFinishInteraction()
