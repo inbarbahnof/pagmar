@@ -9,6 +9,7 @@ namespace Ghosts
         [SerializeField] protected float attackSpeed = 4.5f; 
         [SerializeField] protected float _attackRadius = 7f;
         [SerializeField] protected bool _keepDistance;
+        [SerializeField] protected bool _canAttack = true;
         protected float _desiredDistanceFromPlayer = 5f;
 
         protected Rigidbody2D _rb;
@@ -61,6 +62,7 @@ namespace Ghosts
         public virtual void Attack(Transform player)
         {
             // print("in attack");
+            if (!_canAttack) return;
             
             if (player == null || _attacking) return;
             

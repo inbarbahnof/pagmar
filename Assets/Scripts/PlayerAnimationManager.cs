@@ -131,10 +131,15 @@ public class PlayerAnimationManager : MonoBehaviour
         transform.DOMove(newPos, 0.5f);
     }
 
-    private void OnDrop()
+    private IEnumerator OnDrop()
     {
-        Vector3 newPos = new Vector3(transform.position.x - 0.7f, transform.position.y - 0.4f, 0);
-        transform.DOMove(newPos, 0.7f);
+        Vector3 newPos1 = new Vector3(transform.position.x - 0.4f, transform.position.y + 0.1f, 0);
+        transform.DOMove(newPos1, 0.15f);
+
+        yield return new WaitForSeconds(0.15f);
+        
+        Vector3 newPos2 = new Vector3(transform.position.x - 0.3f, transform.position.y - 0.5f, 0);
+        transform.DOMove(newPos2, 0.35f);
     }
 
     public void PlayerRunSpeed(bool isFast)
@@ -226,7 +231,7 @@ public class PlayerAnimationManager : MonoBehaviour
                 case PlayerAnimation.Drop:
                     entry = spineAnimationState.SetAnimation(0, dropAnimName, false);
                     if (entry != null) entry.TimeScale = dropAnimSpeed;
-                    OnDrop();
+                    StartCoroutine(OnDrop());
                     break;
             }
 

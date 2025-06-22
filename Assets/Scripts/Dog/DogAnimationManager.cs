@@ -202,6 +202,7 @@ namespace Dog
                 DogAnimation.Idle,
                 DogAnimation.Listen,
                 DogAnimation.Dig
+                //,DogAnimation.AirSniff
             };
 
             int index = Random.Range(0, idleOptions.Length);
