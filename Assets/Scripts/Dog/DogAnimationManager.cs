@@ -75,6 +75,7 @@ namespace Dog
         private bool _wantFood;
         private bool _isJumping;
         private bool _petting;
+        private bool _digging;
 
         public bool Petting => _petting;
         
@@ -164,7 +165,7 @@ namespace Dog
             if (_afterEat) return DogAnimation.AfterEat;
             if (_petting) return DogAnimation.Pet;
             if (_isJumping) return DogAnimation.Jump;
-
+            
             if (_actionManager.Crouching)
             {
                 if (_isMoving) return DogAnimation.WalkCrouch;
@@ -179,6 +180,7 @@ namespace Dog
 
             if (_wantFood) return DogAnimation.HappyCrouch;
             if (_sniffing) return DogAnimation.Sniff;
+            if (_digging) return DogAnimation.Dig;
             if (_growling) return DogAnimation.Growl;
             
             if (Time.time >= _nextIdleBehaviorChangeTime)
@@ -214,6 +216,12 @@ namespace Dog
             _petting = false;
         }
 
+        public void DogDig()
+        {
+            _digging = true;
+            StartCoroutine(StopSniffing());
+        }
+
         public void DogStartSniff()
         {
             _sniffing = true;
@@ -225,6 +233,7 @@ namespace Dog
         {
             yield return new WaitForSeconds(2f);
             _sniffing = false;
+            _digging = false;
         }
         
         public void DogFinishSniff()

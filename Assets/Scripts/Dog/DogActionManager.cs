@@ -149,16 +149,31 @@ namespace Dog
 
         private IEnumerator WantFoodBehavior()
         {
+            _animationManager.DogBark();
+            yield return new WaitForSeconds(0.4f);
+            
+            _animationManager.DogWaitForFood();
+            yield return new WaitForSeconds(2f);
+            
             while (curState == DogState.WantFood)
             {
-                Bark();
+                int choice = Random.Range(0, 3); // 0: Bark, 1: HappyCrouch, 2: Dig
 
-                yield return new WaitForSeconds(0.4f);
-                
-                _animationManager.DogWaitForFood();
-
-                float wait = Random.Range(2f, 4f);
-                yield return new WaitForSeconds(wait);
+                switch (choice)
+                {
+                    case 0:
+                        _animationManager.DogBark();
+                        yield return new WaitForSeconds(0.4f);
+                        break;
+                    case 1:
+                        _animationManager.DogWaitForFood();
+                        yield return new WaitForSeconds(2f);
+                        break;
+                    case 2:
+                        _animationManager.DogDig();
+                        yield return new WaitForSeconds(2f);
+                        break;
+                }
             }
         }
 
