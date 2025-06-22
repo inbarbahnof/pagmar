@@ -71,6 +71,8 @@ public class PlayerAnimationManager : MonoBehaviour
     
     private Spine.AnimationState spineAnimationState;
     private Spine.Skeleton skeleton;
+
+    private bool _climbDropRight = true;
     
     void Start()
     {
@@ -85,6 +87,11 @@ public class PlayerAnimationManager : MonoBehaviour
         skeletonAnimation.AnimationState.Event += HandleAnimationStateEvent;
         
         handBone = skeletonAnimation.Skeleton.FindBone(_holdBoneName);
+    }
+
+    public void UpdateClimbDropDirection(bool right)
+    {
+        _climbDropRight = right;
     }
     
     private void HandleAnimationStateEvent (TrackEntry trackEntry, Spine.Event e) {
@@ -121,24 +128,32 @@ public class PlayerAnimationManager : MonoBehaviour
         }
     }
     
-    private void OnClimbUpEvent() {
-        Vector3 newPos = new Vector3(transform.position.x + 0.1f, transform.position.y + 0.3f, 0);
+    private void OnClimbUpEvent()
+    {
+        float deltaX = _climbDropRight ? 0.1f : -0.1f;
+        Vector3 newPos = new Vector3(transform.position.x + deltaX, transform.position.y + 0.3f, 0);
         transform.DOMove(newPos, 0.53f);
     }
     
-    private void OnClimbRightEvent() {
-        Vector3 newPos = new Vector3(transform.position.x + 0.3f, transform.position.y + 0.1f, 0);
+    private void OnClimbRightEvent()
+    {
+        float deltaX = _climbDropRight ? 0.3f : -0.3f;
+        Vector3 newPos = new Vector3(transform.position.x + deltaX, transform.position.y + 0.1f, 0);
         transform.DOMove(newPos, 0.5f);
     }
 
     private IEnumerator OnDrop()
     {
-        Vector3 newPos1 = new Vector3(transform.position.x - 0.4f, transform.position.y + 0.1f, 0);
+        
+        float deltaX1 = _climbDropRight ? 0.4f : -0.4f;
+        float deltaX2 = _climbDropRight ? 0.3f : -0.3f;
+        
+        Vector3 newPos1 = new Vector3(transform.position.x + deltaX1, transform.position.y + 0.1f, 0);
         transform.DOMove(newPos1, 0.15f);
 
         yield return new WaitForSeconds(0.15f);
         
-        Vector3 newPos2 = new Vector3(transform.position.x - 0.3f, transform.position.y - 0.5f, 0);
+        Vector3 newPos2 = new Vector3(transform.position.x + deltaX2, transform.position.y - 0.5f, 0);
         transform.DOMove(newPos2, 0.35f);
     }
 

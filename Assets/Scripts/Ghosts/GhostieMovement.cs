@@ -33,6 +33,8 @@ namespace Ghosts
         private bool _dead;
         
         private Coroutine _coroutine;
+        
+        private float easeSmoothing = 2f;
 
         protected void Awake()
         {
@@ -111,19 +113,48 @@ namespace Ghosts
             _dead = false;
             _target = pos;
         }
+        
+        // private void FixedUpdate()
+        // {
+        //     if (!_isMoving) return;
+        //
+        //     float currentSpeed = _isRunningAway ? runAwaySpeed : speed;
+        //
+        //     Vector2 newPos = Vector2.Lerp(
+        //         _rb.position,
+        //         _target,
+        //         easeSmoothing * Time.fixedDeltaTime
+        //     );
+        //
+        //     _rb.MovePosition(newPos);
+        //
+        //     if (Vector2.Distance(_rb.position, _target) < 0.05f)
+        //     {
+        //         if (_isRunningAway && !_dead)
+        //         {
+        //             _isMoving = false;
+        //             if (_coroutine != null) StopCoroutine(_coroutine);
+        //             _coroutine = StartCoroutine(WaitToGoBackToIdle());
+        //         }
+        //         else
+        //         {
+        //             SetNextTarget();
+        //         }
+        //     }
+        // }
 
         private void FixedUpdate()
         {
             if (!_isMoving) return;
-
+        
             float currentSpeed = _isRunningAway ? runAwaySpeed : speed;
-
+        
             _rb.MovePosition(Vector2.MoveTowards(
                 _rb.position,
                 _target,
                 currentSpeed * Time.fixedDeltaTime
             ));
-
+        
             if (Vector2.Distance(_rb.position, _target) < 0.05f)
             {
                 if (_isRunningAway && !_dead)

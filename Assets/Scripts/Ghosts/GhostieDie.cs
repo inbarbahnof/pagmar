@@ -15,6 +15,7 @@ namespace Ghosts
         [Header("Die Art")]
         [SerializeField] private Rigidbody2D[] _bones;
         [SerializeField] private VisualEffect[] _vfx;
+        [SerializeField] private Animator[] _boneAnimators;
         
         private AttackDetector _attackDetector;
         private Vector3 _initialPos;
@@ -32,6 +33,7 @@ namespace Ghosts
             _initialBoneRotations = new Quaternion[_bones.Length];
             _boneRenderers = new SpriteRenderer[_bones.Length];
             _initialSortingOrders = new int[_bones.Length];
+            
             for (int i = 0; i < _bones.Length; i++)
             {
                 _initialBonePositions[i] = _bones[i].transform.localPosition;
@@ -62,6 +64,11 @@ namespace Ghosts
 
         public void DropBones()
         {
+            foreach (var animator in _boneAnimators)
+            {
+                animator.enabled = false;
+            }
+            
             foreach (var bone in _bones)
             {
                 bone.bodyType = RigidbodyType2D.Dynamic;
@@ -97,6 +104,7 @@ namespace Ghosts
                 _bones[i].linearVelocity = Vector2.zero;
                 _bones[i].angularVelocity = 0f;
                 _boneRenderers[i].sortingOrder = _initialSortingOrders[i];
+                _boneAnimators[i].enabled = true;
             }
             
             _intireGhostie.transform.position = _initialPos;

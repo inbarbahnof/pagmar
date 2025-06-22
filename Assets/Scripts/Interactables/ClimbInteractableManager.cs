@@ -23,21 +23,21 @@ namespace Interactables
             _playerMove = _playerStateManager.gameObject.GetComponent<PlayerMove>();
         }
 
-        public void Climb(ClimbObject cur, Vector2 playerPos, bool isClimbing)
+        public void Climb(ClimbObject cur, Vector2 playerPos, bool isClimbing, bool climbRight)
         {
             _curInteraction = cur;
-            if (isClimbing) StartCoroutine(StartClimb(playerPos));
-            else _playerStateManager.UpdateDropping();
+            StartCoroutine(StartClimb(playerPos, isClimbing, climbRight));
         }
 
-        public IEnumerator StartClimb(Vector2 playerPos)
+        public IEnumerator StartClimb(Vector2 playerPos, bool isClimbing, bool climbRight)
         {
             if (playerPos != Vector2.zero)
             {
                 float waitTime = _playerMove.GetReadyToClimb(playerPos);
                 yield return new WaitForSeconds(waitTime);
             }
-            _playerStateManager.UpdateClimbing();
+            if (isClimbing) _playerStateManager.UpdateClimbing(climbRight);
+            else _playerStateManager.UpdateDropping(climbRight);
         }
 
         public void StopInteraction()

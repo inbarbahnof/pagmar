@@ -143,6 +143,10 @@ MonoBehaviour:
   - {fileID: 3189000185539814211}
   - {fileID: 8251106888482154101}
   - {fileID: 8640726225927086171}
+  _boneAnimators:
+  - {fileID: 2460518701867315080}
+  - {fileID: 6105352565838828845}
+  - {fileID: 4644978585386893289}
 --- !u!1 &3938226489255818602
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,6 +250,7 @@ MonoBehaviour:
   attackSpeed: 4.5
   _attackRadius: 7
   _keepDistance: 0
+  _canAttack: 1
 --- !u!50 &1748362117836619842
 Rigidbody2D:
   serializedVersion: 5
@@ -634,9 +639,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7754761588616838319, guid: 546b0af74d937054bbf1e9cf3eba290d, type: 3}
   m_PrefabInstance: {fileID: 8269208791764581978}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &2460518701867315080 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5829809852841169362, guid: 546b0af74d937054bbf1e9cf3eba290d, type: 3}
+  m_PrefabInstance: {fileID: 8269208791764581978}
+  m_PrefabAsset: {fileID: 0}
 --- !u!50 &3008410771425740137 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 6557843852753926963, guid: 546b0af74d937054bbf1e9cf3eba290d, type: 3}
+  m_PrefabInstance: {fileID: 8269208791764581978}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4644978585386893289 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3653658433273594291, guid: 546b0af74d937054bbf1e9cf3eba290d, type: 3}
   m_PrefabInstance: {fileID: 8269208791764581978}
   m_PrefabAsset: {fileID: 0}
 --- !u!50 &4852622602851620739 stripped
@@ -661,6 +676,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e102308f623726c418292b9fccdd05d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &6105352565838828845 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2772159474964491127, guid: 546b0af74d937054bbf1e9cf3eba290d, type: 3}
+  m_PrefabInstance: {fileID: 8269208791764581978}
+  m_PrefabAsset: {fileID: 0}
 --- !u!50 &6552740004561390881 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 2896416841716315003, guid: 546b0af74d937054bbf1e9cf3eba290d, type: 3}
