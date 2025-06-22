@@ -210,17 +210,18 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public float GetReadyToClimb(Vector2 playerPos)
+    public float GetReadyToClimb(Vector2 playerPos, bool climb = false)
     {
         float waitTime = GetComponent<SmoothMover>().MoveTo(playerPos);
-        _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionY;
+        if (climb) _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionY;
         return waitTime;
     }
-
+    
     public void FinishClimb()
     {
         _playerRb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
     }
+
 
     public void SetCanMove(bool move)
     {

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Interactables
 {
@@ -8,7 +9,8 @@ namespace Interactables
         [SerializeField] private GameObject colMid;
         [SerializeField] private PushInteractable interactable;
         [SerializeField] private Transform pushTarget;
-        [SerializeField] private GameObject climbObject;
+        [SerializeField] private GameObject climbUpObject;
+        [SerializeField] private GameObject climbDownObject;
         [SerializeField] private bool _isJumping;
         
 
@@ -32,9 +34,9 @@ namespace Interactables
         private void SwapToClimb(bool climb)
         {
             if (colMid != null) colMid.SetActive(!climb);
-            if (climbObject)
+            if (climbUpObject)
             {
-                climbObject.SetActive(climb);
+                climbUpObject.SetActive(climb);
                 interactable.gameObject.SetActive(!climb);
             }
             if (!_isJumping) NavMeshManager.instance.ReBake();

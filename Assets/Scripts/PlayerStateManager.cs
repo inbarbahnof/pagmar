@@ -95,8 +95,9 @@ public class PlayerStateManager : MonoBehaviour
         _isAbleToAim = canAim;
     }
 
-    public void UpdateDropping()
+    public void UpdateDropping(bool climbRight)
     {
+        _animationManager.UpdateClimbDropDirection(climbRight);
         SetState(PlayerState.Drop);
         _dropping = true;
         StartCoroutine(WaitForDropAnim());
@@ -108,11 +109,11 @@ public class PlayerStateManager : MonoBehaviour
         _dropping = false;
     }
     
-    public void UpdateClimbing()
+    public void UpdateClimbing(bool climbRight)
     {
+        _animationManager.UpdateClimbDropDirection(climbRight);
         SetState(PlayerState.Climb);
         _isClimbing = true;
-        
         StartCoroutine(WaitForClimbAnim());
     }
 
