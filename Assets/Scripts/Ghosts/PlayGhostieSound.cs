@@ -1,49 +1,42 @@
 using Audio.FMOD;
 using FMOD.Studio;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Ghosts
 {
     public class PlayGhostieSound : MonoBehaviour
     {
-        private bool _hasTriggered = true;
+        [SerializeField]float maxPlayableDistance = 20f;
         private EventInstance _ghostieSound;
+        private bool hasStarted;
 
         private void Start()
         {
             _ghostieSound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.GhostieSound,
-                   transform.position, true);
-
+                transform.position, true);
             // This tells FMOD to track the transform and Rigidbody
             FMODUnity.RuntimeManager.AttachInstanceToGameObject(
                 _ghostieSound,
                 transform, // the Ghostie's transform
                 GetComponent<Rigidbody2D>() // optional, used for velocity tracking
             );
-
-            
         }
 
-        private void OnBecameVisible()
+        void Update()
         {
-
-            /*if (!_hasTriggered)
+            if (!hasStarted && Vector3.Distance(transform.position, Camera.main.transform.position) < maxPlayableDistance)
             {
-                _hasTriggered = true;
-                _ghostieSound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.GhostieSound,
-                    transform.position, true);
-            }*/
-        }
+                _ghostieSound.start();
+                hasStarted = true;
+            }
 
-        private void OnBecameInvisible()
-        {
-           /* if (_ghostieSound.isValid())
+            // Optional: stop it if it leaves range
+            else if (hasStarted && Vector3.Distance(transform.position, Camera.main.transform.position) > maxPlayableDistance + 5f)
             {
-                Debug.Log("pausing ghostie sound");
-
-                AudioManager.Instance.StopSound(_ghostieSound);
-                _hasTriggered = false;
-            }*/
+                _ghostieSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                hasStarted = false;
+            }
         }
     }
 }
