@@ -53,8 +53,8 @@ namespace Interactables
                 if (worldTarget != Vector2.zero) transform.position = worldTarget;
                 FinishInteraction();
             }
-            
-            else StartCoroutine(FinishAction(worldTarget));
+            else InteractableManager.instance.FinishPickupInteraction(this, worldTarget, originalParent);
+            // else StartCoroutine(FinishAction(worldTarget));
         }
 
         private IEnumerator FinishAction(Vector2 worldTarget)

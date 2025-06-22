@@ -75,7 +75,7 @@ namespace Interactables
         /// <summary>
         /// Called when player has stopped interaction with obj, either in the middle of interaction or when finished.
         /// </summary>
-        protected virtual void FinishInteraction()
+        public virtual void FinishInteraction()
         {
             InteractableManager.instance.OnFinishInteraction();
         }

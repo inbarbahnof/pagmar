@@ -71,7 +71,7 @@ namespace Interactables
             GetComponent<Collider2D>().enabled = true;
         }
 
-        protected override void FinishInteraction()
+        public override void FinishInteraction()
         {
             if (!_pushing) return;
             Vector3 pushdir = pushRight ? Vector3.right : Vector3.left;
