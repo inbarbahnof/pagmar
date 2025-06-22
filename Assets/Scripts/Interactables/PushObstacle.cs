@@ -10,7 +10,6 @@ namespace Interactables
         [SerializeField] private PushInteractable interactable;
         [SerializeField] private Transform pushTarget;
         [SerializeField] private GameObject climbUpObject;
-        [SerializeField] private GameObject climbDownObject;
         [SerializeField] private bool _isJumping;
         
 

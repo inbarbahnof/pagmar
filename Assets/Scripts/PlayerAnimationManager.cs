@@ -137,8 +137,6 @@ public class PlayerAnimationManager : MonoBehaviour
     
     private void OnClimbRightEvent()
     {
-        print("climbing right? " + _climbDropRight);
-        
         float deltaX = _climbDropRight ? 0.3f : -0.3f;
         Vector3 newPos = new Vector3(transform.position.x + deltaX, transform.position.y + 0.1f, 0);
         transform.DOMove(newPos, 0.5f);

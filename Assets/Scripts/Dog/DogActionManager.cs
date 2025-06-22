@@ -124,7 +124,6 @@ namespace Dog
 
             if (!enabled)
             {
-                print("dog stopped");
                 _playerFollower.StopGoingToTarget();
                 _playerFollower.SetIsGoingToTarget(false);
                 _playerFollower.SetSpeed(true);

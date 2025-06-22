@@ -37,7 +37,7 @@ namespace Interactables
                 yield return new WaitForSeconds(waitTime);
             }
             if (isClimbing) _playerStateManager.UpdateClimbing(climbRight);
-            else _playerStateManager.UpdateDropping(climbRight); print("dropping right? " + climbRight);
+            else _playerStateManager.UpdateDropping(climbRight);
         }
 
         public void StopInteraction()
