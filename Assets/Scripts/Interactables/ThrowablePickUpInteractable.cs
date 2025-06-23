@@ -27,7 +27,7 @@ namespace Interactables
         
         public override void PickUpObject(Transform parent)
         {
-            _foodTarget.SetCanBeFed(false);
+            if (_foodTarget != null) _foodTarget.SetCanBeFed(false);
             base.PickUpObject(parent);
         }
 

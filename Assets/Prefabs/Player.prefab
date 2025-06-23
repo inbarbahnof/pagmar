@@ -110,8 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _runSpeed: 5
   _runFastSpeed: 6
-  _crouchSpeed: 4
-  _narrowPassSpeed: 4
+  _crouchSpeed: 3
+  _narrowPassSpeed: 2.5
   _pushSpeed: 3.7
   _playerArt: {fileID: 2333882633315783233}
 --- !u!114 &7531407140655005662
@@ -375,7 +375,7 @@ MonoBehaviour:
   petAnimSpeed: 1
   cantPetAnimSpeed: 1
   dropAnimSpeed: 1
-  narrowPassAnimSpeed: 1
+  narrowPassAnimSpeed: 1.4
   holdPushAnimSpeed: 1
   _climbUpEventName: ClimbUp
   _climbRightEventName: ClimbRight

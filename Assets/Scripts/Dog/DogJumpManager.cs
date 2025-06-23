@@ -7,6 +7,7 @@ namespace Dog
     public class DogJumpManager : MonoBehaviour
     {
         private float minDistanceToJump = 4f;
+        
         public void OnTriggerEntered(GameObject dog, bool fromLeft)
         {
             var agent = dog.GetComponent<NavMeshAgent>();
@@ -20,7 +21,7 @@ namespace Dog
             // If dog is going left and touched right trigger → allow jump
             if ((fromLeft && goingRight) || (!fromLeft && goingLeft))
             {
-                dog.GetComponent<Dog.DogActionManager>().DogJump();
+                dog.GetComponent<Dog.DogActionManager>().DogJump(fromLeft);
             }
         }
     }

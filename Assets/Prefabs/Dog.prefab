@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1045269917807926283}
   - component: {fileID: 2151786105680391605}
   - component: {fileID: 9181638301359249153}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: PlayerComunicationFood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4507916593621221532}
   - component: {fileID: 612329729567569926}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DogTooFarUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 1538025327645606136}
   - component: {fileID: 2126287841468501225}
   - component: {fileID: 4631522509052752445}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dog
   m_TagString: Dog
   m_Icon: {fileID: 0}
@@ -314,9 +314,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   _animationManager: {fileID: 2126287841468501225}
-  _walkSpeed: 4
+  _walkSpeed: 5
   _runSpeed: 7.5
-  _crouchSpeed: 2.8
+  _crouchSpeed: 2.3
 --- !u!114 &1538025327645606136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,11 +374,11 @@ MonoBehaviour:
   growlAnimSpeed: 1
   happyCrouchAnimSpeed: 1
   idleCrouchAnimSpeed: 1
-  jumpAnimSpeed: 1.2
+  jumpAnimSpeed: 1.4
   listenAnimSpeed: 1
   barkAnimSpeed: 1
   sniffAnimSpeed: 0.8
-  walkCrouchAnimSpeed: 0.7
+  walkCrouchAnimSpeed: 0.6
   digAnimSpeed: 1
   petAnimSpeed: 1
   afterEatAnimSpeed: 0.7
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 3228224884830854022}
   - component: {fileID: 5820942965397918841}
   - component: {fileID: 429785085463505681}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -571,7 +571,7 @@ GameObject:
   - component: {fileID: 8116525209799490110}
   - component: {fileID: 703857614519380795}
   - component: {fileID: 3345117996108438016}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TargetClose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 4385936127653739182}
   - component: {fileID: 7459204479144369631}
   - component: {fileID: 6171246615569380105}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -803,6 +803,10 @@ PrefabInstance:
     - target: {fileID: 6748484560024520025, guid: c1dc56c73af1e954b9516572353eef12, type: 3}
       propertyPath: m_Name
       value: Dog Art
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748484560024520025, guid: c1dc56c73af1e954b9516572353eef12, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
