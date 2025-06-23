@@ -34,7 +34,6 @@ namespace Dog
 
         private float stopProb = 0.7f;
         private float initialStopProb;
-        private float initialSpeed;
 
         public bool IsRunning => _isRunning;
 
@@ -49,7 +48,7 @@ namespace Dog
             agent.updateUpAxis = false;
 
             initialStopProb = stopProb;
-            initialSpeed = agent.speed;
+            agent.speed = _walkSpeed;
         }
 
         void Update()

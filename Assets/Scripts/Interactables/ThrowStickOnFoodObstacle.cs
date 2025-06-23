@@ -24,8 +24,8 @@ namespace Interactables
             _food.transform.DOMove(_dropFoodPos.position, _dropDuration)
                 .SetEase(Ease.OutBounce);
             
-            _stick.transform.DOMove(_dropStickPos.position, _dropDuration)
-                .SetEase(Ease.OutBounce);
+            _stick.transform.DOMove(_dropStickPos.position, _dropDuration);
+                // .SetEase(Ease.Linear);
             
             _feedDogObstacle.HandleFoodDroppedWalkable(_food);
             _food.FoodCanBeFed();

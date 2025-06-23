@@ -161,7 +161,7 @@ namespace Dog
         {
             Vector3 currentPosition = transform.position;
             float distanceMoved = Vector3.Distance(currentPosition, lastPosition);
-            _isMoving = distanceMoved > 0.015f;
+            _isMoving = distanceMoved > 0.01f;
             lastPosition = currentPosition; 
         }
 
@@ -261,7 +261,7 @@ namespace Dog
         
         private IEnumerator FinishJump()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.8f);
             _isJumping = false;
         }
 
@@ -362,12 +362,6 @@ namespace Dog
                     if (entry != null) entry.TimeScale = idleAnimSpeed;
                     break;
                 case DogAnimation.Walk:
-                    if (_actionManager.CurState == DogState.WantFood)
-                    {
-                        TrackEntry entry1 = null;
-                        entry1 = spineAnimationState.SetAnimation(1, airSniffAnimName, false);
-                        if (entry1 != null) entry1.TimeScale = airSniffAnimSpeed;
-                    }
                     entry = spineAnimationState.SetAnimation(0, walkAnimName, true);
                     if (entry != null) entry.TimeScale = walkAnimSpeed;
                     break;
