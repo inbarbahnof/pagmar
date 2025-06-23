@@ -17,6 +17,7 @@
         Dig,
         Pet,
         AfterEat,
-        AirSniff
+        AirSniff,
+        TailWag
     }
 }

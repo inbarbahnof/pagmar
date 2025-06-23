@@ -158,6 +158,25 @@ namespace Dog
             targetDistance = currentTarget.GetDistance();
             currentTarget.OnTargetActionComplete += OnTargetActionComplete;
         }
+        
+        public void PauseAgentMovement()
+        {
+            if (agent != null)
+            {
+                agent.isStopped = true;
+            }
+
+            isGoingToTarget = false;
+        }
+        
+        public void ResumeAgentMovement()
+        {
+            if (currentTarget == null || isPerformingAction) return;
+
+            isGoingToTarget = true;
+            agent.isStopped = false;
+            agent.SetDestination(currentTarget.transform.position);
+        }
 
         public void GoToCallTarget(Target target)
         {

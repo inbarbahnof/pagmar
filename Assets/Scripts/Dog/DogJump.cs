@@ -6,21 +6,15 @@ namespace Dog
 {
     public class DogJump : MonoBehaviour
     {
-        [SerializeField] private GameObject _secondSideJump;
-        private void OnTriggerEnter2D(Collider2D other)
+        [SerializeField] private DogJumpManager manager;
+        [SerializeField] private bool isLeftTrigger;
+        
+        private void OnTriggerStay2D(Collider2D other)
         {
             if (other.CompareTag("Dog"))
             {
-                other.GetComponent<DogAnimationManager>().DogJumping(true);
-                StartCoroutine(EnableSecondSide());
+                manager.OnTriggerEntered(other.gameObject, isLeftTrigger);
             }
-        }
-
-        private IEnumerator EnableSecondSide()
-        {
-            yield return new WaitForSeconds(1.8f);
-            _secondSideJump.SetActive(true);
-            gameObject.SetActive(false);
         }
     }
 }
