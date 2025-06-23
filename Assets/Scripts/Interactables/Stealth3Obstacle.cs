@@ -161,16 +161,23 @@ namespace Interactables
                 _player.StealthObstacle(true);
             }
         }
-
+        
         private void ThrewStick(Transform stick)
         {
             if (!_areaDetector.didStickLand) return;
             
-            // print("target changed to " + _targets[_curDogTarget].name);
-            TargetGenerator.instance.SetStealthTarget(_targets[_curDogTarget]);
-            
+            // print("target changed to " + _targets[_curTarget].name);
             GhostMovement cur = _ghostsForDog[_curDogTarget-1];
             if (cur != null) cur.GoToTargetAndPause(stick);
+            
+            StartCoroutine(WaitToChangeTarget());
+        }
+
+        private IEnumerator WaitToChangeTarget()
+        {
+            yield return new WaitForSeconds(0.5f);
+            
+            TargetGenerator.instance.SetStealthTarget(_targets[_curDogTarget]);
         }
         
         private void OnDestroy()

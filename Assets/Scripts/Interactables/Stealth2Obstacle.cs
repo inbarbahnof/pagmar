@@ -110,10 +110,17 @@ namespace Interactables
             if (!_areaDetector.didStickLand) return;
             
             // print("target changed to " + _targets[_curTarget].name);
-            TargetGenerator.instance.SetStealthTarget(_targets[_curTarget]);
-            
             GhostMovement cur = _ghosts[_curTarget-1];
             if (cur != null) cur.GoToTargetAndPause(stick);
+            
+            StartCoroutine(WaitToChangeTarget());
+        }
+
+        private IEnumerator WaitToChangeTarget()
+        {
+            yield return new WaitForSeconds(0.5f);
+            
+            TargetGenerator.instance.SetStealthTarget(_targets[_curTarget]);
         }
         
         private void OnDestroy()
