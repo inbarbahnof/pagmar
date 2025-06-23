@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections;
 using Audio.FMOD;
+using Targets;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Interactables
 {
     public class ThrowablePickUpInteractable : PickUpInteractable
     {
-        [SerializeField] private FoodPickUpInteractable _food;
+        // [SerializeField] private FoodPickUpInteractable _food;
+        [SerializeField] private FoodTarget _foodTarget;
         
         private AimControl _aimControl;
         private bool _isThrowing;
@@ -20,15 +23,56 @@ namespace Interactables
         {
             if (_isThrowing) return;
             StartCoroutine(ThrowCoroutine(input));
-            
-            // TODO play throw sound
+        }
+        
+        public override void PickUpObject(Transform parent)
+        {
+            _foodTarget.SetCanBeFed(false);
+            base.PickUpObject(parent);
         }
 
         public override void DropObject(Vector2 worldTarget)
         {
-            if (_food != null) _food.ActivateIfOnWalkable(worldTarget);
+            if (_foodTarget != null)
+            {
+                ActivateIfOnWalkable(worldTarget);
+            }
             
             base.DropObject(worldTarget);
+        }
+
+        private void ActivateIfOnWalkable(Vector2 worldTarget)
+        {
+            bool isWalkable = IsWalkable(worldTarget);
+            
+            if (isWalkable)
+            {
+                _foodTarget.SetCanBeFed(true);
+            }
+        }
+        
+        private bool IsWalkable(Vector2 position)
+        {
+            NavMeshHit hit;
+            // You can tweak the maxDistance (0.5f–1f is usually enough)
+            bool isWalkable = NavMesh.SamplePosition(position, out hit, 0.5f, NavMesh.AllAreas);
+            return isWalkable;
+        }
+        
+        public void ResetState(Vector3 resetPosition, Transform parent)
+        {
+            StopAllCoroutines();
+            transform.position = resetPosition;
+            transform.SetParent(parent);
+    
+            _isThrowing = false;
+            typeof(ThrowablePickUpInteractable)
+                .GetField("isPickedUp", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                ?.SetValue(this, false);
+
+            GetComponent<Collider2D>().enabled = true;
+            gameObject.SetActive(true);
+            SetCanInteract(true);
         }
 
         private IEnumerator ThrowCoroutine(ThrowInput input)
@@ -56,7 +100,7 @@ namespace Interactables
             
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ObjectFall);
             
-            if (_food != null) _food.ActivateIfOnWalkable(transform.position);
+            ActivateIfOnWalkable(transform.position);
             
             OnThrowComplete?.Invoke(transform);
         }

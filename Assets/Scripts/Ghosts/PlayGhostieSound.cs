@@ -23,7 +23,7 @@ namespace Ghosts
             );
         }
 
-        void Update()
+        private void Update()
         {
             if (!hasStarted && Vector3.Distance(transform.position, Camera.main.transform.position) < maxPlayableDistance)
             {
@@ -36,6 +36,24 @@ namespace Ghosts
             {
                 _ghostieSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 hasStarted = false;
+            }
+        }
+        
+        public void StopGhostieSound()
+        {
+            if (hasStarted)
+            {
+                _ghostieSound.stop(STOP_MODE.ALLOWFADEOUT);
+                hasStarted = false;
+            }
+        }
+
+        public void ResumeGhostieSound()
+        {
+            if (!hasStarted)
+            {
+                _ghostieSound.start();
+                hasStarted = true;
             }
         }
     }

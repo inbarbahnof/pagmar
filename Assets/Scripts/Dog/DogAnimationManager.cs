@@ -42,6 +42,7 @@ namespace Dog
         [SerializeField] private string petAnimName;
         [SerializeField] private string afterEatAnimName;
         [SerializeField] private string airSniffAnimName;
+        [SerializeField] private string tailWagAnimName;
 
         [Header("Animation Speeds")] 
         [SerializeField] private float idleAnimSpeed = 1f;
@@ -60,6 +61,7 @@ namespace Dog
         [SerializeField] private float petAnimSpeed = 1f;
         [SerializeField] private float afterEatAnimSpeed = 1f;
         [SerializeField] private float airSniffAnimSpeed = 1f;
+        [SerializeField] private float tailWagAnimSpeed = 1f;
         
         [Header("Event Names")] 
         [SerializeField] private string _footstepsEventName;
@@ -79,6 +81,7 @@ namespace Dog
         private bool _petting;
         private bool _digging;
         private bool _airSniff;
+        private bool _tailWag;
 
         public bool Petting => _petting;
         
@@ -168,6 +171,7 @@ namespace Dog
             if (_afterEat) return DogAnimation.AfterEat;
             if (_petting) return DogAnimation.Pet;
             if (_isJumping) return DogAnimation.Jump;
+            if (_tailWag) return DogAnimation.TailWag;
             
             if (_actionManager.Crouching)
             {
@@ -219,6 +223,10 @@ namespace Dog
         {
             yield return new WaitForSeconds(2f);
             _petting = false;
+
+            _tailWag = true;
+            yield return new WaitForSeconds(2f);
+            _tailWag = false;
         }
 
         public void DogDig()
@@ -250,6 +258,12 @@ namespace Dog
             _isJumping = jump;
             StartCoroutine(FinishJump());
         }
+        
+        private IEnumerator FinishJump()
+        {
+            yield return new WaitForSeconds(1f);
+            _isJumping = false;
+        }
 
         public void DogAirSniff()
         {
@@ -261,12 +275,6 @@ namespace Dog
         {
             yield return new WaitForSeconds(1.2f);
             _airSniff = false;
-        }
-
-        private IEnumerator FinishJump()
-        {
-            yield return new WaitForSeconds(1f);
-            _isJumping = false;
         }
 
         public void DogWaitForFood()
@@ -415,6 +423,10 @@ namespace Dog
                 case DogAnimation.AirSniff:
                     entry = spineAnimationState.SetAnimation(0, airSniffAnimName, true);
                     if (entry != null) entry.TimeScale = airSniffAnimSpeed;
+                    break;
+                case DogAnimation.TailWag:
+                    entry = spineAnimationState.SetAnimation(0, tailWagAnimName, true);
+                    if (entry != null) entry.TimeScale = tailWagAnimSpeed;
                     break;
             }
 

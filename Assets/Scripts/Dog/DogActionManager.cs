@@ -141,6 +141,25 @@ namespace Dog
             _animationManager.DogBark();
         }
 
+        public void DogJump()
+        {
+            _animationManager.DogJumping(true);
+            StartCoroutine(JumpMovement());
+        }
+
+        private IEnumerator JumpMovement()
+        {
+            _playerFollower.PauseAgentMovement();
+            yield return new WaitForSeconds(0.15f);
+            // _playerFollower.SetSpeed(false);
+            _playerFollower.ResumeAgentMovement();
+            yield return new WaitForSeconds(0.65f);
+            _playerFollower.PauseAgentMovement();
+            yield return new WaitForSeconds(0.2f);
+            // _playerFollower.SetSpeed(true);
+            _playerFollower.ResumeAgentMovement();
+        }
+
         public void WaitUntilEating()
         {
             StartCoroutine(WantFoodBehavior());
