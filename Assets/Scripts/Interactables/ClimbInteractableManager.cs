@@ -36,8 +36,8 @@ namespace Interactables
                 float waitTime = _playerMove.GetReadyToClimb(playerPos);
                 yield return new WaitForSeconds(waitTime);
             }
-            if (isClimbing) _playerStateManager.UpdateClimbing(climbRight);
-            else _playerStateManager.UpdateDropping(climbRight);
+            if (isClimbing) _playerStateManager.UpdateClimbing(climbRight, _curInteraction.transform);
+            else _playerStateManager.UpdateDropping(climbRight, _curInteraction.transform);
         }
 
         public void StopInteraction()

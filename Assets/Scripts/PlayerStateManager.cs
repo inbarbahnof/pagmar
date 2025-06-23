@@ -83,6 +83,9 @@ public class PlayerStateManager : MonoBehaviour
         
         PlayerAnimation animation = _computer.Compute(input);
         _animationManager.PlayerAnimationUpdate(animation);
+        
+        if (!_move.Pushing && !_isClimbing && !_dropping)
+            _animationManager.FlipSpriteBasedOnInput(_move.MoveInput, _move.AimInput);
     }
 
     public void UpdatePlayerSpeed(bool isFast)
@@ -95,11 +98,12 @@ public class PlayerStateManager : MonoBehaviour
         _isAbleToAim = canAim;
     }
 
-    public void UpdateDropping(bool climbRight)
+    public void UpdateDropping(bool climbRight, Transform obj)
     {
         _animationManager.UpdateClimbDropDirection(climbRight);
         SetState(PlayerState.Drop);
         _dropping = true;
+        _animationManager.FaceAgainstTransform(obj);
         StartCoroutine(WaitForDropAnim());
     }
     
@@ -109,11 +113,12 @@ public class PlayerStateManager : MonoBehaviour
         _dropping = false;
     }
     
-    public void UpdateClimbing(bool climbRight)
+    public void UpdateClimbing(bool climbRight, Transform obj)
     {
         _animationManager.UpdateClimbDropDirection(climbRight);
         SetState(PlayerState.Climb);
         _isClimbing = true;
+        _animationManager.FaceTowardsTransform(obj);
         StartCoroutine(WaitForClimbAnim());
     }
 

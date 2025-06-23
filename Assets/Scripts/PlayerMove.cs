@@ -17,15 +17,14 @@ public class PlayerMove : MonoBehaviour
     private Vector2 _moveInput = Vector2.zero;
     private Rigidbody2D _playerRb;
     private PlayerStateManager _stateManager;
+    private float _speed;
+    private Vector2 _aimInput;
 
     private bool isMoving = false;
     private bool isPushing = false;
     private bool canMove = true;
     private bool movingRight = true;
     private bool _standing;
-
-    private float _speed;
-    private Vector2 _aimInput;
     
     private bool isAutoRunning = false;
     private Vector2 autoRunDirection = new Vector2(1f, -0.4f); // Right and slightly down
@@ -34,9 +33,11 @@ public class PlayerMove : MonoBehaviour
 
     public bool IsMoving => isMoving;
     public bool CanMove => canMove;
-    public bool IsPushing => isPushing;
     public bool MovingRight => movingRight;
     public bool Standing => _standing;
+    public bool Pushing => isPushing;
+    public Vector2 MoveInput => _moveInput;
+    public Vector2 AimInput => _aimInput;
 
     void Start()
     {
@@ -112,7 +113,10 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
         if (canMove) Move();
-        FlipSpriteBasedOnMovement();
+        
+        movingRight = _moveInput.x > 0;
+        _standing = _moveInput == Vector2.zero;
+        // FlipSpriteBasedOnMovement();
     }
 
     private void Move()
@@ -163,7 +167,7 @@ public class PlayerMove : MonoBehaviour
                 _playerArt.transform.localScale.z
             );
         }
-        
+
         movingRight = _moveInput.x > 0;
         _standing = _moveInput == Vector2.zero;
     }

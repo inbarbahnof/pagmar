@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Audio.FMOD;
 using DG.Tweening;
@@ -13,6 +14,7 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] SkeletonAnimation skeletonAnimation;
     [SerializeField] private Transform heldObject;
     [SerializeField] private GameObject _holdingHand;
+    [SerializeField] private GameObject _playerArt;
     
     [Header("Animation Names")]
     [SerializeField] private string idleAnimName;
@@ -85,7 +87,7 @@ public class PlayerAnimationManager : MonoBehaviour
         _pickUpEventData = skeletonAnimation.Skeleton.Data.FindEvent(_pickUpEventName);
         
         skeletonAnimation.AnimationState.Event += HandleAnimationStateEvent;
-        
+
         handBone = skeletonAnimation.Skeleton.FindBone(_holdBoneName);
     }
 
@@ -114,7 +116,27 @@ public class PlayerAnimationManager : MonoBehaviour
         }
     }
     
-    void LateUpdate()
+    public void FlipSpriteBasedOnInput(Vector2 moveInput, Vector2 aimInput)
+    {
+        float newScaleX = _playerArt.transform.localScale.x;
+
+        if (Mathf.Abs(moveInput.x) > 0.001f)
+        {
+            newScaleX = moveInput.x > 0 ? 1 : -1;
+        }
+        else if (Mathf.Abs(aimInput.x) > 0.001f)
+        {
+            newScaleX = aimInput.x > 0 ? 1 : -1;
+        }
+    
+        _playerArt.transform.localScale = new Vector3(
+            newScaleX * Mathf.Abs(skeletonAnimation.transform.localScale.x),
+            skeletonAnimation.transform.localScale.y,
+            skeletonAnimation.transform.localScale.z
+        );
+    }
+
+    private void LateUpdate()
     {
         if(_curAnim != PlayerAnimation.Aim && _isHolding)
         {
@@ -161,6 +183,34 @@ public class PlayerAnimationManager : MonoBehaviour
     {
         if (isFast) runAnimSpeed = 1.5f;
         else runAnimSpeed = 1.25f;
+    }
+    
+    public void FaceTowardsTransform(Transform target)
+    {
+        if (target == null) return;
+
+        float direction = target.position.x - transform.position.x;
+        float newScaleX = direction >= 0 ? 1 : -1;
+
+        _playerArt.transform.localScale = new Vector3(
+            newScaleX * Mathf.Abs(_playerArt.transform.localScale.x),
+            _playerArt.transform.localScale.y,
+            _playerArt.transform.localScale.z
+        );
+    }
+
+    public void FaceAgainstTransform(Transform target)
+    {
+        if (target == null) return;
+
+        float direction = target.position.x - transform.position.x;
+        float newScaleX = direction >= 0 ? -1 : 1;
+
+        _playerArt.transform.localScale = new Vector3(
+            newScaleX * Mathf.Abs(_playerArt.transform.localScale.x),
+            _playerArt.transform.localScale.y,
+            _playerArt.transform.localScale.z
+        );
     }
     
     public void PlayerAnimationUpdate(PlayerAnimation anim)
