@@ -67,12 +67,17 @@ namespace Interactables
 
         public void StopPush()
         {
-            _isPushing = false;
-            _curPushable = null;
-            _playerMove.SetIsPushing(false, Vector3.zero);
+            if (_isPushing)
+            {
+                _isPushing = false;
+                _curPushable.StopInteractPress();
             
-            AudioManager.Instance.StopSound(_dragSound);
-            _dragSound = default;
+                _curPushable = null;
+                _playerMove.SetIsPushing(false, Vector3.zero);
+            
+                AudioManager.Instance.StopSound(_dragSound);
+                _dragSound = default;
+            }
         }
 
         void Update()

@@ -9,7 +9,7 @@ namespace Interactables
         [SerializeField] private GameObject colMid;
         [SerializeField] private PushInteractable interactable;
         [SerializeField] private Transform pushTarget;
-        [SerializeField] private GameObject climbUpObject;
+        [SerializeField] private ClimbPushableInteractable climbUpObject;
         [SerializeField] private bool _isJumping;
         
 
@@ -34,7 +34,6 @@ namespace Interactables
 
         private void DisableBarrier(bool enable)
         {
-            print("disable");
             if (colMid != null) colMid.SetActive(!enable);
             interactable.gameObject.GetComponent<Collider2D>().enabled = !enable;
             if (!_isJumping) NavMeshManager.instance.ReBake();
@@ -44,7 +43,9 @@ namespace Interactables
         {
             if (climbUpObject)
             {
-                climbUpObject.SetActive(climb);
+                climbUpObject.gameObject.SetActive(climb);
+                InteractableManager.instance.RemoveInteractable(interactable);
+                InteractableManager.instance.AddInteractableObj(climbUpObject);
                 interactable.gameObject.SetActive(!climb);
             }
         }
