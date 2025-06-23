@@ -321,6 +321,7 @@ namespace Dog
         {
             _playerFollower.StopGoingToTarget();
             _playerFollower.SetIsGoingToTarget(false);
+            
             _animationManager.DogAirSniff();
             yield return new WaitForSeconds(1.2f);
             

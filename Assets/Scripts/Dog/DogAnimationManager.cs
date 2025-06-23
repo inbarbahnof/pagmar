@@ -354,6 +354,12 @@ namespace Dog
                     if (entry != null) entry.TimeScale = idleAnimSpeed;
                     break;
                 case DogAnimation.Walk:
+                    if (_actionManager.CurState == DogState.WantFood)
+                    {
+                        TrackEntry entry1 = null;
+                        entry1 = spineAnimationState.SetAnimation(1, airSniffAnimName, false);
+                        if (entry1 != null) entry1.TimeScale = airSniffAnimSpeed;
+                    }
                     entry = spineAnimationState.SetAnimation(0, walkAnimName, true);
                     if (entry != null) entry.TimeScale = walkAnimSpeed;
                     break;
