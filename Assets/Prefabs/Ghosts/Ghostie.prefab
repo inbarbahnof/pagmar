@@ -291,6 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e102308f623726c418292b9fccdd05d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxPlayableDistance: 20
 --- !u!1 &7839447213806282766
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +412,10 @@ PrefabInstance:
     - target: {fileID: 2822731529228032094, guid: f8c44421696ef254092d0c7831b525cc, type: 3}
       propertyPath: ShapeModule.m_Scale.y
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3806988536888205369, guid: f8c44421696ef254092d0c7831b525cc, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6964096112302470426, guid: f8c44421696ef254092d0c7831b525cc, type: 3}
       propertyPath: ShapeModule.m_Scale.x
