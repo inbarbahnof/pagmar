@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Audio.FMOD;
 using DG.Tweening;
 using Targets;
@@ -19,13 +20,17 @@ namespace Interactables
         [Header("Ghost Appearance")] [SerializeField]
         private Stealth1Obstacle _stealth;
 
+        private void Start()
+        {
+            _food.SetCanInteract(false);
+        }
+
         public void DropStick()
         {
             _food.transform.DOMove(_dropFoodPos.position, _dropDuration)
                 .SetEase(Ease.OutBounce);
-            
-            _stick.transform.DOMove(_dropStickPos.position, _dropDuration);
-                // .SetEase(Ease.Linear);
+
+            StartCoroutine(WaitToDropStick());
             
             _feedDogObstacle.HandleFoodDroppedWalkable(_food);
             _food.FoodCanBeFed();
@@ -37,6 +42,13 @@ namespace Interactables
                 _food.GetComponent<FoodTargetGetter>().GetFoodTarget());
 
             _stealth.GhostAppear();
+        }
+
+        private IEnumerator WaitToDropStick()
+        {
+            yield return new WaitForSeconds(0.2f);
+            _stick.transform.DOMove(_dropStickPos.position, _dropDuration - 0.2f)
+                .SetEase(Ease.OutQuart);
         }
     }
 }

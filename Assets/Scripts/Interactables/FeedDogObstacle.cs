@@ -16,7 +16,7 @@ namespace Interactables
             _food.OnDroppedOnWalkableSurface += HandleFoodDroppedWalkable;
 
             // StartCoroutine(SetListener());
-            FoodTarget foodTarget = _food.GetComponent<FoodTarget>();
+            FoodTarget foodTarget = _food.GetComponent<FoodTargetGetter>().GetFoodTarget();
             if (foodTarget != null)
             {
                 foodTarget.OnFoodEaten += HandleFoodEaten;
