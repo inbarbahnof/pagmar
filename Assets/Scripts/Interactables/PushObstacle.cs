@@ -22,23 +22,31 @@ namespace Interactables
         {
             base.ReachedTarget();
             SwapToClimb(true);
+            DisableBarrier(true);
         }
 
         public override void ResetObstacle()
         {
             pushManager.ResetToCheckpoint(interactable);
             SwapToClimb(false);
+            DisableBarrier(false);
+        }
+
+        private void DisableBarrier(bool enable)
+        {
+            print("disable");
+            if (colMid != null) colMid.SetActive(!enable);
+            interactable.gameObject.GetComponent<Collider2D>().enabled = !enable;
+            if (!_isJumping) NavMeshManager.instance.ReBake();
         }
 
         private void SwapToClimb(bool climb)
         {
-            if (colMid != null) colMid.SetActive(!climb);
             if (climbUpObject)
             {
                 climbUpObject.SetActive(climb);
                 interactable.gameObject.SetActive(!climb);
             }
-            if (!_isJumping) NavMeshManager.instance.ReBake();
         }
     }
 }
