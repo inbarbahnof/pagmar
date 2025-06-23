@@ -23,11 +23,13 @@ namespace Ghosts
         private Quaternion[] _initialBoneRotations;
         private SpriteRenderer[] _boneRenderers;
         private int[] _initialSortingOrders;
+        private PlayGhostieSound _sound;
 
         private void Awake()
         {
             _attackDetector = GetComponent<AttackDetector>();
             _initialPos = _intireGhostie.transform.position;
+            _sound = _intireGhostie.GetComponent<PlayGhostieSound>();
             
             _initialBonePositions = new Vector3[_bones.Length];
             _initialBoneRotations = new Quaternion[_bones.Length];
@@ -48,6 +50,7 @@ namespace Ghosts
             _detecror.SetActive(false);
             _movement.Die(pos, cage, this);
             _attackDetector.IsAttackEnabled(false);
+            _sound.StopGhostieSound();
             StartCoroutine(WaitToFinishTargetAction());
             
             foreach (var effect in _vfx)
@@ -90,6 +93,7 @@ namespace Ghosts
             _detecror.SetActive(true);
             _movement.ResetMovement();
             _attackDetector.IsAttackEnabled(true);
+            _sound.ResumeGhostieSound();
             
             foreach (var effect in _vfx)
             {

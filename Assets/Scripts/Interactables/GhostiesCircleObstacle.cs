@@ -70,9 +70,7 @@ public class GhostiesCircleObstacle : Obstacle
         for (int i = 0; i < _food.Length; i++)
         {
             // Reactivate the original food
-            var foodObj = _foodInteractables[i].gameObject;
-            foodObj.transform.position = _foodPositions[i];
-            foodObj.SetActive(true);
+            _foodInteractables[i].ResetState(_foodPositions[i], transform);
 
             // Also re-enable art & collider
             _foodInteractables[i].GetComponent<Collider2D>().enabled = true;
