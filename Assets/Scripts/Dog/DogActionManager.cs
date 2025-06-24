@@ -216,7 +216,7 @@ namespace Dog
 
         public void SetWantsFood(bool want)
         {
-            //print("in SetWantsFood");
+            // print("in SetWantsFood");
             _wantFood = want;
         }
 

@@ -20,8 +20,7 @@ namespace Interactables
         private IEnumerator DogBehaviorCoruotine()
         {
             // AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogScared);
-            yield return new WaitForSeconds(1.5f);
-            _dogWait.PlayerReached();
+            yield return new WaitForSeconds(0.4f);
             
             _secondTarget.gameObject.SetActive(true);
             TargetGenerator.instance.SetWantFoodTarget(_secondTarget);
