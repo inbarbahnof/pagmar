@@ -100,7 +100,7 @@ namespace Interactables
             
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ObjectFall);
             
-            ActivateIfOnWalkable(transform.position);
+            if (_foodTarget != null) ActivateIfOnWalkable(transform.position);
             
             OnThrowComplete?.Invoke(transform);
         }
