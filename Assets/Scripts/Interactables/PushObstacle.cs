@@ -11,6 +11,7 @@ namespace Interactables
         [SerializeField] private Transform pushTarget;
         [SerializeField] private ClimbPushableInteractable climbUpObject;
         [SerializeField] private bool _isJumping;
+        [SerializeField] private DogWaitForPlayer _wait;
         
 
         void Start()
@@ -23,6 +24,12 @@ namespace Interactables
             base.ReachedTarget();
             SwapToClimb(true);
             DisableBarrier(true);
+            
+            if (_wait != null)
+            {
+                _wait.PlayerReached();
+                pushManager.DogStopCrouching();
+            }
         }
 
         public override void ResetObstacle()

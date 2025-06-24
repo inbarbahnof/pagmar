@@ -354,8 +354,11 @@ namespace Dog
             _playerFollower.StopGoingToTarget();
             _playerFollower.SetIsGoingToTarget(false);
             
-            _animationManager.DogAirSniff();
-            yield return new WaitForSeconds(1.2f);
+            if (_foodIsClose)
+            {
+                _animationManager.DogAirSniff();
+                yield return new WaitForSeconds(1.2f);
+            }
             
             curState = DogState.WantFood;
             WantFoodTarget target = _targetGenerator.GetWantFoodTarget();

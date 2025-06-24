@@ -65,6 +65,11 @@ namespace Interactables
             
         }
 
+        public void DogStopCrouching()
+        {
+            _dogAction.ChangeCrouching(false);
+        }
+
         public void StopPush()
         {
             if (_isPushing)
