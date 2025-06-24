@@ -57,8 +57,9 @@ namespace Dog
         {
             if (input._isThereGhostie)
             {
-                if ((input._connectionStage == 1 && input._chaseGhostieNumber < 1) ||
-                (input._connectionStage > 1 && input._chaseGhostieNumber < 10))
+                if (input is { _connectionStage: 1, _chaseGhostieNumber: < 1 } ||
+                input is { _connectionStage: 2, _chaseGhostieNumber: < 5 } ||
+                input is { _connectionStage: > 2, _chaseGhostieNumber: < 10 })
                 {
                     return DogState.ChaseGhostie;
                 }

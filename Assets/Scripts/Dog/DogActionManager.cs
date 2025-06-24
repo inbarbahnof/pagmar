@@ -85,7 +85,7 @@ namespace Dog
         private void Update()
         {
             // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
-            // print("foodIsClose " + _foodIsClose + " __canEatFood " + _canEatFood);
+            // print("_dogFollowingTOI " + _dogFollowingTOI + " _dogBusy " + _dogBusy);
             if (!movementEnabled) return;
             
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
@@ -414,20 +414,50 @@ namespace Dog
 
         private void HandleIdleBehavior()
         {
-            if (Random.value < 0.3f)
+            IdleBehavior();
+            StartCoroutine(IdleDecisionAfterDelay());
+        }
+
+        private bool GoToTOI()
+        {
+            print("GoToTOI");
+            Target target = _targetGenerator.GetNearbyTOI(transform);
+            if (target != null)
             {
-                Target target = _targetGenerator.GetNearbyTOI(transform);
-                if (target != null)
-                {
-                    _playerFollower.GoToTOI(target);
-                }
+                _dogFollowingTOI = true;
+                curState = DogState.FollowTOI;
+                _playerFollower.GoToTOI(target);
+                return true;
             }
-            else
+
+            return false;
+        }
+
+        private void IdleBehavior()
+        {
+            curState = DogState.Idle;
+            _dogFollowingTarget = false;
+            _dogFollowingTOI = false;
+            _playerFollower.SetIsGoingToTarget(false);
+        }
+        
+        private IEnumerator IdleDecisionAfterDelay()
+        {
+            while (curState == DogState.Idle)
             {
-                curState = DogState.Idle;
-                _dogFollowingTarget = false;
-                _dogFollowingTOI = false;
-                _playerFollower.SetIsGoingToTarget(false);
+                yield return new WaitForSeconds(5f);
+                
+                // If the state has changed during the wait, abort
+                if (curState != DogState.Idle)
+                    yield break;
+
+                if (Random.value < 0.4f)
+                {
+                    bool didGoTOI = GoToTOI();
+                    if (didGoTOI) yield break;
+                }
+
+                IdleBehavior();
             }
         }
 

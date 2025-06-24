@@ -130,11 +130,11 @@ namespace Dog
             switch (GameManager.instance.ConnectionState)
             {
                 case 1:
-                    return 0.5f;
+                    return 0.4f;
                 case 2:
-                    return 0.5f;
-                case 3:
                     return 0.3f;
+                case 3:
+                    return 0.2f;
                 case 4:
                     return 0.1f;
             }
