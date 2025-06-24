@@ -9,7 +9,7 @@ namespace Interactables
         [SerializeField] private GameObject colMid;
         [SerializeField] private PushInteractable interactable;
         [SerializeField] private Transform pushTarget;
-        [SerializeField] private GameObject climbUpObject;
+        [SerializeField] private ClimbPushableInteractable climbUpObject;
         [SerializeField] private bool _isJumping;
         
 
@@ -22,23 +22,32 @@ namespace Interactables
         {
             base.ReachedTarget();
             SwapToClimb(true);
+            DisableBarrier(true);
         }
 
         public override void ResetObstacle()
         {
             pushManager.ResetToCheckpoint(interactable);
             SwapToClimb(false);
+            DisableBarrier(false);
+        }
+
+        private void DisableBarrier(bool enable)
+        {
+            if (colMid != null) colMid.SetActive(!enable);
+            interactable.gameObject.GetComponent<Collider2D>().enabled = !enable;
+            if (!_isJumping) NavMeshManager.instance.ReBake();
         }
 
         private void SwapToClimb(bool climb)
         {
-            if (colMid != null) colMid.SetActive(!climb);
             if (climbUpObject)
             {
-                climbUpObject.SetActive(climb);
+                climbUpObject.gameObject.SetActive(climb);
+                InteractableManager.instance.RemoveInteractable(interactable);
+                InteractableManager.instance.AddInteractableObj(climbUpObject);
                 interactable.gameObject.SetActive(!climb);
             }
-            if (!_isJumping) NavMeshManager.instance.ReBake();
         }
     }
 }
