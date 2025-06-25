@@ -44,11 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d1dd6999eea4941b49ac7d149465a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dogTempComunication: {fileID: 0}
   distance: 0.8
   isTOI: 0
   _hoverTime: 1
-  _isPet: 0
 --- !u!1 &1810158106228689958
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,7 +533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2290255487795479851}
-  - component: {fileID: 3575879375219637470}
+  - component: {fileID: 5140718850167828534}
   m_Layer: 0
   m_Name: PetPos
   m_TagString: Untagged
@@ -558,7 +556,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3670087948830583748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3575879375219637470
+--- !u!114 &5140718850167828534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -567,14 +565,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3234447135663971902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3d1dd6999eea4941b49ac7d149465a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4922f77888b34c17871ffa82743f925f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dogTempComunication: {fileID: 0}
-  distance: 0.6
+  distance: 0.8
   isTOI: 0
   _hoverTime: 4
-  _isPet: 1
+  _player: {fileID: 2031817862653350588}
 --- !u!1 &3875658489770806721
 GameObject:
   m_ObjectHideFlags: 0
