@@ -18,10 +18,6 @@ namespace Targets
             
         public override void StartTargetAction(PlayerFollower dog)
         {
-            // print("Dog started eating food");
-            if (_dogTempComunication != null)
-                _dogTempComunication.SetActive(true);
-            
             // turn off the pickability
             if (_pickUp != null)
             {
@@ -48,15 +44,6 @@ namespace Targets
         public void SetCanBeFed(bool can)
         {
             canBeFed = can;
-        }
-        
-        private IEnumerator EatTarget()
-        {
-            yield return new WaitForSeconds(1.2f);
-            
-            OnFoodEaten?.Invoke();
-            FinishTargetAction();
-            _art.gameObject.SetActive(false);
         }
     }
 }

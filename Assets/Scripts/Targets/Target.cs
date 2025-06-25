@@ -7,7 +7,6 @@ namespace Targets
 {
     public class Target : MonoBehaviour
     {
-        [SerializeField] protected GameObject _dogTempComunication = null;
         [SerializeField] private float distance = 0.6f;
         [SerializeField] protected bool isTOI = true;
 
@@ -28,9 +27,6 @@ namespace Targets
         // finished the action
         public virtual void FinishTargetAction()
         {
-            if (_dogTempComunication != null)
-                _dogTempComunication.SetActive(false);
-            
             OnTargetActionComplete?.Invoke();
         }
     }

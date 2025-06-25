@@ -84,6 +84,7 @@ namespace Dog
         private bool _tailWag;
 
         public bool Petting => _petting;
+        public bool Eating => _afterEat || _eating;
         
         private Spine.AnimationState spineAnimationState;
         
@@ -274,7 +275,7 @@ namespace Dog
         
         private IEnumerator FinishAirSniff()
         {
-            yield return new WaitForSeconds(1.2f);
+            yield return new WaitForSeconds(1.5f);
             _airSniff = false;
         }
 

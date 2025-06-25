@@ -41,6 +41,7 @@ namespace Dog
         private int _numberChaseGhostie;
         private bool _crouching;
         private bool _chasingGhostie;
+        private bool _eating;
 
         private DogStateComputer _computer;
         private float _dogPlayerDistance;
@@ -85,7 +86,7 @@ namespace Dog
         private void Update()
         {
             // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
-            // print("_wantFood " + _wantFood + " _dogBusy " + _dogBusy);
+            // print("_foodIsClose " + _foodIsClose);
             if (!movementEnabled) return;
             
             _dogPlayerDistance = Vector2.Distance(_playerTransform.position, transform.position);
@@ -94,7 +95,8 @@ namespace Dog
             _isStealthTargetClose = _targetGenerator.GetStealthTarget(false) != null;
 
             _isThereGhostie = _targetGenerator.IsThereGhositeClose();
-            
+
+            bool eating = _animationManager.Eating;
             DogStateMachineInput newInput = new DogStateMachineInput(playerStateManager.CurrentState, 
                 GameManager.instance.ConnectionState,
                 _dogPlayerDistance, _dogReachedTarget,
@@ -103,7 +105,7 @@ namespace Dog
                 _wantFood, _petDistance, _isFollowingStick, 
                 _isStealthTargetClose, _needToStealth, 
                 _followingCall, _isThereGhostie, _numberChaseGhostie, 
-                _chasingGhostie, _animationManager.Petting);
+                _chasingGhostie, _animationManager.Petting, eating);
             
             DogState newState = _computer.Compute(curState, newInput);
 
@@ -357,7 +359,7 @@ namespace Dog
             if (_foodIsClose)
             {
                 _animationManager.DogAirSniff();
-                yield return new WaitForSeconds(1.2f);
+                yield return new WaitForSeconds(1.5f);
             }
             
             curState = DogState.WantFood;
@@ -410,7 +412,6 @@ namespace Dog
         public void FoodIsFar(Collider2D food)
         {
             if (_dogFollowingTOI) return;
-            
             _foodIsClose = false;
             _targetGenerator.NotifyFoodFar(food.GetComponent<FoodTarget>());
         }
