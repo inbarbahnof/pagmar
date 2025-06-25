@@ -139,7 +139,7 @@ MonoBehaviour:
   highlightEffect: {fileID: 3876481643124065800}
   interactionRange: 1.5
   _isThrowable: 0
-  _food: {fileID: 0}
+  _sprite: {fileID: 3072810952233607484}
   _foodTarget: {fileID: 1449304199474139590}
 --- !u!114 &673647177554934350
 MonoBehaviour:
@@ -279,13 +279,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4785189983453346398, guid: caf59cf5d560c544b9ff3084b80471ac, type: 3}
       propertyPath: m_SortingOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caf59cf5d560c544b9ff3084b80471ac, type: 3}
+--- !u!212 &3072810952233607484 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4785189983453346398, guid: caf59cf5d560c544b9ff3084b80471ac, type: 3}
+  m_PrefabInstance: {fileID: 7551614806662191970}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6570242534851975044 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3738701747647778022, guid: caf59cf5d560c544b9ff3084b80471ac, type: 3}
