@@ -8,6 +8,7 @@ namespace Interactables
     public class PickUpInteractable : BaseInteractable
     {
         [SerializeField] protected bool _isThrowable;
+        [SerializeField] protected SpriteRenderer _sprite;
         
         private bool isPickedUp = false;
         private Transform originalParent;
@@ -26,12 +27,7 @@ namespace Interactables
 
         public virtual void PickUpObject(Transform parent)
         {
-            // transform.SetParent(parent);
-            // transform.DOLocalMove(Vector3.zero, 0.08f)
-            //     .SetEase(Ease.OutQuad);
             isPickedUp = true;
-            
-            // AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPickUp);
         }
 
         public void PhysicallyPickUp(Transform parent)
@@ -40,12 +36,15 @@ namespace Interactables
             transform.DOLocalMove(Vector3.zero, 0.08f)
                 .SetEase(Ease.OutQuad);
             
+            _sprite.sortingOrder = 4;
+            
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPickUp);
         }
 
         public virtual void DropObject(Vector2 worldTarget)
         {
             isPickedUp = false;
+            _sprite.sortingOrder = 3;
             
             if (_isThrowable && worldTarget != Vector2.zero)
             {

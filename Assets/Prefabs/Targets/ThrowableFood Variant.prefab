@@ -103,6 +103,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4785189983453346398, guid: caf59cf5d560c544b9ff3084b80471ac, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -130,6 +134,10 @@ PrefabInstance:
       propertyPath: _food
       value: 
       objectReference: {fileID: 7417587739686014415}
+    - target: {fileID: 1804897355344761010, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
+      propertyPath: _sprite
+      value: 
+      objectReference: {fileID: 2066569607733795745}
     - target: {fileID: 1804897355344761010, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
       propertyPath: _foodTarget
       value: 
@@ -221,7 +229,7 @@ MonoBehaviour:
   highlightEffect: {fileID: 4824632808170340996}
   interactionRange: 1.5
   _isThrowable: 0
-  _food: {fileID: 2066569607733795745}
+  _sprite: {fileID: 2066569607733795745}
   _foodTarget: {fileID: 2660901898492799788}
 --- !u!114 &8279499095431394443
 MonoBehaviour:
