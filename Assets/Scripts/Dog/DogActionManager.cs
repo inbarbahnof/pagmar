@@ -455,7 +455,7 @@ namespace Dog
                 if (curState != DogState.Idle)
                     yield break;
 
-                if (Random.value < 0.4f)
+                if (!_playerFollower.IsRunning && Random.value < 0.4f)
                 {
                     bool didGoTOI = GoToTOI();
                     if (didGoTOI) yield break;
