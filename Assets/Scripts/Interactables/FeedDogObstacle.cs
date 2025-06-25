@@ -51,7 +51,11 @@ namespace Interactables
             if (other.CompareTag("Dog"))
             {
                 TargetGenerator.instance.SetWantFoodTarget(_wantFoodTarget);
-                other.GetComponent<DogActionManager>().SetWantsFood(true);
+                DogActionManager dog = other.GetComponent<DogActionManager>();
+                dog.SetWantsFood(true);
+                
+                if (_wantFoodTarget.IsFoodClose) 
+                    dog.FoodIsClose(_food.GetComponent<Collider2D>());
             }
         }
     }

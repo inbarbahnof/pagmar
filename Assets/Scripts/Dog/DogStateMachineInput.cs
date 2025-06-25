@@ -23,6 +23,7 @@ namespace Dog
         public int _chaseGhostieNumber;
         public bool _chasingGhostie;
         public bool _isPetting;
+        public bool _eating;
 
         public float _listenDistance;
         public float _petDistance;
@@ -34,7 +35,7 @@ namespace Dog
             bool wantsFood, float petDistance, bool isFollowingStick, 
             bool isStealthTargetClose, bool needToStealth, 
             bool followingCall, bool isThereGhostie, int chaseGhostieNumber,
-            bool chasingGhostie, bool isPetting)
+            bool chasingGhostie, bool isPetting, bool eating)
         {
             _playerState = playerState;
             _playerDogDistance = playerDogDistance;
@@ -56,6 +57,7 @@ namespace Dog
             _chaseGhostieNumber = chaseGhostieNumber;
             _chasingGhostie = chasingGhostie;
             _isPetting = isPetting;
+            _eating = eating;
         }
     }
 }

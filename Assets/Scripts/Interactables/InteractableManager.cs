@@ -93,8 +93,8 @@ namespace Interactables
                     closest = interactable;
                 }
             }
-            print("closest: " + closest);
-
+            // print("closest: " + closest);
+    
             if (closest == null) return;
             if (curInteractableObj != closest)
             {

@@ -162,10 +162,12 @@ public class PlayerStateManager : MonoBehaviour
     public void UpdatePetting()
     {
         SetState(PlayerState.Pet);
-        
+    }
+
+    public void StartPetting()
+    {
         _move.SetCanMove(false);
         _move.UpdateMoveInput(Vector2.zero);
-        
         if (GameManager.instance.ConnectionState < 4) StartCoroutine(NoPet());
         else StartCoroutine(WaitToStopPet());
     }
