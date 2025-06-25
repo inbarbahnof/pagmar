@@ -317,6 +317,7 @@ MonoBehaviour:
   _walkSpeed: 5
   _runSpeed: 7.5
   _crouchSpeed: 2.3
+  agent: {fileID: 4417143067669435272}
 --- !u!114 &1538025327645606136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91cdfda8865e6f1468398630024e15d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementEnabled: 1
   playerStateManager: {fileID: 0}
   _targetGenerator: {fileID: 0}
   _listenDistance: 10
