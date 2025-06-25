@@ -162,7 +162,10 @@ namespace Dog
         {
             Vector3 currentPosition = transform.position;
             float distanceMoved = Vector3.Distance(currentPosition, lastPosition);
-            _isMoving = distanceMoved > 0.01f;
+            
+            if (_actionManager.Crouching) _isMoving = distanceMoved > 0.005f;
+            else _isMoving = distanceMoved > 0.01f;
+            
             lastPosition = currentPosition; 
         }
 
