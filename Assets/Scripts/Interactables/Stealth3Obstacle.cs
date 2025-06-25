@@ -156,10 +156,14 @@ namespace Interactables
             {
                 TargetGenerator.instance.SetStealthTarget(_targets[0]);
                 _dog.StealthObs(true);
-                _dog.ChangeCrouching(true);
                 CameraController.instance.FollowPlayerAndDog();
                 _player.StealthObstacle(true);
             }
+        }
+
+        public void DogCrouch()
+        {
+            _dog.ChangeCrouching(true);
         }
         
         private void ThrewStick(Transform stick)

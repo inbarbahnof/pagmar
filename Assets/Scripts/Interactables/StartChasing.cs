@@ -26,8 +26,7 @@ namespace Interactables
 
         private IEnumerator WaitToActivateWall()
         {
-            yield return new WaitForSeconds(0.5f);
-            
+            yield return new WaitForSeconds(1f);
             if (_wall != null) _wall.SetActive(true);
         }
     }

@@ -65,7 +65,7 @@ public class InputManager : MonoBehaviour
                     _retainAimCoroutine = StartCoroutine(RetainLastAimInput());
             }
         }
-        else if (_stateManager.IsClimbing)
+        else if (_stateManager.IsClimbing || _stateManager.IsDropping)
         {
             _player.UpdateMoveInput(Vector2.zero);
         }
@@ -77,6 +77,7 @@ public class InputManager : MonoBehaviour
     
     private IEnumerator RetainLastAimInput()
     {
+        _player.UpdateMoveInput(Vector2.zero);
         _player.UpdateAimInput(_lastAimInput);
         _aimControl.UpdateAimInput(_lastAimInput);
 
