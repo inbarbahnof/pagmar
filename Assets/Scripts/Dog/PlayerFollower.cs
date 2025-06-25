@@ -22,8 +22,8 @@ namespace Dog
         [SerializeField] private float _walkSpeed = 3.5f;
         [SerializeField] private float _runSpeed = 7.5f;
         [SerializeField] private float _crouchSpeed = 2.8f;
+        [SerializeField] private NavMeshAgent agent;
         
-        private NavMeshAgent agent;
         private Target currentTarget;
         private Target nextTarget;
         private float targetDistance;
@@ -43,7 +43,6 @@ namespace Dog
         {
             _actionManager = GetComponent<DogActionManager>();
             
-            agent = GetComponent<NavMeshAgent>();
             agent.updateRotation = false;
             agent.updateUpAxis = false;
 

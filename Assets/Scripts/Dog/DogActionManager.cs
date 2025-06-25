@@ -12,8 +12,7 @@ namespace Dog
 {
     public class DogActionManager : MonoBehaviour
     {
-        private DogState curState = DogState.Idle;
-
+        [SerializeField] private bool movementEnabled = true;
         [SerializeField] private PlayerStateManager playerStateManager;
         [SerializeField] private TargetGenerator _targetGenerator;
         
@@ -23,6 +22,8 @@ namespace Dog
 
         private PlayerFollower _playerFollower;
         private Transform _playerTransform;
+        
+        private DogState curState = DogState.Idle;
 
         private bool _dogReachedTarget;
         private bool _dogFollowingTarget;
@@ -51,7 +52,6 @@ namespace Dog
         private Coroutine _stopFollowCoroutine;
         private Coroutine _chaseGhostieCoroutine;
         
-        private bool movementEnabled = true;
         
         // getters
         public float DogPlayerDistance => _dogPlayerDistance;
@@ -81,6 +81,7 @@ namespace Dog
             _animationManager = GetComponent<DogAnimationManager>();
 
             if (movementEnabled) StartWalkingAfterPlayer();
+            else SetMovementEnabled(false);
         }
 
         private void Update()

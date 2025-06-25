@@ -9,6 +9,7 @@ public class DogMeetManager : MonoBehaviour
     [SerializeField] private PlayableDirector dogSequence;
     [SerializeField] private PlayableDirector ghostieSequence;
     [SerializeField] private PlayerMove playerMove;
+    [SerializeField] private GameObject playerBlockCollider;
     private bool _playerHiding;
     
     public void ShowDogSequence()
@@ -32,6 +33,7 @@ public class DogMeetManager : MonoBehaviour
         // freeze player
         // play sequence to pam cam left and activate ghosties them move dog and scatter
         StartCoroutine(WaitToShowGhostiesCoroutine());
+        playerBlockCollider.SetActive(false);
     }
 
     private IEnumerator WaitToShowGhostiesCoroutine()

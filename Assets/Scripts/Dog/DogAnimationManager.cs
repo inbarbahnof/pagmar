@@ -105,6 +105,7 @@ namespace Dog
             
             if (!enabled)
             {
+                spineAnimationState ??= skeletonAnimation.AnimationState;
                 spineAnimationState.ClearTracks();
             }
         }
@@ -113,7 +114,7 @@ namespace Dog
         {
             _actionManager = GetComponent<DogActionManager>();
             lastPosition = transform.position;
-            spineAnimationState = skeletonAnimation.AnimationState;
+            if (spineAnimationState is null) spineAnimationState = skeletonAnimation.AnimationState;
             
             _footstepsEventData = skeletonAnimation.Skeleton.Data.FindEvent(_footstepsEventName);
 
