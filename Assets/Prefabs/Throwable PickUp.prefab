@@ -88,6 +88,7 @@ MonoBehaviour:
   distance: 0.8
   isTOI: 0
   _hoverTime: 2
+  _isPet: 0
 --- !u!114 &1804897355344761010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +104,8 @@ MonoBehaviour:
   highlightEffect: {fileID: 3876481643124065800}
   interactionRange: 1.5
   _isThrowable: 1
-  _food: {fileID: 0}
+  _sprite: {fileID: 8400323086177866622}
+  _foodTarget: {fileID: 0}
 --- !u!1001 &4168871098909330182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -176,6 +178,11 @@ PrefabInstance:
 --- !u!4 &7241012181649386023 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6748626568372740385, guid: bdbd99958b6bf214bbda60a3b307f84b, type: 3}
+  m_PrefabInstance: {fileID: 4168871098909330182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8400323086177866622 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5569052208693450872, guid: bdbd99958b6bf214bbda60a3b307f84b, type: 3}
   m_PrefabInstance: {fileID: 4168871098909330182}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5250256550240507669
