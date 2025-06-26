@@ -46,7 +46,10 @@ namespace Interactables
         public void PlayDogScared()
         {
             _dog.ChangeCrouching(true);
-            
+        }
+
+        public void PlayCutscene()
+        {
             StartCoroutine(StartCutscene());
         }
 
