@@ -7,13 +7,17 @@ public class StartCutsceneManager : MonoBehaviour
     [SerializeField] private PlayableDirector sequence;
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private DogActionManager dog;
+    [SerializeField] private bool stopMove = true;
     
     public void ShowSequence()
     {
         // activate upon player reach start pos
-        // freeze player
-        playerMove.SetCanMove(false);
-        dog.SetMovementEnabled(false);
+        if (stopMove)
+        {
+            // freeze player
+            playerMove.SetCanMove(false);
+            dog.SetMovementEnabled(false);
+        }
         
         // play sequence to pan camera right and move dog
         sequence.Play();
