@@ -12,8 +12,6 @@ namespace Ghosts
         private bool movingToB = true;
         private bool isGoingAround = true;
         private bool isGoingToTarget = false;
-        
-        private Vector2 _velocity = Vector2.zero;
         private float _smoothTime = 0.4f;
 
         private Vector3 _currentTarget;
