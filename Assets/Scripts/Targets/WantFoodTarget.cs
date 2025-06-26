@@ -10,10 +10,11 @@ namespace Targets
         public bool IsFoodClose => _isFoodClose;
         
         private bool _foodCanBeReached = false;
+        
         public override void StartTargetAction(PlayerFollower dog)
         {
             if (_foodCanBeReached) FinishTargetAction();
-
+            
             if (_isFoodClose) dog.GetComponent<DogActionManager>().WaitUntilEating();
         }
 

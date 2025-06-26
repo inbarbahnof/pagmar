@@ -56,7 +56,7 @@ namespace Dog
                 return;
 
             float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
-            
+            // print("agent.isStopped " + agent.isStopped);
             // Check if the dog reached the target
             // print("distance to target " + distance + currentTarget.name);
             if (distance <= targetDistance && isGoingToTarget)   
@@ -66,6 +66,7 @@ namespace Dog
             }
             else if (isGoingToTarget)
             {
+                // print("going to target " + currentTarget.name);
                 agent.isStopped = false;
                 agent.SetDestination(currentTarget.transform.position);
             }

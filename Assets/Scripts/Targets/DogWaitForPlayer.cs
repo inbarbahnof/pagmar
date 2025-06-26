@@ -7,7 +7,6 @@ public class DogWaitForPlayer : MonoBehaviour
 {
     [SerializeField] private WantFoodTarget _wantFoodTarget;
     [SerializeField] private bool _isRunning;
-    [SerializeField] private RunFromGhosties _runFromGhosties;
     [SerializeField] private FinalObstacle _finalObstacle;
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -21,7 +20,6 @@ public class DogWaitForPlayer : MonoBehaviour
             
             if (_isRunning) dog.Running(true);
             
-            // if (_runFromGhosties != null) _runFromGhosties.StartsRunning();
             if (_finalObstacle != null) _finalObstacle.StopKeepingDistance();
         }
     }
