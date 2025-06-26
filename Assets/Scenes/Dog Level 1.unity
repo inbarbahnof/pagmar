@@ -754,6 +754,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4137655161933579662, guid: 0f6f87d17518bc34d96ad7b953c05506, type: 3}
   m_PrefabInstance: {fileID: 58344069}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &60711129 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3928992937263542164, guid: 361a77586bdd7254fbc4b75854fc6ee4, type: 3}
+  m_PrefabInstance: {fileID: 3880430381293468583}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4385dec96336a0c4099138996d6b2200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &61445665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6215,7 +6226,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1511664321961210572, guid: 75c86de759e3be54f90565638c407d6d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 750477511}
   m_SourcePrefab: {fileID: 100100000, guid: 75c86de759e3be54f90565638c407d6d, type: 3}
 --- !u!4 &553721608 stripped
 Transform:
@@ -7944,6 +7958,40 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8748770838992106289, guid: e7a16b2d0169c924ca31074270fe8cf8, type: 3}
   m_PrefabInstance: {fileID: 742334042}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &750477508 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1511664321961210572, guid: 75c86de759e3be54f90565638c407d6d, type: 3}
+  m_PrefabInstance: {fileID: 553721607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &750477511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750477508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144977d2486d862468fe5b4e59f47a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 60711129}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: TurnToPhase2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  turnOffAfterTrigger: 0
+  isPlayerEmmiting: 1
 --- !u!4 &750578887 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4850745339682569951, guid: 38f6085d1135e63479962671ee222cce, type: 3}
