@@ -9,7 +9,8 @@ namespace Ghosts
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!other.GetComponent<PlayerStealthManager>().isProtected)
+            if (other.CompareTag("Player") && 
+                !other.GetComponent<PlayerStealthManager>().isProtected)
             {
                 _attack.Attack(other.transform);
             }
