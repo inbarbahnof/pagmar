@@ -8,13 +8,25 @@ namespace Interactables
 {
     public class DogBehaviorLevel1End : MonoBehaviour
     {
-        [SerializeField] private DogWaitForPlayer _dogWait;
+        // [SerializeField] private DogWaitForPlayer _dogWait;
+        [SerializeField] private WantFoodTarget _firstTarget;
         [SerializeField] private WantFoodTarget _secondTarget;
         [SerializeField] private DogActionManager _dog;
+        [SerializeField] private PlayerMove _playerMove;
+        [SerializeField] private StartCutsceneManager _cutsceneManager;
 
         public void Level1EndBehavior()
         {
+            _firstTarget.FinishTargetAction();
             StartCoroutine(DogBehaviorCoruotine());
+        }
+
+        public void TriggerDogRunning()
+        {
+            TargetGenerator.instance.SetWantFoodTarget(_firstTarget);
+            _dog.SetWantsFood(true);
+            
+            _dog.Running(true);
         }
 
         private IEnumerator DogBehaviorCoruotine()
@@ -34,6 +46,17 @@ namespace Interactables
         public void PlayDogScared()
         {
             _dog.ChangeCrouching(true);
+            
+            StartCoroutine(StartCutscene());
+        }
+
+        private IEnumerator StartCutscene()
+        {
+            _playerMove.SetCanMove(false);
+            yield return new WaitForSeconds(1f);
+            _dog.SetMovementEnabled(false);
+
+            _cutsceneManager.ShowSequence();
         }
     }
 }
