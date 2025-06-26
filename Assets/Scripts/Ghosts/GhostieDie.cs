@@ -17,7 +17,7 @@ namespace Ghosts
         [SerializeField] private VisualEffect[] _vfx;
         [SerializeField] private Animator[] _boneAnimators;
         
-        private AttackDetector _attackDetector;
+        private DeathAttackDetector _deathAttackDetector;
         private Vector3 _initialPos;
         private Vector3[] _initialBonePositions;
         private Quaternion[] _initialBoneRotations;
@@ -27,7 +27,7 @@ namespace Ghosts
 
         private void Awake()
         {
-            _attackDetector = GetComponent<AttackDetector>();
+            _deathAttackDetector = GetComponent<DeathAttackDetector>();
             _initialPos = _intireGhostie.transform.position;
             _sound = _intireGhostie.GetComponent<PlayGhostieSound>();
             
@@ -49,7 +49,7 @@ namespace Ghosts
         {
             _detecror.SetActive(false);
             _movement.Die(pos, cage, this);
-            _attackDetector.IsAttackEnabled(false);
+            _deathAttackDetector.IsAttackEnabled(false);
             _sound.StopGhostieSound();
             StartCoroutine(WaitToFinishTargetAction());
             
@@ -92,7 +92,7 @@ namespace Ghosts
         {
             _detecror.SetActive(true);
             _movement.ResetMovement();
-            _attackDetector.IsAttackEnabled(true);
+            _deathAttackDetector.IsAttackEnabled(true);
             _sound.ResumeGhostieSound();
             
             foreach (var effect in _vfx)
