@@ -34,7 +34,7 @@ namespace Ghosts
         
         private Coroutine _coroutine;
         
-        private Vector2 _velocity = Vector2.zero;
+        protected Vector2 _velocity = Vector2.zero;
         private float smoothTime = 0.6f; 
 
         protected void Awake()

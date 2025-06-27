@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Interactables
@@ -18,9 +19,15 @@ namespace Interactables
                 else
                 {
                     _finalObstacle.AttackDog();
-                    if (_wall != null) _wall.SetActive(true);
+                    StartCoroutine(WaitToActivateWall());
                 }
             }
+        }
+
+        private IEnumerator WaitToActivateWall()
+        {
+            yield return new WaitForSeconds(1f);
+            if (_wall != null) _wall.SetActive(true);
         }
     }
 }

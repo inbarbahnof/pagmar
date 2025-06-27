@@ -22,8 +22,8 @@ namespace Dog
         [SerializeField] private float _walkSpeed = 3.5f;
         [SerializeField] private float _runSpeed = 7.5f;
         [SerializeField] private float _crouchSpeed = 2.8f;
+        [SerializeField] private NavMeshAgent agent;
         
-        private NavMeshAgent agent;
         private Target currentTarget;
         private Target nextTarget;
         private float targetDistance;
@@ -43,7 +43,6 @@ namespace Dog
         {
             _actionManager = GetComponent<DogActionManager>();
             
-            agent = GetComponent<NavMeshAgent>();
             agent.updateRotation = false;
             agent.updateUpAxis = false;
 
@@ -57,7 +56,7 @@ namespace Dog
                 return;
 
             float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
-            
+            // print("agent.isStopped " + agent.isStopped);
             // Check if the dog reached the target
             // print("distance to target " + distance + currentTarget.name);
             if (distance <= targetDistance && isGoingToTarget)   
@@ -67,6 +66,7 @@ namespace Dog
             }
             else if (isGoingToTarget)
             {
+                // print("going to target " + currentTarget.name);
                 agent.isStopped = false;
                 agent.SetDestination(currentTarget.transform.position);
             }

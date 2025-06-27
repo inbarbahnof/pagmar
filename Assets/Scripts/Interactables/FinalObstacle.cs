@@ -22,6 +22,7 @@ namespace Interactables
         private List<Vector3> _initialGhostsPositions = new List<Vector3>();
 
         private Coroutine _stopKeepingDistance;
+        private Coroutine _slowMotion;
 
         private void Start()
         {
@@ -79,7 +80,7 @@ namespace Interactables
 
         private IEnumerator WaitToStopKeepingDistance()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.2f);
             
             foreach (var ghost in _ghostsAttackDog)
             {
@@ -93,17 +94,50 @@ namespace Interactables
                 ghost.SetAttackSpeed(6.5f);
             }
         }
+
+        public void ActivateSlowMotion()
+        {
+            _slowMotion = StartCoroutine(SlowMotion());
+        }
+        
+        private IEnumerator SlowMotion()
+        {
+            Time.timeScale = 0.5f;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+
+            yield return new WaitForSecondsRealtime(5f);
+
+            Time.timeScale = 1f;
+            Time.fixedDeltaTime = 0.02f;
+        }
         
         public void StopKeepingDistance()
         {
-            if (_stopKeepingDistance != null) StopCoroutine(_stopKeepingDistance);
+            foreach (var ghost in _ghostsAttackDog)
+            {
+                ghost.SetKeepDistance(false);
+                ghost.SetAttackSpeed(6.5f);
+            }
             
-            _stopKeepingDistance = StartCoroutine(WaitToStopKeepingDistance());
+            foreach (var ghost in _ghostsAttackPlayer)
+            {
+                ghost.SetKeepDistance(false);
+                ghost.SetAttackSpeed(6.5f);
+            }
+            
+            // if (_stopKeepingDistance != null) StopCoroutine(_stopKeepingDistance);
+            // _stopKeepingDistance = StartCoroutine(WaitToStopKeepingDistance());
         }
         
         public override void ResetObstacle()
         {
             if (_stopKeepingDistance != null) StopCoroutine(_stopKeepingDistance);
+            if (_slowMotion != null)
+            {
+                StopCoroutine(_slowMotion);
+                Time.timeScale = 1f;
+                Time.fixedDeltaTime = 0.02f;
+            }
             
             foreach (var ghost in _ghostsAttackDog)
             {

@@ -51,6 +51,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerState CurrentState => curState;
     public bool IsPushingFromLeft => _isPushingFromLeft;
     public bool IsClimbing => _isClimbing;
+    public bool IsDropping => _dropping;
 
     // public delegate void OnStateChange(PlayerState newState);
 
@@ -84,7 +85,7 @@ public class PlayerStateManager : MonoBehaviour
         PlayerAnimation animation = _computer.Compute(input);
         _animationManager.PlayerAnimationUpdate(animation);
         
-        if (!_move.Pushing && !_isClimbing && !_dropping)
+        if (!_move.Pushing && !_isClimbing && !_dropping && _move.CanMove)
             _animationManager.FlipSpriteBasedOnInput(_move.MoveInput, _move.AimInput);
     }
 

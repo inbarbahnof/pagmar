@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float _runSpeed = 4.7f;
     [SerializeField] private float _runFastSpeed = 6f;
-    [SerializeField] private float _crouchSpeed = 4f;
+    [SerializeField] private float _crouchSpeed = 3f;
     [SerializeField] private float _narrowPassSpeed = 4f;
     [SerializeField] private float _pushSpeed = 3.7f;
     [SerializeField] private GameObject _playerArt;
@@ -25,9 +25,10 @@ public class PlayerMove : MonoBehaviour
     private bool canMove = true;
     private bool movingRight = true;
     private bool _standing;
+    private bool _crouching;
     
     private bool isAutoRunning = false;
-    private Vector2 autoRunDirection = new Vector2(1f, -0.4f); // Right and slightly down
+    private Vector2 autoRunDirection = new Vector2(1f, -0.6f);
     private float verticalInputFactor = 0.5f; 
     private Coroutine autoRunStopCoroutine;
 
@@ -91,13 +92,22 @@ public class PlayerMove : MonoBehaviour
     public void UpdateNarrowPass(bool narrow)
     {
         if (narrow) _speed = _narrowPassSpeed;
+        else if (_crouching) _speed = _crouchSpeed;
         else _speed = _runSpeed;
     }
 
     public void UpdateCrouch(bool crouch)
     {
-        if (crouch) _speed = _crouchSpeed;
-        else _speed = _runSpeed;
+        if (crouch)
+        {
+            _speed = _crouchSpeed;
+            _crouching = true;
+        }
+        else
+        {
+            _speed = _runSpeed;
+            _crouching = false;
+        }
     }
     
     public void StartAutoRunWithVerticalControl()
@@ -116,14 +126,13 @@ public class PlayerMove : MonoBehaviour
         
         movingRight = _moveInput.x > 0;
         _standing = _moveInput == Vector2.zero;
-        // FlipSpriteBasedOnMovement();
     }
 
     private void Move()
     {
         Vector2 movement = _playerRb.position + _moveInput * (_speed * Time.fixedDeltaTime);
         _playerRb.MovePosition(movement);
-        // print(_moveInput);
+        
         if (_moveInput != Vector2.zero)
         {
             if (!isMoving)
@@ -145,31 +154,6 @@ public class PlayerMove : MonoBehaviour
     public void UpdateAimInput(Vector2 input)
     {
         _aimInput = input;
-    }
-
-    private void FlipSpriteBasedOnMovement()
-    {
-        if (Mathf.Abs(_moveInput.x) > 0.001f && !isPushing)
-        {
-            float newScaleX = _moveInput.x > 0 ? 1 : -1;
-            _playerArt.transform.localScale = new Vector3(
-                newScaleX * Mathf.Abs(_playerArt.transform.localScale.x),
-                _playerArt.transform.localScale.y,
-                _playerArt.transform.localScale.z
-            );
-        }
-        else if (Mathf.Abs(_aimInput.x) > 0.001f && !isPushing)
-        {
-            float newScaleX = _aimInput.x > 0 ? 1 : -1;
-            _playerArt.transform.localScale = new Vector3(
-                newScaleX * Mathf.Abs(_playerArt.transform.localScale.x),
-                _playerArt.transform.localScale.y,
-                _playerArt.transform.localScale.z
-            );
-        }
-
-        movingRight = _moveInput.x > 0;
-        _standing = _moveInput == Vector2.zero;
     }
     
     public void CheckIfNeedToFlipArt()

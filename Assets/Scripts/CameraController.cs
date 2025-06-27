@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     
     [SerializeField] private CinemachineCamera _followPlayer;
     [SerializeField] private CinemachineCamera _followPlayerAndDog;
+    [SerializeField] private CinemachineCamera[] cutsceneCams;
     
     [Header("Zoom Values")]
     [SerializeField] private float zoomSpeed = 2f;
@@ -30,14 +31,23 @@ public class CameraController : MonoBehaviour
 
     public void FollowPlayer()
     {
-        _followPlayer.enabled = true;
         _followPlayerAndDog.enabled = false;
+        _followPlayer.enabled = true;
     }
 
     public void FollowPlayerAndDog()
     {
-        _followPlayerAndDog.enabled = true;
         _followPlayer.enabled = false;
+        _followPlayerAndDog.enabled = true;
+    }
+
+    public void DisableCutsceneCams()
+    {
+        if (cutsceneCams.Length == 0) return;
+        foreach (var cam in cutsceneCams)
+        {
+            if (cam is not null) cam.enabled = false;
+        }
     }
     
     private CinemachineCamera GetActiveCamera()

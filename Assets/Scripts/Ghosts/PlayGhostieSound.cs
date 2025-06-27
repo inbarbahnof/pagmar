@@ -10,6 +10,7 @@ namespace Ghosts
         [SerializeField]float maxPlayableDistance = 20f;
         private EventInstance _ghostieSound;
         private bool hasStarted;
+        private bool dead;
 
         private void Start()
         {
@@ -25,16 +26,16 @@ namespace Ghosts
 
         private void Update()
         {
-            if (!hasStarted && Vector3.Distance(transform.position, Camera.main.transform.position) < maxPlayableDistance)
+            if (!dead && !hasStarted && 
+                Vector3.Distance(transform.position, Camera.main.transform.position) < maxPlayableDistance)
             {
                 _ghostieSound.start();
                 hasStarted = true;
             }
-
-            // Optional: stop it if it leaves range
-            else if (hasStarted && Vector3.Distance(transform.position, Camera.main.transform.position) > maxPlayableDistance + 5f)
+            else if (hasStarted && 
+                     Vector3.Distance(transform.position, Camera.main.transform.position) > maxPlayableDistance + 5f)
             {
-                _ghostieSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                _ghostieSound.stop(STOP_MODE.ALLOWFADEOUT);
                 hasStarted = false;
             }
         }
@@ -45,6 +46,7 @@ namespace Ghosts
             {
                 _ghostieSound.stop(STOP_MODE.ALLOWFADEOUT);
                 hasStarted = false;
+                dead = true;
             }
         }
 
@@ -54,6 +56,7 @@ namespace Ghosts
             {
                 _ghostieSound.start();
                 hasStarted = true;
+                dead = false;
             }
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Ghosts
 {
-    public class AttackDetector : PlayerDeathZone
+    public class DeathAttackDetector : MonoBehaviour
     {
         [SerializeField] private GhostieAttack _attack;
         [SerializeField] private GhostieMovement _movement;
@@ -12,24 +12,27 @@ namespace Ghosts
 
         private bool _canAttack = true;
         
-        protected override void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (!_canAttack) return;
             
-            if (other.CompareTag("Player") && !other.GetComponent<PlayerStealthManager>().isProtected)
+            if (other.CompareTag("Player"))
             {
-                print("player died with ghost");
                 _attack.StopAttacking(false, Vector3.zero);
                 _movement.MoveAround();
+                
+                if (!other.GetComponent<PlayerStealthManager>().isProtected)
+                {
+                    print("player died with ghost");
+                    GameManager.checkpointManagerInstance.Undo();
+                }
             }
             else if (_canAttackDog && other.CompareTag("Dog") && !other.GetComponent<DogActionManager>().IsDogProtected)
             {
                 _attack.StopAttacking(false, Vector3.zero);
                 _movement.MoveAround();
-                DogDied();
+                GameManager.checkpointManagerInstance.Undo();
             }
-            
-            base.OnTriggerEnter2D(other);
         }
 
         public void IsAttackEnabled(bool enabled)
