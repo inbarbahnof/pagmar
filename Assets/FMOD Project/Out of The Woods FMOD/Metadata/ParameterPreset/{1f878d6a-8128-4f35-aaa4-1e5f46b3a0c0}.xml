@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{1f878d6a-8128-4f35-aaa4-1e5f46b3a0c0}">
+		<property name="name">
+			<value>Stealth_Throw</value>
+		</property>
+		<relationship name="folder">
+			<destination>{00ded247-c94b-49cf-b59a-964c13cbe83c}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{95e59a30-16b5-4236-b179-ad72287efc5e}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{95e59a30-16b5-4236-b179-ad72287efc5e}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

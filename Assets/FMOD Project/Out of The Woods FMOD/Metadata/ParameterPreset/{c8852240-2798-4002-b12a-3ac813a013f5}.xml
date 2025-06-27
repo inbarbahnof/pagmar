@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="ParameterPreset" id="{f1770cb4-56b5-44db-9446-ab2723720228}">
+	<object class="ParameterPreset" id="{c8852240-2798-4002-b12a-3ac813a013f5}">
 		<property name="name">
-			<value>Dog Voice Mode</value>
+			<value>Ghostie Mode</value>
 		</property>
 		<relationship name="folder">
 			<destination>{00ded247-c94b-49cf-b59a-964c13cbe83c}</destination>
 		</relationship>
 		<relationship name="parameter">
-			<destination>{bd98ed8d-3f5b-467f-814b-10b51e8ad7e8}</destination>
+			<destination>{c9eddaa2-7487-4564-8939-55becf44a9fc}</destination>
 		</relationship>
 	</object>
-	<object class="GameParameter" id="{bd98ed8d-3f5b-467f-814b-10b51e8ad7e8}">
+	<object class="GameParameter" id="{c9eddaa2-7487-4564-8939-55becf44a9fc}">
 		<property name="parameterType">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<property name="maximum">
-			<value>4</value>
-		</property>
-		<property name="enumerationLabels">
-			<value>bark</value>
-			<value>scared</value>
-			<value>sniff</value>
-			<value>eating</value>
+			<value>2</value>
 		</property>
 		<property name="initialValue">
 			<value>0</value>

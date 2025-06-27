@@ -12,17 +12,20 @@
 		</relationship>
 	</object>
 	<object class="SpatialiserEffect" id="{7faf90d9-f52c-48fb-bca0-d60c5b1fe596}">
-		<property name="minimumDistance">
-			<value>360</value>
-		</property>
 		<property name="maximumDistance">
-			<value>480</value>
+			<value>25</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
+		<property name="extentMode">
+			<value>1</value>
 		</property>
 		<property name="soundSize">
-			<value>11.5</value>
+			<value>38</value>
 		</property>
 		<property name="minimumExtent">
-			<value>360</value>
+			<value>190</value>
 		</property>
 		<property name="userPanDirection">
 			<value>-99.4623184</value>
