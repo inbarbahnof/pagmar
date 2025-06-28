@@ -212,9 +212,17 @@ public class PlayerAnimationManager : MonoBehaviour
             _playerArt.transform.localScale.z
         );
     }
+
+    public void StartIdleAnim()
+    {
+        TrackEntry entry = spineAnimationState.SetAnimation(0, idleAnimName, true);
+        if (entry != null) entry.TimeScale = idleAnimSpeed;
+        _curAnim = PlayerAnimation.Idle;
+    }
     
     public void PlayerAnimationUpdate(PlayerAnimation anim)
     {
+        
         if (_curAnim != anim)
         {
             TrackEntry entry = null;

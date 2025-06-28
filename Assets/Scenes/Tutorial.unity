@@ -32643,6 +32643,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 1
+        - m_Target: {fileID: 6206195499498904300}
+          m_TargetAssemblyTypeName: PlayerAnimationManager, Assembly-CSharp
+          m_MethodName: StartIdleAnim
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 1
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1050567140}
@@ -44361,6 +44373,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 6206195499498904297}
+--- !u!114 &6206195499498904300 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5283738756936239595, guid: 9839d545bdf45bc4a98f1cfcbdb0d7ed, type: 3}
+  m_PrefabInstance: {fileID: 6206195499498904292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050567125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b20f12f7c1dd7d04fb18f167715f8314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6603215882994883128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44569,11 +44592,11 @@ PrefabInstance:
       objectReference: {fileID: 1050567128}
     - target: {fileID: 7777086046178666412, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.1353729
+      value: -3.7633855
       objectReference: {fileID: 0}
     - target: {fileID: 7777086046178666412, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.562708
+      value: 13.454208
       objectReference: {fileID: 0}
     - target: {fileID: 7777086046178666412, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.z
