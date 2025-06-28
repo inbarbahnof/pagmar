@@ -29,6 +29,23 @@ public class CameraController : MonoBehaviour
         FollowPlayer();
     }
 
+    public void UpdatePriorities(CinemachineCamera priorityCam)
+    {
+        priorityCam.Priority = 1;
+        priorityCam.enabled = true;
+        if (priorityCam != _followPlayerAndDog)
+        {
+            _followPlayerAndDog.Priority = 0;
+            _followPlayerAndDog.enabled = false;
+        }
+
+        if (priorityCam != _followPlayer)
+        {
+            _followPlayer.Priority = 0;
+            _followPlayer.enabled = false;
+        }
+    }
+
     public void FollowPlayer()
     {
         _followPlayerAndDog.enabled = false;
