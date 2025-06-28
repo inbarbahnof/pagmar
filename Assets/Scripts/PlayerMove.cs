@@ -214,6 +214,7 @@ public class PlayerMove : MonoBehaviour
     public void SetCanMove(bool move)
     {
         canMove = move;
+        if (move) _stateManager.SetIdleState();
     }
 
     public void SetIsSwinging(bool swing)

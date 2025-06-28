@@ -267,6 +267,12 @@ public class PlayerStateManager : MonoBehaviour
         }
     }
 
+    public void SetIdleState()
+    {
+        _animationManager.StartIdleAnim();
+        SetState(PlayerState.Idle);
+    }
+
     private void SetState(PlayerState newState)
     {
         if (curState == newState || _isClimbing || _petting || _dropping) return;
@@ -284,4 +290,5 @@ public class PlayerStateManager : MonoBehaviour
             SetState(PlayerState.Push);
         }
     }
+    
 }
