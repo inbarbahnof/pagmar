@@ -243,7 +243,7 @@ namespace Dog
         public void DogStartSniff()
         {
             _sniffing = true;
-            // AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogSniff);
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogSniff);
             StartCoroutine(StopSniffing());
         }
 
@@ -329,7 +329,7 @@ namespace Dog
 
         private IEnumerator Eat(Action DestroyFood, Action onDoneEating)
         {
-            // AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogEat);
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogEat);
             
             _eating = true;
             yield return new WaitForSeconds(_eatAnimationTime);
