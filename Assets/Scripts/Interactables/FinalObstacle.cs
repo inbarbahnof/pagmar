@@ -15,6 +15,7 @@ namespace Interactables
         [SerializeField] private DogActionManager _dog;
         [SerializeField] private DogWaitForPlayer _wait;
         [SerializeField] private GameObject _wall;
+        [SerializeField] private GameObject _tree;
         
         private List<GhostAttack> _ghostsAttackDog = new List<GhostAttack>();
         private List<GhostAttack> _ghostsAttackPlayer = new List<GhostAttack>();
@@ -71,6 +72,14 @@ namespace Interactables
                 ghost.StopAttacking(false, Vector3.zero);
                 ghost.Attack(_dog.transform);
             }
+
+            StartCoroutine(TreeFall());
+        }
+
+        private IEnumerator TreeFall()
+        {
+            yield return new WaitForSeconds(1f);
+            _tree.transform.rotation = Quaternion.Euler(0, 0, 121f);
         }
 
         public void ActivateSlowMotion()
