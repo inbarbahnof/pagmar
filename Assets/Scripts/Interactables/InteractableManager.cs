@@ -147,13 +147,17 @@ namespace Interactables
             pickup.FinishInteraction();
         }
 
-        public void OnFinishInteraction()
+        public void OnFinishInteraction(BaseInteractable interactableTwin = null)
         {
             interacting = false;
 
-            if (curInteractableObj != null)
+            if (curInteractableObj)
             {
-                curInteractableObj.SetHighlight(true);
+                if (interactableTwin is null) curInteractableObj.SetHighlight(true);
+                else
+                {
+                    AddInteractableObj(interactableTwin);
+                }
             }
 
             playerStateManager.OnFinishedInteraction(curInteractableObj);

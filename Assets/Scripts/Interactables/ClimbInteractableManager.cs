@@ -33,7 +33,7 @@ namespace Interactables
         {
             if (playerPos != Vector2.zero)
             {
-                float waitTime = _playerMove.GetReadyToClimb(playerPos);
+                float waitTime = _playerMove.GetReadyToClimb(playerPos, true);
                 yield return new WaitForSeconds(waitTime);
             }
             if (isClimbing) _playerStateManager.UpdateClimbing(climbRight, _curInteraction.transform);

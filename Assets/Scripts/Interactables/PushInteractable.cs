@@ -7,6 +7,7 @@ namespace Interactables
     {
         [SerializeField] protected Transform playerPosToPush;
         [SerializeField] protected bool _isPushingFromLeft = true;
+        private SmoothMover _smoothMover;
         
         public enum PushKind
         {
@@ -30,6 +31,7 @@ namespace Interactables
 
         public override void Interact()
         {
+            if (_smoothMover is null) _smoothMover = GetComponent<SmoothMover>();
             if (hasTarget) PushInteractableManager.instance.SetPushTarget(_pushTarget, OnReachedTarget);
             PushInteractableManager.instance.TryStartPush(this, playerPosToPush.position);
             base.Interact();
@@ -53,11 +55,11 @@ namespace Interactables
             transform.position = newPos;
         }
 
-        public void SetAtPos(float posX)
+        public float SetAtPos(float posX)
         {
             Vector3 newPos = transform.position;
             newPos.x = posX;
-            transform.position = newPos;
+            return _smoothMover.MoveTo(newPos);
         }
 
         public void SetPushTarget(Vector2 target, Action onReachEvent)

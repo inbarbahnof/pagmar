@@ -126,7 +126,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wantFoodTarget: {fileID: 6955086482779107078}
   _isRunning: 0
-  _runFromGhosties: {fileID: 0}
   _finalObstacle: {fileID: 0}
 --- !u!61 &5386390638440159585
 BoxCollider2D:
@@ -224,6 +223,7 @@ MonoBehaviour:
   interactable: {fileID: 4240086540027878913}
   pushTarget: {fileID: 5976458333852762040}
   climbUpObject: {fileID: 0}
+  firstClimbInter: {fileID: 0}
   _isJumping: 0
   _wait: {fileID: 407272884817521082}
 --- !u!1 &1949393474068293329
@@ -417,7 +417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28b53f3559143d28a5329786bf3616a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dogTempComunication: {fileID: 0}
   distance: 0.8
   isTOI: 0
   _isFoodClose: 0
