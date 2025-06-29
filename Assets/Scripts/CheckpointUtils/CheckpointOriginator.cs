@@ -43,8 +43,8 @@ namespace CheckpointUtils
             _curCheckpointInfo = memento.GetCheckpointInfo();
             CameraController.instance.FollowPlayer();
             // restore player and dog
-            player.ResetToCheckpoint(_curCheckpointInfo.PlayerRespawnLoc);
-            dog.ResetToCheckpoint(_curCheckpointInfo.DogLoc);
+            if (player is not null) player.ResetToCheckpoint(_curCheckpointInfo.PlayerRespawnLoc);
+            if (dog is not null) dog.ResetToCheckpoint(_curCheckpointInfo.DogLoc);
             if (_curCheckpointInfo.CurObstacle != null)
             {
                 _curObs.ResetObstacle();

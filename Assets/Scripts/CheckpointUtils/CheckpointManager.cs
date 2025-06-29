@@ -9,7 +9,7 @@ namespace CheckpointUtils
     public class CheckpointManager
     {
         private CheckpointOriginator _originator = null;
-        private List<IMemento> _mementoes = new List<IMemento>();
+        private List<IMemento> _mementos = new List<IMemento>();
     
         public CheckpointManager(CheckpointOriginator originator)
         {
@@ -19,27 +19,29 @@ namespace CheckpointUtils
         // call from checkpoint collider
         public void Backup(Vector2 checkpointLoc, Vector2 playerRespawnPoint, Obstacle obstacle = null)
         {
-            _mementoes.Add(_originator.Save(checkpointLoc, playerRespawnPoint, obstacle));
-            //ShowHistory();
+            _mementos.Add(_originator.Save(checkpointLoc, playerRespawnPoint, obstacle));
+            ShowHistory();
         }
 
         // call from player death
         public void Undo()
         {
-            if (_mementoes.Count == 0)
+            if (_mementos.Count == 0)
             {
                 return;
             }
 
-            var memento = _mementoes.Last();
-            _mementoes.Remove(memento);
+            var memento = _mementos.Last();
+            _mementos.Remove(memento);
+            //Debug.Log("undo to: " + memento.GetCheckpointInfo().PlayerRespawnLoc);
 
             try
             {
                 _originator.Restore(memento);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.LogError(e.Message);
                 Undo();
             }
         }
@@ -47,7 +49,7 @@ namespace CheckpointUtils
         public void ShowHistory()
         {
             Debug.Log("Checkpoint Locals: ");
-            foreach (var memento in _mementoes)
+            foreach (var memento in _mementos)
             {
                 Debug.Log(memento.GetCheckpointInfo().PlayerRespawnLoc + " ");
             }
