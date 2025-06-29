@@ -133,7 +133,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2298391485752216716}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -197,8 +197,11 @@ MonoBehaviour:
   highlightEffect: {fileID: 5373412894795349090}
   interactionRange: 1.5
   col: {fileID: 1760941776471369583}
+  interTrigger: {fileID: 2112601575096522002}
   _isClimbing: 0
   climbRight: 0
+  twin: {fileID: 8143532468426600742}
+  twinTrigger: {fileID: 3226049695774109921}
 --- !u!1 &2679138289290494234
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,8 +254,11 @@ MonoBehaviour:
   highlightEffect: {fileID: 5373412894795349090}
   interactionRange: 1.4
   col: {fileID: 1760941776471369583}
+  interTrigger: {fileID: 3226049695774109921}
   _isClimbing: 1
   climbRight: 1
+  twin: {fileID: 6377185430772703343}
+  twinTrigger: {fileID: 2112601575096522002}
 --- !u!60 &3226049695774109921
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -202,12 +202,14 @@ public class PlayerMove : MonoBehaviour
     {
         float waitTime = GetComponent<SmoothMover>().MoveTo(playerPos);
         if (climb) _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionY;
+        //Debug.Log(_playerRb.constraints);
         return waitTime;
     }
     
     public void FinishClimb()
     {
         _playerRb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
+        //Debug.Log(_playerRb.constraints);
     }
 
 
