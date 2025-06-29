@@ -15,13 +15,18 @@ public class StartCutsceneManager : MonoBehaviour
         if (stopMove)
         {
             // freeze player
-            playerMove.SetCanMove(false);
-            dog.SetMovementEnabled(false);
+            FreezePositions();
         }
         
         // play sequence to pan camera right and move dog
         sequence.Play();
         // on camera pan stop allow player controls and show 'hide' prompt
+    }
+
+    public void FreezePositions()
+    {
+        playerMove.SetCanMove(false);
+        dog.SetMovementEnabled(false);
     }
 
     public void AfterSequence()

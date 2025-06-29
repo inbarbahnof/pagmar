@@ -12,25 +12,25 @@ public class SmoothMover : MonoBehaviour
     /// Moves the GameObject to the target position with easing.
     /// </summary>
     /// <param name="targetPosition">Target world position (2D)</param>
-    public float MoveTo(Vector2 targetPosition)
+    public float MoveTo(Vector2 targetPosition, float duration = 0.5f)
     {
         // Stop any previous movement
         if (moveCoroutine != null)
             StopCoroutine(moveCoroutine);
 
-        moveCoroutine = StartCoroutine(MoveRoutine(targetPosition));
+        moveCoroutine = StartCoroutine(MoveRoutine(targetPosition, duration));
         return moveDuration;
     }
 
-    private IEnumerator MoveRoutine(Vector2 target)
+    private IEnumerator MoveRoutine(Vector2 target, float duration)
     {
         Vector2 start = transform.position;
         float elapsed = 0f;
 
-        while (elapsed < moveDuration)
+        while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / moveDuration);
+            float t = Mathf.Clamp01(elapsed / duration);
             float easedT = easeCurve.Evaluate(t);
             transform.position = Vector2.Lerp(start, target, easedT);
             yield return null;

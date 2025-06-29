@@ -26,16 +26,11 @@ namespace Interactables
 
         private void Start()
         {
-            int i = _ghosts.Count / 2;
+            _ghostsAttackPlayer.Add(_ghosts[^1].GetComponent<GhostAttack>());
 
-            for (int j = 0; j < i; j++)
+            for (int j = 0; j < _ghosts.Count - 1; j++)
             {
                 _ghostsAttackDog.Add(_ghosts[j].GetComponent<GhostAttack>());
-            }
-            
-            for (int k = i; k < _ghosts.Count; k++)
-            {
-                _ghostsAttackPlayer.Add(_ghosts[k].GetComponent<GhostAttack>());
             }
             
             foreach (var ghost in _ghosts)
@@ -78,23 +73,6 @@ namespace Interactables
             }
         }
 
-        private IEnumerator WaitToStopKeepingDistance()
-        {
-            yield return new WaitForSeconds(0.2f);
-            
-            foreach (var ghost in _ghostsAttackDog)
-            {
-                ghost.SetKeepDistance(false);
-                ghost.SetAttackSpeed(6.5f);
-            }
-            
-            foreach (var ghost in _ghostsAttackPlayer)
-            {
-                ghost.SetKeepDistance(false);
-                ghost.SetAttackSpeed(6.5f);
-            }
-        }
-
         public void ActivateSlowMotion()
         {
             _slowMotion = StartCoroutine(SlowMotion());
@@ -105,7 +83,7 @@ namespace Interactables
             Time.timeScale = 0.5f;
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
 
-            yield return new WaitForSecondsRealtime(5f);
+            yield return new WaitForSecondsRealtime(4f);
 
             Time.timeScale = 1f;
             Time.fixedDeltaTime = 0.02f;
@@ -124,9 +102,6 @@ namespace Interactables
                 ghost.SetKeepDistance(false);
                 ghost.SetAttackSpeed(6.5f);
             }
-            
-            // if (_stopKeepingDistance != null) StopCoroutine(_stopKeepingDistance);
-            // _stopKeepingDistance = StartCoroutine(WaitToStopKeepingDistance());
         }
         
         public override void ResetObstacle()
