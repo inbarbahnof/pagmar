@@ -1,5 +1,92 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2767892999749189595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1191229062049817747}
+  - component: {fileID: 3159957987405604427}
+  m_Layer: 0
+  m_Name: Fruit 1 glow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1191229062049817747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2767892999749189595}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 959035661760640628}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &3159957987405604427
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2767892999749189595}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: 90578f0dfa438614987cf69e146c229f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.39814815, y: 0.44444445}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &4351566777743857938
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,7 +131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4486605ec00b941964fd668be6bb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dogTempComunication: {fileID: 0}
   distance: 0.6
   isTOI: 0
   canBeFed: 0
@@ -62,6 +148,10 @@ PrefabInstance:
     - target: {fileID: 2489342365258853747, guid: caf59cf5d560c544b9ff3084b80471ac, type: 3}
       propertyPath: m_Name
       value: FoodArt
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489342365258853747, guid: caf59cf5d560c544b9ff3084b80471ac, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3738701747647778022, guid: caf59cf5d560c544b9ff3084b80471ac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -142,6 +232,10 @@ PrefabInstance:
       propertyPath: _foodTarget
       value: 
       objectReference: {fileID: 2660901898492799788}
+    - target: {fileID: 1804897355344761010, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
+      propertyPath: highlightEffect
+      value: 
+      objectReference: {fileID: 2767892999749189595}
     - target: {fileID: 8422414114862519063, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
       propertyPath: m_Name
       value: ThrowableFood Variant
@@ -194,13 +288,17 @@ PrefabInstance:
     - {fileID: 6159751718454857035, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2248364613966559387, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
+    - {fileID: 3876481643124065800, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8824701921238938360, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
-      insertIndex: 0
+      insertIndex: -1
       addedObject: {fileID: 7865272429990685977}
     - targetCorrespondingSourceObject: {fileID: 8824701921238938360, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3307636544356705700}
+    - targetCorrespondingSourceObject: {fileID: 8824701921238938360, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1191229062049817747}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8422414114862519063, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
       insertIndex: -1
@@ -226,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3650608561491c8e9ee5fa880f4680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightEffect: {fileID: 4824632808170340996}
+  highlightEffect: {fileID: 2767892999749189595}
   interactionRange: 1.5
   _isThrowable: 0
   _sprite: {fileID: 2066569607733795745}
@@ -247,11 +345,6 @@ MonoBehaviour:
 --- !u!4 &959035661760640628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8824701921238938360, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
-  m_PrefabInstance: {fileID: 8590772961194787980}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4824632808170340996 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3876481643124065800, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
   m_PrefabInstance: {fileID: 8590772961194787980}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &7941190755368178750 stripped
