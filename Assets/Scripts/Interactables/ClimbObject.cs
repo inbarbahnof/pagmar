@@ -21,7 +21,11 @@ namespace Interactables
         {
             if (twinTrigger is null && twin is not null) twinTrigger = twin.GetColGO();
             ClimbInteractableManager.instance.Climb(this, Vector2.zero, _isClimbing, climbRight);
-            col.SetActive(false);
+            if (col)
+            {
+                col.SetActive(false);
+                print("col deactivated at interact press");
+            }
         }
 
         public override void StopInteractPress()
@@ -43,7 +47,11 @@ namespace Interactables
         {
             if (other.CompareTag("Player"))
             {
-                col.SetActive(true);
+                if (col)
+                {
+                    col.SetActive(true);
+                    print("col activated at trigger exit");
+                }
                 
             }
         }
@@ -54,6 +62,7 @@ namespace Interactables
             {
                 twinTrigger.enabled = true;
                 interTrigger.enabled = false;
+                Debug.Log("col deactivated at finish interact");
             }
             InteractableManager.instance.OnFinishInteraction(twin);
         }

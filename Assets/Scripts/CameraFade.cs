@@ -14,20 +14,21 @@ public class CameraFade : MonoBehaviour
 
     public float Duration => duration;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            FadeOutOverTime(true);
-        }
-        else if (Input.GetKeyDown(KeyCode.RightShift))
-        {
-            FadeOutOverTime(false);
-        }
-    }
+    // private void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.LeftShift))
+    //     {
+    //         FadeOutOverTime(true);
+    //     }
+    //     else if (Input.GetKeyDown(KeyCode.RightShift))
+    //     {
+    //         FadeOutOverTime(false);
+    //     }
+    // }
 
     public void FadeOutOverTime(bool reverse = false)
     {
+        if (!fade) return;
         if (_fadeOutCoroutine != null)
             StopCoroutine(_fadeOutCoroutine);
 

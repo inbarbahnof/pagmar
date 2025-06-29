@@ -116,160 +116,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8914946716646712064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1210893427594661650
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6864795013927339680}
-  - component: {fileID: 6492153945873587667}
-  m_Layer: 0
-  m_Name: Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6864795013927339680
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1210893427594661650}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8914946716646712064}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &6492153945873587667
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1210893427594661650}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.023682829, y: -0.049199767}
-  m_Size: {x: 1.6377738, y: 0.14835915}
-  m_Direction: 1
---- !u!1 &1223113305484328363
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3560754882959689928}
-  - component: {fileID: 1249484415453018064}
-  - component: {fileID: 5531188088780710298}
-  m_Layer: 0
-  m_Name: TriggerToFInishInteraction
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3560754882959689928
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223113305484328363}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.36994, y: 0.220029, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8914946716646712064}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1249484415453018064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223113305484328363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd0a02340d8562f4499d133a5c52d209, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveAfterExit: 1
-  rightCol: {fileID: 4352327308446988121}
-  leftCol: {fileID: 2026855749771330351}
---- !u!70 &5531188088780710298
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223113305484328363}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.2, y: 1}
-  m_Direction: 0
 --- !u!1 &1318688179922389157
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +354,56 @@ PolygonCollider2D:
       - {x: 1.0969216, y: -2.1797674}
       - {x: 0.67690945, y: -1.2314448}
   m_UseDelaunayMesh: 0
+--- !u!1 &3709990551689991952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1752542480070370778}
+  - component: {fileID: 2517931022064452573}
+  m_Layer: 0
+  m_Name: TwoDirectionClimbManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1752542480070370778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3709990551689991952}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8914946716646712064}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2517931022064452573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3709990551689991952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e484423e7e1470196b9d606f0ea2fda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightCol: {fileID: 6080094609188745323}
+  leftCol: {fileID: 8243734324710882155}
+  leftClimbTrigger: {fileID: 3118333004632365076}
+  leftJumpTrigger: {fileID: 4754968263504769779}
+  rightClimbTrigger: {fileID: 5841335194882259152}
+  rightJumpTrigger: {fileID: 1875845067824697116}
 --- !u!1 &4554448196870770030
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,8 +434,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3098213413446092253}
-  - {fileID: 6864795013927339680}
-  - {fileID: 3560754882959689928}
   - {fileID: 4064013703903681527}
   - {fileID: 809443006717931884}
   - {fileID: 1881493764066474338}
@@ -547,6 +441,7 @@ Transform:
   - {fileID: 1069506981129548271}
   - {fileID: 1390380796221978590}
   - {fileID: 3840702495281495262}
+  - {fileID: 1752542480070370778}
   m_Father: {fileID: 1885333404085217222}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5197433749841774742
@@ -638,7 +533,7 @@ Transform:
   m_GameObject: {fileID: 7025992603953689964}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.929, y: -0.195, z: 0}
+  m_LocalPosition: {x: 0.929, y: -0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -706,7 +601,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7025992603953689964}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -1102,7 +997,7 @@ PrefabInstance:
       objectReference: {fileID: 5841335194882259152}
     - target: {fileID: 6747023084942857843, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.58
+      value: -1.63
       objectReference: {fileID: 0}
     - target: {fileID: 6747023084942857843, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1168,6 +1063,8 @@ PrefabInstance:
     - {fileID: 6377185430772703343, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
     m_RemovedGameObjects:
     - {fileID: 305773074959137700, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
+    - {fileID: 9181229177501773174, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
+    - {fileID: 6557259491610875436, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2679138289290494234, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
@@ -1252,13 +1149,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 469210458168585062}
   interactionRange: 1.5
-  col: {fileID: 6080094609188745323}
+  col: {fileID: 0}
   interTrigger: {fileID: 4754968263504769779}
   _isClimbing: 0
   climbRight: 0
   twin: {fileID: 7512389590218467038}
   playerPos: {fileID: 1069506981129548271}
-  finishInteractAtEnd: 1
+  climbDown: 1
+  climbPushManager: {fileID: 2517931022064452573}
 --- !u!1 &6080094609188745323 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1760941776471369583, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
@@ -1299,7 +1197,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: -0.14385796, y: 0}
-  m_Size: {x: 0.21228409, y: 1}
+  m_Size: {x: 0.08, y: 1}
   m_Direction: 0
 --- !u!1 &7583776957112784414 stripped
 GameObject:
@@ -1357,13 +1255,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 469210458168585062}
   interactionRange: 1.5
-  col: {fileID: 6080094609188745323}
+  col: {fileID: 0}
   interTrigger: {fileID: 5841335194882259152}
   _isClimbing: 1
   climbRight: 0
   twin: {fileID: 820011668769993787}
   playerPos: {fileID: 1881493764066474338}
-  finishInteractAtEnd: 0
+  climbDown: 0
+  climbPushManager: {fileID: 2517931022064452573}
 --- !u!1001 &7644789481973652484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1406,7 +1305,7 @@ PrefabInstance:
       objectReference: {fileID: 1875845067824697116}
     - target: {fileID: 6747023084942857843, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.83
+      value: 1.86
       objectReference: {fileID: 0}
     - target: {fileID: 6747023084942857843, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1468,6 +1367,8 @@ PrefabInstance:
     - {fileID: 8143532468426600742, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
     m_RemovedGameObjects:
     - {fileID: 305773074959137700, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
+    - {fileID: 9181229177501773174, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
+    - {fileID: 6557259491610875436, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2679138289290494234, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
@@ -1552,13 +1453,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 2343434252091727974}
   interactionRange: 1.5
-  col: {fileID: 8243734324710882155}
+  col: {fileID: 0}
   interTrigger: {fileID: 3118333004632365076}
   _isClimbing: 1
   climbRight: 1
   twin: {fileID: 5822126376244355557}
   playerPos: {fileID: 809443006717931884}
-  finishInteractAtEnd: 0
+  climbDown: 0
+  climbPushManager: {fileID: 2517931022064452573}
 --- !u!1 &8243734324710882155 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1760941776471369583, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
@@ -1599,7 +1501,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: -0.11847305, y: 0}
-  m_Size: {x: 0.2630539, y: 1}
+  m_Size: {x: 0.08, y: 1}
   m_Direction: 0
 --- !u!1 &8498918562698989704 stripped
 GameObject:
@@ -1657,13 +1559,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 2343434252091727974}
   interactionRange: 1.5
-  col: {fileID: 8243734324710882155}
+  col: {fileID: 0}
   interTrigger: {fileID: 1875845067824697116}
   _isClimbing: 0
   climbRight: 1
   twin: {fileID: 8018045640985812227}
   playerPos: {fileID: 7874689347132374541}
-  finishInteractAtEnd: 1
+  climbDown: 1
+  climbPushManager: {fileID: 2517931022064452573}
 --- !u!1001 &7966134519554126713
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         else Debug.LogError("TOO MANY GAME MANAGERS!");
        
         PlayMusicAccordingToLevel();
-        _cameraFade.FadeOutOverTime(true);
+        if (_cameraFade && _cameraFade.gameObject.activeInHierarchy) _cameraFade.FadeOutOverTime(true);
     }
 
     private void PlayMusicAccordingToLevel()
