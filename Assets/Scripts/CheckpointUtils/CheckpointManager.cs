@@ -20,7 +20,7 @@ namespace CheckpointUtils
         public void Backup(Vector2 checkpointLoc, Vector2 playerRespawnPoint, Obstacle obstacle = null)
         {
             _mementos.Add(_originator.Save(checkpointLoc, playerRespawnPoint, obstacle));
-            ShowHistory();
+            //ShowHistory();
         }
 
         // call from player death
