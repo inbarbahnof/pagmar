@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Audio.FMOD;
 using Dog;
 using FMOD.Studio;
@@ -25,6 +26,8 @@ namespace Interactables
         private Vector2 _pushTarget;
         
         private EventInstance _dragSound;
+
+        private Coroutine moveToTarget;
         
         void Start()
         {
@@ -95,15 +98,22 @@ namespace Interactables
             {
                 float targetDist = Vector2.Distance(_curPushable.transform.position, _pushTarget);
                 //Debug.Log("targetDist: " + targetDist);
-                if (targetDist < 0.3f)
+                if (targetDist < 0.3f && moveToTarget == null)
                 {
-                    _curPushable.SetAtPos(_pushTarget.x);
-                    OnReachedTarget?.Invoke();
-                    SetPushTarget(Vector2.zero, null);
-                    //print("finished");
-                    StopPush();
+                    moveToTarget = StartCoroutine(ReachedTarget());
                 }
             }
+        }
+
+        private IEnumerator ReachedTarget()
+        {
+            float waitTime = _curPushable.SetAtPos(_pushTarget.x);
+            yield return new WaitForSeconds(waitTime);
+            OnReachedTarget?.Invoke();
+            SetPushTarget(Vector2.zero, null);
+            //print("finished");
+            StopPush();
+            moveToTarget = null;
         }
 
         public void ResetToCheckpoint(BaseInteractable interactable)

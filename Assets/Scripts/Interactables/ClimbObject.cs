@@ -6,11 +6,11 @@ namespace Interactables
     public class ClimbObject : BaseInteractable
     {
         [SerializeField] protected GameObject col;
-        [SerializeField] private Collider2D interTrigger;
+        [SerializeField] protected Collider2D interTrigger;
         [SerializeField] protected bool _isClimbing = true;
-        [SerializeField] private bool climbRight = true;
-        [SerializeField] private ClimbObject twin;
-        [SerializeField] private Collider2D twinTrigger;
+        [SerializeField] protected bool climbRight = true;
+        [SerializeField] protected ClimbObject twin;
+        protected Collider2D twinTrigger;
         
         public Collider2D GetColGO()
         {

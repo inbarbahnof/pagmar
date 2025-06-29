@@ -9,7 +9,8 @@ namespace Interactables
         [SerializeField] private GameObject colMid;
         [SerializeField] private PushInteractable interactable;
         [SerializeField] private Transform pushTarget;
-        [SerializeField] private ClimbPushableInteractable climbUpObject;
+        [SerializeField] private GameObject climbUpObject;
+        [SerializeField] private ClimbPushableInteractable firstClimbInter;
         [SerializeField] private bool _isJumping;
         [SerializeField] private DogWaitForPlayer _wait;
         private Collider2D interCol;
@@ -54,7 +55,7 @@ namespace Interactables
             {
                 climbUpObject.gameObject.SetActive(climb);
                 InteractableManager.instance.RemoveInteractable(interactable);
-                InteractableManager.instance.AddInteractableObj(climbUpObject);
+                InteractableManager.instance.AddInteractableObj(firstClimbInter);
                 interactable.gameObject.SetActive(!climb);
             }
         }
