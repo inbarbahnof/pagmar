@@ -84,11 +84,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d1dd6999eea4941b49ac7d149465a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dogTempComunication: {fileID: 0}
   distance: 0.8
   isTOI: 0
   _hoverTime: 2
-  _isPet: 0
 --- !u!114 &1804897355344761010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,18 +115,6 @@ PrefabInstance:
     - target: {fileID: 2803778399748420509, guid: bdbd99958b6bf214bbda60a3b307f84b, type: 3}
       propertyPath: m_Name
       value: PickUpArt
-      objectReference: {fileID: 0}
-    - target: {fileID: 5569052208693450872, guid: bdbd99958b6bf214bbda60a3b307f84b, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 4b66e273b31de46948dd160e95d03905, type: 3}
-    - target: {fileID: 5569052208693450872, guid: bdbd99958b6bf214bbda60a3b307f84b, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5569052208693450872, guid: bdbd99958b6bf214bbda60a3b307f84b, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6748626568372740385, guid: bdbd99958b6bf214bbda60a3b307f84b, type: 3}
       propertyPath: m_LocalPosition.x
