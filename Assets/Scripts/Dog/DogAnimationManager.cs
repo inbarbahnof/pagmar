@@ -82,6 +82,7 @@ namespace Dog
         private bool _digging;
         private bool _airSniff;
         private bool _tailWag;
+        private bool _idleWagging;
 
         public bool Petting => _petting;
         public bool Eating => _afterEat || _eating;
@@ -195,6 +196,7 @@ namespace Dog
             if (_sniffing) return DogAnimation.Sniff;
             if (_digging) return DogAnimation.Dig;
             if (_growling) return DogAnimation.Growl;
+            if (_idleWagging) return DogAnimation.TailWag;
             
             if (Time.time >= _nextIdleBehaviorChangeTime)
             {
@@ -216,6 +218,11 @@ namespace Dog
 
             int index = Random.Range(0, idleOptions.Length);
             return idleOptions[index];
+        }
+
+        public void IdleTailWag(bool isWagging)
+        {
+            _idleWagging = isWagging;
         }
 
         public void PetBehavior()
