@@ -148,7 +148,7 @@ namespace Dog
         {
             Vector3 currentPosition = transform.position;
             float dirX = currentPosition.x - lastPosition.x;
-
+            
             if (Mathf.Abs(dirX) > 0.001f && _actionManager.CurState != DogState.Push)
             {
                 float newScaleX = dirX > 0 ? 1 : -1;

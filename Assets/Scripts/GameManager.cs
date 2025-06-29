@@ -68,6 +68,12 @@ public class GameManager : MonoBehaviour
 
     public void LevelEnd()
     {
+        if (!_cameraFade)
+        {
+            ChangeScene();
+            return;
+        }
+        if (!_cameraFade.gameObject.activeInHierarchy) _cameraFade.gameObject.SetActive(true);
         StartCoroutine(LevelEndCoroutine());
     }
 
