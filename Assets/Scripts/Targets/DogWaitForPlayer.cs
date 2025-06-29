@@ -1,3 +1,4 @@
+using System.Collections;
 using Dog;
 using Interactables;
 using Targets;
@@ -13,15 +14,35 @@ public class DogWaitForPlayer : MonoBehaviour
     {
         if (other.CompareTag("Dog"))
         {
-            TargetGenerator.instance.SetWantFoodTarget(_wantFoodTarget);
-            
             DogActionManager dog = other.GetComponent<DogActionManager>();
+            
+            if (_finalObstacle != null)
+            {
+                StartCoroutine(TurnAroundLastObs(dog));
+                return;
+            }
+
+            TargetGenerator.instance.SetWantFoodTarget(_wantFoodTarget);
             dog.SetWantsFood(true);
             
             if (_isRunning) dog.Running(true);
-            
-            if (_finalObstacle != null) _finalObstacle.StopKeepingDistance();
         }
+    }
+
+    private IEnumerator TurnAroundLastObs(DogActionManager dog)
+    {
+        dog.DogStop();
+        
+        dog.Growl(_wantFoodTarget.transform, false);
+        yield return new WaitForSeconds(0.5f);
+        
+        dog.Bark();
+        _finalObstacle.StopKeepingDistance();
+        
+        yield return new WaitForSeconds(0.5f);
+
+        TargetGenerator.instance.SetWantFoodTarget(_wantFoodTarget);
+        dog.SetWantsFood(true);
     }
 
     public void PlayerReached()

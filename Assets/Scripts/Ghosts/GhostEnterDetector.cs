@@ -7,6 +7,7 @@ namespace Ghosts
     public class GhostEnterDetector : MonoBehaviour
     {
         [SerializeField] private GhostAttack _attack;
+        [SerializeField] private bool _isFinal;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -27,7 +28,7 @@ namespace Ghosts
                 if (!isProtected)
                 {
                     _attack.Attack(other.transform);
-                    AudioManager.Instance.SetFloatParameter(AudioManager.Instance.musicInstance,
+                    if (!_isFinal) AudioManager.Instance.SetFloatParameter(AudioManager.Instance.musicInstance,
                         "Intensity", 1, false);
                 }
             }

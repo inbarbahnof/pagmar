@@ -231,6 +231,12 @@ namespace Dog
                 _playerFollower.SetSpeed(true);
         }
 
+        public void DogStop()
+        {
+            _playerFollower.StopGoingToTarget();
+            print("dog stop");
+        }
+
         public void ResetToCheckpoint(Vector2 position)
         {
             _playerFollower.ResetToCheckpoint(position);

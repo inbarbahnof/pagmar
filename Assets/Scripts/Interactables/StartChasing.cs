@@ -19,6 +19,7 @@ namespace Interactables
                 else
                 {
                     _finalObstacle.AttackDog();
+                    CameraController.instance.ExtraZoomIn();
                     StartCoroutine(WaitToActivateWall());
                 }
             }
