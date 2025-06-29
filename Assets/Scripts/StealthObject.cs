@@ -24,8 +24,8 @@ public class StealthObject : MonoBehaviour
             _curDogActionManager = other.GetComponent<DogActionManager>();
             _curDogActionManager.HandleDogProtectionChanged(true);
             
-            Vector3 pos = new Vector3(transform.position.x - 1f, transform.position.y - 0.2f, 0);
-            _curDogActionManager.GetComponent<SmoothMover>().MoveTo(pos);
+            // Vector3 pos = new Vector3(transform.position.x - 1f, transform.position.y - 0.2f, 0);
+            // _curDogActionManager.GetComponent<SmoothMover>().MoveTo(pos);
             
             if (!_bushSound.isValid()) 
                 _bushSound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.BushRustle);

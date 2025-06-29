@@ -12,11 +12,14 @@ namespace Interactables
         [SerializeField] private ClimbPushableInteractable climbUpObject;
         [SerializeField] private bool _isJumping;
         [SerializeField] private DogWaitForPlayer _wait;
+        private Collider2D interCol;
         
 
         void Start()
         {
             interactable.SetPushTarget(pushTarget.position, ReachedTarget);
+            interCol = interactable.GetComponent<Collider2D>();
+
         }
 
         public override void ReachedTarget()
@@ -42,8 +45,7 @@ namespace Interactables
         private void DisableBarrier(bool enable)
         {
             if (colMid != null) colMid.SetActive(!enable);
-            interactable.gameObject.GetComponent<Collider2D>().enabled = !enable;
-            if (!_isJumping) NavMeshManager.instance.ReBake();
+            interCol.enabled = !enable;
         }
 
         private void SwapToClimb(bool climb)
