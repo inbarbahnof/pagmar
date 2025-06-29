@@ -348,6 +348,9 @@
 		<property name="length">
 			<value>16.695652173913043</value>
 		</property>
+		<property name="looping">
+			<value>0</value>
+		</property>
 		<relationship name="timeline">
 			<destination>{4c3b3ac4-4355-4af6-98ff-4fcceec05ce7}</destination>
 		</relationship>
@@ -651,7 +654,6 @@
 		</relationship>
 		<relationship name="automationPoints">
 			<destination>{ae93a1c0-afce-44bc-b841-751b499c51c2}</destination>
-			<destination>{0b6f22f3-8b4b-419e-b23a-bc2098f829a3}</destination>
 			<destination>{f4291b38-5f81-48a9-8a11-944326d9bfa1}</destination>
 		</relationship>
 	</object>
@@ -695,17 +697,9 @@
 			<value>-0.134590507</value>
 		</property>
 	</object>
-	<object class="AutomationPoint" id="{0b6f22f3-8b4b-419e-b23a-bc2098f829a3}">
-		<property name="position">
-			<value>1.3333333333333333</value>
-		</property>
-		<property name="value">
-			<value>0</value>
-		</property>
-	</object>
 	<object class="AutomationPoint" id="{f4291b38-5f81-48a9-8a11-944326d9bfa1}">
 		<property name="position">
-			<value>0.66666666666666663</value>
+			<value>1</value>
 		</property>
 		<property name="value">
 			<value>0</value>

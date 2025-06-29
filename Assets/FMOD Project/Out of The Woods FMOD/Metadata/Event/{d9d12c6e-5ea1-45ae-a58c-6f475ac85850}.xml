@@ -5,7 +5,7 @@
 			<value>call</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{debcf0e0-7d19-4d11-830f-9de45b670ce8}</destination>
@@ -139,6 +139,7 @@
 	<object class="MixerBusEffectChain" id="{bcb5b642-aea9-4dbb-87e5-145b67329dd9}">
 		<relationship name="effects">
 			<destination>{26431f90-3586-4ed0-bd25-3ef2f181a19a}</destination>
+			<destination>{ff7a2b21-a318-4b79-ae2b-2fce51c271c8}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{eb527fca-9e98-4365-a577-c576aba50da6}" />
@@ -170,5 +171,31 @@
 	</object>
 	<object class="MixerBusPanner" id="{46fcc6d4-1ce8-4023-8c68-3eb3370dc5d6}" />
 	<object class="MixerBusFader" id="{26431f90-3586-4ed0-bd25-3ef2f181a19a}" />
+	<object class="SpatialiserEffect" id="{ff7a2b21-a318-4b79-ae2b-2fce51c271c8}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
+		<property name="maximumDistance">
+			<value>25</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>38</value>
+		</property>
+		<property name="minimumExtent">
+			<value>190</value>
+		</property>
+		<property name="userPanDirection">
+			<value>-99.4623184</value>
+		</property>
+		<property name="userStereoSeparation">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{22924587-5857-43b7-8bd6-48db9c900359}" />
 </objects>

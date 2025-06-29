@@ -205,6 +205,8 @@ public class PlayerStateManager : MonoBehaviour
         _move.SetCanMove(false);
         _move.UpdateMoveInput(Vector2.zero);
         
+        /// TODO --- (hey ze itamar) --- add transform.position and true to pos. We want the sound of the girl's call to be attenuated (moved in space)
+        /// byeeeee
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerCall);
         
         if (_waitToCallCoroutine != null) StopCoroutine(_waitToCallCoroutine);
