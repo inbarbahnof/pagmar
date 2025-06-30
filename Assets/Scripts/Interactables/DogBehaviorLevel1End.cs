@@ -29,6 +29,12 @@ namespace Interactables
             _dog.Running(true);
         }
 
+        public void FreeDog()
+        {
+            _secondTarget.FinishTargetAction();
+            print("free dog");
+        }
+
         private IEnumerator DogBehaviorCoruotine()
         {
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogScared);

@@ -5,6 +5,7 @@ using Interactables;
 using Targets;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
@@ -135,7 +136,10 @@ namespace Dog
             else
             {
                 _animationManager.SetAnimationEnabled(true);
-                StartWalkingAfterPlayer();
+                // StartWalkingAfterPlayer();
+                
+                var agent = GetComponent<NavMeshAgent>();
+                if (agent != null) agent.Warp(transform.position);
             }
         }
 
