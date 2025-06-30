@@ -38,8 +38,7 @@ namespace Interactables
             {
                 ActivateIfOnWalkable(worldTarget);
             }
-            
-            if (_isStealth) AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DropStealthObject);
+
             base.DropObject(worldTarget);
         }
 
@@ -99,9 +98,9 @@ namespace Interactables
         
             transform.position = input.endPoint;
             _isThrowing = false;
-            
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ObjectFall);
-            
+
+            if (_isStealth) AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DropStealthObject); 
+            else AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ObjectFall);
             if (_foodTarget != null) ActivateIfOnWalkable(transform.position);
             
             OnThrowComplete?.Invoke(transform);
