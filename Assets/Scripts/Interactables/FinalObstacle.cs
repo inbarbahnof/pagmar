@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Audio.FMOD;
 using Dog;
 using Ghosts;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace Interactables
         [SerializeField] private DogWaitForPlayer _wait;
         [SerializeField] private GameObject _wall;
         [SerializeField] private GameObject _tree;
+        [SerializeField] private GameObject _callBlock;
         
         private List<GhostAttack> _ghostsAttackDog = new List<GhostAttack>();
         private List<GhostAttack> _ghostsAttackPlayer = new List<GhostAttack>();
@@ -25,8 +27,12 @@ namespace Interactables
         private Coroutine _stopKeepingDistance;
         private Coroutine _slowMotion;
 
+        private PlayerStateManager _playerState;
+
         private void Start()
         {
+            _playerState = _player.GetComponent<PlayerStateManager>();
+            
             _ghostsAttackPlayer.Add(_ghosts[^1].GetComponent<GhostAttack>());
 
             for (int j = 0; j < _ghosts.Count - 1; j++)
@@ -45,6 +51,8 @@ namespace Interactables
             if (other.CompareTag("Player"))
             {
                 _player.UpdatePlayerRunning(true);
+                AudioManager.Instance.SetFloatParameter(AudioManager.Instance.musicInstance,
+                    "Ending Run", 2, false);
             }
             else if (other.CompareTag("Dog"))
             {
@@ -78,7 +86,9 @@ namespace Interactables
 
         private IEnumerator TreeFall()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
+            
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogScared);
             _tree.transform.rotation = Quaternion.Euler(0, 0, 121f);
         }
 
@@ -112,9 +122,24 @@ namespace Interactables
                 ghost.SetAttackSpeed(6.5f);
             }
         }
+
+        public void TurnOffCallBlock()
+        {
+            _callBlock.SetActive(false);
+            StartCoroutine(WaitToBeSad());
+        }
+
+        private IEnumerator WaitToBeSad()
+        {
+            yield return new WaitForSeconds(1f);
+            
+            _playerState.UpdateIsSad(true);
+        }
         
         public override void ResetObstacle()
         {
+            CameraController.instance.ZoomIn();
+            
             if (_stopKeepingDistance != null) StopCoroutine(_stopKeepingDistance);
             if (_slowMotion != null)
             {

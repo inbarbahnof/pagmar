@@ -63,17 +63,6 @@ namespace Audio.FMOD
         
         public void PlayOneShot(EventReference sound, Vector3 pos = default, bool useDirection = false)
         {
-            // if (useDirection)
-            // {
-            //     // Play 3D sound with a fixed position
-            //     RuntimeManager.PlayOneShot(sound, pos);
-            // }
-            // else
-            // {
-            //     // Play 2D sound
-            //     RuntimeManager.PlayOneShot(sound);
-            // }
-            
             EventInstance instance = RuntimeManager.CreateInstance(sound);
             if (useDirection)
             {

@@ -234,7 +234,6 @@ namespace Dog
         public void DogStop()
         {
             _playerFollower.StopGoingToTarget();
-            print("dog stop");
         }
 
         public void ResetToCheckpoint(Vector2 position)
