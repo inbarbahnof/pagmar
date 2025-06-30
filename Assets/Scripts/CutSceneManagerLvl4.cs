@@ -40,8 +40,8 @@ public class CutSceneManagerLvl4 : MonoBehaviour
             AudioManager.Instance.PlayMusic(FMODEvents.Instance.ChapterRunning4Music);
             AudioManager.Instance.SetFloatParameter(
                 AudioManager.Instance.musicInstance,
-                "running_chapterFour",
-                0,
+                "Ending Run",
+                1,
                 false);
         }
     }

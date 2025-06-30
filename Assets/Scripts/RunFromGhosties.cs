@@ -34,7 +34,7 @@ public class RunFromGhosties : MonoBehaviour
         
         AudioManager.Instance.SetFloatParameter(
             AudioManager.Instance.musicInstance,
-            "running_chapterFour",
+            "Ending Run",
             2,
             false);
     }
@@ -47,7 +47,7 @@ public class RunFromGhosties : MonoBehaviour
 
         AudioManager.Instance.SetFloatParameter(
             AudioManager.Instance.musicInstance,
-            "running_chapterFour",
+            "Ending Run",
             1,
             false);
     }
