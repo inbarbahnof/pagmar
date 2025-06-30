@@ -12,6 +12,7 @@ namespace Interactables
     {
         // [SerializeField] private FoodPickUpInteractable _food;
         [SerializeField] private FoodTarget _foodTarget;
+        [SerializeField] private bool _isStealth = true;
         
         private AimControl _aimControl;
         private bool _isThrowing;
@@ -37,7 +38,7 @@ namespace Interactables
             {
                 ActivateIfOnWalkable(worldTarget);
             }
-            
+
             base.DropObject(worldTarget);
         }
 
@@ -97,9 +98,9 @@ namespace Interactables
         
             transform.position = input.endPoint;
             _isThrowing = false;
-            
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ObjectFall);
-            
+
+            if (_isStealth) AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DropStealthObject); 
+            else AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ObjectFall);
             if (_foodTarget != null) ActivateIfOnWalkable(transform.position);
             
             OnThrowComplete?.Invoke(transform);

@@ -26,7 +26,6 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private string climbAnimName;
     [SerializeField] private string crouchIdleAnimName;
     [SerializeField] private string crouchWalkAnimName;
-    [SerializeField] private string walkingAnimName;
     [SerializeField] private string throwAnimName;
     [SerializeField] private string aimAnimName;
     [SerializeField] private string petAnimName;
@@ -46,7 +45,6 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private float climbAnimSpeed = 1f;
     [SerializeField] private float crouchIdleAnimSpeed = 1f;
     [SerializeField] private float crouchWalkAnimSpeed = 1f;
-    [SerializeField] private float walkingAnimSpeed = 1f;
     [SerializeField] private float throwAnimSpeed = 1f;
     [SerializeField] private float aimAnimSpeed = 1f;
     [SerializeField] private float petAnimSpeed = 1f;
@@ -67,7 +65,6 @@ public class PlayerAnimationManager : MonoBehaviour
     private Spine.EventData _footstepsEventData;
     private Spine.EventData _pickUpEventData;
 
-    private PlayerStateManager _playerStateManager;
     private PlayerAnimation _curAnim;
     private bool _isHolding;
 
@@ -81,8 +78,6 @@ public class PlayerAnimationManager : MonoBehaviour
     
     void Start()
     {
-        _playerStateManager = GetComponent<PlayerStateManager>();
-        
         spineAnimationState = skeletonAnimation.AnimationState;
         skeleton = skeletonAnimation.Skeleton;
         
@@ -273,10 +268,6 @@ public class PlayerAnimationManager : MonoBehaviour
                     entry = spineAnimationState.SetAnimation(0, crouchWalkAnimName, true);
                     if (entry != null) entry.TimeScale = crouchWalkAnimSpeed;
                     break;
-                case PlayerAnimation.Walking:
-                    entry = spineAnimationState.SetAnimation(0, walkingAnimName, true);
-                    if (entry != null) entry.TimeScale = walkingAnimSpeed;
-                    break;
                 case PlayerAnimation.Aim:
                     _holdingHand.SetActive(false);
                     entry = spineAnimationState.SetAnimation(0, aimAnimName, true);
@@ -285,13 +276,6 @@ public class PlayerAnimationManager : MonoBehaviour
                 case PlayerAnimation.Throw:
                     _holdingHand.SetActive(false);
                     _isHolding = false;
-                    
-                    AudioManager.Instance.PlaySoundWithParameter(
-                        FMODEvents.Instance.PlayerThrow, 
-                        transform.position, 
-                        "Stealth_Throw", 
-                        _playerStateManager.IsStealthing ? 1 : 0
-                    );
                     
                     entry = spineAnimationState.SetAnimation(0, throwAnimName, false);
                     spineAnimationState.AddAnimation(0, idleAnimName, true, 0);

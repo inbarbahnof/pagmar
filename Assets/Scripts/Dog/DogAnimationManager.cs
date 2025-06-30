@@ -83,6 +83,7 @@ namespace Dog
         private bool _airSniff;
         private bool _tailWag;
         private bool _idleWagging;
+        private bool _smoothMoving;
 
         public bool Petting => _petting;
         public bool Eating => _afterEat || _eating;
@@ -137,9 +138,8 @@ namespace Dog
         {
             if (!_animationEnabled) return;
             
-            if (!_petting && !_growling && !_eating && !_afterEat) CheckRotation();
+            if (!_petting && !_growling && !_eating && !_afterEat && !_smoothMoving) CheckRotation();
             UpdateMoving();
-            
             DogAnimation cur = WhichAnimShouldBePlayed();
             if (cur != _curAnim) DogAnimationUpdate(cur);
         }
@@ -178,6 +178,7 @@ namespace Dog
             if (_petting) return DogAnimation.Pet;
             if (_isJumping) return DogAnimation.Jump;
             if (_tailWag) return DogAnimation.TailWag;
+            if (_smoothMoving) return DogAnimation.Walk;
             
             if (_actionManager.Crouching)
             {
@@ -223,6 +224,12 @@ namespace Dog
         public void IdleTailWag(bool isWagging)
         {
             _idleWagging = isWagging;
+        }
+        
+        public void UpdateSmoothMove(bool move, Vector2 faceTo)
+        {
+            _smoothMoving = move;
+            if (move) FaceTowardsPosition(faceTo);
         }
 
         public void PetBehavior()
@@ -439,6 +446,18 @@ namespace Dog
             }
 
             _curAnim = anim;
+        }
+        
+        private void FaceTowardsPosition(Vector2 position)
+        {
+            float direction = position.x - transform.position.x;
+            float newScaleX = direction > 0 ? 1 : -1;
+
+            art.transform.localScale = new Vector3(
+                newScaleX * Mathf.Abs(art.transform.localScale.x),
+                art.transform.localScale.y,
+                art.transform.localScale.z
+            );
         }
         
         private void FaceTowardsTransform(Transform FaceTo)
