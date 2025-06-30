@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{ba270ce2-a99a-4e30-bd72-92da3104b8b3}">
+		<property name="name">
+			<value>Ghosts and Ghosties</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{0824889c-d6e7-4b11-9a4a-74ba92b05ba3}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{50939177-271c-4f5d-bf1d-a0f128013240}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{47ca9d15-6cbf-4a0d-807b-562b77b3822a}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{0824889c-d6e7-4b11-9a4a-74ba92b05ba3}">
+		<relationship name="effects">
+			<destination>{56c6a384-6098-4b46-81a7-f90068a8cb47}</destination>
+			<destination>{59335681-c994-46f3-9253-fed04ac3cb00}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{50939177-271c-4f5d-bf1d-a0f128013240}" />
+	<object class="MixerBusFader" id="{56c6a384-6098-4b46-81a7-f90068a8cb47}" />
+	<object class="LowpassEffect" id="{59335681-c994-46f3-9253-fed04ac3cb00}">
+		<property name="cutoff">
+			<value>22000</value>
+		</property>
+	</object>
+</objects>
