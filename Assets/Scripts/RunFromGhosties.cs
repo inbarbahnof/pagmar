@@ -31,16 +31,25 @@ public class RunFromGhosties : MonoBehaviour
     {
         _playerMove.StopAutoRun();
         CameraController.instance.ZoomIn();
+        
+        AudioManager.Instance.SetFloatParameter(
+            AudioManager.Instance.musicInstance,
+            "running_chapterFour",
+            2,
+            false);
     }
 
     private IEnumerator StartRunCorutine()
     {
         DogRun();
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         _playerMove.StartAutoRunWithVerticalControl();
 
-        AudioManager.Instance.SetFloatParameter(AudioManager.Instance.musicInstance,
-            "Ending Run", 1, false);
+        AudioManager.Instance.SetFloatParameter(
+            AudioManager.Instance.musicInstance,
+            "running_chapterFour",
+            1,
+            false);
     }
     
     private void DogRun()
@@ -60,35 +69,4 @@ public class RunFromGhosties : MonoBehaviour
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
     }
-    
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if (other.CompareTag("Dog"))
-    //     {
-    //         _didDogPass = true;
-    //         // print("dog passed");
-    //         
-    //         if (_playerWaiting) StartsRunning();
-    //     }
-    //     else if (other.CompareTag("Player"))
-    //     {
-    //         if (_isRunning)
-    //         {
-    //             if (!_didDogPass)
-    //             {
-    //                 _playerWaiting = true;
-    //                 _playerMove.SetCanMove(false);
-    //             }
-    //             else
-    //             {
-    //                 StartsRunning();
-    //             }
-    //         }
-    //         else
-    //         {
-    //             _playerMove.StopAutoRun();
-    //             CameraController.instance.ZoomIn();
-    //         }
-    //     }
-    // }
 }

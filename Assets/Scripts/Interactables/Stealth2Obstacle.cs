@@ -55,7 +55,6 @@ namespace Interactables
             
             // reset player
             _player.SetProtected(false);
-            _playerStateManager.UpdateIsStealthing(false);
             
             // reset dog
             _dog.StealthObs(false);
@@ -85,7 +84,6 @@ namespace Interactables
         public override void PlayerReachedTarget()
         {
             _player.SetProtected(false);
-            _playerStateManager.UpdateIsStealthing(false);
             
             CameraController.instance.FollowPlayer();
             _dog.ChangeCrouching(false);
@@ -108,7 +106,6 @@ namespace Interactables
                 TargetGenerator.instance.SetStealthTarget(_targets[0]);
                 _dog.StealthObs(true);
                 CameraController.instance.FollowPlayerAndDog();
-                _playerStateManager.UpdateIsStealthing(true);
             }
         }
 

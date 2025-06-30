@@ -1,7 +1,6 @@
 ﻿public enum PlayerAnimation
 { 
     Idle,
-    Walking,
     Call,
     Climb,
     CrouchIdle,

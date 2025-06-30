@@ -1,4 +1,5 @@
 using System;
+using Audio.FMOD;
 using UnityEngine;
 
 public class CutSceneManagerLvl4 : MonoBehaviour
@@ -18,10 +19,12 @@ public class CutSceneManagerLvl4 : MonoBehaviour
     
     public void MoveToPositions()
     {
-        _cutsceneManager.FreezePositions();
+        _cutsceneManager.FreezePLayer();
         _player.MoveTo(_playerPos.position, 5f);
         _dog.MoveTo(_dogPos.position, 5f);
         _waiting = true;
+        
+        AudioManager.Instance.StopMusic();
     }
 
     private void Update()
@@ -33,6 +36,13 @@ public class CutSceneManagerLvl4 : MonoBehaviour
         {
             _cutsceneManager.ShowSequence();
             _waiting = false;
+            
+            AudioManager.Instance.PlayMusic(FMODEvents.Instance.ChapterRunning4Music);
+            AudioManager.Instance.SetFloatParameter(
+                AudioManager.Instance.musicInstance,
+                "running_chapterFour",
+                0,
+                false);
         }
     }
 }

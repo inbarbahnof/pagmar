@@ -30,7 +30,6 @@ public class PlayerStateManager : MonoBehaviour
     private InputManager _inputManager;
     
     private bool _isCrouching;
-    private bool _isStealthing;
     private bool _isAbleToAim;
     private bool _isCalling;
     private bool _pickedUp;
@@ -44,6 +43,7 @@ public class PlayerStateManager : MonoBehaviour
     private bool _narrowPass;
     private bool _dropping;
     private bool _sad;
+    private bool _smoothMoving;
 
     private Coroutine _waitToCallCoroutine;
     private Vector3 _initialPickUpParentPos;
@@ -54,7 +54,6 @@ public class PlayerStateManager : MonoBehaviour
     public bool IsPushingFromLeft => _isPushingFromLeft;
     public bool IsClimbing => _isClimbing;
     public bool IsDropping => _dropping;
-    public bool IsStealthing => _isStealthing;
 
     // public delegate void OnStateChange(PlayerState newState);
 
@@ -83,7 +82,7 @@ public class PlayerStateManager : MonoBehaviour
         PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching, 
             _move.IsMoving, _move.CanMove, _isCalling, _move.MovingRight, 
             _move.Standing, _pickedUp, _justPickedUp, _throwing, _isPushingFromLeft, 
-            _isAiming, _petting, _goingBackFromPet, _narrowPass, _sad);
+            _isAiming, _petting, _goingBackFromPet, _narrowPass, _sad, _smoothMoving);
         
         PlayerAnimation animation = _computer.Compute(input);
         _animationManager.PlayerAnimationUpdate(animation);
@@ -92,15 +91,15 @@ public class PlayerStateManager : MonoBehaviour
             _animationManager.FlipSpriteBasedOnInput(_move.MoveInput, _move.AimInput);
     }
 
-    public void UpdateIsStealthing(bool stealth)
-    {
-        _isStealthing = stealth;
-    }
-
     public void UpdateIsSad(bool sad)
     {
         _sad = sad;
         _move.UpdatePlayerSad(sad);
+    }
+
+    public void UpdateSmoothMove(bool move)
+    {
+        _smoothMoving = move;
     }
 
     public void UpdatePlayerSpeed(bool isFast)
@@ -256,7 +255,6 @@ public class PlayerStateManager : MonoBehaviour
     public void UpdateStealth(bool isProtected)
     {
         _isCrouching = isProtected;
-        UpdateIsStealthing(isProtected);
         if (isProtected) SetState(PlayerState.Stealth);
     }
 

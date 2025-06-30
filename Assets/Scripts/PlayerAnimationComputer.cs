@@ -15,6 +15,7 @@
         if (input._throwing) return PlayerAnimation.Throw;
 
         if (input._isAiming) return PlayerAnimation.Aim;
+        if (input._smoothMoving) return PlayerAnimation.Run;
         
         switch (input._playerState)
         {
