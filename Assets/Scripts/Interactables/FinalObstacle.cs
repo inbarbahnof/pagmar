@@ -88,7 +88,10 @@ namespace Interactables
         {
             yield return new WaitForSeconds(0.5f);
             
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogScared);
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogScared, 
+                _dog.transform.position,
+                true);
+            
             _tree.transform.rotation = Quaternion.Euler(0, 0, 121f);
         }
 
