@@ -31,13 +31,14 @@ namespace Interactables
 
         public void FreeDog()
         {
-            _secondTarget.FinishTargetAction();
-            print("free dog");
+            _dog.SetWantsFood(false);
+            _dog.SetMovementEnabled(true);
         }
 
         private IEnumerator DogBehaviorCoruotine()
         {
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogScared);
+            // AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogScared,
+            //     _dog.transform.position, true);
             yield return new WaitForSeconds(0.4f);
             
             _secondTarget.gameObject.SetActive(true);
@@ -62,7 +63,12 @@ namespace Interactables
         private IEnumerator StartCutscene()
         {
             _playerMove.SetCanMove(false);
+
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogScared,
+                _dog.transform.position, true);
+
             yield return new WaitForSeconds(1f);
+            _secondTarget.FinishTargetAction();
             _dog.SetMovementEnabled(false);
 
             _cutsceneManager.ShowSequence();

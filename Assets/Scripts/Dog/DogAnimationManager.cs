@@ -257,7 +257,8 @@ namespace Dog
         public void DogStartSniff()
         {
             _sniffing = true;
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogSniff);
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogSniff, 
+                transform.position, true);
             StartCoroutine(StopSniffing());
         }
 
@@ -288,6 +289,8 @@ namespace Dog
         public void DogAirSniff()
         {
             _airSniff = true;
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogSniff,
+                transform.position, true);
             StartCoroutine(FinishAirSniff());
         }
         
@@ -343,7 +346,8 @@ namespace Dog
 
         private IEnumerator Eat(Action DestroyFood, Action onDoneEating)
         {
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogEat);
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogEat,
+                transform.position, true);
             
             _eating = true;
             yield return new WaitForSeconds(_eatAnimationTime);
@@ -437,6 +441,7 @@ namespace Dog
                     break;
                 case DogAnimation.AirSniff:
                     entry = spineAnimationState.SetAnimation(0, airSniffAnimName, true);
+                    
                     if (entry != null) entry.TimeScale = airSniffAnimSpeed;
                     break;
                 case DogAnimation.TailWag:
