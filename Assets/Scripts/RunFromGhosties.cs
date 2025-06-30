@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Audio.FMOD;
 using Dog;
 using Targets;
 using UnityEngine;
@@ -37,6 +38,9 @@ public class RunFromGhosties : MonoBehaviour
         DogRun();
         yield return new WaitForSeconds(1.5f);
         _playerMove.StartAutoRunWithVerticalControl();
+
+        AudioManager.Instance.SetFloatParameter(AudioManager.Instance.musicInstance,
+            "Ending Run", 1, false);
     }
     
     private void DogRun()

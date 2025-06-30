@@ -39,6 +39,7 @@
         if (input._isCrouching) return PlayerAnimation.CrouchWalk;
         if (input._narrowPass) return PlayerAnimation.NarrowPass;
         if (!input._canMove) return PlayerAnimation.Idle;
+        if (input._sad) return PlayerAnimation.SadWalk;
         return PlayerAnimation.Run;
     }
 

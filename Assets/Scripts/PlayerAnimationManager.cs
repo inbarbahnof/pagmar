@@ -34,6 +34,7 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private string dropAnimName;
     [SerializeField] private string narrowPassAnimName;
     [SerializeField] private string holdPushAnimName;
+    [SerializeField] private string sadWalkAnimName;
     
     [Header("Animation Speeds")]
     [SerializeField] private float idleAnimSpeed = 1f;
@@ -53,6 +54,7 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private float dropAnimSpeed = 1f;
     [SerializeField] private float narrowPassAnimSpeed = 1f;
     [SerializeField] private float holdPushAnimSpeed = 1f;
+    [SerializeField] private float sadWalkAnimSpeed = 1f;
 
     [Header("Event Names")] 
     [SerializeField] private string _climbUpEventName;
@@ -64,7 +66,8 @@ public class PlayerAnimationManager : MonoBehaviour
     private Spine.EventData _climbRightEventData;
     private Spine.EventData _footstepsEventData;
     private Spine.EventData _pickUpEventData;
-    
+
+    private PlayerStateManager _playerStateManager;
     private PlayerAnimation _curAnim;
     private bool _isHolding;
 
@@ -78,6 +81,8 @@ public class PlayerAnimationManager : MonoBehaviour
     
     void Start()
     {
+        _playerStateManager = GetComponent<PlayerStateManager>();
+        
         spineAnimationState = skeletonAnimation.AnimationState;
         skeleton = skeletonAnimation.Skeleton;
         
@@ -280,7 +285,14 @@ public class PlayerAnimationManager : MonoBehaviour
                 case PlayerAnimation.Throw:
                     _holdingHand.SetActive(false);
                     _isHolding = false;
-                    AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerThrow);
+                    
+                    AudioManager.Instance.PlaySoundWithParameter(
+                        FMODEvents.Instance.PlayerThrow, 
+                        transform.position, 
+                        "Stealth_Throw", 
+                        _playerStateManager.IsStealthing ? 1 : 0
+                    );
+                    
                     entry = spineAnimationState.SetAnimation(0, throwAnimName, false);
                     spineAnimationState.AddAnimation(0, idleAnimName, true, 0);
                     if (entry != null) entry.TimeScale = throwAnimSpeed;
@@ -305,6 +317,10 @@ public class PlayerAnimationManager : MonoBehaviour
                     entry = spineAnimationState.SetAnimation(0, dropAnimName, false);
                     if (entry != null) entry.TimeScale = dropAnimSpeed;
                     StartCoroutine(OnDrop());
+                    break;
+                case PlayerAnimation.SadWalk:
+                    entry = spineAnimationState.SetAnimation(0, sadWalkAnimName, true);
+                    if (entry != null) entry.TimeScale = sadWalkAnimSpeed;
                     break;
             }
 
