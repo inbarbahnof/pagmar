@@ -16,5 +16,6 @@
     Aim,
     NarrowPass,
     Drop,
-    HoldPush
+    HoldPush,
+    SadWalk
 }

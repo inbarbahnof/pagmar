@@ -30,6 +30,7 @@ public class PlayerStateManager : MonoBehaviour
     private InputManager _inputManager;
     
     private bool _isCrouching;
+    private bool _isStealthing;
     private bool _isAbleToAim;
     private bool _isCalling;
     private bool _pickedUp;
@@ -42,6 +43,7 @@ public class PlayerStateManager : MonoBehaviour
     private bool _goingBackFromPet;
     private bool _narrowPass;
     private bool _dropping;
+    private bool _sad;
 
     private Coroutine _waitToCallCoroutine;
     private Vector3 _initialPickUpParentPos;
@@ -52,6 +54,7 @@ public class PlayerStateManager : MonoBehaviour
     public bool IsPushingFromLeft => _isPushingFromLeft;
     public bool IsClimbing => _isClimbing;
     public bool IsDropping => _dropping;
+    public bool IsStealthing => _isStealthing;
 
     // public delegate void OnStateChange(PlayerState newState);
 
@@ -80,13 +83,24 @@ public class PlayerStateManager : MonoBehaviour
         PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching, 
             _move.IsMoving, _move.CanMove, _isCalling, _move.MovingRight, 
             _move.Standing, _pickedUp, _justPickedUp, _throwing, _isPushingFromLeft, 
-            _isAiming, _petting, _goingBackFromPet, _narrowPass);
+            _isAiming, _petting, _goingBackFromPet, _narrowPass, _sad);
         
         PlayerAnimation animation = _computer.Compute(input);
         _animationManager.PlayerAnimationUpdate(animation);
         
         if (!_move.Pushing && !_isClimbing && !_dropping && _move.CanMove)
             _animationManager.FlipSpriteBasedOnInput(_move.MoveInput, _move.AimInput);
+    }
+
+    public void UpdateIsStealthing(bool stealth)
+    {
+        _isStealthing = stealth;
+    }
+
+    public void UpdateIsSad(bool sad)
+    {
+        _sad = sad;
+        _move.UpdatePlayerSad(sad);
     }
 
     public void UpdatePlayerSpeed(bool isFast)
@@ -205,9 +219,8 @@ public class PlayerStateManager : MonoBehaviour
         _move.SetCanMove(false);
         _move.UpdateMoveInput(Vector2.zero);
         
-        /// TODO --- (hey ze itamar) --- add transform.position and true to pos. We want the sound of the girl's call to be attenuated (moved in space)
-        /// byeeeee
-        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerCall);
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerCall,
+            transform.position, true);
         
         if (_waitToCallCoroutine != null) StopCoroutine(_waitToCallCoroutine);
             
@@ -243,6 +256,7 @@ public class PlayerStateManager : MonoBehaviour
     public void UpdateStealth(bool isProtected)
     {
         _isCrouching = isProtected;
+        UpdateIsStealthing(isProtected);
         if (isProtected) SetState(PlayerState.Stealth);
     }
 

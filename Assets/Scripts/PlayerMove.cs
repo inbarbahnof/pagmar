@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float _runSpeed = 4.7f;
     [SerializeField] private float _runFastSpeed = 6f;
     [SerializeField] private float _crouchSpeed = 3f;
+    [SerializeField] private float _sadWalkSpeed = 3f;
     [SerializeField] private float _narrowPassSpeed = 4f;
     [SerializeField] private float _pushSpeed = 3.7f;
     [SerializeField] private GameObject _playerArt;
@@ -26,6 +27,7 @@ public class PlayerMove : MonoBehaviour
     private bool movingRight = true;
     private bool _standing;
     private bool _crouching;
+    private bool _sad;
     
     private bool isAutoRunning = false;
     private Vector2 autoRunDirection = new Vector2(1f, -0.6f);
@@ -75,6 +77,14 @@ public class PlayerMove : MonoBehaviour
         UpdatePlayerRunning(false);
     }
 
+    public void UpdatePlayerSad(bool sad)
+    {
+        _sad = sad;
+        
+        if (sad) _speed = _sadWalkSpeed;
+        else _speed = _runSpeed;
+    }
+
     public void UpdatePlayerRunning(bool isRunning)
     {
         if (isRunning)
@@ -93,6 +103,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (narrow) _speed = _narrowPassSpeed;
         else if (_crouching) _speed = _crouchSpeed;
+        else if (_sad) _speed = _sadWalkSpeed;
         else _speed = _runSpeed;
     }
 
