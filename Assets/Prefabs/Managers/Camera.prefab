@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 667054225479214369}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -125.6705, y: -7.8795757, z: 0.23406696}
+  m_LocalPosition: {x: -143.52052, y: -18.049574, z: 0.23406696}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -294,9 +294,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _followPlayer: {fileID: 6885530303164051641}
   _followPlayerAndDog: {fileID: 9133047443058072857}
+  cutsceneCams: []
   zoomSpeed: 2
   minFOV: 5
   maxFOV: 7
+  extraZoomIn: 3
 --- !u!1 &4279199250921157227
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +329,7 @@ Transform:
   m_GameObject: {fileID: 4279199250921157227}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.93663, y: 17.054207, z: -9.963331}
+  m_LocalPosition: {x: 130.3166, y: 5.6142087, z: -9.963331}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -407,7 +409,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -522,7 +524,7 @@ Transform:
   m_GameObject: {fileID: 8113160563428466729}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -125.6705, y: -7.8795757, z: 10.234067}
+  m_LocalPosition: {x: -143.52052, y: -18.049574, z: 10.234067}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
