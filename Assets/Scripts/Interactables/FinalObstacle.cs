@@ -88,11 +88,12 @@ namespace Interactables
         {
             yield return new WaitForSeconds(0.5f);
             
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogScared, 
+            _tree.transform.rotation = Quaternion.Euler(0, 0, 121f);
+            // Play tree fall sound
+            
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogDie, 
                 _dog.transform.position,
                 true);
-            
-            _tree.transform.rotation = Quaternion.Euler(0, 0, 121f);
         }
 
         public void ActivateSlowMotion()

@@ -218,12 +218,28 @@ public class PlayerStateManager : MonoBehaviour
         _move.SetCanMove(false);
         _move.UpdateMoveInput(Vector2.zero);
         
-        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerCall,
-            transform.position, true);
+        MakeCallSound();
         
         if (_waitToCallCoroutine != null) StopCoroutine(_waitToCallCoroutine);
             
         _waitToCallCoroutine = StartCoroutine(WaitToCall());
+    }
+
+    private void MakeCallSound()
+    {
+        if (GameManager.instance.Chapter == 3)
+            AudioManager.Instance.PlaySoundWithStringParameter(
+                FMODEvents.Instance.PlayerCall,
+                transform.position, "Girl Call Mode",
+                "no dog3");
+        else if (_sad)
+            AudioManager.Instance.PlaySoundWithStringParameter(
+                FMODEvents.Instance.PlayerCall,
+                transform.position, "Girl Call Mode",
+                "worried end");
+        else
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerCall,
+                transform.position, true);
     }
     
     private IEnumerator WaitToCall()

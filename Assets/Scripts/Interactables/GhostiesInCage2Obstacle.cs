@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Audio.FMOD;
 using DG.Tweening;
 using Ghosts;
 using UnityEngine;
@@ -25,6 +26,7 @@ namespace Interactables
         {
             if (_cage.GhostiesInCage >= 1)
             {
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.CageSnap);
                 _cage.transform.DOMove(_cageDropPos.position, _dropDuration)
                     .SetEase(Ease.InCubic)
                     .OnComplete(AfterCageDrop);
@@ -34,6 +36,7 @@ namespace Interactables
         private void AfterCageDrop()
         {
             _deathZoneToDestroy.gameObject.SetActive(false);
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.CageFall);
             NavMeshManager.instance.ReBake();
         }
 

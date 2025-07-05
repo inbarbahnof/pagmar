@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 9142433324659692186}
   - component: {fileID: 7442896233822983717}
   - component: {fileID: 1053219973341121011}
+  - component: {fileID: 5392597224576151627}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -338,6 +339,20 @@ MonoBehaviour:
   _keepDistance: 0
   _canAttack: 1
   _ghostMovement: {fileID: 7442896233822983717}
+--- !u!114 &5392597224576151627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8299120769745567863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e102308f623726c418292b9fccdd05d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPlayableDistance: 20
+  _isGhost: 1
 --- !u!1001 &3668886012411905164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -798,6 +813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxPlayableDistance: 20
+  _isGhost: 0
 --- !u!4 &6163352425193455035 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7754761588616838319, guid: 546b0af74d937054bbf1e9cf3eba290d, type: 3}

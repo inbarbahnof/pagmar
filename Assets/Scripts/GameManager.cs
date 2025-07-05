@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private InputManager _playerInput;
     [SerializeField] private CameraFade _cameraFade;
     public int ConnectionState => connectionState;
+    public int Chapter => chapter;
     
     void Start()
     {
