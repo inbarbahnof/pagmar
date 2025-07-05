@@ -9,7 +9,10 @@ namespace Audio.FMOD
         [field: SerializeField] public EventReference ObjectFall { get; private set; }
         [field: SerializeField] public EventReference BushRustle { get; private set; }
         [field: SerializeField] public EventReference GhostieSound { get; private set; }
+        [field: SerializeField] public EventReference GhostSound { get; private set; }
         [field: SerializeField] public EventReference DropStealthObject { get; private set; }
+        [field: SerializeField] public EventReference CageFall { get; private set; }
+        [field: SerializeField] public EventReference CageSnap { get; private set; }
         
         [field: Header("PlayerSFX")]
         [field: SerializeField] public EventReference PlayerCall { get; private set; }
@@ -25,6 +28,7 @@ namespace Audio.FMOD
         [field: SerializeField] public EventReference DogSniff{ get; private set; }
         [field: SerializeField] public EventReference DogScared{ get; private set; }
         [field: SerializeField] public EventReference DogEat{ get; private set; }
+        [field: SerializeField] public EventReference DogDie{ get; private set; }
 
         [field: Header("Music")]
         [field: SerializeField] public EventReference Chapter0Music { get; private set; }

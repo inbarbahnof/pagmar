@@ -7,18 +7,24 @@ namespace Ghosts
 {
     public class PlayGhostieSound : MonoBehaviour
     {
-        [SerializeField]float maxPlayableDistance = 20f;
-        private EventInstance _ghostieSound;
+        [SerializeField] float maxPlayableDistance = 20f;
+        [SerializeField] private bool _isGhost;
+        private EventInstance _charachterSound;
         private bool hasStarted;
         private bool dead;
 
         private void Start()
         {
-            _ghostieSound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.GhostieSound,
+            if (!_isGhost) _charachterSound = AudioManager.Instance.PlayLoopingSound(
+                FMODEvents.Instance.GhostieSound,
                 transform.position, true);
+            else _charachterSound = AudioManager.Instance.PlayLoopingSound(
+                FMODEvents.Instance.GhostSound,
+                transform.position, true);
+            
             // This tells FMOD to track the transform and Rigidbody
             FMODUnity.RuntimeManager.AttachInstanceToGameObject(
-                _ghostieSound,
+                _charachterSound,
                 transform, // the Ghostie's transform
                 GetComponent<Rigidbody2D>() // optional, used for velocity tracking
             );
@@ -29,13 +35,13 @@ namespace Ghosts
             if (!dead && !hasStarted && 
                 Vector3.Distance(transform.position, Camera.main.transform.position) < maxPlayableDistance)
             {
-                _ghostieSound.start();
+                _charachterSound.start();
                 hasStarted = true;
             }
             else if (hasStarted && 
                      Vector3.Distance(transform.position, Camera.main.transform.position) > maxPlayableDistance + 5f)
             {
-                _ghostieSound.stop(STOP_MODE.ALLOWFADEOUT);
+                _charachterSound.stop(STOP_MODE.ALLOWFADEOUT);
                 hasStarted = false;
             }
         }
@@ -44,7 +50,7 @@ namespace Ghosts
         {
             if (hasStarted)
             {
-                _ghostieSound.stop(STOP_MODE.ALLOWFADEOUT);
+                _charachterSound.stop(STOP_MODE.ALLOWFADEOUT);
                 hasStarted = false;
                 dead = true;
             }
@@ -54,7 +60,7 @@ namespace Ghosts
         {
             if (!hasStarted)
             {
-                _ghostieSound.start();
+                _charachterSound.start();
                 hasStarted = true;
                 dead = false;
             }

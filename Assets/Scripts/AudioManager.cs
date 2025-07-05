@@ -144,6 +144,24 @@ namespace Audio.FMOD
             // Release instance once done (to avoid memory leaks)
             eventInstance.release();
         }
+        
+        public void PlaySoundWithStringParameter(EventReference sound, Vector3 pos, string parameterName, string parameterValue)
+        {
+            // Create an EventInstance
+            var eventInstance = RuntimeManager.CreateInstance(sound);
+
+            // Set 3D position
+            eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(pos));
+
+            // Set parameter before starting
+            eventInstance.setParameterByNameWithLabel(parameterName, parameterValue);
+ 
+            // Start playing
+            eventInstance.start();
+
+            // Release instance once done (to avoid memory leaks)
+            eventInstance.release();
+        }
     
 
         public EventInstance CreateEventInstance(EventReference eventReference)
