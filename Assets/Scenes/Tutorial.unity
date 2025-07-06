@@ -3311,17 +3311,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6773691893312521259, guid: 0331364337f27364db8c300eb1f70d17, type: 3}
   m_PrefabInstance: {fileID: 274547275}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274547277}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca11fa35a5964c23b2c618bf1d9fb772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &274547277 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2709496971714555277, guid: 0331364337f27364db8c300eb1f70d17, type: 3}
-  m_PrefabInstance: {fileID: 274547275}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &301066732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33265,11 +33260,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a16b2d0169c924ca31074270fe8cf8, type: 3}
---- !u!1 &1084128139 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4279199250921157227, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
-  m_PrefabInstance: {fileID: 9073050080453914627}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1084721836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34289,7 +34279,7 @@ PlayableDirector:
   - key: {fileID: 1385435035949980369, guid: 096186eed67ce484cb47c837abab33d5, type: 2}
     value: {fileID: 1483706851}
   - key: {fileID: 1167366122953664385, guid: 096186eed67ce484cb47c837abab33d5, type: 2}
-    value: {fileID: 1084128139}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - 26365531921aa45d4b76385abb637893: {fileID: 1692850806}
@@ -37778,7 +37768,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4519064065317753830, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
   m_PrefabInstance: {fileID: 9073050080453914627}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1084128139}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
@@ -41770,7 +41760,7 @@ PlayableDirector:
   - key: {fileID: -6759516652157715636, guid: e5197170547e9114d9f72bb19c4f3c33, type: 2}
     value: {fileID: 1887335575}
   - key: {fileID: -6949514600269953543, guid: e5197170547e9114d9f72bb19c4f3c33, type: 2}
-    value: {fileID: 274547277}
+    value: {fileID: 1050567125}
   m_ExposedReferences:
     m_References:
     - 210c7c92426d2954487e55749ae99101: {fileID: 419365130}
@@ -42286,7 +42276,7 @@ PlayableDirector:
   - key: {fileID: -8272801892839219193, guid: 9b7fe8c10d7f3a148a037a7c8803d305, type: 2}
     value: {fileID: 1851854809}
   - key: {fileID: -8035217564912847358, guid: 9b7fe8c10d7f3a148a037a7c8803d305, type: 2}
-    value: {fileID: 274547277}
+    value: {fileID: 1050567125}
   m_ExposedReferences:
     m_References:
     - 12e2c00d7829f46f5a1bf4100d34b8c1: {fileID: 219977576}
@@ -42401,7 +42391,19 @@ MonoBehaviour:
     - m_PersistentCalls:
         m_Calls: []
     - m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 274547276}
+          m_TargetAssemblyTypeName: Audio.FMOD.AudioManager, Assembly-CSharp
+          m_MethodName: StopMusic
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1834576619
 GameObject:
   m_ObjectHideFlags: 0
@@ -46984,11 +46986,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2754817148511294683, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 92.38662
+      value: -2.6133854
       objectReference: {fileID: 0}
     - target: {fileID: 2754817148511294683, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.884209
+      value: 13.5842085
       objectReference: {fileID: 0}
     - target: {fileID: 2754817148511294683, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.z

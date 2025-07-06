@@ -58,25 +58,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -103,49 +85,13 @@ MonoBehaviour:
     m_BlendOutDuration: 0.4333333333333349
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -172,25 +118,7 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -289,7 +217,7 @@ MonoBehaviour:
     dontEndWithClip: 0
     endMixOutDuration: 0.1
     attachmentThreshold: 0.5
-    eventThreshold: 0.5
+    eventThreshold: 0
     drawOrderThreshold: 0.5
     alpha: 1
 --- !u!114 &-6116356060256313597
@@ -373,7 +301,7 @@ MonoBehaviour:
     dontEndWithClip: 0
     endMixOutDuration: 0.1
     attachmentThreshold: 0.5
-    eventThreshold: 0.5
+    eventThreshold: 0
     drawOrderThreshold: 0.5
     alpha: 1
 --- !u!114 &-312027097572601945
@@ -505,7 +433,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: call
+    m_DisplayName: call_lvl0 Cutscene
   m_Markers:
     m_Objects: []
   template:
@@ -544,25 +472,7 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -676,7 +586,7 @@ MonoBehaviour:
     dontEndWithClip: 0
     endMixOutDuration: 0.1
     attachmentThreshold: 0.5
-    eventThreshold: 0.5
+    eventThreshold: 0
     drawOrderThreshold: 0.5
     alpha: 1
 --- !u!74 &5730592576737577867
@@ -980,19 +890,17 @@ MonoBehaviour:
       Slot13: 0
       Slot14: 0
       Slot15: 0
-  EventLength: 0
+  EventLength: 1.222
   eventName: 
   EventReference:
     Guid:
-      Data1: -640603026
-      Data2: 1169055393
-      Data3: 1198492837
-      Data4: 1347995738
-    Path: event:/characters/Girl/call
+      Data1: -798954861
+      Data2: 1197611834
+      Data3: -1320214100
+      Data4: 1414284081
+    Path: event:/characters/Girl/call_lvl0 Cutscene
   StopType: 0
-  Parameters:
-  - Name: Girl Call Mode
-    Value: 1
+  Parameters: []
 --- !u!114 &8940013416353969210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1017,6 +925,6 @@ MonoBehaviour:
     dontEndWithClip: 0
     endMixOutDuration: 0.1
     attachmentThreshold: 0.5
-    eventThreshold: 0.5
+    eventThreshold: 0
     drawOrderThreshold: 0.5
     alpha: 1

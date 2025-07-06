@@ -227,16 +227,34 @@ public class PlayerStateManager : MonoBehaviour
 
     private void MakeCallSound()
     {
-        if (GameManager.instance.Chapter == 3)
+        if (GameManager.instance.Chapter == 0)
             AudioManager.Instance.PlaySoundWithStringParameter(
                 FMODEvents.Instance.PlayerCall,
                 transform.position, "Girl Call Mode",
-                "no dog3");
+                "no dog lvl0");
+        else if (GameManager.instance.Chapter == 3)
+        {
+            if (!_stealthManager.isProtected)
+            AudioManager.Instance.PlaySoundWithStringParameter(
+               FMODEvents.Instance.PlayerCall,
+               transform.position, "Girl Call Mode",
+               "no dog lvl3");
+            else
+                AudioManager.Instance.PlaySoundWithStringParameter(
+                    FMODEvents.Instance.PlayerCall,
+                    transform.position, "Girl Call Mode",
+                    "stealth no dog");
+        }       
         else if (_sad)
             AudioManager.Instance.PlaySoundWithStringParameter(
                 FMODEvents.Instance.PlayerCall,
                 transform.position, "Girl Call Mode",
                 "worried end");
+        else if (_isCrouching)
+            AudioManager.Instance.PlaySoundWithStringParameter(
+                        FMODEvents.Instance.PlayerCall,
+                        transform.position, "Girl Call Mode",
+                        "stealth dog");
         else
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerCall,
                 transform.position, true);
