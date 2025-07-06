@@ -58,6 +58,10 @@ namespace Audio.FMOD
             }
             
             ambianceInstance = RuntimeManager.CreateInstance(music);
+
+            /// itamar added this --- to have the ambiance sound follow the camera position and have ATTENUATION
+            ambianceInstance.set3DAttributes(Camera.main.transform.position.To3DAttributes()); 
+
             ambianceInstance.start();
         }
         
