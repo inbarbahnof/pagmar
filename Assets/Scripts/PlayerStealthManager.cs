@@ -18,13 +18,20 @@ public class PlayerStealthManager : MonoBehaviour
     public void SetStealthMode(bool isInStealth)
     {
         _isProtected = isInStealth;
-        
-        if (isInStealth) 
+
+        if (GameManager.instance.Chapter == 0)
             AudioManager.Instance.SetFloatParameter(default,
-                "Stealth Mode", 1, true);
+              "Stealth Mode", 0, true);
         else
-            AudioManager.Instance.SetFloatParameter(default,
-                "Stealth Mode", 0, true);
+        {
+            if (isInStealth)
+                AudioManager.Instance.SetFloatParameter(default,
+                    "Stealth Mode", 1, true);
+            else
+                AudioManager.Instance.SetFloatParameter(default,
+                    "Stealth Mode", 0, true);
+        }
+      
     }
 
     public void StealthObstacle(bool isInStealth)
