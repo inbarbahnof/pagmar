@@ -9,6 +9,8 @@ public class StealthObject : MonoBehaviour
     private PlayerStealthManager _curStealthManager;
     private DogActionManager _curDogActionManager;
     private EventInstance _bushSound;
+
+    [SerializeField] private bool _isStealthOut = true;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,6 +18,8 @@ public class StealthObject : MonoBehaviour
         {
             _curStealthManager = other.GetComponent<PlayerStealthManager>();
            _curStealthManager.SetStealthMode(true);
+           _curStealthManager.StealthObstacle(true);
+           
            if (!_bushSound.isValid()) 
                _bushSound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.BushRustle);
         }
@@ -37,6 +41,7 @@ public class StealthObject : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _curStealthManager.SetStealthMode(false);
+            if (_isStealthOut) _curStealthManager.StealthObstacle(false);
             _curStealthManager = null;
             
             AudioManager.Instance.StopSound(_bushSound);

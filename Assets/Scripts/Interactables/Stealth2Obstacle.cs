@@ -47,25 +47,12 @@ namespace Interactables
 
         public override void ResetObstacle()
         {
-            // reset camera
-            CameraController.instance.FollowPlayer();
-            
-            _curTarget = 0;
-            TargetGenerator.instance.SetStealthTarget(_targets[0]);
-            
-            // reset player
-            _player.SetProtected(false);
-            
-            // reset dog
-            _dog.StealthObs(false);
-            _dog.ChangeCrouching(false);
-            
             InteractableManager.instance.OnStopInteract();
             
-            // // reset targets
-            foreach (var target in _targets)  
+            // reset targets
+            for (int i = 1; i < _targets.Length; i++)
             {
-                target.FinishTargetAction();
+                _targets[i].FinishTargetAction();
             }
             
             // reset sticks positions
@@ -79,6 +66,11 @@ namespace Interactables
             {
                 ghost.MoveAround();
             }
+            
+            _curTarget = 0;
+            TargetGenerator.instance.SetStealthTarget(_targets[0]);
+            _dog.StealthObs(true);
+            CameraController.instance.FollowPlayerAndDog();
         }
 
         public override void PlayerReachedTarget()
@@ -136,3 +128,20 @@ namespace Interactables
         }
     }
 }
+// // reset camera
+// CameraController.instance.FollowPlayer();
+//
+// _curTarget = 0;
+// TargetGenerator.instance.SetStealthTarget(_targets[0]);
+//
+// // reset player
+// _player.SetProtected(false);
+//
+// // reset dog
+// _dog.StealthObs(false);
+// _dog.ChangeCrouching(false);
+            
+// foreach (var target in _targets)  
+// {
+//     target.FinishTargetAction();
+// }

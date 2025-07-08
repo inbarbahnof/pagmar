@@ -234,6 +234,7 @@ namespace Dog
 
         public void PetBehavior()
         {
+            FaceTowardsTransform(playerTransform);
             _petting = true;
             StartCoroutine(PetCorutine());
         }
