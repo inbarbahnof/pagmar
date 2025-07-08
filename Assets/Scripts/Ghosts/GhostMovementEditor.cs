@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+﻿/*using UnityEditor;
 using UnityEngine;
 
 namespace Ghosts
@@ -31,4 +31,4 @@ namespace Ghosts
             serializedObject.ApplyModifiedProperties();
         }
     }
-}
+}*/
