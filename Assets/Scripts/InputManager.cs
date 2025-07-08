@@ -56,7 +56,6 @@ public class InputManager : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 inputVal = context.ReadValue<Vector2>();
-        print(inputVal);
         if (inputVal.magnitude < deadzoneThreshold)
             inputVal = Vector2.zero;
         
@@ -108,7 +107,6 @@ public class InputManager : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        print(context);
         if (context.started)
         {
             InteractableManager.instance.OnInteract();  // Button just pressed
@@ -126,7 +124,6 @@ public class InputManager : MonoBehaviour
 
     public void OnCall(InputAction.CallbackContext context)
     {
-        print(context);
         if (context.started)
         {
             _stateManager.StartedCalling();
