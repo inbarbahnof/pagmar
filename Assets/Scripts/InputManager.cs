@@ -44,7 +44,7 @@ public class InputManager : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 inputVal = context.ReadValue<Vector2>();
-        if (inputVal.x < _minJoystickInput.x && inputVal.y < _minJoystickInput.y) return;
+        if (inputVal.x < _minJoystickInput.x && inputVal.y < _minJoystickInput.y) inputVal = Vector2.zero;
         
         if (_stateManager.CurrentState == PlayerState.Aim)
         {
