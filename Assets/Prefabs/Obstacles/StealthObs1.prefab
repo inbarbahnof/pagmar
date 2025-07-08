@@ -209,6 +209,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StealthBush (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3313601172901110135, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.39
+      objectReference: {fileID: 0}
     - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.3299999
@@ -258,14 +262,41 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6228573987442008878, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 9188343512355888521}
+    - target: {fileID: 6228573987442008878, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: _isStealthOut
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3200446643449140884, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9188343512355888521}
   m_SourcePrefab: {fileID: 100100000, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+--- !u!1 &2518726506120356145 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3200446643449140884, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+  m_PrefabInstance: {fileID: 1053302634641536933}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9188343512355888521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518726506120356145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d1dd6999eea4941b49ac7d149465a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0.8
+  isTOI: 0
+  _hoverTime: 0.4
 --- !u!4 &5414696379095455168 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
@@ -282,6 +313,10 @@ PrefabInstance:
     - target: {fileID: 1413393299442258733, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_Name
       value: StealthBush (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313601172901110135, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_LocalScale.x
@@ -332,14 +367,41 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6228573987442008878, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 7883236075096258217}
+    - target: {fileID: 6228573987442008878, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: _isStealthOut
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3200446643449140884, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7883236075096258217}
   m_SourcePrefab: {fileID: 100100000, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+--- !u!1 &4137058602302831446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3200446643449140884, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+  m_PrefabInstance: {fileID: 1514209630079380930}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7883236075096258217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4137058602302831446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d1dd6999eea4941b49ac7d149465a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0.8
+  isTOI: 0
+  _hoverTime: 0.4
 --- !u!4 &5816756412701069223 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
@@ -356,6 +418,10 @@ PrefabInstance:
     - target: {fileID: 1413393299442258733, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_Name
       value: StealthBush (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313601172901110135, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_LocalScale.x
@@ -406,14 +472,41 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6228573987442008878, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 2971856757181713717}
+    - target: {fileID: 6228573987442008878, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: _isStealthOut
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3200446643449140884, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2971856757181713717}
   m_SourcePrefab: {fileID: 100100000, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+--- !u!1 &508435325259113868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3200446643449140884, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+  m_PrefabInstance: {fileID: 3126648780048626456}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2971856757181713717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508435325259113868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d1dd6999eea4941b49ac7d149465a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0.8
+  isTOI: 0
+  _hoverTime: 0.4
 --- !u!4 &7989067974464655741 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
@@ -430,6 +523,10 @@ PrefabInstance:
     - target: {fileID: 1413393299442258733, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_Name
       value: StealthBush (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313601172901110135, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_LocalScale.x
@@ -480,14 +577,41 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6228573987442008878, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 180447657890079216}
+    - target: {fileID: 6228573987442008878, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: _isStealthOut
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3200446643449140884, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 180447657890079216}
   m_SourcePrefab: {fileID: 100100000, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+--- !u!1 &2119506824269617894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3200446643449140884, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+  m_PrefabInstance: {fileID: 3530898497727089778}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &180447657890079216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119506824269617894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d1dd6999eea4941b49ac7d149465a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0.8
+  isTOI: 0
+  _hoverTime: 0.4
 --- !u!4 &8411191353155087895 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
@@ -504,6 +628,10 @@ PrefabInstance:
     - target: {fileID: 1413393299442258733, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_Name
       value: StealthBush (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313601172901110135, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_LocalScale.x
@@ -554,14 +682,41 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6228573987442008878, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 2120816540900044975}
+    - target: {fileID: 6228573987442008878, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: _isStealthOut
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3200446643449140884, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2120816540900044975}
   m_SourcePrefab: {fileID: 100100000, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+--- !u!1 &1475915310057307352 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3200446643449140884, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+  m_PrefabInstance: {fileID: 4040226276246956620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2120816540900044975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475915310057307352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d1dd6999eea4941b49ac7d149465a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0.8
+  isTOI: 0
+  _hoverTime: 0.4
 --- !u!4 &9055345654111963177 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
@@ -578,6 +733,10 @@ PrefabInstance:
     - target: {fileID: 1413393299442258733, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_Name
       value: StealthBush (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313601172901110135, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_LocalScale.x
@@ -628,14 +787,41 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6228573987442008878, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 7069325824232055165}
+    - target: {fileID: 6228573987442008878, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: _isStealthOut
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3200446643449140884, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7069325824232055165}
   m_SourcePrefab: {fileID: 100100000, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+--- !u!1 &1410712016288279863 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3200446643449140884, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+  m_PrefabInstance: {fileID: 4609889799658830755}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7069325824232055165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410712016288279863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d1dd6999eea4941b49ac7d149465a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0.8
+  isTOI: 0
+  _hoverTime: 0.4
 --- !u!4 &8809980783826753990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
@@ -652,6 +838,14 @@ PrefabInstance:
     - target: {fileID: 1413393299442258733, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_Name
       value: StealthBush (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313601172901110135, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313601172901110135, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_LocalScale.x
@@ -702,19 +896,46 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6228573987442008878, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 4814045423157282624}
+    - target: {fileID: 6228573987442008878, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: _isStealthOut
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3200446643449140884, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4814045423157282624}
   m_SourcePrefab: {fileID: 100100000, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
 --- !u!4 &846160204721029538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
   m_PrefabInstance: {fileID: 5621867516262785991}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7092791162322695507 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3200446643449140884, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+  m_PrefabInstance: {fileID: 5621867516262785991}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4814045423157282624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7092791162322695507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d1dd6999eea4941b49ac7d149465a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0.8
+  isTOI: 0
+  _hoverTime: 0.4
 --- !u!1001 &6074913328905095667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -850,6 +1071,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StealthBush
       objectReference: {fileID: 0}
+    - target: {fileID: 3313601172901110135, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.45
+      objectReference: {fileID: 0}
     - target: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.3299999
@@ -899,16 +1124,43 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6228573987442008878, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 8791743457706765257}
+    - target: {fileID: 6228573987442008878, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
       propertyPath: _isStealthOut
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3200446643449140884, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8791743457706765257}
   m_SourcePrefab: {fileID: 100100000, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
 --- !u!4 &4213427771503655694 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
   m_PrefabInstance: {fileID: 9206433773663754603}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6028516696577511423 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3200446643449140884, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
+  m_PrefabInstance: {fileID: 9206433773663754603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8791743457706765257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6028516696577511423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d1dd6999eea4941b49ac7d149465a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0.8
+  isTOI: 0
+  _hoverTime: 0.4

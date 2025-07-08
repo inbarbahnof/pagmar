@@ -2,6 +2,8 @@ using System;
 using Audio.FMOD;
 using Dog;
 using FMOD.Studio;
+using Interactables;
+using Targets;
 using UnityEngine;
 
 public class StealthObject : MonoBehaviour
@@ -9,9 +11,11 @@ public class StealthObject : MonoBehaviour
     private PlayerStealthManager _curStealthManager;
     private DogActionManager _curDogActionManager;
     private EventInstance _bushSound;
-
-    [SerializeField] private bool _isStealthOut = true;
     
+    [SerializeField] private Target _target;
+    [SerializeField] private bool _isStealthOut = true;
+    [SerializeField] private Stealth1Obstacle _obstacle;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -19,6 +23,9 @@ public class StealthObject : MonoBehaviour
             _curStealthManager = other.GetComponent<PlayerStealthManager>();
            _curStealthManager.SetStealthMode(true);
            _curStealthManager.StealthObstacle(true);
+           
+           if (_obstacle != null && _target != null)
+               _obstacle.SetStealthTarget(true, _target);
            
            if (!_bushSound.isValid()) 
                _bushSound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.BushRustle);
@@ -42,6 +49,9 @@ public class StealthObject : MonoBehaviour
         {
             _curStealthManager.SetStealthMode(false);
             if (_isStealthOut) _curStealthManager.StealthObstacle(false);
+            else if (_obstacle != null && _target != null)
+                _obstacle.SetStealthTarget(false, _target);
+            
             _curStealthManager = null;
             
             AudioManager.Instance.StopSound(_bushSound);
