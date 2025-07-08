@@ -95,10 +95,8 @@ public class GameManager : MonoBehaviour
     private void ChangeScene()
     {
         Time.timeScale = 1;
-        print("timescale: " + Time.timeScale);
         int nextSceneIdx = SceneManager.GetActiveScene().buildIndex + 1;
         if (SceneManager.sceneCountInBuildSettings > nextSceneIdx)
-            
             SceneManager.LoadScene(nextSceneIdx);
         else print("end");
     }

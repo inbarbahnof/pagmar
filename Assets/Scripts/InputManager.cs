@@ -24,6 +24,18 @@ public class InputManager : MonoBehaviour
         _aimControl = GetComponent<AimControl>();
     }
 
+    private void Start()
+    {
+        StartCoroutine(ResetInput());
+    }
+
+    private IEnumerator ResetInput()
+    {
+        yield return new WaitForSeconds(2f);
+        _input.enabled = false;
+        _input.enabled = true;
+    }
+
     public void ChangeCallState(int state)
     {
         if (state <= 2)
@@ -44,7 +56,7 @@ public class InputManager : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 inputVal = context.ReadValue<Vector2>();
-        
+        print(inputVal);
         if (inputVal.magnitude < deadzoneThreshold)
             inputVal = Vector2.zero;
         
@@ -96,6 +108,7 @@ public class InputManager : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        print(context);
         if (context.started)
         {
             InteractableManager.instance.OnInteract();  // Button just pressed
@@ -113,6 +126,7 @@ public class InputManager : MonoBehaviour
 
     public void OnCall(InputAction.CallbackContext context)
     {
+        print(context);
         if (context.started)
         {
             _stateManager.StartedCalling();

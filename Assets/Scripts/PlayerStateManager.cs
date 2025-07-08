@@ -56,7 +56,7 @@ public class PlayerStateManager : MonoBehaviour
     public bool IsDropping => _dropping;
 
     // public delegate void OnStateChange(PlayerState newState);
-
+    
     private void Start()
     {
         GetManagers();
@@ -69,6 +69,7 @@ public class PlayerStateManager : MonoBehaviour
         _move = GetComponent<PlayerMove>();
         _computer = new PlayerAnimationComputer();
         _inputManager = GetComponent<InputManager>();
+        print(_inputManager);
     }
 
     private void Update()
