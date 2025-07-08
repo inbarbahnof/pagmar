@@ -44,6 +44,7 @@ public class PlayerStateManager : MonoBehaviour
     private bool _dropping;
     private bool _sad;
     private bool _smoothMoving;
+    private bool _stopSad;
 
     private Coroutine _waitToCallCoroutine;
     private Vector3 _initialPickUpParentPos;
@@ -83,7 +84,7 @@ public class PlayerStateManager : MonoBehaviour
         PlayerAnimationInput input = new PlayerAnimationInput(curState, _isCrouching, 
             _move.IsMoving, _move.CanMove, _isCalling, _move.MovingRight, 
             _move.Standing, _pickedUp, _justPickedUp, _throwing, _isPushingFromLeft, 
-            _isAiming, _petting, _goingBackFromPet, _narrowPass, _sad, _smoothMoving);
+            _isAiming, _petting, _goingBackFromPet, _narrowPass, _sad, _smoothMoving, _stopSad);
         
         PlayerAnimation animation = _computer.Compute(input);
         _animationManager.PlayerAnimationUpdate(animation);
@@ -208,6 +209,22 @@ public class PlayerStateManager : MonoBehaviour
     {
         _narrowPass = inRoad;
         _move.UpdateNarrowPass(inRoad);
+    }
+
+    public void StopSad()
+    {
+        _stopSad = true;
+        _move.SetCanMove(false);
+        _move.UpdateMoveInput(Vector2.zero);
+
+        StartCoroutine(WaitToStopSad());
+    }
+
+    private IEnumerator WaitToStopSad()
+    {
+        yield return new WaitForSeconds(3.367f);
+        _stopSad = false;
+        _move.SetCanMove(true);
     }
 
     public void StartedCalling()

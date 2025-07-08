@@ -16,5 +16,6 @@
     NarrowPass,
     Drop,
     HoldPush,
-    SadWalk
+    SadWalk,
+    StopSad
 }

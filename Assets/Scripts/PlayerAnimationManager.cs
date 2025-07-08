@@ -34,6 +34,7 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private string narrowPassAnimName;
     [SerializeField] private string holdPushAnimName;
     [SerializeField] private string sadWalkAnimName;
+    [SerializeField] private string sadStopAnimName;
     
     [Header("Animation Speeds")]
     [SerializeField] private float idleAnimSpeed = 1f;
@@ -53,6 +54,7 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private float narrowPassAnimSpeed = 1f;
     [SerializeField] private float holdPushAnimSpeed = 1f;
     [SerializeField] private float sadWalkAnimSpeed = 1f;
+    [SerializeField] private float sadStopAnimSpeed = 1f;
 
     [Header("Event Names")] 
     [SerializeField] private string _climbUpEventName;
@@ -305,6 +307,10 @@ public class PlayerAnimationManager : MonoBehaviour
                 case PlayerAnimation.SadWalk:
                     entry = spineAnimationState.SetAnimation(0, sadWalkAnimName, true);
                     if (entry != null) entry.TimeScale = sadWalkAnimSpeed;
+                    break;
+                case PlayerAnimation.StopSad:
+                    entry = spineAnimationState.SetAnimation(0, sadStopAnimName, false);
+                    if (entry != null) entry.TimeScale = sadStopAnimSpeed;
                     break;
             }
 
