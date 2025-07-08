@@ -129,4 +129,9 @@ public class InputManager : MonoBehaviour
             _stateManager.StartedCalling();
         }
     }
+
+    public void OnMenuButton(InputAction.CallbackContext context)
+    {
+        Application.Quit();
+    }
 }

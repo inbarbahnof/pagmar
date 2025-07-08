@@ -98,7 +98,11 @@ public class GameManager : MonoBehaviour
         int nextSceneIdx = SceneManager.GetActiveScene().buildIndex + 1;
         if (SceneManager.sceneCountInBuildSettings > nextSceneIdx)
             SceneManager.LoadScene(nextSceneIdx);
-        else print("end");
+        else
+        {
+            print("end");
+            Application.Quit();
+        }
     }
     
 }
