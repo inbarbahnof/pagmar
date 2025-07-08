@@ -39,12 +39,12 @@ namespace Interactables
         {
             // AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogScared,
             //     _dog.transform.position, true);
-            yield return new WaitForSeconds(0.4f);
+            // yield return new WaitForSeconds(0.4f);
             
             _secondTarget.gameObject.SetActive(true);
             TargetGenerator.instance.SetWantFoodTarget(_secondTarget);
             
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.2f);
             
             _dog.SetWantsFood(true);
             _dog.Running(true);
