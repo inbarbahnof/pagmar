@@ -33,14 +33,11 @@ namespace Interactables
         {
             _dog.SetWantsFood(false);
             _dog.SetMovementEnabled(true);
+            _dog.ChangeCrouching(false);
         }
 
         private IEnumerator DogBehaviorCoruotine()
         {
-            // AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogScared,
-            //     _dog.transform.position, true);
-            // yield return new WaitForSeconds(0.4f);
-            
             _secondTarget.gameObject.SetActive(true);
             TargetGenerator.instance.SetWantFoodTarget(_secondTarget);
             

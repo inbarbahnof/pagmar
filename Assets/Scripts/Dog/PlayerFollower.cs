@@ -115,6 +115,7 @@ namespace Dog
         public void ResetToCheckpoint(Vector2 position)
         {
             transform.position = position;
+            agent.Warp(position);
             
             currentTarget = null;
             nextTarget = null;

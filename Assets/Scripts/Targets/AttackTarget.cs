@@ -24,7 +24,8 @@ namespace Targets
             manager.Growl(transform, false);
             manager.Running(false);
 
-            StartCoroutine(WaitToFinish());
+            if (gameObject.activeSelf) StartCoroutine(WaitToFinish());
+            else FinishTargetAction();
         }
     }
 }

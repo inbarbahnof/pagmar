@@ -58,21 +58,6 @@ namespace Interactables
 
         public override void ResetObstacle()
         {
-            // reset camera
-            CameraController.instance.FollowPlayer();
-            
-            _curDogTarget = 0;
-            _curPlayerBush = 0;
-            _playerReachedCurrentTarget = false;
-            TargetGenerator.instance.SetStealthTarget(_targets[0]);
-            
-            // reset dog
-            _dog.StealthObs(false);
-            _dog.ChangeCrouching(false);
-            _dogReachedFirstTarget = false;
-            
-            _player.StealthObstacle(false);
-            
             InteractableManager.instance.OnStopInteract();
             
             // reset sticks positions
@@ -93,11 +78,14 @@ namespace Interactables
                 ghost.MoveAround();
             }
             
-            // // reset targets
-            foreach (var target in _targets)  
-            {
-                target.FinishTargetAction();
-            }
+            _curDogTarget = 0;
+            _curPlayerBush = 0;
+            _playerReachedCurrentTarget = true;
+            _dogReachedFirstTarget = false;
+            TargetGenerator.instance.SetStealthTarget(_targets[0]);
+            
+            _dog.StealthObs(true);
+            CameraController.instance.FollowPlayerAndDog();
         }
 
         public void PlayerReachedStealth()

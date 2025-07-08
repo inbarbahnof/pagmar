@@ -25,13 +25,19 @@ namespace Interactables
             _didGhostAppear = true;
         }
 
+        public void SetStealthTarget(bool isEntered, Target target)
+        {
+            if (isEntered) TargetGenerator.instance.SetStealthTarget(target);
+            else TargetGenerator.instance.SetStealthTarget(_stealthTarget);
+        }
+
         public override void ResetObstacle()
         {
             CameraController.instance.ZoomIn();
             _stealthTarget.FinishTargetAction();
             
-            _dog.ChangeCrouching(false);
-            _player.StealthObstacle(false);
+            // _dog.ChangeCrouching(false);
+            // _player.StealthObstacle(false);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
