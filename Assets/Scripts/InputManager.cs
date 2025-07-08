@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour
     private Vector2 _lastAimInput = Vector2.zero;
     private Coroutine _retainAimCoroutine;
 
-    private Vector2 _minJoystickInput = new Vector2(0.2f, 0.2f);
+    [SerializeField] private float deadzoneThreshold = 0.2f;
     
     private void Awake()
     {
@@ -44,7 +44,9 @@ public class InputManager : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 inputVal = context.ReadValue<Vector2>();
-        if (inputVal.x < _minJoystickInput.x && inputVal.y < _minJoystickInput.y) inputVal = Vector2.zero;
+        
+        if (inputVal.magnitude < deadzoneThreshold)
+            inputVal = Vector2.zero;
         
         if (_stateManager.CurrentState == PlayerState.Aim)
         {
