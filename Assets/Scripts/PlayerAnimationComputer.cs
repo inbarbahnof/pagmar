@@ -16,6 +16,7 @@
 
         if (input._isAiming) return PlayerAnimation.Aim;
         if (input._smoothMoving) return PlayerAnimation.Run;
+        if (input._stopSad) return PlayerAnimation.StopSad;
         
         switch (input._playerState)
         {

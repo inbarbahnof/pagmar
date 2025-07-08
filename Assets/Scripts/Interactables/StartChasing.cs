@@ -20,6 +20,10 @@ namespace Interactables
                 {
                     _finalObstacle.AttackDog();
                     CameraController.instance.ExtraZoomIn();
+                    
+                    Collider2D col = GetComponent<Collider2D>();
+                    col.enabled = false;
+                    
                     StartCoroutine(WaitToActivateWall());
                 }
             }
