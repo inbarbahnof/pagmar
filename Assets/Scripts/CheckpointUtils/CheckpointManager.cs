@@ -17,9 +17,9 @@ namespace CheckpointUtils
         }
 
         // call from checkpoint collider
-        public void Backup(Vector2 checkpointLoc, Vector2 playerRespawnPoint, Obstacle obstacle = null)
+        public void Backup(Vector2 checkpointLoc, Vector2 playerRespawnPoint, Vector3 dogRespawnPoint, Obstacle obstacle = null)
         {
-            _mementos.Add(_originator.Save(checkpointLoc, playerRespawnPoint, obstacle));
+            _mementos.Add(_originator.Save(checkpointLoc, playerRespawnPoint, dogRespawnPoint, obstacle));
             //ShowHistory();
         }
 

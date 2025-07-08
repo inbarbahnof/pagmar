@@ -23,13 +23,13 @@ namespace CheckpointUtils
                 player.transform.position + dogRespawnOffset);
         }
 
-        public IMemento Save(Vector2 checkpointLoc, Vector3 playerRespawnPoint, Obstacle obstacle = null)
+        public IMemento Save(Vector2 checkpointLoc, Vector3 playerRespawnPoint, Vector3 dogRespawnPoint, Obstacle obstacle = null)
         {
             _curObs = obstacle;
             _curCheckpointInfo = new CheckpointInfo(
                 checkpointLoc, 
                 playerRespawnPoint, 
-                playerRespawnPoint + dogRespawnOffset, 
+                dogRespawnPoint, 
                 _curObs);
             return new ConcreteMemento(_curCheckpointInfo);
         }

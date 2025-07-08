@@ -42,6 +42,7 @@ public class InputManager : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 inputVal = context.ReadValue<Vector2>();
+        print(inputVal);
         
         if (_stateManager.CurrentState == PlayerState.Aim)
         {
