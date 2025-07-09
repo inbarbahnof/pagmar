@@ -29,7 +29,8 @@ namespace Interactables
         public void DropStick()
         {
             _food.transform.DOMove(_dropFoodPos.position, _dropDuration)
-                .SetEase(Ease.OutBounce);
+                .SetEase(Ease.OutQuart)
+                .OnComplete(_particle.Play);
 
             StartCoroutine(WaitToDropStick());
             
@@ -49,8 +50,7 @@ namespace Interactables
         {
             yield return new WaitForSeconds(0.2f);
             _stick.transform.DOMove(_dropStickPos.position, _dropDuration - 0.2f)
-                .SetEase(Ease.OutQuart)
-                .OnComplete(_particle.Play);
+                .SetEase(Ease.OutQuart);
         }
     }
 }

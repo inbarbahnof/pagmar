@@ -33,7 +33,7 @@ namespace Interactables
         
         private void Start()
         {
-            _particalOffsetFromPush = _pushParticals.position - transform.position;
+            if (_pushParticals != null) _particalOffsetFromPush = _pushParticals.position - transform.position;
         }
         
         public override void Interact()
