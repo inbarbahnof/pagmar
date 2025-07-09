@@ -17,8 +17,9 @@ namespace Interactables
         [SerializeField] private Transform _dropStickPos;
         [SerializeField] private float _dropDuration = 1f;
 
-        [Header("Ghost Appearance")] [SerializeField]
-        private Stealth1Obstacle _stealth;
+        [Header("Ghost Appearance")] 
+        [SerializeField] private Stealth1Obstacle _stealth;
+        [SerializeField] private ParticleSystem _particle;
 
         private void Start()
         {
@@ -48,7 +49,8 @@ namespace Interactables
         {
             yield return new WaitForSeconds(0.2f);
             _stick.transform.DOMove(_dropStickPos.position, _dropDuration - 0.2f)
-                .SetEase(Ease.OutQuart);
+                .SetEase(Ease.OutQuart)
+                .OnComplete(_particle.Play);
         }
     }
 }

@@ -12,6 +12,8 @@ public class StealthObject : MonoBehaviour
     private DogActionManager _curDogActionManager;
     private EventInstance _bushSound;
     
+    [SerializeField] private Animator _animator;
+    [SerializeField] private ParticleSystem _particle;
     [SerializeField] private Target _target;
     [SerializeField] private bool _isStealthOut = true;
     [SerializeField] private Stealth1Obstacle _obstacle;
@@ -27,6 +29,9 @@ public class StealthObject : MonoBehaviour
            if (_obstacle != null && _target != null)
                _obstacle.SetStealthTarget(true, _target);
            
+           _particle.Play();
+           _animator.SetTrigger("enter");
+           
            if (!_bushSound.isValid()) 
                _bushSound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.BushRustle);
         }
@@ -35,8 +40,8 @@ public class StealthObject : MonoBehaviour
             _curDogActionManager = other.GetComponent<DogActionManager>();
             _curDogActionManager.HandleDogProtectionChanged(true);
             
-            // Vector3 pos = new Vector3(transform.position.x - 1f, transform.position.y - 0.2f, 0);
-            // _curDogActionManager.GetComponent<SmoothMover>().MoveTo(pos);
+            _particle.Play();
+            _animator.SetTrigger("enter");
             
             if (!_bushSound.isValid()) 
                 _bushSound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.BushRustle);
@@ -53,6 +58,8 @@ public class StealthObject : MonoBehaviour
                 _obstacle.SetStealthTarget(false, _target);
             
             _curStealthManager = null;
+            _particle.Play();
+            _animator.SetTrigger("enter");
             
             AudioManager.Instance.StopSound(_bushSound);
             _bushSound = default;
@@ -61,6 +68,9 @@ public class StealthObject : MonoBehaviour
         {
             _curDogActionManager.HandleDogProtectionChanged(false);
             _curDogActionManager = null;
+            
+            _particle.Play();
+            _animator.SetTrigger("enter");
             
             AudioManager.Instance.StopSound(_bushSound);
             _bushSound = default;

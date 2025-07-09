@@ -13,6 +13,7 @@ namespace Interactables
         [SerializeField] private ClimbPushableInteractable firstClimbInter;
         [SerializeField] private bool _isJumping;
         [SerializeField] private DogWaitForPlayer _wait;
+        [SerializeField] private ParticleSystem _reachedTargetPartical;
         private Collider2D interCol;
         
 
@@ -28,6 +29,7 @@ namespace Interactables
             base.ReachedTarget();
             SwapToClimb(true);
             DisableBarrier(true);
+            _reachedTargetPartical.Play();
             
             if (_wait != null)
             {

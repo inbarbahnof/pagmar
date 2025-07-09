@@ -57,6 +57,7 @@ MonoBehaviour:
   interactionRange: 1.7
   playerPosToPush: {fileID: 4848661548437766096}
   _isPushingFromLeft: 1
+  _pushParticals: {fileID: 0}
   _pushKind: 0
 --- !u!70 &1329075442572256967
 CapsuleCollider2D:
@@ -151,7 +152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5794264827270505253
 Transform:
   m_ObjectHideFlags: 0
@@ -5240,7 +5241,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0

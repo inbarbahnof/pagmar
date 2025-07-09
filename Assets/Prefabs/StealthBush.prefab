@@ -85,6 +85,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0416b56369c83ca41ba6faf3c7860aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 7634245099561134814}
+  _particle: {fileID: 6106233270792352727}
+  _target: {fileID: 0}
+  _isStealthOut: 1
+  _obstacle: {fileID: 0}
 --- !u!95 &7634245099561134814
 Animator:
   serializedVersion: 7
@@ -155,7 +160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &160657684970595917
 Transform:
   m_ObjectHideFlags: 0
