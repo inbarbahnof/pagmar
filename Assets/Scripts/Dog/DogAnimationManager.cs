@@ -246,7 +246,6 @@ namespace Dog
                 DogAnimation.Idle,
                 DogAnimation.Listen,
                 DogAnimation.Dig
-                //,DogAnimation.AirSniff
             };
 
             int index = Random.Range(0, idleOptions.Length);
@@ -306,8 +305,6 @@ namespace Dog
         public void DogStartSniff()
         {
             _sniffing = true;
-            // AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogSniff, 
-            //     transform.position, true);
             StartCoroutine(StopSniffing());
         }
 
@@ -338,8 +335,6 @@ namespace Dog
         public void DogAirSniff()
         {
             _airSniff = true;
-            // AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogSniff,
-            //     transform.position, true);
             StartCoroutine(FinishAirSniff());
         }
         
@@ -392,9 +387,6 @@ namespace Dog
 
         private IEnumerator Eat(Action DestroyFood, Action onDoneEating)
         {
-            // AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogEat,
-            //     transform.position, true);
-            
             _eating = true;
             yield return new WaitForSeconds(_eatAnimationTime);
             
@@ -411,15 +403,11 @@ namespace Dog
         private IEnumerator Growl()
         {
             _sniffing = false;
-            
-            // EventInstance sound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.DogGrowl,
-                // transform.position, true);
             _growling = true;
             
             yield return new WaitForSeconds(_growlAnimationTime);
 
             _growling = false;
-            // AudioManager.Instance.StopSound(sound);
         }
         
         public void DogAnimationUpdate(DogAnimation anim)
