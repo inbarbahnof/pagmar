@@ -14,6 +14,7 @@ namespace Interactables
         [SerializeField] private DogActionManager _dog;
         [SerializeField] private PlayerMove _playerMove;
         [SerializeField] private StartCutsceneManager _cutsceneManager;
+        [SerializeField] private GameObject _ghost;
 
         public void Level1EndBehavior()
         {
@@ -31,13 +32,19 @@ namespace Interactables
 
         public void FreeDog()
         {
+            print("free dog");
             _dog.SetWantsFood(false);
             _dog.SetMovementEnabled(true);
             _dog.ChangeCrouching(false);
+            _ghost.SetActive(false);
         }
 
         private IEnumerator DogBehaviorCoruotine()
         {
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogScared,
+                _dog.transform.position, true);
+            yield return new WaitForSeconds(0.5f);
+            
             _secondTarget.gameObject.SetActive(true);
             TargetGenerator.instance.SetWantFoodTarget(_secondTarget);
             
