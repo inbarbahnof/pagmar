@@ -29,7 +29,7 @@ namespace Interactables
             base.ReachedTarget();
             SwapToClimb(true);
             DisableBarrier(true);
-            _reachedTargetPartical.Play();
+            if (_reachedTargetPartical != null) _reachedTargetPartical.Play();
             
             if (_wait != null)
             {
