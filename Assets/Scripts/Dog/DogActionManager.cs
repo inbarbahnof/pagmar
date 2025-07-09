@@ -16,6 +16,7 @@ namespace Dog
         [SerializeField] private bool movementEnabled = true;
         [SerializeField] private PlayerStateManager playerStateManager;
         [SerializeField] private TargetGenerator _targetGenerator;
+        [SerializeField] private ParticleSystem _soundParticals;
         
         [Header("Distances For States")]
         [SerializeField] private float _listenDistance = 6f;
@@ -146,6 +147,7 @@ namespace Dog
         public void Bark()
         {
             _animationManager.DogBark();
+            if (_needToStealth) _soundParticals.Play();
         }
 
         public void DogJump(bool fromLeft)
