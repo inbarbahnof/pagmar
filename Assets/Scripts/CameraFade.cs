@@ -3,28 +3,21 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CameraFade : MonoBehaviour
+/// <summary>
+/// Fades Image.colour in/out between black and transparent,
+/// where start colour is transparent and end colour is black.
+/// </summary>
+public class CameraFade : MonoBehaviour, IObjectFader
 {
     [SerializeField] private Image fade;
     [SerializeField] private float duration = 3f;
     private readonly Color _startColor = new Color(0, 0, 0, 0);
     private readonly Color _endColor = new Color(0, 0, 0, 1);
+    [SerializeField] private float delayOnFadeIn = 2f;
 
     private Coroutine _fadeOutCoroutine;
 
     public float Duration => duration;
-
-    // private void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.LeftShift))
-    //     {
-    //         FadeOutOverTime(true);
-    //     }
-    //     else if (Input.GetKeyDown(KeyCode.RightShift))
-    //     {
-    //         FadeOutOverTime(false);
-    //     }
-    // }
 
     public void FadeOutOverTime(bool reverse = false)
     {
@@ -37,7 +30,7 @@ public class CameraFade : MonoBehaviour
 
     private IEnumerator LerpColor(bool reverse)
     {
-        if (reverse) yield return new WaitForSecondsRealtime(2f);
+        if (reverse && delayOnFadeIn > 0) yield return new WaitForSecondsRealtime(delayOnFadeIn);
         float time = 0f;
 
         Color fromColor = reverse ? _endColor : _startColor;
