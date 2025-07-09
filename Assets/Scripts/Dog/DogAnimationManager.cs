@@ -15,10 +15,9 @@ namespace Dog
 {
     public class DogAnimationManager : MonoBehaviour
     {
-        // public Action onDoneEating;
-        
         [SerializeField] SkeletonAnimation skeletonAnimation;
         [SerializeField] private Transform playerTransform;
+        [SerializeField] private ParticleSystem _digParticals;
 
         [Header("Animation Times")]
         [SerializeField] private float _barkAnimationTime = 0.4f;
@@ -65,8 +64,20 @@ namespace Dog
         
         [Header("Event Names")] 
         [SerializeField] private string _footstepsEventName;
+        [SerializeField] private string _barkEventName;
+        [SerializeField] private string _digEventName;
+        [SerializeField] private string _eatEventName;
+        [SerializeField] private string _growlEventName;
+        [SerializeField] private string _happyCrouchEventName;
+        [SerializeField] private string _sniffEventName;
     
         private Spine.EventData _footstepsEventData;
+        private Spine.EventData _barkEventData;
+        private Spine.EventData _digEventData;
+        private Spine.EventData _eatEventData;
+        private Spine.EventData _growlEventData;
+        private Spine.EventData _happyCrouchEventData;
+        private Spine.EventData _sniffEventData;
         
         private DogAnimation _curAnim;
         
@@ -119,7 +130,13 @@ namespace Dog
             if (spineAnimationState is null) spineAnimationState = skeletonAnimation.AnimationState;
             
             _footstepsEventData = skeletonAnimation.Skeleton.Data.FindEvent(_footstepsEventName);
-
+            _barkEventData = skeletonAnimation.Skeleton.Data.FindEvent(_barkEventName);
+            _digEventData = skeletonAnimation.Skeleton.Data.FindEvent(_digEventName);
+            _eatEventData = skeletonAnimation.Skeleton.Data.FindEvent(_eatEventName);
+            _growlEventData = skeletonAnimation.Skeleton.Data.FindEvent(_growlEventName);
+            _happyCrouchEventData = skeletonAnimation.Skeleton.Data.FindEvent(_happyCrouchEventName);
+            _sniffEventData = skeletonAnimation.Skeleton.Data.FindEvent(_sniffEventName);
+            
             skeletonAnimation.AnimationState.Event += HandleAnimationStateEvent;
             
             DogAnimationUpdate(DogAnimation.Idle);
@@ -127,11 +144,25 @@ namespace Dog
         
         private void HandleAnimationStateEvent (TrackEntry trackEntry, Spine.Event e)
         {
-            if (e.Data == _footstepsEventData)
-            {
+            if (e.Data == _footstepsEventData) 
                 AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogFootsteps, 
                     transform.position, true);
-            }
+            else if(e.Data == _barkEventData)
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogBark, 
+                    transform.position, true);
+            else if(e.Data == _eatEventData)
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogEat, 
+                    transform.position, true);
+            else if(e.Data == _growlEventData)
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogGrowl, 
+                    transform.position, true);
+            else if(e.Data == _sniffEventData)
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogSniff, 
+                    transform.position, true);
+            else if(e.Data == _digEventData)
+                _digParticals.Play();
+            
+            // else if(e.Data == _happyCrouchEventData)
         }
 
         private void Update()
@@ -275,8 +306,8 @@ namespace Dog
         public void DogStartSniff()
         {
             _sniffing = true;
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogSniff, 
-                transform.position, true);
+            // AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogSniff, 
+            //     transform.position, true);
             StartCoroutine(StopSniffing());
         }
 
@@ -307,8 +338,8 @@ namespace Dog
         public void DogAirSniff()
         {
             _airSniff = true;
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogSniff,
-                transform.position, true);
+            // AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogSniff,
+            //     transform.position, true);
             StartCoroutine(FinishAirSniff());
         }
         
@@ -337,9 +368,6 @@ namespace Dog
         
         private IEnumerator Bark()
         {
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogBark, 
-                transform.position, true);
-
             TrackEntry entry = null;
             entry = spineAnimationState.SetAnimation(1, barkAnimName, false);
             if (entry != null) entry.TimeScale = barkAnimSpeed;
@@ -364,8 +392,8 @@ namespace Dog
 
         private IEnumerator Eat(Action DestroyFood, Action onDoneEating)
         {
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogEat,
-                transform.position, true);
+            // AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogEat,
+            //     transform.position, true);
             
             _eating = true;
             yield return new WaitForSeconds(_eatAnimationTime);
@@ -384,14 +412,14 @@ namespace Dog
         {
             _sniffing = false;
             
-            EventInstance sound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.DogGrowl,
-                transform.position, true);
+            // EventInstance sound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.DogGrowl,
+                // transform.position, true);
             _growling = true;
             
             yield return new WaitForSeconds(_growlAnimationTime);
 
             _growling = false;
-            AudioManager.Instance.StopSound(sound);
+            // AudioManager.Instance.StopSound(sound);
         }
         
         public void DogAnimationUpdate(DogAnimation anim)

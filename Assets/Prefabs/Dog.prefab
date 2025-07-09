@@ -303,6 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 5184689463612672951}
   playerTransform: {fileID: 0}
+  _digParticals: {fileID: 6973209380187040066}
   _barkAnimationTime: 0.4
   _growlAnimationTime: 2
   _eatAnimationTime: 0.733
@@ -341,6 +342,12 @@ MonoBehaviour:
   airSniffAnimSpeed: 1
   tailWagAnimSpeed: 1
   _footstepsEventName: Footstep
+  _barkEventName: Bark
+  _digEventName: Dig
+  _eatEventName: Eat
+  _growlEventName: Growl
+  _happyCrouchEventName: HappyCrouch
+  _sniffEventName: Sniff
   art: {fileID: 5383646546148844883}
 --- !u!114 &4631522509052752445
 MonoBehaviour:
@@ -828,6 +835,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 7769612700398877723, guid: c1dc56c73af1e954b9516572353eef12, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -852,5 +863,10 @@ MonoBehaviour:
 --- !u!1 &5383646546148844883 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6748484560024520025, guid: c1dc56c73af1e954b9516572353eef12, type: 3}
+  m_PrefabInstance: {fileID: 1662357064360239114}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6973209380187040066 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8634579218328832328, guid: c1dc56c73af1e954b9516572353eef12, type: 3}
   m_PrefabInstance: {fileID: 1662357064360239114}
   m_PrefabAsset: {fileID: 0}
