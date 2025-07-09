@@ -33,10 +33,10 @@ namespace Interactables
 
         public override void ResetObstacle()
         {
-            CameraController.instance.ZoomIn();
+            // CameraController.instance.ZoomIn();
             _stealthTarget.FinishTargetAction();
             
-            // _dog.ChangeCrouching(false);
+            _dog.ChangeCrouching(true);
             // _player.StealthObstacle(false);
         }
 

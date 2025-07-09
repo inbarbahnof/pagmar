@@ -166,7 +166,7 @@ namespace Dog
             float distanceMoved = Vector3.Distance(currentPosition, lastPosition);
             
             if (_actionManager.Crouching) _isMoving = distanceMoved > 0.005f;
-            else _isMoving = distanceMoved > 0.01f;
+            else _isMoving = distanceMoved > 0.005f;
             
             lastPosition = currentPosition; 
         }
@@ -179,6 +179,7 @@ namespace Dog
             if (_isJumping) return DogAnimation.Jump;
             if (_tailWag) return DogAnimation.TailWag;
             if (_smoothMoving) return DogAnimation.Walk;
+            if (_listening) return DogAnimation.Listen;
             
             if (_actionManager.Crouching)
             {
@@ -224,6 +225,22 @@ namespace Dog
         public void IdleTailWag(bool isWagging)
         {
             _idleWagging = isWagging;
+        }
+        
+        public void ListenAndGrowl()
+        {
+            StartCoroutine(ListenAndGrowlCoroutine());
+        }
+
+        private IEnumerator ListenAndGrowlCoroutine()
+        {
+            _listening = true;
+            yield return new WaitForSeconds(0.8f);
+            _listening = false;
+
+            _growling = true;
+            yield return new WaitForSeconds(1f);
+            _growling = false;
         }
         
         public void UpdateSmoothMove(bool move, Vector2 faceTo)
