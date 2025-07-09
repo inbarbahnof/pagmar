@@ -20,6 +20,7 @@ namespace Audio.FMOD
         [field: SerializeField] public EventReference PlayerPickUp{ get; private set; }
         [field: SerializeField] public EventReference PlayerThrow { get; private set; }
         [field: SerializeField] public EventReference PlayerDrag { get; private set; }
+        [field: SerializeField] public EventReference PlayerSigh { get; private set; }
         
         [field: Header("DogSFX")]
         [field: SerializeField] public EventReference DogBark { get; private set; }

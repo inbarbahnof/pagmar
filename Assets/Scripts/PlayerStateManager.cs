@@ -236,14 +236,14 @@ public class PlayerStateManager : MonoBehaviour
         _move.SetCanMove(false);
         _move.UpdateMoveInput(Vector2.zero);
         
-        MakeCallSound();
+        // MakeCallSound();
         
         if (_waitToCallCoroutine != null) StopCoroutine(_waitToCallCoroutine);
             
         _waitToCallCoroutine = StartCoroutine(WaitToCall());
     }
 
-    private void MakeCallSound()
+    public void MakeCallSound()
     {
         if (GameManager.instance.Chapter == 0)
             AudioManager.Instance.PlaySoundWithStringParameter(

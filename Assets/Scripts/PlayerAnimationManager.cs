@@ -61,11 +61,17 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private string _climbRightEventName;
     [SerializeField] private string _footstepsEventName;
     [SerializeField] private string _pickUpEventName;
+    [SerializeField] private string _breathEventName;
+    [SerializeField] private string _callEventName;
+    [SerializeField] private string _scareEventName;
     
     private Spine.EventData _climbUpEventData;
     private Spine.EventData _climbRightEventData;
     private Spine.EventData _footstepsEventData;
     private Spine.EventData _pickUpEventData;
+    private Spine.EventData _breathEventData;
+    private Spine.EventData _callEventData;
+    private Spine.EventData _scareEventData;
 
     private PlayerAnimation _curAnim;
     private bool _isHolding;
@@ -77,6 +83,7 @@ public class PlayerAnimationManager : MonoBehaviour
     private Spine.Skeleton skeleton;
 
     private bool _climbDropRight = true;
+    private PlayerStateManager _stateManager;
     
     void Start()
     {
@@ -87,10 +94,15 @@ public class PlayerAnimationManager : MonoBehaviour
         _climbRightEventData = skeletonAnimation.Skeleton.Data.FindEvent(_climbRightEventName);
         _footstepsEventData = skeletonAnimation.Skeleton.Data.FindEvent(_footstepsEventName);
         _pickUpEventData = skeletonAnimation.Skeleton.Data.FindEvent(_pickUpEventName);
+        _breathEventData = skeletonAnimation.Skeleton.Data.FindEvent(_breathEventName);
+        _callEventData = skeletonAnimation.Skeleton.Data.FindEvent(_callEventName);
+        _scareEventData = skeletonAnimation.Skeleton.Data.FindEvent(_scareEventName);
         
         skeletonAnimation.AnimationState.Event += HandleAnimationStateEvent;
 
         handBone = skeletonAnimation.Skeleton.FindBone(_holdBoneName);
+
+        _stateManager = GetComponent<PlayerStateManager>();
     }
 
     public void UpdateClimbDropDirection(bool right)
@@ -100,22 +112,19 @@ public class PlayerAnimationManager : MonoBehaviour
     
     private void HandleAnimationStateEvent (TrackEntry trackEntry, Spine.Event e) {
         if (e.Data == _climbUpEventData)
-        {
             OnClimbUpEvent();
-        }
         else if (e.Data == _climbRightEventData)
-        {
             OnClimbRightEvent();
-        }
         else if (e.Data == _footstepsEventData)
-        {
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerFootsteps, 
                 transform.position, true);
-        }
-        if (e.Data == _pickUpEventData)
-        {
+        else if (e.Data == _pickUpEventData)
             PickUpInteractableManager.instance.PickUpCurrentObject();
-        }
+        else if (e.Data == _callEventData)
+            _stateManager.MakeCallSound();
+        else if (e.Data == _breathEventData)
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerSigh, 
+                transform.position, true);
     }
     
     public void FlipSpriteBasedOnInput(Vector2 moveInput, Vector2 aimInput)
