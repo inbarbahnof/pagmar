@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4633922910088718229}
   - component: {fileID: 2660701964962029769}
-  - component: {fileID: 7209821220548511441}
+  - component: {fileID: 4270953959887782178}
   m_Layer: 0
   m_Name: IntDust
   m_TagString: Untagged
@@ -72,7 +72,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.92, y: 0.34}
   m_Direction: 1
---- !u!114 &7209821220548511441
+--- !u!114 &4270953959887782178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,26 +81,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 640890615788133241}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 144977d2486d862468fe5b4e59f47a08, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f3ed67f0bc4fda4b8667d20a8669e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3410410807438189261}
-        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  turnOffAfterTrigger: 0
-  isPlayerEmmiting: 1
+  _particle: {fileID: 3410410807438189261}
 --- !u!1 &5116698052305109160
 GameObject:
   m_ObjectHideFlags: 0

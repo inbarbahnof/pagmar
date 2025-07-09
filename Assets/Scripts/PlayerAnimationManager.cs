@@ -84,6 +84,8 @@ public class PlayerAnimationManager : MonoBehaviour
 
     private bool _climbDropRight = true;
     private PlayerStateManager _stateManager;
+
+    private ParticleSystem _leafsParticals;
     
     void Start()
     {
@@ -116,8 +118,11 @@ public class PlayerAnimationManager : MonoBehaviour
         else if (e.Data == _climbRightEventData)
             OnClimbRightEvent();
         else if (e.Data == _footstepsEventData)
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerFootsteps, 
+        {
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerFootsteps,
                 transform.position, true);
+            if (_leafsParticals != null) _leafsParticals.Play();
+        }
         else if (e.Data == _pickUpEventData)
             PickUpInteractableManager.instance.PickUpCurrentObject();
         else if (e.Data == _callEventData)
@@ -145,6 +150,11 @@ public class PlayerAnimationManager : MonoBehaviour
             skeletonAnimation.transform.localScale.y,
             skeletonAnimation.transform.localScale.z
         );
+    }
+
+    public void SetLeafsParticles(ParticleSystem leaf)
+    {
+        _leafsParticals = leaf;
     }
 
     private void LateUpdate()
