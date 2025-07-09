@@ -10,9 +10,6 @@ namespace Interactables
 { 
     public class ThrowStickOnFoodObstacle : MonoBehaviour
     {
-        [SerializeField] private Ease _dropFoodEase = Ease.OutQuart;
-        [SerializeField] private Ease _dropRockEase = Ease.OutQuart;
-        
         [SerializeField] private FoodPickUpInteractable _food;
         [SerializeField] private ThrowablePickUpInteractable _stick;
         [SerializeField] private FeedDogObstacle _feedDogObstacle;
@@ -23,17 +20,21 @@ namespace Interactables
         [Header("Ghost Appearance")] 
         [SerializeField] private Stealth1Obstacle _stealth;
         [SerializeField] private ParticleSystem _particle;
+        
+        private Rigidbody2D stickRb;
+        private Rigidbody2D foodRb;
 
         private void Start()
         {
             _food.SetCanInteract(false);
+            foodRb = _food.GetComponent<Rigidbody2D>();
         }
 
         public void DropStick()
         {
-            _food.transform.DOMove(_dropFoodPos.position, _dropDuration)
-                .SetEase(_dropFoodEase)
-                .OnComplete(_particle.Play);
+            foodRb.gravityScale = 1f;
+            foodRb.linearVelocity = CalculateDropVelocity(_food.transform.position, _dropFoodPos.position, _dropDuration);
+            StartCoroutine(TurnOffRigidBody(foodRb, true));
 
             StartCoroutine(WaitToDropStick());
             
@@ -52,8 +53,36 @@ namespace Interactables
         private IEnumerator WaitToDropStick()
         {
             yield return new WaitForSeconds(0.2f);
-            _stick.transform.DOMove(_dropStickPos.position, _dropDuration - 0.2f)
-                .SetEase(_dropRockEase);
+            
+            if (!stickRb)
+            {
+                stickRb = _stick.gameObject.AddComponent<Rigidbody2D>();
+                stickRb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+            }
+            
+            stickRb.gravityScale = 1f;
+            stickRb.linearVelocity = CalculateDropVelocity(_stick.transform.position,
+                _dropStickPos.position, _dropDuration - 0.2f);
+            stickRb.angularVelocity = -180f;
+
+            StartCoroutine(TurnOffRigidBody(stickRb, false));
+        }
+        
+        private Vector2 CalculateDropVelocity(Vector2 from, Vector2 to, float duration)
+        {
+            Vector2 velocity = (to - from) / duration;
+            velocity.y += 0.5f * Mathf.Abs(Physics2D.gravity.y) * duration;
+            return velocity;
+        }
+
+        private IEnumerator TurnOffRigidBody(Rigidbody2D rb, bool isFood)
+        {
+            yield return new WaitForSeconds(_dropDuration);
+            rb.gravityScale = 0f;
+            rb.angularVelocity = 0;
+            rb.linearVelocity = Vector2.zero;
+            
+            if (isFood) _particle.Play();
         }
     }
 }
