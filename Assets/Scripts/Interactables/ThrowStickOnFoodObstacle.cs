@@ -10,6 +10,9 @@ namespace Interactables
 { 
     public class ThrowStickOnFoodObstacle : MonoBehaviour
     {
+        [SerializeField] private Ease _dropFoodEase = Ease.OutQuart;
+        [SerializeField] private Ease _dropRockEase = Ease.OutQuart;
+        
         [SerializeField] private FoodPickUpInteractable _food;
         [SerializeField] private ThrowablePickUpInteractable _stick;
         [SerializeField] private FeedDogObstacle _feedDogObstacle;
@@ -29,7 +32,7 @@ namespace Interactables
         public void DropStick()
         {
             _food.transform.DOMove(_dropFoodPos.position, _dropDuration)
-                .SetEase(Ease.OutQuart)
+                .SetEase(_dropFoodEase)
                 .OnComplete(_particle.Play);
 
             StartCoroutine(WaitToDropStick());
@@ -50,7 +53,7 @@ namespace Interactables
         {
             yield return new WaitForSeconds(0.2f);
             _stick.transform.DOMove(_dropStickPos.position, _dropDuration - 0.2f)
-                .SetEase(Ease.OutQuart);
+                .SetEase(_dropRockEase);
         }
     }
 }
