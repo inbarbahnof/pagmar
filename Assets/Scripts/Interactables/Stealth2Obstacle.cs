@@ -87,8 +87,14 @@ namespace Interactables
             else
             {
                 TargetGenerator.instance.SetStealthTarget(_lastTarget);
-                _dog.ChangeCrouching(false);
+                StartCoroutine(ChangeDogCrouch());
             }
+        }
+
+        private IEnumerator ChangeDogCrouch()
+        {
+            yield return new WaitForSeconds(0.7f);
+            _dog.ChangeCrouching(false);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
