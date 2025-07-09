@@ -18,6 +18,7 @@ namespace Interactables
         [SerializeField] private GameObject _wall;
         [SerializeField] private GameObject _tree;
         [SerializeField] private GameObject _callBlock;
+        [SerializeField] private GameObject _dogDead;
         
         private List<GhostAttack> _ghostsAttackDog = new List<GhostAttack>();
         private List<GhostAttack> _ghostsAttackPlayer = new List<GhostAttack>();
@@ -94,6 +95,16 @@ namespace Interactables
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogDie, 
                 _dog.transform.position,
                 true);
+            
+            // turn off all ghosts and turn on ghost
+            foreach (var ghost in _ghosts)
+            {
+                ghost.gameObject.SetActive(false);
+            }
+            
+            // turn off dog
+            _dog.gameObject.SetActive(false);
+            _dogDead.SetActive(true);
         }
 
         public void ActivateSlowMotion()
@@ -142,8 +153,6 @@ namespace Interactables
         
         public override void ResetObstacle()
         {
-            CameraController.instance.ZoomIn();
-            
             if (_stopKeepingDistance != null) StopCoroutine(_stopKeepingDistance);
             if (_slowMotion != null)
             {

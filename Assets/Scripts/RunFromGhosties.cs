@@ -30,7 +30,8 @@ public class RunFromGhosties : MonoBehaviour
     public void PlayerStopRunning()
     {
         _playerMove.StopAutoRun();
-        CameraController.instance.ZoomIn();
+        CameraController.instance.ZoomOut();
+        print("player stop running");
         
         AudioManager.Instance.SetFloatParameter(
             AudioManager.Instance.musicInstance,
