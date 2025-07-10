@@ -13,17 +13,25 @@ namespace Targets
         
         public override void StartTargetAction(PlayerFollower dog)
         {
-            SmoothMover dogMover = dog.GetComponent<SmoothMover>();
-            dogMover.MoveTo(transform.position);
             _dog = dog.GetComponent<DogAnimationManager>();
+            if ( GameManager.instance.ConnectionState > 3
+                  && Vector2.Distance(dog.transform.position, transform.position) > 0.15f)
+            {
+                SmoothMover dogMover = dog.GetComponent<SmoothMover>();
+                Vector3 offset = Vector3.zero;
+                if (transform.position.x < _player.transform.position.x)
+                {
+                    offset = new Vector3(0.2f, 0, 0);
+                }
 
-            StartCoroutine(GoToPetPos());
+                dogMover.MoveTo(transform.position + offset);
+                StartCoroutine(GoToPetPos());
+            }
+            else PetBehavior();
         }
 
-        private IEnumerator GoToPetPos()
+        private void PetBehavior()
         {
-            yield return new WaitForSeconds(0.5f);
-            
             _player.StartPetting();
                 
             if(GameManager.instance.ConnectionState > 3) _dog.PetBehavior();
@@ -31,6 +39,12 @@ namespace Targets
             
             StartCoroutine(HoverOverTarget());
             onPetEvent?.Invoke();
+        }
+        
+        private IEnumerator GoToPetPos()
+        {
+            yield return new WaitForSeconds(0.5f);
+            PetBehavior();
         }
     }
 }
