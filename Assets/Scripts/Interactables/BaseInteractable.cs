@@ -30,7 +30,9 @@ namespace Interactables
         /// <param name="isHighlighted"> Bool val to set highlight activation to </param>
         public void SetHighlight(bool isHighlighted)
         {
-            highlightEffect.SetActive(isHighlighted);
+            SpriteFade fadeScript = highlightEffect.GetComponent<SpriteFade>();
+            if (fadeScript) fadeScript.FadeOutOverTime(isHighlighted);
+            else highlightEffect.SetActive(isHighlighted);
         }
 
         private void OnTriggerEnter2D(Collider2D other)

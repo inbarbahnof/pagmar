@@ -2,13 +2,14 @@ using System.Collections;
 using Audio.FMOD;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Interactables
 {
     public class PickUpInteractable : BaseInteractable
     {
         [SerializeField] protected bool _isThrowable;
-        [SerializeField] protected SpriteRenderer _sprite;
+        [SerializeField] protected SortingGroup _sprite;
         
         private bool isPickedUp = false;
         private Transform originalParent;

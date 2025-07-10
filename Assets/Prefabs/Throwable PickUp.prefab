@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1778779946493218321}
   - component: {fileID: 6159751718454857035}
   - component: {fileID: 1804897355344761010}
+  - component: {fileID: 8136931017048813413}
   m_Layer: 0
   m_Name: Throwable PickUp
   m_TagString: Stick
@@ -107,6 +108,18 @@ MonoBehaviour:
   _foodTarget: {fileID: 0}
   _isStealth: 1
   _particle: {fileID: 5155449264618071578}
+--- !u!210 &8136931017048813413
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8422414114862519063}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 3
+  m_SortAtRoot: 0
 --- !u!1001 &3532309520804089489
 PrefabInstance:
   m_ObjectHideFlags: 0
