@@ -12,17 +12,8 @@ public class SmoothMover : MonoBehaviour
     
     private Coroutine moveCoroutine;
     
-    private DogAnimationManager _dog;
-    private PlayerStateManager _player;
-
-    private void Start()
-    {
-        if (_alive)
-        {
-            if (_isPlayer) _player = GetComponent<PlayerStateManager>();
-            else _dog = GetComponent<DogAnimationManager>();
-        }
-    }
+    [SerializeField] private DogAnimationManager _dog;
+    [SerializeField] private PlayerStateManager _player;
 
     /// <summary>
     /// Moves the GameObject to the target position with easing.
