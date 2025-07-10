@@ -15,6 +15,7 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private Transform heldObject;
     [SerializeField] private GameObject _holdingHand;
     [SerializeField] private GameObject _playerArt;
+    [SerializeField] private Animator _shadowAnimator;
     
     [Header("Animation Names")]
     [SerializeField] private string idleAnimName;
@@ -176,6 +177,7 @@ public class PlayerAnimationManager : MonoBehaviour
         float deltaX = _climbDropRight ? 0.1f : -0.1f;
         Vector3 newPos = new Vector3(transform.position.x + deltaX, transform.position.y + 0.3f, 0);
         transform.DOMove(newPos, 0.53f);
+        _shadowAnimator.SetTrigger("out");
     }
     
     private void OnClimbRightEvent()
@@ -183,11 +185,17 @@ public class PlayerAnimationManager : MonoBehaviour
         float deltaX = _climbDropRight ? 0.3f : -0.3f;
         Vector3 newPos = new Vector3(transform.position.x + deltaX, transform.position.y + 0.1f, 0);
         transform.DOMove(newPos, 0.5f);
+        StartCoroutine(ChangeShadow());
+    }
+
+    private IEnumerator ChangeShadow()
+    {
+        yield return new WaitForSeconds(0.2f);
+        _shadowAnimator.SetTrigger("in");
     }
 
     private IEnumerator OnDrop()
     {
-        
         float deltaX1 = _climbDropRight ? 0.4f : -0.4f;
         float deltaX2 = _climbDropRight ? 0.3f : -0.3f;
         
