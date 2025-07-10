@@ -188,12 +188,6 @@ public class PlayerAnimationManager : MonoBehaviour
         _shadowAnimator.SetTrigger("in");
     }
 
-    private IEnumerator ChangeShadow()
-    {
-        yield return new WaitForSeconds(0.2f);
-        
-    }
-
     private IEnumerator OnDrop()
     {
         float deltaX1 = _climbDropRight ? 0.4f : -0.4f;

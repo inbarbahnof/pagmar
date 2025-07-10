@@ -246,10 +246,17 @@ public class PlayerStateManager : MonoBehaviour
     public void MakeCallSound()
     {
         if (GameManager.instance.Chapter == 0)
-            AudioManager.Instance.PlaySoundWithStringParameter(
-                FMODEvents.Instance.PlayerCall,
-                transform.position, "Girl Call Mode",
+        {
+            if (GameManager.instance.InTutorialCutScene) 
+                AudioManager.Instance.PlaySoundWithStringParameter(
+                    FMODEvents.Instance.PlayerCall,transform.position, 
+                    "Girl Call Mode", 
+                    "cutscene lvl0 start");
+            else AudioManager.Instance.PlaySoundWithStringParameter(
+                FMODEvents.Instance.PlayerCall, 
+                transform.position, "Girl Call Mode", 
                 "no dog lvl0");
+        }
         else if (GameManager.instance.Chapter == 3)
         {
             if (!_stealthManager.isProtected)

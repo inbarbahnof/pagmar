@@ -7,15 +7,18 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static CheckpointManager checkpointManagerInstance;
-
     public static GameManager instance;
 
     [SerializeField] private int chapter;
     [SerializeField] private int connectionState;
     [SerializeField] private InputManager _playerInput;
     [SerializeField] private CameraFade _cameraFade;
+
+    private bool _inTutorialCutScene = false;
+    
     public int ConnectionState => connectionState;
     public int Chapter => chapter;
+    public bool InTutorialCutScene => _inTutorialCutScene;
     
     void Start()
     {
@@ -50,6 +53,7 @@ public class GameManager : MonoBehaviour
         {
             case 0:
                 AudioManager.Instance.PlayMusic(FMODEvents.Instance.Chapter0Music);
+                _inTutorialCutScene = true;
                 break;
             case 1:
                 AudioManager.Instance.PlayMusic(FMODEvents.Instance.Chapter1Music);
@@ -68,10 +72,9 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlayAmbiance(FMODEvents.Instance.Ambiance);
     }
 
-    private IEnumerator ChangeBinding()
+    public void TutorialOut()
     {
-        yield return new WaitForSeconds(0.1f);
-        _playerInput.ChangeCallState(connectionState);
+        _inTutorialCutScene = false;
     }
 
     public void LevelEnd()
