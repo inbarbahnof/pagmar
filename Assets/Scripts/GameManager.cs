@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator WaitToZoom()
     {
         yield return new WaitForSeconds(0.5f);
-        CameraController.instance.ZoomIn();
+        CameraController.instance.ZoomIn(0.8f);
     }
 
     private void PlayMusicAccordingToLevel()

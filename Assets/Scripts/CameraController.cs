@@ -12,11 +12,11 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CinemachineCamera[] cutsceneCams;
     
     [Header("Zoom Values")]
-    [SerializeField] private float zoomSpeed = 2f;
     [SerializeField] private float minFOV = 5f;
     [SerializeField] private float maxFOV = 7f;
     [SerializeField] private float extraZoomIn = 3f;
     
+    private float zoomSpeed = 2f;
     private Coroutine zoomCoroutine;
     
     void Start()
@@ -96,18 +96,21 @@ public class CameraController : MonoBehaviour
         cam.Lens.OrthographicSize = targetSize; // Snap to exact value at the end
     }
 
-    public void ZoomOut()
+    public void ZoomOut(float speed = 2)
     {
         StartZoom(maxFOV);
+        zoomSpeed = speed;
     }
     
-    public void ZoomIn()
+    public void ZoomIn(float speed = 2)
     {
         StartZoom(minFOV);
+        zoomSpeed = speed;
     }
 
-    public void ExtraZoomIn()
+    public void ExtraZoomIn(float speed = 2)
     {
         StartZoom(extraZoomIn);
+        zoomSpeed = speed;
     }
 }

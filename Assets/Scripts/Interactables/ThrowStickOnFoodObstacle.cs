@@ -34,9 +34,9 @@ namespace Interactables
         public void DropStick()
         {
             foodRb.bodyType = RigidbodyType2D.Dynamic;
-            foodRb.gravityScale = 1f;
-            foodRb.linearVelocity = CalculateDropVelocity(_food.transform.position, 
-                _dropFoodPos.position, _droprockDuration);
+            // foodRb.gravityScale = 1f;
+            // foodRb.linearVelocity = CalculateDropVelocity(_food.transform.position, 
+            //     _dropFoodPos.position, _droprockDuration);
 
             StartCoroutine(WaitToDropStick());
             
