@@ -33,10 +33,10 @@ namespace Interactables
 
         public void DropStick()
         {
+            foodRb.bodyType = RigidbodyType2D.Dynamic;
             foodRb.gravityScale = 1f;
             foodRb.linearVelocity = CalculateDropVelocity(_food.transform.position, 
                 _dropFoodPos.position, _droprockDuration);
-            StartCoroutine(TurnOffRigidBody(foodRb, true));
 
             StartCoroutine(WaitToDropStick());
             
@@ -61,11 +61,11 @@ namespace Interactables
                 stickRb = _stick.gameObject.AddComponent<Rigidbody2D>();
                 stickRb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
             }
-            
+
+            stickRb.bodyType = RigidbodyType2D.Dynamic;
             stickRb.gravityScale = 1f;
             stickRb.linearVelocity = CalculateDropVelocity(_stick.transform.position,
                 _dropStickPos.position, _droprockDuration - 0.2f);
-            stickRb.angularVelocity = -180f;
 
             StartCoroutine(TurnOffRigidBody(stickRb, false));
         }
