@@ -169,7 +169,7 @@ namespace Dog
             
             Vector3 startPos = transform.position;
             float times = fromLeft ? 1f : -1f;
-            Vector3 targetPos = startPos + new Vector3(2.8f * times, 0f, 0f); // jump right; use -1.5f for left
+            Vector3 targetPos = startPos + new Vector3(3f * times, 0f, 0f); // jump right; use -1.5f for left
             
             float jumpDuration = 0.56f;
             float elapsed = 0f;
@@ -179,12 +179,11 @@ namespace Dog
                 float t = elapsed / jumpDuration;
                 transform.position = Vector3.Lerp(startPos, targetPos, t);
                 elapsed += Time.deltaTime;
+                if (t >= 0.7) _shadowAnimator.SetTrigger("in");
                 yield return null;
             }
 
             transform.position = targetPos;
-            _shadowAnimator.SetTrigger("in");
-            
             yield return new WaitForSeconds(0.12f);
             _playerFollower.ResumeAgentMovement();
             _jumping = false;
