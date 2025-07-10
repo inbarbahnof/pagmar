@@ -35,6 +35,13 @@ public class GameManager : MonoBehaviour
        
         PlayMusicAccordingToLevel();
         if (_cameraFade && _cameraFade.gameObject.activeInHierarchy) _cameraFade.FadeOutOverTime(true);
+        StartCoroutine(WaitToZoom());
+    }
+
+    private IEnumerator WaitToZoom()
+    {
+        yield return new WaitForSeconds(0.5f);
+        CameraController.instance.ZoomIn();
     }
 
     private void PlayMusicAccordingToLevel()
