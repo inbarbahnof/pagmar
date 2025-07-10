@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,12 +7,19 @@ using Unity.Cinemachine;
 
 public class LoadScenes : MonoBehaviour
 {
-    [Header("Scenes To Load")]
-    [SerializeField] private SceneField _sceneToLoad;
-
     [Header("Player Movement")]
     [SerializeField] private SmoothMover _player;
     [SerializeField] private SmoothMover _dog;
+
+    [Header("Start Scene")]
+    [SerializeField] private Transform _playerStartLevelPos;
+    [SerializeField] private Transform _dogStartLevelPos;
+
+    private void Start()
+    {
+        if (_playerStartLevelPos != null) _player.MoveTo(_playerStartLevelPos.position, 1f);
+        if (_dogStartLevelPos != null) _dog.MoveTo(_dogStartLevelPos.position, 1f);
+    }
 
     public void LoadScene()
     {
@@ -26,14 +34,7 @@ public class LoadScenes : MonoBehaviour
         yield return new WaitForSeconds(1f);
         
         CameraController.instance.ExtraZoomIn();
-        
-        // Start loading the new scene asynchronously
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(_sceneToLoad);
-
-        // Wait until the asynchronous scene fully loads
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
+        yield return new WaitForSeconds(1f);
+        GameManager.instance.LevelEnd();
     }
 }
