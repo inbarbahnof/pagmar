@@ -63,9 +63,9 @@ namespace Interactables
             }
 
             stickRb.bodyType = RigidbodyType2D.Dynamic;
-            stickRb.gravityScale = 1f;
-            stickRb.linearVelocity = CalculateDropVelocity(_stick.transform.position,
-                _dropStickPos.position, _droprockDuration - 0.2f);
+            // stickRb.gravityScale = 1f;
+            // stickRb.linearVelocity = CalculateDropVelocity(_stick.transform.position,
+            //     _dropStickPos.position, _droprockDuration - 0.2f);
 
             StartCoroutine(TurnOffRigidBody(stickRb, false));
         }
