@@ -18,6 +18,7 @@ namespace Dog
         [SerializeField] SkeletonAnimation skeletonAnimation;
         [SerializeField] private Transform playerTransform;
         [SerializeField] private ParticleSystem _digParticals;
+        [SerializeField] private string _injuredSkinName;
 
         [Header("Animation Times")]
         [SerializeField] private float _barkAnimationTime = 0.4f;
@@ -119,7 +120,19 @@ namespace Dog
             if (!enabled)
             {
                 spineAnimationState ??= skeletonAnimation.AnimationState;
-                spineAnimationState.ClearTracks();
+                // spineAnimationState.ClearTracks();
+            }
+        }
+        
+        public void SetDogInjured()
+        {
+            var skeleton = skeletonAnimation.Skeleton;
+
+            if (skeleton.Data.FindSkin(_injuredSkinName) != null)
+            {
+                skeleton.SetSkin(_injuredSkinName);
+                skeleton.SetSlotsToSetupPose();
+                skeletonAnimation.AnimationState.Apply(skeleton);
             }
         }
         

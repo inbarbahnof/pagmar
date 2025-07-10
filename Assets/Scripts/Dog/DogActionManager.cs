@@ -83,6 +83,7 @@ namespace Dog
             _playerTransform = playerStateManager.GetComponent<Transform>();
 
             _animationManager = GetComponent<DogAnimationManager>();
+            // if (GameManager.instance.Chapter >= 3) _animationManager.SetDogInjured();
 
             if (movementEnabled) StartWalkingAfterPlayer();
             else SetMovementEnabled(false);

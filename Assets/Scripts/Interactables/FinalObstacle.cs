@@ -90,7 +90,8 @@ namespace Interactables
             yield return new WaitForSeconds(0.5f);
             
             _tree.transform.rotation = Quaternion.Euler(0, 0, 121f);
-            // Play tree fall sound
+            _tree.transform.localPosition = new Vector3(-0.5f, 0.73f, 0);
+            // TODO Play tree fall sound
             
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogDie, 
                 _dog.transform.position,
