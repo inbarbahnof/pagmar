@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6537475984989300284}
   - component: {fileID: 8108820700168060895}
+  - component: {fileID: 1521517375894335853}
   m_Layer: 0
   m_Name: Lvl4Volume
   m_TagString: Untagged
@@ -49,3 +50,17 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: ca772bc4e4c3f452dab12be16ecdb136, type: 2}
+--- !u!114 &1521517375894335853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455794517237272029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 201b591f72ac4b78afada8776911ea93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 10
+  volume: {fileID: 8108820700168060895}
