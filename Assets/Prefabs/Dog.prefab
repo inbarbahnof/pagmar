@@ -305,6 +305,7 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 5184689463612672951}
   playerTransform: {fileID: 0}
   _digParticals: {fileID: 6973209380187040066}
+  _injuredSkinName: 
   _barkAnimationTime: 0.4
   _growlAnimationTime: 2
   _eatAnimationTime: 0.733
@@ -834,10 +835,6 @@ PrefabInstance:
     - target: {fileID: 1836151122679334915, guid: c1dc56c73af1e954b9516572353eef12, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5828316979245984701, guid: c1dc56c73af1e954b9516572353eef12, type: 3}
-      propertyPath: _animationName
-      value: Walk
       objectReference: {fileID: 0}
     - target: {fileID: 6748484560024520025, guid: c1dc56c73af1e954b9516572353eef12, type: 3}
       propertyPath: m_Name
