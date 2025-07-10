@@ -17,6 +17,7 @@ namespace Dog
         [SerializeField] private PlayerStateManager playerStateManager;
         [SerializeField] private TargetGenerator _targetGenerator;
         [SerializeField] private ParticleSystem _soundParticals;
+        [SerializeField] private Animator _shadowAnimator;
         
         [Header("Distances For States")]
         [SerializeField] private float _listenDistance = 6f;
@@ -45,6 +46,7 @@ namespace Dog
         private bool _crouching;
         private bool _chasingGhostie;
         private bool _eating;
+        private bool _jumping;
 
         private DogStateComputer _computer;
         private float _dogPlayerDistance;
@@ -152,6 +154,9 @@ namespace Dog
 
         public void DogJump(bool fromLeft)
         {
+            if (_jumping) return;
+            
+            _jumping = true;
             _animationManager.DogJumping(true);
             StartCoroutine(JumpMovement(fromLeft));
         }
@@ -160,10 +165,11 @@ namespace Dog
         {
             _playerFollower.PauseAgentMovement();
             yield return new WaitForSeconds(0.12f);
+            _shadowAnimator.SetTrigger("out");
             
             Vector3 startPos = transform.position;
             float times = fromLeft ? 1f : -1f;
-            Vector3 targetPos = startPos + new Vector3(1.8f * times, 0f, 0f); // jump right; use -1.5f for left
+            Vector3 targetPos = startPos + new Vector3(2.8f * times, 0f, 0f); // jump right; use -1.5f for left
             
             float jumpDuration = 0.56f;
             float elapsed = 0f;
@@ -177,9 +183,11 @@ namespace Dog
             }
 
             transform.position = targetPos;
+            _shadowAnimator.SetTrigger("in");
             
             yield return new WaitForSeconds(0.12f);
             _playerFollower.ResumeAgentMovement();
+            _jumping = false;
         }
 
         public void WaitUntilEating()

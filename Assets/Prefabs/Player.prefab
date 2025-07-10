@@ -280,6 +280,10 @@ MonoBehaviour:
         m_CallState: 1
     m_ActionId: f089d92e-90bb-4d10-8513-8fc49406ea03
     m_ActionName: 'Player/CallMultiTap[/Keyboard/c]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6942188b-7e5f-4b07-8224-1da0912624f4
+    m_ActionName: 'Player/Menu[/Keyboard/escape,/XInputControllerWindows/start]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -344,6 +348,7 @@ MonoBehaviour:
   heldObject: {fileID: 7328353952192761471}
   _holdingHand: {fileID: 7077714444954678669}
   _playerArt: {fileID: 2333882633315783233}
+  _shadowAnimator: {fileID: 7962460898498488622}
   idleAnimName: Idle
   callAnimName: Call
   pushAnimName: Push
@@ -915,6 +920,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerArt
       objectReference: {fileID: 0}
+    - target: {fileID: 5540142180965635649, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
+      propertyPath: m_Name
+      value: Shadow
+      objectReference: {fileID: 0}
     - target: {fileID: 5953794250482906744, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -1012,6 +1021,11 @@ GameObject:
 --- !u!4 &3670087948830583748 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6374609478747475555, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
+  m_PrefabInstance: {fileID: 7681430126867375527}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7962460898498488622 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 295465165046500489, guid: 87bc07873107b104c9f4f0cd3d933ef0, type: 3}
   m_PrefabInstance: {fileID: 7681430126867375527}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8569217517841807445
