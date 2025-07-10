@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6387069056306246162}
   - component: {fileID: 1676484117693793831}
+  - component: {fileID: 1530016911422805783}
   m_Layer: 0
   m_Name: SmallPassVolume
   m_TagString: Untagged
@@ -49,3 +50,17 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 0bef2ee7486014ac4a4feb0e9310637a, type: 2}
+--- !u!114 &1530016911422805783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9039686064040820078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 201b591f72ac4b78afada8776911ea93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.5
+  volume: {fileID: 1676484117693793831}

@@ -188,6 +188,13 @@ public class PlayerStateManager : MonoBehaviour
         else StartCoroutine(WaitToStopPet());
     }
 
+    public void NoPetTrigger()
+    {
+        _move.SetCanMove(false);
+        _move.UpdateMoveInput(Vector2.zero);
+        StartCoroutine(NoPet());
+    }
+
     private IEnumerator NoPet()
     {
         _goingBackFromPet = true;

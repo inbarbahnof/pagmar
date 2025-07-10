@@ -126,7 +126,6 @@ namespace Dog
         
         public void SetDogInjured()
         {
-            print("dog injured ");
             var skeleton = skeletonAnimation.Skeleton;
             
             skeleton.SetSkin(_injuredSkinName);
