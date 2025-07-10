@@ -126,14 +126,12 @@ namespace Dog
         
         public void SetDogInjured()
         {
+            print("dog injured ");
             var skeleton = skeletonAnimation.Skeleton;
-
-            if (skeleton.Data.FindSkin(_injuredSkinName) != null)
-            {
-                skeleton.SetSkin(_injuredSkinName);
-                skeleton.SetSlotsToSetupPose();
-                skeletonAnimation.AnimationState.Apply(skeleton);
-            }
+            
+            skeleton.SetSkin(_injuredSkinName);
+            skeleton.SetSlotsToSetupPose();
+            skeletonAnimation.AnimationState.Apply(skeleton);
         }
         
         private void Start()
