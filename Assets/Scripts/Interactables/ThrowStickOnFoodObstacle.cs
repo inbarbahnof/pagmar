@@ -15,7 +15,8 @@ namespace Interactables
         [SerializeField] private FeedDogObstacle _feedDogObstacle;
         [SerializeField] private Transform _dropFoodPos;
         [SerializeField] private Transform _dropStickPos;
-        [SerializeField] private float _dropDuration = 1f;
+        [SerializeField] private float _dropfoodDuration = 1f;
+        [SerializeField] private float _droprockDuration = 1f;
 
         [Header("Ghost Appearance")] 
         [SerializeField] private Stealth1Obstacle _stealth;
@@ -33,7 +34,8 @@ namespace Interactables
         public void DropStick()
         {
             foodRb.gravityScale = 1f;
-            foodRb.linearVelocity = CalculateDropVelocity(_food.transform.position, _dropFoodPos.position, _dropDuration);
+            foodRb.linearVelocity = CalculateDropVelocity(_food.transform.position, 
+                _dropFoodPos.position, _droprockDuration);
             StartCoroutine(TurnOffRigidBody(foodRb, true));
 
             StartCoroutine(WaitToDropStick());
@@ -62,7 +64,7 @@ namespace Interactables
             
             stickRb.gravityScale = 1f;
             stickRb.linearVelocity = CalculateDropVelocity(_stick.transform.position,
-                _dropStickPos.position, _dropDuration - 0.2f);
+                _dropStickPos.position, _droprockDuration - 0.2f);
             stickRb.angularVelocity = -180f;
 
             StartCoroutine(TurnOffRigidBody(stickRb, false));
@@ -77,7 +79,9 @@ namespace Interactables
 
         private IEnumerator TurnOffRigidBody(Rigidbody2D rb, bool isFood)
         {
-            yield return new WaitForSeconds(_dropDuration);
+            if (isFood) yield return new WaitForSeconds(_dropfoodDuration);
+            else yield return new WaitForSeconds(_droprockDuration);
+            
             rb.gravityScale = 0f;
             rb.angularVelocity = 0;
             rb.linearVelocity = Vector2.zero;
