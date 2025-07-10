@@ -56,8 +56,10 @@ MonoBehaviour:
   _feedDogObstacle: {fileID: 4544177780886025822}
   _dropFoodPos: {fileID: 623857140344850084}
   _dropStickPos: {fileID: 4933175340613344753}
-  _dropDuration: 1
+  _dropfoodDuration: 1
+  _droprockDuration: 1
   _stealth: {fileID: 0}
+  _particle: {fileID: 0}
 --- !u!1 &2657773114014268576
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _throwStickOnFoodObstacle: {fileID: 423946891884121875}
+  _treeAnimator: {fileID: 0}
+  _particle: {fileID: 0}
 --- !u!50 &4073244859718646273
 Rigidbody2D:
   serializedVersion: 5
@@ -466,6 +470,10 @@ PrefabInstance:
     - target: {fileID: 3876481643124065800, guid: 1a5489573c603d4408540c8a4d05004c, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138518570130103108, guid: 1a5489573c603d4408540c8a4d05004c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5352336950055122449, guid: 1a5489573c603d4408540c8a4d05004c, type: 3}
       propertyPath: m_Layer

@@ -10,6 +10,9 @@ namespace Interactables
     {
         [SerializeField] private FoodPickUpInteractable _food;
         [SerializeField] private WantFoodTarget _wantFoodTarget;
+        [SerializeField] private SpriteFade _foodSpriteFade;
+
+        private Coroutine _foodGlow;
         
         private void Awake()
         {
@@ -30,6 +33,7 @@ namespace Interactables
         
         public void HandleFoodDroppedWalkable(FoodPickUpInteractable food)
         {
+            if (_foodGlow != null) StopCoroutine(_foodGlow);
             _wantFoodTarget.FoodCanBeReached();
             _food.SetCanInteract(false);
             StartCoroutine(TurnOffInteractacle());
@@ -39,6 +43,22 @@ namespace Interactables
         {
             yield return new WaitForSeconds(0.05f);
             InteractableManager.instance.RemoveInteractable(_food);
+        }
+
+        public void FoodGlow()
+        {
+            _foodGlow = StartCoroutine(FoodGlowCoroutine());
+        }
+
+        private IEnumerator FoodGlowCoroutine()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                _foodSpriteFade.FadeOutOverTime(true);
+                yield return new WaitForSeconds(2f);
+                _foodSpriteFade.FadeOutOverTime();
+                yield return new WaitForSeconds(1f);
+            }
         }
         
         public override void ResetObstacle()
