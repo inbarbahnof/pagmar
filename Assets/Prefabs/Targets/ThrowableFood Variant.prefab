@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1191229062049817747}
   - component: {fileID: 3159957987405604427}
+  - component: {fileID: 2983631334153643353}
   m_Layer: 0
   m_Name: Fruit 1 glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1191229062049817747
 Transform:
   m_ObjectHideFlags: 0
@@ -75,9 +76,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 90578f0dfa438614987cf69e146c229f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -87,6 +88,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2983631334153643353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2767892999749189595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6311e155d3b4a9e8b563e49c1977f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 1
+  spriteRenderer: {fileID: 3159957987405604427}
 --- !u!1 &4351566777743857938
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +242,7 @@ PrefabInstance:
     - target: {fileID: 1804897355344761010, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
       propertyPath: _sprite
       value: 
-      objectReference: {fileID: 2066569607733795745}
+      objectReference: {fileID: 2948498257072249038}
     - target: {fileID: 1804897355344761010, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
       propertyPath: _foodTarget
       value: 
@@ -306,6 +321,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8422414114862519063, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8279499095431394443}
+    - targetCorrespondingSourceObject: {fileID: 8422414114862519063, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2948498257072249038}
   m_SourcePrefab: {fileID: 100100000, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
 --- !u!1 &277784454952785819 stripped
 GameObject:
@@ -342,6 +360,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _food: {fileID: 2660901898492799788}
+--- !u!210 &2948498257072249038
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277784454952785819}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 3
+  m_SortAtRoot: 0
 --- !u!4 &959035661760640628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8824701921238938360, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
