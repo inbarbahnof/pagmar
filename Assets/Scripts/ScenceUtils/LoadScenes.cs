@@ -28,10 +28,10 @@ public class LoadScenes : MonoBehaviour
 
     private IEnumerator LoadSceneWithCameraMovement()
     {
-        _player.MoveTo(_player.transform.position + Vector3.right*6, 2f);
-        _dog.MoveTo(_dog.transform.position + Vector3.right*6, 2f);
+        _player.MoveTo(_player.transform.position + Vector3.right*7, 3f);
+        _dog.MoveTo(_dog.transform.position + Vector3.right*7, 3f);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         
         CameraController.instance.ExtraZoomIn();
         yield return new WaitForSeconds(1f);
