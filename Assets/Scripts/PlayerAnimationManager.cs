@@ -185,13 +185,13 @@ public class PlayerAnimationManager : MonoBehaviour
         float deltaX = _climbDropRight ? 0.3f : -0.3f;
         Vector3 newPos = new Vector3(transform.position.x + deltaX, transform.position.y + 0.1f, 0);
         transform.DOMove(newPos, 0.5f);
-        StartCoroutine(ChangeShadow());
+        _shadowAnimator.SetTrigger("in");
     }
 
     private IEnumerator ChangeShadow()
     {
         yield return new WaitForSeconds(0.2f);
-        _shadowAnimator.SetTrigger("in");
+        
     }
 
     private IEnumerator OnDrop()
@@ -199,6 +199,7 @@ public class PlayerAnimationManager : MonoBehaviour
         float deltaX1 = _climbDropRight ? 0.4f : -0.4f;
         float deltaX2 = _climbDropRight ? 0.3f : -0.3f;
         
+        _shadowAnimator.SetTrigger("outNoTrans");
         Vector3 newPos1 = new Vector3(transform.position.x + deltaX1, transform.position.y + 0.1f, 0);
         transform.DOMove(newPos1, 0.15f);
 
@@ -206,6 +207,7 @@ public class PlayerAnimationManager : MonoBehaviour
         
         Vector3 newPos2 = new Vector3(transform.position.x + deltaX2, transform.position.y - 0.5f, 0);
         transform.DOMove(newPos2, 0.35f);
+        _shadowAnimator.SetTrigger("in");
     }
 
     public void PlayerRunSpeed(bool isFast)
