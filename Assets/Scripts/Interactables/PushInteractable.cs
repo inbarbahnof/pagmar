@@ -71,7 +71,7 @@ namespace Interactables
         {
             Vector3 newPos = transform.position;
             newPos.x = posX;
-            return _smoothMover.MoveTo(newPos);
+            return _smoothMover.MoveTo(newPos, 0.2f);
         }
 
         public void SetPushTarget(Vector2 target, Action onReachEvent)

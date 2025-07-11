@@ -62,7 +62,6 @@ namespace Interactables
                 {
                     float dist = Vector2.Distance(player.position, interactable.GetCurPos());
                     float interactionRange = interactable.InteractionRange;
-                
                     if (dist > interactionRange)
                     {
                         // print("removing " + interactable.name + " at distance " + dist);
