@@ -20,8 +20,8 @@ public class CutSceneManagerLvl4 : MonoBehaviour
     public void MoveToPositions()
     {
         _cutsceneManager.FreezePLayer();
-        _player.MoveTo(_playerPos.position, 5f);
-        _dog.MoveTo(_dogPos.position, 5f);
+        _player.MoveTo(_playerPos.position);
+        _dog.MoveTo(_dogPos.position);
         _waiting = true;
         
         AudioManager.Instance.StopMusic();
