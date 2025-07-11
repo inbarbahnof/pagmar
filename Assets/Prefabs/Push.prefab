@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac8845d2c744592b476ab34383bc311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDuration: 0.5
+  moveSpeed: 5
   easeCurve:
     serializedVersion: 2
     m_Curve:
@@ -131,8 +131,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _isPlayer: 1
+  _isPlayer: 0
+  isDog: 0
   _alive: 0
+  _dog: {fileID: 0}
+  _player: {fileID: 0}
 --- !u!1 &2673337292694229337
 GameObject:
   m_ObjectHideFlags: 0
