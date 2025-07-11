@@ -47,6 +47,7 @@ namespace Dog
         private bool _chasingGhostie;
         private bool _eating;
         private bool _jumping;
+        private bool _waitForPet;
 
         private DogStateComputer _computer;
         private float _dogPlayerDistance;
@@ -111,7 +112,7 @@ namespace Dog
                 _wantFood, _petDistance, _isFollowingStick, 
                 _isStealthTargetClose, _needToStealth, 
                 _followingCall, _isThereGhostie, _numberChaseGhostie, 
-                _chasingGhostie, _animationManager.Petting, eating);
+                _chasingGhostie, _animationManager.Petting, eating, _waitForPet);
             
             DogState newState = _computer.Compute(curState, newInput);
 
@@ -261,6 +262,24 @@ namespace Dog
             StartCoroutine(DogResetPause());
         }
 
+        private void HandleWaitForPetBehavior()
+        {
+            _playerFollower.StopGoingToTarget();
+            _playerFollower.SetIsGoingToTarget(false);
+            
+            _animationManager.DogWaitForFood();
+        }
+
+        public void StopWaitingForPet()
+        {
+            _waitForPet = false;
+        }
+
+        public void WaitForPetBehavior()
+        {
+            _waitForPet = true;
+        }
+
         private IEnumerator DogResetPause()
         {
             yield return new WaitForSeconds(1f);
@@ -279,6 +298,9 @@ namespace Dog
             {
                 case (_, DogState.Stealth):
                     HandleStealthBehavior();
+                    break;
+                case (_, DogState.WaitForPet):
+                    HandleWaitForPetBehavior();
                     break;
                 case (_, DogState.WantFood):
                     StartCoroutine(HandleWantFoodBehavior());

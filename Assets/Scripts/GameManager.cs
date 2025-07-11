@@ -1,6 +1,7 @@
 using System.Collections;
 using Audio.FMOD;
 using CheckpointUtils;
+using Dog;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int connectionState;
     [SerializeField] private InputManager _playerInput;
     [SerializeField] private CameraFade _cameraFade;
+    [SerializeField] private DogActionManager _dog;
 
     private bool _inTutorialCutScene = false;
     
@@ -70,6 +72,19 @@ public class GameManager : MonoBehaviour
         }
         
         AudioManager.Instance.PlayAmbiance(FMODEvents.Instance.Ambiance);
+    }
+
+    public void OnPlayerPetLevel3()
+    {
+        _dog.StopWaitingForPet();
+        
+        AudioManager.Instance.SetFloatParameter(AudioManager.Instance.musicInstance,
+            "Lvl3 Cutscene", 1, false);
+    }
+
+    public void PlayReunionMusic()
+    {
+        AudioManager.Instance.PlayMusic(FMODEvents.Instance.Chapter3ReunionMusic);
     }
 
     public void TutorialOut()
