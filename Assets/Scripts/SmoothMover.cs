@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class SmoothMover : MonoBehaviour
 {
-    [SerializeField] private float moveDuration = 0.5f; // Seconds
+    [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private AnimationCurve easeCurve = AnimationCurve.EaseInOut(0, 0, 1, 1); // Default ease
-    [SerializeField] private bool _isPlayer = true;
+    [SerializeField] private bool _isPlayer;
+    [SerializeField] private bool isDog = false;
     [SerializeField] private bool _alive;
     
     private Coroutine moveCoroutine;
@@ -19,14 +20,17 @@ public class SmoothMover : MonoBehaviour
     /// Moves the GameObject to the target position with easing.
     /// </summary>
     /// <param name="targetPosition">Target world position (2D)</param>
-    public float MoveTo(Vector2 targetPosition, float duration = 0.5f)
+    public float MoveTo(Vector2 targetPosition)
     {
         // Stop any previous movement
         if (moveCoroutine != null)
             StopCoroutine(moveCoroutine);
 
+        float distance = Vector2.Distance(transform.position, targetPosition);
+        float duration = distance / moveSpeed;
+        
         moveCoroutine = StartCoroutine(MoveRoutine(targetPosition, duration));
-        return moveDuration;
+        return duration;
     }
 
     private IEnumerator MoveRoutine(Vector2 target, float duration)
@@ -37,7 +41,7 @@ public class SmoothMover : MonoBehaviour
         if(_alive)
         {
             if (_isPlayer) _player.UpdateSmoothMove(true);
-            else _dog.UpdateSmoothMove(true, target);
+            else if (isDog) _dog.UpdateSmoothMove(true, target);
         }
 
         while (elapsed < duration)
@@ -49,12 +53,12 @@ public class SmoothMover : MonoBehaviour
             yield return null;
         }
 
-        transform.position = target; // Ensure it's exact
+        transform.position = target;
         
-        if(_alive)
+        if (_alive)
         {
             if (_isPlayer) _player.UpdateSmoothMove(false);
-            else _dog.UpdateSmoothMove(false, target);
+            else if (isDog) _dog.UpdateSmoothMove(false, target);
         }
     }
 }

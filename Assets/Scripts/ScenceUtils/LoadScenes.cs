@@ -17,8 +17,8 @@ public class LoadScenes : MonoBehaviour
 
     private void Start()
     {
-        if (_playerStartLevelPos != null) _player.MoveTo(_playerStartLevelPos.position, 1f);
-        if (_dogStartLevelPos != null) _dog.MoveTo(_dogStartLevelPos.position, 1f);
+        if (_playerStartLevelPos != null) _player.MoveTo(_playerStartLevelPos.position);
+        if (_dogStartLevelPos != null) _dog.MoveTo(_dogStartLevelPos.position);
     }
 
     public void LoadScene()
@@ -28,8 +28,8 @@ public class LoadScenes : MonoBehaviour
 
     private IEnumerator LoadSceneWithCameraMovement()
     {
-        _player.MoveTo(_player.transform.position + Vector3.right*7, 3f);
-        _dog.MoveTo(_dog.transform.position + Vector3.right*7, 3f);
+        _player.MoveTo(_player.transform.position + Vector3.right*7);
+        _dog.MoveTo(_dog.transform.position + Vector3.right*7);
 
         yield return new WaitForSeconds(2f);
         
