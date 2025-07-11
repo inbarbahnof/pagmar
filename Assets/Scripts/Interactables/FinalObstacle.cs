@@ -19,9 +19,14 @@ namespace Interactables
         [SerializeField] private GameObject _tree;
         [SerializeField] private GameObject _callBlock;
         [SerializeField] private GameObject _dogDead;
+
+        [Header("Initial Ghosts")]
+        [SerializeField] private GhostAttack _playerInitialGhost;
+        [SerializeField] private GhostAttack _dogInitialGhost;
         
-        private List<GhostAttack> _ghostsAttackDog = new List<GhostAttack>();
-        private List<GhostAttack> _ghostsAttackPlayer = new List<GhostAttack>();
+        [Header("Player or Dog Attack")]
+        [SerializeField] private List<GhostAttack> _ghostsAttackDog = new List<GhostAttack>();
+        [SerializeField] private List<GhostAttack> _ghostsAttackPlayer = new List<GhostAttack>();
         
         private List<Vector3> _initialGhostsPositions = new List<Vector3>();
 
@@ -33,13 +38,6 @@ namespace Interactables
         private void Start()
         {
             _playerState = _player.GetComponent<PlayerStateManager>();
-            
-            _ghostsAttackPlayer.Add(_ghosts[^1].GetComponent<GhostAttack>());
-
-            for (int j = 0; j < _ghosts.Count - 1; j++)
-            {
-                _ghostsAttackDog.Add(_ghosts[j].GetComponent<GhostAttack>());
-            }
             
             foreach (var ghost in _ghosts)
             {
@@ -54,10 +52,11 @@ namespace Interactables
                 _player.UpdatePlayerRunning(true);
                 AudioManager.Instance.SetFloatParameter(AudioManager.Instance.musicInstance,
                     "Ending Run", 2, false);
-            }
-            else if (other.CompareTag("Dog"))
-            {
+                
                 _dog.Running(true);
+                
+                _playerInitialGhost.Attack(_player.transform);
+                _dogInitialGhost.Attack(_dog.transform);
             }
         }
 
@@ -118,7 +117,7 @@ namespace Interactables
             Time.timeScale = 0.5f;
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
 
-            yield return new WaitForSecondsRealtime(4f);
+            yield return new WaitForSecondsRealtime(5f);
 
             Time.timeScale = 1f;
             Time.fixedDeltaTime = 0.02f;
@@ -162,19 +161,21 @@ namespace Interactables
                 Time.fixedDeltaTime = 0.02f;
             }
             
-            foreach (var ghost in _ghostsAttackDog)
+            for (int i = 0; i < _ghostsAttackDog.Count - 1; i++)
             {
-                ghost.StopAttacking(false, Vector3.zero);
-                ghost.SetKeepDistance(true);
-                ghost.SetAttackSpeed(5f);
+                _ghostsAttackDog[i].StopAttacking(false, Vector3.zero);
+                _ghostsAttackDog[i].SetKeepDistance(true);
+                _ghostsAttackDog[i].SetAttackSpeed(5f);
             }
-            
-            foreach (var ghost in _ghostsAttackPlayer)
+            _ghostsAttackDog[^1].StopAttacking(false, Vector3.zero);
+
+            for (int i = 0; i < _ghostsAttackPlayer.Count - 1; i++)
             {
-                ghost.StopAttacking(false, Vector3.zero);
-                ghost.SetKeepDistance(true);
-                ghost.SetAttackSpeed(5f);
+                _ghostsAttackPlayer[i].StopAttacking(false, Vector3.zero);
+                _ghostsAttackPlayer[i].SetKeepDistance(true);
+                _ghostsAttackPlayer[i].SetAttackSpeed(5f);
             }
+            _ghostsAttackPlayer[^1].StopAttacking(false, Vector3.zero);
             
             for (int i = 0; i < _ghosts.Count; i++)
             {

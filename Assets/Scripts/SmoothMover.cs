@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class SmoothMover : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private AnimationCurve easeCurve = AnimationCurve.EaseInOut(0, 0, 1, 1); // Default ease
     [SerializeField] private bool _isPlayer;
     [SerializeField] private bool isDog = false;

@@ -98,11 +98,8 @@ namespace Interactables
 
         private IEnumerator WaitForDogBark()
         {
-            if (_curDogTarget == 0)
-                yield return new WaitUntil(() => _dogReachedFirstTarget);
-            else
-                yield return new WaitForSeconds(1f);
-
+            yield return new WaitUntil(() => _dogReachedFirstTarget);
+            
             while (!_playerReachedCurrentTarget)
             {
                 _dog.Bark();
@@ -122,6 +119,7 @@ namespace Interactables
         public void PlayerReachedNextTarget()
         {
             _playerReachedCurrentTarget = true;
+            _dogReachedFirstTarget = false;
         }
 
         public override void PlayerReachedTarget()
@@ -168,7 +166,6 @@ namespace Interactables
         private IEnumerator WaitToChangeTarget()
         {
             yield return new WaitForSeconds(0.5f);
-            
             TargetGenerator.instance.SetStealthTarget(_targets[_curDogTarget]);
         }
         

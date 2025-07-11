@@ -6,8 +6,6 @@ namespace Dog
 {
     public class DogJumpManager : MonoBehaviour
     {
-        private float minDistanceToJump = 4f;
-        
         public void OnTriggerEntered(GameObject dog, bool fromLeft)
         {
             var agent = dog.GetComponent<NavMeshAgent>();

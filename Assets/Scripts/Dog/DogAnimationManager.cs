@@ -171,8 +171,9 @@ namespace Dog
                     transform.position, true);
             else if(e.Data == _digEventData)
                 _digParticals.Play();
-            
-            // else if(e.Data == _happyCrouchEventData)
+            else if(e.Data == _happyCrouchEventData)
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogHappyCrouch, 
+                    transform.position, true);
         }
 
         private void Update()
