@@ -10558,9 +10558,13 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.03
       objectReference: {fileID: 0}
+    - target: {fileID: 2298391485752216716, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
+      propertyPath: m_Name
+      value: DropInteractableLeft
+      objectReference: {fileID: 0}
     - target: {fileID: 2679138289290494234, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
       propertyPath: m_Name
-      value: ClimbObject (1)
+      value: ClimbObjectRight
       objectReference: {fileID: 0}
     - target: {fileID: 5218153500081341599, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10665,7 +10669,7 @@ PrefabInstance:
       addedObject: {fileID: 4754968263504769779}
     - targetCorrespondingSourceObject: {fileID: 2298391485752216716, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 820011668769993787}
+      addedObject: {fileID: 5073751767984732308}
     - targetCorrespondingSourceObject: {fileID: 1760941776471369583, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4352327308446988121}
@@ -10722,7 +10726,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.25, y: 0.8}
   m_Direction: 0
---- !u!114 &820011668769993787
+--- !u!114 &5073751767984732308
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10731,11 +10735,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6049825249854610312}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cba3f653f344fe7b5a9ff654ebd3e00, type: 3}
+  m_Script: {fileID: 11500000, guid: 979276b1f00a4e0894854deda399df91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 469210458168585062}
-  interactionRange: 1.5
+  interactionRange: 0.8
   col: {fileID: 0}
   interTrigger: {fileID: 4754968263504769779}
   _isClimbing: 0
@@ -10846,7 +10850,7 @@ MonoBehaviour:
   interTrigger: {fileID: 5841335194882259152}
   _isClimbing: 1
   climbRight: 0
-  twin: {fileID: 820011668769993787}
+  twin: {fileID: 0}
   playerPos: {fileID: 1881493764066474338}
   climbDown: 0
   climbPushManager: {fileID: 2517931022064452573}
@@ -10928,9 +10932,13 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.025
       objectReference: {fileID: 0}
+    - target: {fileID: 2298391485752216716, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
+      propertyPath: m_Name
+      value: DropInteractableRight
+      objectReference: {fileID: 0}
     - target: {fileID: 2679138289290494234, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
       propertyPath: m_Name
-      value: ClimbObject
+      value: ClimbObjectLeft
       objectReference: {fileID: 0}
     - target: {fileID: 5218153500081341599, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11031,7 +11039,7 @@ PrefabInstance:
       addedObject: {fileID: 1875845067824697116}
     - targetCorrespondingSourceObject: {fileID: 2298391485752216716, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5822126376244355557}
+      addedObject: {fileID: 132946625900350752}
     - targetCorrespondingSourceObject: {fileID: 1760941776471369583, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2026855749771330351}
@@ -11106,7 +11114,7 @@ MonoBehaviour:
   interTrigger: {fileID: 3118333004632365076}
   _isClimbing: 1
   climbRight: 1
-  twin: {fileID: 5822126376244355557}
+  twin: {fileID: 0}
   playerPos: {fileID: 809443006717931884}
   climbDown: 0
   climbPushManager: {fileID: 2517931022064452573}
@@ -11194,7 +11202,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.25, y: 0.8}
   m_Direction: 0
---- !u!114 &5822126376244355557
+--- !u!114 &132946625900350752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11203,11 +11211,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8498918562698989704}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cba3f653f344fe7b5a9ff654ebd3e00, type: 3}
+  m_Script: {fileID: 11500000, guid: 979276b1f00a4e0894854deda399df91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 2343434252091727974}
-  interactionRange: 1.5
+  interactionRange: 0.8
   col: {fileID: 0}
   interTrigger: {fileID: 1875845067824697116}
   _isClimbing: 0
