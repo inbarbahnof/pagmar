@@ -110,6 +110,7 @@ public class PlayerAnimationManager : MonoBehaviour
 
     public void UpdateClimbDropDirection(bool right)
     {
+        print("climb right? " + right);
         _climbDropRight = right;
     }
     
@@ -174,6 +175,7 @@ public class PlayerAnimationManager : MonoBehaviour
     
     private void OnClimbUpEvent()
     {
+        print("climb right on climb? " + _climbDropRight);
         float deltaX = _climbDropRight ? 0.1f : -0.1f;
         Vector3 newPos = new Vector3(transform.position.x + deltaX, transform.position.y + 0.3f, 0);
         transform.DOMove(newPos, 0.53f);
@@ -190,6 +192,7 @@ public class PlayerAnimationManager : MonoBehaviour
 
     private IEnumerator OnDrop()
     {
+        print("climb right on drop? " + _climbDropRight);
         float deltaX1 = _climbDropRight ? 0.4f : -0.4f;
         float deltaX2 = _climbDropRight ? 0.3f : -0.3f;
         

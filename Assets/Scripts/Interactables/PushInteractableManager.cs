@@ -108,11 +108,11 @@ namespace Interactables
         private IEnumerator ReachedTarget()
         {
             float waitTime = _curPushable.SetAtPos(_pushTarget.x);
+            StopPush();
             yield return new WaitForSeconds(waitTime);
             OnReachedTarget?.Invoke();
             SetPushTarget(Vector2.zero, null);
             //print("finished");
-            StopPush();
             moveToTarget = null;
         }
 
