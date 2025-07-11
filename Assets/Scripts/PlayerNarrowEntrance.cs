@@ -11,7 +11,7 @@ public class PlayerNarrowEntrance : MonoBehaviour
 
     private void Start()
     {
-        _fader = _faderGameObject.GetComponent<IObjectFader>();
+        if (_faderGameObject != null) _fader = _faderGameObject.GetComponent<IObjectFader>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -21,7 +21,7 @@ public class PlayerNarrowEntrance : MonoBehaviour
             if (_stateManager == null)
                 _stateManager = other.GetComponent<PlayerStateManager>();
             _stateManager.OnNarrowPass(true);
-            _fader.FadeOutOverTime(true);
+            _fader?.FadeOutOverTime(true);
         }
     }
     
@@ -32,7 +32,7 @@ public class PlayerNarrowEntrance : MonoBehaviour
             if (_stateManager == null)
                 _stateManager = other.GetComponent<PlayerStateManager>();
             _stateManager.OnNarrowPass(false);
-            _fader.FadeOutOverTime();
+            _fader?.FadeOutOverTime();
         }
     }
 }

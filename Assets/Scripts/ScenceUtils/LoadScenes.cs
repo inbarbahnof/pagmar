@@ -28,8 +28,8 @@ public class LoadScenes : MonoBehaviour
 
     private IEnumerator LoadSceneWithCameraMovement()
     {
-        _player.MoveTo(_player.transform.position + Vector3.right*7);
-        _dog.MoveTo(_dog.transform.position + Vector3.right*7);
+        _player.MoveTo(_player.transform.position + Vector3.right*7, 2);
+        _dog.MoveTo(_dog.transform.position + Vector3.right*7, 2);
 
         yield return new WaitForSeconds(2f);
         
