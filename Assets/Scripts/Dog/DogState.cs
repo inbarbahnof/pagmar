@@ -14,6 +14,7 @@
         OnTargetAction,
         Push,
         Stealth,
-        ChaseGhostie
+        ChaseGhostie,
+        WaitForPet
     }
 }

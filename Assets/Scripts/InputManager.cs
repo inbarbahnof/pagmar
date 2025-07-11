@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Audio.FMOD;
 using Interactables;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +11,7 @@ public class InputManager : MonoBehaviour
     private PlayerStateManager _stateManager;
     private PlayerInput _input;
     private AimControl _aimControl;
+    private bool _canMoveInput = true;
     
     private Vector2 _lastAimInput = Vector2.zero;
     private Coroutine _retainAimCoroutine;
@@ -34,23 +36,6 @@ public class InputManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         _input.enabled = false;
         _input.enabled = true;
-    }
-
-    public void ChangeCallState(int state)
-    {
-        if (state <= 2)
-        {
-            _input.actions["Call"].Disable();
-            _input.actions["CallMultiTap"].Enable();
-        }
-        else
-        {
-            _input.actions["CallMultiTap"].Disable();
-            _input.actions["Call"].Enable();
-        }
-        
-        // Debug.Log("ChangeCallState Call enabled: " + _input.actions["Call"].enabled);
-        // Debug.Log("ChangeCallState CallMultiTap enabled: " + _input.actions["CallMultiTap"].enabled);
     }
     
     public void OnMove(InputAction.CallbackContext context)
@@ -107,6 +92,7 @@ public class InputManager : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if (!_canMoveInput) return;
         if (context.started)
         {
             InteractableManager.instance.OnInteract();  // Button just pressed
@@ -117,13 +103,22 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    public void CanPetOnly()
+    {
+        _canMoveInput = false;
+    }
+
     public void OnPet(InputAction.CallbackContext context)
     {
         _stateManager.UpdatePetting();
+        
+        if (!_canMoveInput) GameManager.instance.OnPlayerPetLevel3();
+        _canMoveInput = true;
     }
 
     public void OnCall(InputAction.CallbackContext context)
     {
+        if (!_canMoveInput) return;
         if (context.started)
         {
             _stateManager.StartedCalling();
