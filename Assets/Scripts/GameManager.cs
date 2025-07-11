@@ -15,8 +15,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private InputManager _playerInput;
     [SerializeField] private CameraFade _cameraFade;
     [SerializeField] private DogActionManager _dog;
+    [SerializeField] private GameObject _faderGameObject;
 
     private bool _inTutorialCutScene = false;
+    private IObjectFader _fader;
     
     public int ConnectionState => connectionState;
     public int Chapter => chapter;
@@ -37,7 +39,9 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
         else Debug.LogError("TOO MANY GAME MANAGERS!");
-       
+        
+        _fader = _faderGameObject.GetComponent<IObjectFader>();
+        
         PlayMusicAccordingToLevel();
         if (_cameraFade && _cameraFade.gameObject.activeInHierarchy) _cameraFade.FadeOutOverTime(true);
         StartCoroutine(WaitToZoom());
@@ -72,6 +76,16 @@ public class GameManager : MonoBehaviour
         }
         
         AudioManager.Instance.PlayAmbiance(FMODEvents.Instance.Ambiance);
+    }
+
+    public void PlayVolumeEffect()
+    {
+        _fader.FadeOutOverTime(true);
+    }
+    
+    public void StopVolumeEffect()
+    {
+        _fader.FadeOutOverTime();
     }
 
     public void OnPlayerPetLevel3()

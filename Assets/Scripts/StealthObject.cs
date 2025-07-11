@@ -32,6 +32,7 @@ public class StealthObject : MonoBehaviour
            
            _particle.Play();
            _animator.SetTrigger("enter");
+           GameManager.instance.PlayVolumeEffect();
            
            if (!_bushSound.isValid()) 
                _bushSound = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.BushRustle);
@@ -64,6 +65,7 @@ public class StealthObject : MonoBehaviour
             _curStealthManager = null;
             _particle.Play();
             _animator.SetTrigger("enter");
+            GameManager.instance.StopVolumeEffect();
             
             AudioManager.Instance.StopSound(_bushSound);
             _bushSound = default;
