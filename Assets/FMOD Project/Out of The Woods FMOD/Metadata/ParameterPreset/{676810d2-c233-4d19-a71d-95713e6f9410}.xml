@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{676810d2-c233-4d19-a71d-95713e6f9410}">
+		<property name="name">
+			<value>Stealth Echo</value>
+		</property>
+		<relationship name="folder">
+			<destination>{00ded247-c94b-49cf-b59a-964c13cbe83c}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{3426f145-5865-4202-abce-062d1ba4be96}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{3426f145-5865-4202-abce-062d1ba4be96}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
