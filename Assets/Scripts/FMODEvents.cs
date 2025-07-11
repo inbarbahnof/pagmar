@@ -9,6 +9,7 @@ namespace Audio.FMOD
         [field: SerializeField] public EventReference ObjectFall { get; private set; }
         [field: SerializeField] public EventReference BushRustle { get; private set; }
         [field: SerializeField] public EventReference GhostieSound { get; private set; }
+        [field: SerializeField] public EventReference GhostieBonesDeath { get; private set; }
         [field: SerializeField] public EventReference GhostSound { get; private set; }
         [field: SerializeField] public EventReference DropStealthObject { get; private set; }
         [field: SerializeField] public EventReference CageFall { get; private set; }
@@ -39,8 +40,15 @@ namespace Audio.FMOD
         [field: SerializeField] public EventReference Chapter4Music { get; private set; }
         [field: SerializeField] public EventReference ChapterRunning4Music { get; private set; }
 
-        [field: Header("Ambiance")]
+        [field: Header("Ambience")]
         [field: SerializeField] public EventReference Ambiance { get; private set; }
+
+
+        [field: Header("Snapshots")]
+        [field: SerializeField] public EventReference MuteAmbienceSnapshot { get; private set; }
+        [field: SerializeField] public EventReference MuteMusicSnapshot { get; private set; }
+
+
 
         public static FMODEvents Instance { get; private set; }
 

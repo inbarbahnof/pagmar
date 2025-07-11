@@ -4,6 +4,7 @@ using UnityEngine;
 using FMOD.Studio;
 using FMODUnity;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
+using System.Collections;
 
 namespace Audio.FMOD
 {
@@ -16,6 +17,9 @@ namespace Audio.FMOD
         
         public EventInstance musicInstance;
         private EventInstance ambianceInstance;
+
+        private EventInstance ambienceMute;
+        private EventInstance musicMute;
         
         private void Awake()
         {
@@ -26,8 +30,43 @@ namespace Audio.FMOD
 
             _eventInstances = new List<EventInstance>();
             _eventEmitters = new List<StudioEventEmitter>();
+
+            if (!ambienceMute.isValid())
+                InitializeSnapshots(FMODEvents.Instance.MuteAmbienceSnapshot, 0);
+            if (!musicMute.isValid())
+                InitializeSnapshots(FMODEvents.Instance.MuteMusicSnapshot, 1);
+
+
         }
-        
+
+        /// <summary>
+        /// 0 = Ambience, 1 = Music
+        /// </summary>
+        /// <param name="eventReference"></param>
+        /// <param name="musicOrAmbience"></param>
+        private void InitializeSnapshots(EventReference eventReference, int musicOrAmbience)
+        {
+            if (!eventReference.IsNull)
+            {
+                switch (musicOrAmbience)
+                {
+                    case 0: // Ambience
+                        ambienceMute = RuntimeManager.CreateInstance(eventReference);
+                        break;
+                    case 1: // Music
+                        musicMute = RuntimeManager.CreateInstance(eventReference);
+                        break;
+                    default:
+                        Debug.LogWarning("Invalid musicOrAmbience value. Use 0 for Ambience and 1 for Music.");
+                        break;
+                }
+               
+            }
+            else
+                Debug.LogWarning("EventReference for snapshots is null.");
+
+        }
+
         public void PlayMusic(EventReference music)
         {
             if (musicInstance.isValid())
@@ -166,7 +205,63 @@ namespace Audio.FMOD
             // Release instance once done (to avoid memory leaks)
             eventInstance.release();
         }
-    
+
+        public void MuteAmbienceEvent()
+        {
+            if (ambianceInstance.isValid())
+                StartCoroutine(PauseEventCoroutine(0));
+        }
+
+        public void MuteMusicEvent()
+        {
+            if (musicInstance.isValid())
+                StartCoroutine(PauseEventCoroutine(1));
+
+        }
+
+
+        /// <summary>
+        /// 0 = ambience, 1 = music
+        /// </summary>
+        /// <param name="ambienceOrMusic"></param>
+        /// <returns></returns>
+        private IEnumerator PauseEventCoroutine(int ambienceOrMusic)
+        {
+            switch (ambienceOrMusic)
+            {
+                case 0: // Ambience
+                    ambienceMute.start();
+
+                    yield return new WaitForSeconds(1f); // Wait for a short duration to ensure the event is paused
+                    ambianceInstance.setPaused(true);
+                    break;
+
+                case 1: // Music
+                    musicMute.start();
+                    yield return new WaitForSeconds(1f); // Wait for a short duration to ensure the event is paused
+                    musicInstance.setPaused(true);
+                    break;
+
+            }
+        }
+
+        private void ResumeEvent(int ambienceOrMusic)
+        {
+            switch (ambienceOrMusic)
+            {
+                case 0: // Ambience
+                    ambianceInstance.setPaused(false);
+                    ambienceMute.stop(STOP_MODE.ALLOWFADEOUT);
+                    break;
+
+                case 1: // Music
+                    musicInstance.setPaused(false);
+                    musicMute.stop(STOP_MODE.ALLOWFADEOUT);
+                    break;
+            }
+        }
+
+      
 
         public EventInstance CreateEventInstance(EventReference eventReference)
         {

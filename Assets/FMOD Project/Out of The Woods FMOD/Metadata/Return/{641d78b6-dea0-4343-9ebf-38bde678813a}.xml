@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerReturn" id="{641d78b6-dea0-4343-9ebf-38bde678813a}">
+		<property name="name">
+			<value>Stealth ECHO</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{1452644e-a2a1-4cbf-b12f-b021f2e5fe8d}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{5481b19b-3656-4d52-ae9a-fe2e2d87fbf3}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{979ab450-fc15-46d9-9db7-23ccdc762d9f}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{1452644e-a2a1-4cbf-b12f-b021f2e5fe8d}">
+		<relationship name="effects">
+			<destination>{cef55490-5230-433a-ba0a-e9170a218bcc}</destination>
+			<destination>{4a933fcc-cf23-432b-93f8-26219fbd879a}</destination>
+			<destination>{6bda04ba-bb70-40e1-97e8-d25618729bcc}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{5481b19b-3656-4d52-ae9a-fe2e2d87fbf3}" />
+	<object class="DelayEffect" id="{cef55490-5230-433a-ba0a-e9170a218bcc}">
+		<property name="delay">
+			<value>200</value>
+		</property>
+		<property name="feedback">
+			<value>61.5</value>
+		</property>
+	</object>
+	<object class="SFXReverbEffect" id="{4a933fcc-cf23-432b-93f8-26219fbd879a}">
+		<property name="decayTime">
+			<value>1600</value>
+		</property>
+		<property name="lowShelfFrequency">
+			<value>400</value>
+		</property>
+		<property name="wetLevel">
+			<value>-6.5</value>
+		</property>
+		<property name="dryLevel">
+			<value>-6</value>
+		</property>
+	</object>
+	<object class="MixerBusFader" id="{6bda04ba-bb70-40e1-97e8-d25618729bcc}" />
+</objects>

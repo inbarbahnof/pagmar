@@ -21,7 +21,8 @@ namespace Ghosts
             else _charachterSound = AudioManager.Instance.PlayLoopingSound(
                 FMODEvents.Instance.GhostSound,
                 transform.position, true);
-            
+
+
             // This tells FMOD to track the transform and Rigidbody
             FMODUnity.RuntimeManager.AttachInstanceToGameObject(
                 _charachterSound,
@@ -45,12 +46,18 @@ namespace Ghosts
                 hasStarted = false;
             }
         }
-        
+
+     
+
         public void StopGhostieSound()
         {
             if (hasStarted)
             {
-                _charachterSound.stop(STOP_MODE.ALLOWFADEOUT);
+                _charachterSound.setParameterByName("Ghostie Mode", 1);
+                AudioManager.Instance.PlayOneShot(
+                    FMODEvents.Instance.GhostieBonesDeath, transform.position);
+
+                //_charachterSound.stop(STOP_MODE.ALLOWFADEOUT);
                 hasStarted = false;
                 dead = true;
             }
