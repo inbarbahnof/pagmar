@@ -175,6 +175,17 @@ public class PlayerStateManager : MonoBehaviour
         SetState(PlayerState.Idle);
     }
 
+    public void StopIdle()
+    {
+        _move.SetCanMove(false);
+        SetState(PlayerState.Idle);
+    }
+
+    public void ResumeMovement()
+    {
+        _move.SetCanMove(true);
+    }
+
     public void UpdatePetting()
     {
         SetState(PlayerState.Pet);
