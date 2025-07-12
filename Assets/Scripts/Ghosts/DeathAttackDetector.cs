@@ -40,5 +40,10 @@ namespace Ghosts
             // print("IsAttackEnabled " + name + " " + enabled);
             _canAttack = enabled;
         }
+
+        public void SetCanAttackDog(bool can)
+        {
+            _canAttackDog = can;
+        }
     }
 }
