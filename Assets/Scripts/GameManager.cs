@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CameraFade _cameraFade;
     [SerializeField] private DogActionManager _dog;
     [SerializeField] private GameObject _faderGameObject;
+    [SerializeField] private StartScreenManager _startScreen;
     
     [Header("Die Effects")]
     [SerializeField] private GameObject _ghostieEffectgameObject;
@@ -77,6 +78,11 @@ public class GameManager : MonoBehaviour
         }
         
         AudioManager.Instance.PlayAmbiance(FMODEvents.Instance.Ambiance);
+    }
+
+    public void StartGame()
+    {
+        if (_startScreen != null) _startScreen.OnPressStart();
     }
 
     public void PlayerDied(bool isGhostie)

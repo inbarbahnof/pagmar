@@ -32,7 +32,13 @@ public class CameraController : MonoBehaviour
         }
         else Debug.LogError("TOO MANY CAMERA CONTROLLERS!");
 
-        FollowPlayer();
+        StartCoroutine(FollowPlayerCoroutine());
+    }
+
+    private IEnumerator FollowPlayerCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (GameManager.instance.Chapter != 0) FollowPlayer();
     }
 
     public void UpdatePriorities(CinemachineCamera priorityCam)
