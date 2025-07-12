@@ -37318,6 +37318,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 82c1fd582efa7478097faed22bac28eb, type: 2}
     - {fileID: 11400000, guid: 287b7ce35533746bd82e6a038b1f4564, type: 2}
+    - {fileID: 11400000, guid: 13b54932740f3e841bcd845d7f74f32f, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -37366,6 +37367,34 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1580157036}
+          m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
+          m_MethodName: DeprioritizeCam
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2095847851}
+            m_ObjectArgumentAssemblyTypeName: Unity.Cinemachine.CinemachineCamera,
+              Unity.Cinemachine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 1580157036}
+          m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
+          m_MethodName: UpdatePriorities
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1466434527}
+            m_ObjectArgumentAssemblyTypeName: Unity.Cinemachine.CinemachineCamera,
+              Unity.Cinemachine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -41276,7 +41305,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 9073050080453914627}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9073050080453914628}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
   m_Name: 
@@ -50582,7 +50611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
-    Enabled: 0
+    Enabled: 1
     m_Value: 1
   OutputChannel: 1
   StandbyUpdate: 2
@@ -52688,11 +52717,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885530303164051641, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6885530303164051641, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: Priority.m_Value
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885530303164051641, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: Lens.OrthographicSize

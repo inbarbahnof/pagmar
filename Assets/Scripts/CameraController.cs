@@ -58,6 +58,11 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    public void DeprioritizeCam(CinemachineCamera cam)
+    {
+        cam.Priority = 0;
+    }
+
     public void FollowPlayer()
     {
         _followPlayerAndDog.enabled = false;
