@@ -40,7 +40,7 @@ namespace Interactables
         {
             if (_smoothMover is null) _smoothMover = GetComponent<SmoothMover>();
             if (hasTarget) PushInteractableManager.instance.SetPushTarget(_pushTarget, OnReachedTarget);
-            PushInteractableManager.instance.TryStartPush(this, playerPosToPush.position);
+            StartCoroutine(PushInteractableManager.instance.TryStartPush(this, playerPosToPush.position));
             base.Interact();
         }
 
