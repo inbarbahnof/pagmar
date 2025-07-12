@@ -19,10 +19,12 @@ public class GameManager : MonoBehaviour
     
     [Header("Die Effects")]
     [SerializeField] private GameObject _ghostieEffectgameObject;
+    [SerializeField] private GameObject _ghostEffectgameObject;
 
     private bool _inTutorialCutScene = false;
     private IObjectFader _fader;
     private DieEffect _ghostieEffect;
+    private DieEffect _ghostEffect;
     
     public int ConnectionState => connectionState;
     public int Chapter => chapter;
@@ -83,9 +85,10 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlayAmbiance(FMODEvents.Instance.Ambiance);
     }
 
-    public void PlayerDied()
+    public void PlayerDied(bool isGhostie)
     {
-        _ghostieEffect.PlayEffect();
+        if (isGhostie) _ghostieEffect.PlayEffect();
+        else _ghostEffect.PlayEffect();
     }
 
     public void PlayVolumeEffect()

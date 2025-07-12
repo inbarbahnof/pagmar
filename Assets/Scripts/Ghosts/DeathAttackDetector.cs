@@ -9,6 +9,7 @@ namespace Ghosts
         [SerializeField] private GhostieAttack _attack;
         [SerializeField] private GhostieMovement _movement;
         [SerializeField] private bool _canAttackDog;
+        [SerializeField] protected bool _isGhostie;
 
         private bool _canAttack = true;
         
@@ -25,7 +26,7 @@ namespace Ghosts
                 {
                     print("player died with ghost");
                     GameManager.checkpointManagerInstance.Undo();
-                    GameManager.instance.PlayerDied();
+                    GameManager.instance.PlayerDied(_isGhostie);
                 }
             }
             else if (_canAttackDog && other.CompareTag("Dog") && !other.GetComponent<DogActionManager>().IsDogProtected)

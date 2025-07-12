@@ -20,9 +20,9 @@ public class RunFromGhosties : MonoBehaviour
     {
         if (_isRunning)
         {
-            CameraController.instance.ZoomOut();
             StartCoroutine(StartRunCorutine());
-
+            CameraController.instance.FollowPlayerPan();
+            CameraController.instance.ZoomOut();
             // if (_slowMotion == null) _slowMotion = StartCoroutine(SlowMotion());
         }
     }
@@ -30,7 +30,8 @@ public class RunFromGhosties : MonoBehaviour
     public void PlayerStopRunning()
     {
         _playerMove.StopAutoRun();
-        CameraController.instance.ZoomOut();
+        CameraController.instance.FollowPlayer();
+        CameraController.instance.ZoomIn();
         
         AudioManager.Instance.SetFloatParameter(
             AudioManager.Instance.musicInstance,
