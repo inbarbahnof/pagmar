@@ -57,32 +57,6 @@ namespace Ghosts
             }
         }
 
-        // private void FixedUpdate()
-        // {
-        //     if (!isGoingAround && !isGoingToTarget) return;
-        //
-        //     Vector2 newPos = Vector2.MoveTowards(
-        //         _rb.position,
-        //         _currentTarget,
-        //         speed * Time.fixedDeltaTime
-        //     );
-        //
-        //     _rb.MovePosition(newPos);
-        //
-        //     if (Vector2.Distance(_rb.position, _currentTarget) < 0.05f)
-        //     {
-        //         if (isGoingToTarget)
-        //         {
-        //             isGoingToTarget = false;
-        //             StartCoroutine(WaitAndResume());
-        //         }
-        //         else if (isGoingAround)
-        //         {
-        //             SwitchDirection();
-        //         }
-        //     }
-        // }
-
         private void SetNextTarget()
         {
             _currentTarget = (movingToB ? pointB : pointA).position;

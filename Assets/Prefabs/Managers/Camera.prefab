@@ -650,11 +650,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 551850518665227751, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012080461085168507, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1091175162345403039, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5236816467806272667, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
       propertyPath: m_LocalPosition.x
@@ -700,9 +704,29 @@ PrefabInstance:
       propertyPath: _fader
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7364924219434037697, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
+      propertyPath: m_InitialEventName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364924219434037697, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
+      propertyPath: m_InitialEventNameOverriden
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7597644138702590317, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8446186727727299553, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
+      propertyPath: m_InitialEventName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8446186727727299553, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
+      propertyPath: m_InitialEventNameOverriden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880253564584165309, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -728,11 +752,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 551850518665227751, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1091175162345403039, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5236816467806272667, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
       propertyPath: m_LocalPosition.x
@@ -777,6 +801,14 @@ PrefabInstance:
     - target: {fileID: 5344845943853366032, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
       propertyPath: _fader
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364924219434037697, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
+      propertyPath: m_InitialEventName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364924219434037697, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
+      propertyPath: m_InitialEventNameOverriden
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7364924219434037697, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
       propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.ctime0
@@ -832,7 +864,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7597644138702590317, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8446186727727299553, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
+      propertyPath: m_InitialEventName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8446186727727299553, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
+      propertyPath: m_InitialEventNameOverriden
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8446186727727299553, guid: f1cca403bdf2e4be4bcaaf99815f1593, type: 3}
       propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.ctime0

@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
         if (instance == null) instance = this;
         else Debug.LogError("TOO MANY GAME MANAGERS!");
         
+        _cameraFade.gameObject.SetActive(true);
+        
         _fader = _faderGameObject.GetComponent<IObjectFader>();
         _ghostieEffect = _ghostieEffectgameObject.GetComponent<DieEffect>();
         _ghostEffect = _ghostEffectgameObject.GetComponent<DieEffect>();
