@@ -187,7 +187,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public void SetIsPushing(bool push, Vector3 playerPos, bool stationary = false)
+    public float SetIsPushing(bool push, Vector3 playerPos, bool stationary = false)
     {
         isPushing = push;
 
@@ -195,10 +195,10 @@ public class PlayerMove : MonoBehaviour
         {
             if (stationary) _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionX;
             else _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionY;
-            GetComponent<SmoothMover>().MoveTo(playerPos);
+            float waitTime = GetComponent<SmoothMover>().MoveTo(playerPos, 2f);
 
             _speed = _pushSpeed;
-
+            return waitTime;
         }
         else
         {
@@ -206,7 +206,9 @@ public class PlayerMove : MonoBehaviour
             _playerRb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
 
             _speed = _runSpeed;
+            
         }
+        return 0;
     }
 
     public float GetReadyToClimb(Vector2 playerPos, bool climb = false)
