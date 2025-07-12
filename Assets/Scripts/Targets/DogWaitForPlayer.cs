@@ -17,10 +17,7 @@ public class DogWaitForPlayer : MonoBehaviour
             DogActionManager dog = other.GetComponent<DogActionManager>();
             
             if (_finalObstacle != null)
-            {
                 StartCoroutine(TurnAroundLastObs(dog));
-                return;
-            }
 
             TargetGenerator.instance.SetWantFoodTarget(_wantFoodTarget);
             dog.SetWantsFood(true);
@@ -31,10 +28,8 @@ public class DogWaitForPlayer : MonoBehaviour
 
     private IEnumerator TurnAroundLastObs(DogActionManager dog)
     {
-        dog.DogStop();
-        
         dog.Growl(_wantFoodTarget.transform, false);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         
         dog.Bark();
         _finalObstacle.StopKeepingDistance();
