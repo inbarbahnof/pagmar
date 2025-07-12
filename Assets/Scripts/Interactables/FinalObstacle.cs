@@ -23,6 +23,7 @@ namespace Interactables
         [Header("Initial Ghosts")]
         [SerializeField] private GhostAttack _playerInitialGhost;
         [SerializeField] private GhostAttack _dogInitialGhost;
+        [SerializeField] private GameObject _parentGameObject;
         
         [Header("Player or Dog Attack")]
         [SerializeField] private List<GhostAttack> _ghostsAttackDog = new List<GhostAttack>();
@@ -54,6 +55,9 @@ namespace Interactables
                     "Ending Run", 2, false);
                 
                 _dog.Running(true);
+                
+                _playerInitialGhost.gameObject.SetActive(true);
+                _dogInitialGhost.gameObject.SetActive(true);
                 
                 _playerInitialGhost.Attack(_player.transform);
                 _dogInitialGhost.Attack(_dog.transform);
