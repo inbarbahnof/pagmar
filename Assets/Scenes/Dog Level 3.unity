@@ -4241,10 +4241,6 @@ PrefabInstance:
       propertyPath: weight
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8108820700168060895, guid: 2f2e2dfc253974833ac63400f3f1e16d, type: 3}
-      propertyPath: priority
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5891,15 +5887,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4679407582487070141, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -163.63052
+      value: -89.734695
       objectReference: {fileID: 0}
     - target: {fileID: 4679407582487070141, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -18.649574
+      value: -14.893327
       objectReference: {fileID: 0}
     - target: {fileID: 4679407582487070141, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.234067
+      value: 8.704438
       objectReference: {fileID: 0}
     - target: {fileID: 5118574253933165600, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5967,15 +5963,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8000971322927287477, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -163.63052
+      value: -89.734695
       objectReference: {fileID: 0}
     - target: {fileID: 8000971322927287477, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -18.649574
+      value: -14.893327
       objectReference: {fileID: 0}
     - target: {fileID: 8000971322927287477, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.23406696
+      value: -1.2955618
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11096,6 +11092,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 1
+        - m_Target: {fileID: 1393686872}
+          m_TargetAssemblyTypeName: Dog.DogAnimationManager, Assembly-CSharp
+          m_MethodName: SetDogInjured
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1439750870}
@@ -56523,6 +56531,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1001545518166848245, guid: dcfc35101cc227e48ac7b99b1a393bd1, type: 3}
   m_PrefabInstance: {fileID: 1391749343}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1393686872 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2126287841468501225, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
+  m_PrefabInstance: {fileID: 1439750863}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439750866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa982fff3cb7824bb0a78bd46770bc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1395003798
 PrefabInstance:
   m_ObjectHideFlags: 0
