@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class AimControl : MonoBehaviour
 {
-    [SerializeField] private Trajectory trajectory;
+    [SerializeField] private GameObject trajectoryTarget;
+    [SerializeField] private float throwDistance = 5f;
+    [SerializeField] private float arcHeight = 2.5f;
     
     private Vector2 _aimInput = Vector2.zero;
     private bool _isAiming = false;
@@ -15,59 +17,19 @@ public class AimControl : MonoBehaviour
     private Vector2 _endPoint;
     private Vector2 startPoint;
     private float throwSpeed = 10f;
-    public float arcHeight = 2f;
     
     // aim feel
     private const float inputDeadzone = 0.05f;
     private Vector2 _smoothedAimInput = Vector2.zero;
     [SerializeField] private float aimSmoothSpeed = 10f; // Higher = snappier
     
-    /*private Coroutine _aimResetCoroutine;
-
-    public void UpdateAimInput(Vector2 input)
-    {
-        if (input.magnitude < inputDeadzone)
-        {
-            if (_aimResetCoroutine == null)
-            {
-                _aimResetCoroutine = StartCoroutine(DelayedStopAiming());
-            }
-
-            _aimInput = Vector2.zero;
-            trajectory.Hide();
-            return;
-        }
-
-        if (_aimResetCoroutine != null)
-        {
-            StopCoroutine(_aimResetCoroutine);
-            _aimResetCoroutine = null;
-        }
-
-        _aimInput = input;
-        _isAiming = true;
-    }
-
-    private IEnumerator DelayedStopAiming()
-    {
-        yield return new WaitForSeconds(1f);
-
-        // Check if the current input is still below the deadzone
-        if (_aimInput.magnitude < inputDeadzone)
-        {
-            _isAiming = false;
-        }
-
-        _aimResetCoroutine = null;
-    }*/
-    
     public void UpdateAimInput(Vector2 input)
     {
         if (input.magnitude < inputDeadzone)
         {
             _aimInput = Vector2.zero;
             _isAiming = false;
-            trajectory.Hide();
+            trajectoryTarget.SetActive(false);
             return;
         }
 
@@ -88,26 +50,23 @@ public class AimControl : MonoBehaviour
     {
         if (!_isAiming) return;
 
-        //_stateManager.SetState(PlayerState.Aim);
-        trajectory.Show();
+        trajectoryTarget.SetActive(true);
         startPoint = transform.position;
-        
-        float inputStrength = Mathf.Clamp01(input.magnitude);
-        float distance = Mathf.Lerp(2f, 6f, inputStrength);     // Scale distance
-        float arc = Mathf.Lerp(1f, 3f, inputStrength);          // Scale arc height
-        arcHeight = arc; // Store for use in Throw()
-        
-        _endPoint = startPoint + input.normalized * distance;
-        Vector2 controlPoint = (startPoint + _endPoint) * 0.5f;
-        controlPoint.y += arcHeight;
+
+        _endPoint = startPoint + input.normalized * throwDistance;
+
+        Vector2 direction = input.normalized;
+        Vector2 midpoint = (startPoint + _endPoint) * 0.5f;
+
+        Vector2 controlPoint = midpoint + Vector2.up * arcHeight;
         
         Debug.DrawLine(transform.position, _endPoint, Color.green);
-        trajectory.UpdateDots(startPoint, _endPoint, controlPoint);
+        trajectoryTarget.transform.position = _endPoint;
     }
     
     public void HideTrajectory()
     {
-        trajectory.Hide();
+        trajectoryTarget.SetActive(false);
         UpdateAimInput(Vector2.zero);
     }
 
