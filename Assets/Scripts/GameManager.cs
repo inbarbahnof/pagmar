@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
         
         _fader = _faderGameObject.GetComponent<IObjectFader>();
         _ghostieEffect = _ghostieEffectgameObject.GetComponent<DieEffect>();
+        _ghostEffect = _ghostEffectgameObject.GetComponent<DieEffect>();
         
         PlayMusicAccordingToLevel();
         if (_cameraFade && _cameraFade.gameObject.activeInHierarchy) _cameraFade.FadeOutOverTime(true);
