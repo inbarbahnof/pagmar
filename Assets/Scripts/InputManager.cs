@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     private PlayerInput _input;
     private AimControl _aimControl;
     private bool _canMoveInput = true;
+    private bool _hasGameStarted;
     
     private Vector2 _lastAimInput = Vector2.zero;
     private Coroutine _retainAimCoroutine;
@@ -92,6 +93,13 @@ public class InputManager : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if(GameManager.instance.Chapter == 0 && !_hasGameStarted)
+        {
+            GameManager.instance.StartGame();
+            _hasGameStarted = true;
+            return;
+        }
+        
         if (!_canMoveInput) return;
         if (context.started)
         {
