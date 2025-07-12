@@ -44,5 +44,10 @@ namespace Interactables
         {
             _playerMove.FinishClimb();
         }
+
+        public bool GetPlayerMovingRight()
+        {
+            return _playerMove.MovingRight;
+        }
     }
 }

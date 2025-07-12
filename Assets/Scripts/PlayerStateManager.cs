@@ -70,7 +70,7 @@ public class PlayerStateManager : MonoBehaviour
         _move = GetComponent<PlayerMove>();
         _computer = new PlayerAnimationComputer();
         _inputManager = GetComponent<InputManager>();
-        print(_inputManager);
+        //print(_inputManager);
     }
 
     private void Update()
