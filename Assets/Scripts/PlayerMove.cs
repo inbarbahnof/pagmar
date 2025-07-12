@@ -206,6 +206,7 @@ public class PlayerMove : MonoBehaviour
             _playerRb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
 
             _speed = _runSpeed;
+            
         }
         return 0;
     }
