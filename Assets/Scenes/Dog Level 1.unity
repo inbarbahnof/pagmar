@@ -79700,6 +79700,10 @@ PrefabInstance:
       propertyPath: _faderGameObject
       value: 
       objectReference: {fileID: 1590256029}
+    - target: {fileID: 3928992937263542164, guid: 361a77586bdd7254fbc4b75854fc6ee4, type: 3}
+      propertyPath: _ghostieEffectgameObject
+      value: 
+      objectReference: {fileID: 6206195499498904297}
     - target: {fileID: 7219410380661152799, guid: 361a77586bdd7254fbc4b75854fc6ee4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -79952,7 +79956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1890077700809229685, guid: 9839d545bdf45bc4a98f1cfcbdb0d7ed, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2031817862653350588, guid: 9839d545bdf45bc4a98f1cfcbdb0d7ed, type: 3}
       propertyPath: _waitOnCallTime
@@ -80024,11 +80028,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8422355481209256447, guid: 9839d545bdf45bc4a98f1cfcbdb0d7ed, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8966109095673128583, guid: 9839d545bdf45bc4a98f1cfcbdb0d7ed, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -80082,6 +80086,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4922f77888b34c17871ffa82743f925f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6206195499498904297 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8422355481209256447, guid: 9839d545bdf45bc4a98f1cfcbdb0d7ed, type: 3}
+  m_PrefabInstance: {fileID: 6206195499498904292}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6365235832100855564
 PrefabInstance:
   m_ObjectHideFlags: 0
