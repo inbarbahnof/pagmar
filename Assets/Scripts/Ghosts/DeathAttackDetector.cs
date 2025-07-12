@@ -25,6 +25,7 @@ namespace Ghosts
                 {
                     print("player died with ghost");
                     GameManager.checkpointManagerInstance.Undo();
+                    GameManager.instance.PlayerDied();
                 }
             }
             else if (_canAttackDog && other.CompareTag("Dog") && !other.GetComponent<DogActionManager>().IsDogProtected)
