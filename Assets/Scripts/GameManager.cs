@@ -16,9 +16,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CameraFade _cameraFade;
     [SerializeField] private DogActionManager _dog;
     [SerializeField] private GameObject _faderGameObject;
+    
+    [Header("Die Effects")]
+    [SerializeField] private GameObject _ghostieEffectgameObject;
 
     private bool _inTutorialCutScene = false;
     private IObjectFader _fader;
+    private DieEffect _ghostieEffect;
     
     public int ConnectionState => connectionState;
     public int Chapter => chapter;
@@ -41,6 +45,7 @@ public class GameManager : MonoBehaviour
         else Debug.LogError("TOO MANY GAME MANAGERS!");
         
         _fader = _faderGameObject.GetComponent<IObjectFader>();
+        _ghostieEffect = _ghostieEffectgameObject.GetComponent<DieEffect>();
         
         PlayMusicAccordingToLevel();
         if (_cameraFade && _cameraFade.gameObject.activeInHierarchy) _cameraFade.FadeOutOverTime(true);
@@ -76,6 +81,11 @@ public class GameManager : MonoBehaviour
         }
         
         AudioManager.Instance.PlayAmbiance(FMODEvents.Instance.Ambiance);
+    }
+
+    public void PlayerDied()
+    {
+        _ghostieEffect.PlayEffect();
     }
 
     public void PlayVolumeEffect()
