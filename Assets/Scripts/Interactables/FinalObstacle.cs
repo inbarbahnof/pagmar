@@ -12,6 +12,7 @@ namespace Interactables
     {
         [SerializeField] private List<GhostMovement> _ghosts;
         [SerializeField] private Transform[] _ghostPosToGo;
+        [SerializeField] private Transform[] _playerGhostsGoTo;
         
         [SerializeField] private PlayerMove _player;
         [SerializeField] private DogActionManager _dog;
@@ -123,6 +124,29 @@ namespace Interactables
                 {
                     movement.GoToTargetAndPause(_ghostPosToGo[i]);
                 }
+            }
+            
+            for (int i = 0; i < _ghostsAttackPlayer.Count; i++)
+            {
+                _ghostsAttackPlayer[i].StopAttacking(false, _player.transform.position);
+                GhostMovement movement = _ghostsAttackPlayer[i].GetComponent<GhostMovement>();
+                if (movement != null)
+                {
+                    movement.GoToTargetAndPause(_playerGhostsGoTo[i]);
+                }
+            }
+
+            StartCoroutine(WaitToAttackPlayer());
+        }
+
+        private IEnumerator WaitToAttackPlayer()
+        {
+            yield return new WaitForSecondsRealtime(3f);
+            
+            foreach (var ghost in _ghostsAttackPlayer)
+            {
+                ghost.Attack(_player.transform);
+                ghost.SetAttackSpeed(12f);
             }
         }
         
