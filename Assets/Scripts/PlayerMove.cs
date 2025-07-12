@@ -135,7 +135,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (canMove) Move();
         
-        movingRight = _moveInput.x > 0;
+        //movingRight = _moveInput.x >= 0;
         _standing = _moveInput == Vector2.zero;
     }
 
@@ -250,6 +250,8 @@ public class PlayerMove : MonoBehaviour
         {
             _moveInput = moveInput;
         }
+        if (moveInput != Vector2.zero) movingRight = _moveInput.x >= 0;
+        //print(_moveInput);
     }
 
     public void ResetToCheckpoint(Vector2 pos)

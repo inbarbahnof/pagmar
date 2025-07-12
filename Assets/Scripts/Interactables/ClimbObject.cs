@@ -24,7 +24,7 @@ namespace Interactables
             if (col)
             {
                 col.SetActive(false);
-                print("col deactivated at interact press");
+                //print("col deactivated at interact press");
             }
         }
 
@@ -50,7 +50,7 @@ namespace Interactables
                 if (col)
                 {
                     col.SetActive(true);
-                    print("col activated at trigger exit");
+                    //print("col activated at trigger exit");
                 }
                 
             }
@@ -62,7 +62,7 @@ namespace Interactables
             {
                 twinTrigger.enabled = true;
                 interTrigger.enabled = false;
-                Debug.Log("col deactivated at finish interact");
+                //Debug.Log("col deactivated at finish interact");
             }
             InteractableManager.instance.OnFinishInteraction(twin);
         }

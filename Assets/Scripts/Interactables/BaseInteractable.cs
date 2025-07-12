@@ -28,7 +28,7 @@ namespace Interactables
         /// Controlls highlight of interactable obj, turned on when player can interact and off otherwise.
         /// </summary>
         /// <param name="isHighlighted"> Bool val to set highlight activation to </param>
-        public void SetHighlight(bool isHighlighted)
+        public virtual void SetHighlight(bool isHighlighted)
         {
             SpriteFade fadeScript = highlightEffect.GetComponent<SpriteFade>();
             if (fadeScript) fadeScript.FadeOutOverTime(isHighlighted);
