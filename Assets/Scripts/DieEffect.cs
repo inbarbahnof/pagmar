@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Audio.FMOD;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -11,6 +12,9 @@ public class DieEffect : MonoBehaviour
 
     public void PlayEffect()
     {
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerDeath,
+            transform.position, true);
+        
         _fader.FadeOutOverTime();
         gameObject.SetActive(true);
 

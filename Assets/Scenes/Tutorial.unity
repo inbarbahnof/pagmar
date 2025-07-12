@@ -44781,6 +44781,14 @@ PrefabInstance:
       propertyPath: _faderGameObject
       value: 
       objectReference: {fileID: 1417426001}
+    - target: {fileID: 3928992937263542164, guid: 361a77586bdd7254fbc4b75854fc6ee4, type: 3}
+      propertyPath: _ghostEffectgameObject
+      value: 
+      objectReference: {fileID: 9073050080453914630}
+    - target: {fileID: 3928992937263542164, guid: 361a77586bdd7254fbc4b75854fc6ee4, type: 3}
+      propertyPath: _ghostieEffectgameObject
+      value: 
+      objectReference: {fileID: 9073050080453914631}
     - target: {fileID: 7219410380661152799, guid: 361a77586bdd7254fbc4b75854fc6ee4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -51616,6 +51624,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6017165341741780119, guid: dca9aae13675a9b4db1ef0015576a789, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187226684570451677, guid: dca9aae13675a9b4db1ef0015576a789, type: 3}
+      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8568009778939067175, guid: dca9aae13675a9b4db1ef0015576a789, type: 3}
@@ -52424,6 +52436,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3530798969361566921, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
+      propertyPath: _fader
+      value: 
+      objectReference: {fileID: 1805376970}
     - target: {fileID: 4519064065317753830, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: ShowDebugText
       value: 1
@@ -52502,7 +52518,7 @@ PrefabInstance:
       objectReference: {fileID: 1692850806}
     - target: {fileID: 5748753108856789319, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: orthographic size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5748753108856789319, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -52526,15 +52542,15 @@ PrefabInstance:
       objectReference: {fileID: 1050567128}
     - target: {fileID: 7777086046178666412, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.51
+      value: -3.3033855
       objectReference: {fileID: 0}
     - target: {fileID: 7777086046178666412, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.07421
+      value: 13.324209
       objectReference: {fileID: 0}
     - target: {fileID: 7777086046178666412, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -9.963331
       objectReference: {fileID: 0}
     - target: {fileID: 8000971322927287477, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52548,6 +52564,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.23406696
       objectReference: {fileID: 0}
+    - target: {fileID: 8614129023391084757, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
+      propertyPath: _fader
+      value: 
+      objectReference: {fileID: 1805376970}
     - target: {fileID: 8902109985037045096, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: player
       value: 
@@ -52610,6 +52630,16 @@ MonoBehaviour:
     MaxWindowSize: 6
     Padding: 0.5
   m_LegacyMaxWindowSize: -2
+--- !u!1 &9073050080453914630 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9042048252272859710, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
+  m_PrefabInstance: {fileID: 9073050080453914627}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9073050080453914631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4183752498683405858, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
+  m_PrefabInstance: {fileID: 9073050080453914627}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

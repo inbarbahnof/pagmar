@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _ghostEffectgameObject;
 
     private bool _inTutorialCutScene = false;
+    private PlayerMove _playerMove;
     private IObjectFader _fader;
     private DieEffect _ghostieEffect;
     private DieEffect _ghostEffect;
@@ -32,23 +33,15 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
-        // if (checkpointManagerInstance == null)
-        // {
-        //     checkpointManagerInstance = new CheckpointManager(GetComponent<CheckpointOriginator>());
-        // }
-        // else Debug.LogError("TOO MANY CHECKPOINT MANAGERS!");
-        
         checkpointManagerInstance = new CheckpointManager(GetComponent<CheckpointOriginator>());
 
-        if (instance == null)
-        {
-            instance = this;
-        }
+        if (instance == null) instance = this;
         else Debug.LogError("TOO MANY GAME MANAGERS!");
         
         _fader = _faderGameObject.GetComponent<IObjectFader>();
         _ghostieEffect = _ghostieEffectgameObject.GetComponent<DieEffect>();
         _ghostEffect = _ghostEffectgameObject.GetComponent<DieEffect>();
+        _playerMove = _playerInput.GetComponent<PlayerMove>();
         
         PlayMusicAccordingToLevel();
         if (_cameraFade && _cameraFade.gameObject.activeInHierarchy) _cameraFade.FadeOutOverTime(true);
@@ -88,8 +81,21 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDied(bool isGhostie)
     {
+        _playerMove.SetCanMove(false);
+        
         if (isGhostie) _ghostieEffect.PlayEffect();
         else _ghostEffect.PlayEffect();
+
+        StartCoroutine(PlayerDiedCoroutine());
+    }
+
+    private IEnumerator PlayerDiedCoroutine()
+    {
+        yield return new WaitForSeconds(0.8f);
+        checkpointManagerInstance.Undo();
+
+        yield return new WaitForSeconds(0.5f);
+        _playerMove.SetCanMove(true);
     }
 
     public void PlayVolumeEffect()

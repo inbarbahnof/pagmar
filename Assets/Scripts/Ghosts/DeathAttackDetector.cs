@@ -25,7 +25,6 @@ namespace Ghosts
                 if (!other.GetComponent<PlayerStealthManager>().isProtected)
                 {
                     print("player died with ghost");
-                    GameManager.checkpointManagerInstance.Undo();
                     GameManager.instance.PlayerDied(_isGhostie);
                 }
             }

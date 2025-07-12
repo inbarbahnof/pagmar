@@ -16,6 +16,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float minFOV = 5f;
     [SerializeField] private float maxFOV = 7f;
     [SerializeField] private float extraZoomIn = 3f;
+
+    [Header("Effects")]
+    [SerializeField] private Transform _ghostieEffect;
+    [SerializeField] private Transform _ghostEffect;
     
     private float zoomSpeed = 2f;
     private Coroutine zoomCoroutine;
@@ -52,6 +56,7 @@ public class CameraController : MonoBehaviour
     {
         _followPlayerAndDog.enabled = false;
         _followPlayer.enabled = true;
+        SwitchEffectParent(_followPlayer.transform);
 
         if (_followPlayerPan != null) _followPlayerPan.enabled = false;
     }
@@ -61,12 +66,15 @@ public class CameraController : MonoBehaviour
         _followPlayerAndDog.enabled = false;
         _followPlayer.enabled = false;
         _followPlayerPan.enabled = true;
+        
+        SwitchEffectParent(_followPlayerPan.transform);
     }
 
     public void FollowPlayerAndDog()
     {
         _followPlayer.enabled = false;
         _followPlayerAndDog.enabled = true;
+        SwitchEffectParent(_followPlayerAndDog.transform);
         
         if (_followPlayerPan != null) _followPlayerPan.enabled = false;
     }
@@ -106,6 +114,12 @@ public class CameraController : MonoBehaviour
         }
 
         cam.Lens.OrthographicSize = targetSize; // Snap to exact value at the end
+    }
+    
+    void SwitchEffectParent(Transform newFollowTarget)
+    {
+        _ghostieEffect.SetParent(newFollowTarget);
+        _ghostEffect.SetParent(newFollowTarget);
     }
 
     public void ZoomOut(float speed = 2)
