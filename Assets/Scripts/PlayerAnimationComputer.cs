@@ -5,7 +5,7 @@
         if (input._playerState == PlayerState.Climb) return PlayerAnimation.Climb;
         if (input._playerState == PlayerState.Drop) return PlayerAnimation.Drop;
         if (input._isCalling) return PlayerAnimation.Call;
-
+        if (input._scared) return PlayerAnimation.Scared;
         if (input._petting) return PlayerAnimation.Pet;
         
         if (input._goingBackFromPet) return PlayerAnimation.GoBackFromPet;

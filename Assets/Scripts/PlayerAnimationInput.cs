@@ -20,13 +20,14 @@ public struct PlayerAnimationInput
     public bool _sad;
     public bool _smoothMoving;
     public bool _stopSad;
+    public bool _scared;
 
     public PlayerAnimationInput(PlayerState playerState, bool isCrouching, 
         bool isMoving,bool canMove, bool isCalling, bool movingRight,
         bool standing, bool didPickUp,
         bool justPickedUp, bool throwing, bool isPushingFromLeft,
         bool isAiming, bool petting, bool goingBackFromPet, bool narrowPass,
-        bool sad, bool smoothMoving, bool stopSad)
+        bool sad, bool smoothMoving, bool stopSad, bool scared)
     {
         _playerState = playerState;
         _isCrouching = isCrouching;
@@ -46,5 +47,6 @@ public struct PlayerAnimationInput
         _sad = sad;
         _smoothMoving = smoothMoving;
         _stopSad = stopSad;
+        _scared = scared;
     }
 }

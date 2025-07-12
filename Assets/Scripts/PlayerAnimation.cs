@@ -17,5 +17,6 @@
     Drop,
     HoldPush,
     SadWalk,
-    StopSad
+    StopSad,
+    Scared
 }

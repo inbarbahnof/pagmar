@@ -36,6 +36,7 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private string holdPushAnimName;
     [SerializeField] private string sadWalkAnimName;
     [SerializeField] private string sadStopAnimName;
+    [SerializeField] private string scaredAnimName;
     
     [Header("Animation Speeds")]
     [SerializeField] private float idleAnimSpeed = 1f;
@@ -56,6 +57,7 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private float holdPushAnimSpeed = 1f;
     [SerializeField] private float sadWalkAnimSpeed = 1f;
     [SerializeField] private float sadStopAnimSpeed = 1f;
+    [SerializeField] private float scaredAnimSpeed = 1f;
 
     [Header("Event Names")] 
     [SerializeField] private string _climbUpEventName;
@@ -130,6 +132,9 @@ public class PlayerAnimationManager : MonoBehaviour
             _stateManager.MakeCallSound();
         else if (e.Data == _breathEventData)
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerSigh, 
+                transform.position, true);
+        else if (e.Data == _scareEventData)
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerScared, 
                 transform.position, true);
     }
     
@@ -280,6 +285,10 @@ public class PlayerAnimationManager : MonoBehaviour
                 case PlayerAnimation.Climb:
                     entry = spineAnimationState.SetAnimation(0, climbAnimName, false);
                     if (entry != null) entry.TimeScale = climbAnimSpeed;
+                    break;
+                case PlayerAnimation.Scared:
+                    entry = spineAnimationState.SetAnimation(0, scaredAnimName, false);
+                    if (entry != null) entry.TimeScale = scaredAnimSpeed;
                     break;
                 case PlayerAnimation.Run:
                     entry = spineAnimationState.SetAnimation(0, runAnimName, true);
