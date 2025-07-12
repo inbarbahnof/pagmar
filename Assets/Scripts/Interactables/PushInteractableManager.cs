@@ -48,10 +48,11 @@ namespace Interactables
             OnReachedTarget += onReachEvent;
         }
 
-        public void TryStartPush(PushInteractable interactable, Vector3 playerPos)
+        public IEnumerator TryStartPush(PushInteractable interactable, Vector3 playerPos)
         {
+            float waitTime = _playerMove.SetIsPushing(true, playerPos, interactable.GetStationary());
+            yield return new WaitForSeconds(waitTime);
             _isPushing = true;
-            _playerMove.SetIsPushing(true, playerPos, interactable.GetStationary());
             
             if (!_dragSound.isValid())
             {
