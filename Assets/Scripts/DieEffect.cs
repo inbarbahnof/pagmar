@@ -14,15 +14,18 @@ public class DieEffect : MonoBehaviour
     {
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerDeath,
             transform.position, true);
-        
-        _fader.FadeOutOverTime();
-        gameObject.SetActive(true);
-
         StartCoroutine(WaitToStopVFX());
     }
 
     private IEnumerator WaitToStopVFX()
     {
+        _fader.FadeOutOverTime();
+
+        foreach (var vfx in _vfx)
+        {
+            vfx.Play();
+        }
+        
         yield return new WaitForSeconds(_waitToStop);
 
         foreach (var vfx in _vfx)
@@ -30,13 +33,7 @@ public class DieEffect : MonoBehaviour
             vfx.Stop();
         }
 
+        yield return new WaitForSeconds(1f);
         _fader.FadeOutOverTime(true);
-        yield return new WaitForSeconds(3f);
-
-        gameObject.SetActive(false);
-        foreach (var vfx in _vfx)
-        {
-            vfx.Play();
-        }
     }
 }

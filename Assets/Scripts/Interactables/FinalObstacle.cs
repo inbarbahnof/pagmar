@@ -11,6 +11,7 @@ namespace Interactables
     public class FinalObstacle : Obstacle
     {
         [SerializeField] private List<GhostMovement> _ghosts;
+        [SerializeField] private Transform[] _ghostPosToGo;
         
         [SerializeField] private PlayerMove _player;
         [SerializeField] private DogActionManager _dog;
@@ -113,6 +114,16 @@ namespace Interactables
         public void ActivateSlowMotion()
         {
             _slowMotion = StartCoroutine(SlowMotion());
+            
+            for (int i = 0; i < _ghostsAttackDog.Count; i++)
+            {
+                _ghostsAttackDog[i].StopAttacking(false, _dog.transform.position);
+                GhostMovement movement = _ghostsAttackDog[i].GetComponent<GhostMovement>();
+                if (movement != null)
+                {
+                    movement.GoToTargetAndPause(_ghostPosToGo[i]);
+                }
+            }
         }
         
         private IEnumerator SlowMotion()
@@ -128,12 +139,6 @@ namespace Interactables
         
         public void StopKeepingDistance()
         {
-            // foreach (var ghost in _ghostsAttackDog)
-            // {
-            //     ghost.SetKeepDistance(false);
-            //     ghost.SetAttackSpeed(6.6f);
-            // }
-            
             foreach (var ghost in _ghostsAttackPlayer)
             {
                 ghost.SetKeepDistance(false);
