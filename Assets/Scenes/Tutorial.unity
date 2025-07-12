@@ -37730,13 +37730,14 @@ GameObject:
   - component: {fileID: 1180494829}
   - component: {fileID: 1180494828}
   - component: {fileID: 1180494832}
+  - component: {fileID: 1180494833}
   m_Layer: 5
   m_Name: StartScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1180494828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37835,6 +37836,28 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!95 &1180494833
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180494827}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e26fdc0bebe5b4575bd3a87d29215086, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1180502890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52194,6 +52217,10 @@ PrefabInstance:
     - target: {fileID: 960432289440536398, guid: 6bbf91424d86e4ae381e2c289588fdc1, type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 960432289440536398, guid: 6bbf91424d86e4ae381e2c289588fdc1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5145013381734979778, guid: 6bbf91424d86e4ae381e2c289588fdc1, type: 3}
       propertyPath: m_Pivot.x
