@@ -110,8 +110,8 @@ MonoBehaviour:
   _runSpeed: 5
   _runFastSpeed: 6
   _crouchSpeed: 3
-  _sadWalkSpeed: 3
-  _narrowPassSpeed: 2.5
+  _sadWalkSpeed: 1.5
+  _narrowPassSpeed: 2.2
   _pushSpeed: 2
   _playerArt: {fileID: 2333882633315783233}
 --- !u!114 &7531407140655005662
@@ -381,10 +381,10 @@ MonoBehaviour:
   petAnimSpeed: 1
   cantPetAnimSpeed: 1
   dropAnimSpeed: 1
-  narrowPassAnimSpeed: 1.4
+  narrowPassAnimSpeed: 0.8
   holdPushAnimSpeed: 1
-  sadWalkAnimSpeed: 1
-  sadStopAnimSpeed: 1
+  sadWalkAnimSpeed: 0.8
+  sadStopAnimSpeed: 0.7
   _climbUpEventName: ClimbUp
   _climbRightEventName: ClimbRight
   _footstepsEventName: Footstep
@@ -419,7 +419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac8845d2c744592b476ab34383bc311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDuration: 0.5
   easeCurve:
     serializedVersion: 2
     m_Curve:
@@ -445,6 +444,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _isPlayer: 1
+  isDog: 0
   _alive: 1
   _dog: {fileID: 0}
   _player: {fileID: 2031817862653350588}
