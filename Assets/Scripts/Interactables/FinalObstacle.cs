@@ -56,8 +56,7 @@ namespace Interactables
                 
                 _dog.Running(true);
                 
-                _playerInitialGhost.gameObject.SetActive(true);
-                _dogInitialGhost.gameObject.SetActive(true);
+                _parentGameObject.SetActive(true);
                 
                 _playerInitialGhost.Attack(_player.transform);
                 _dogInitialGhost.Attack(_dog.transform);
