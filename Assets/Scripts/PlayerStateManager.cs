@@ -125,7 +125,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private IEnumerator WaitToStopScared()
     {
-        yield return new WaitForSeconds(0.933f);
+        yield return new WaitForSeconds(0.633f);
         _scared = false;
         _move.SetCanMove(true);
     }

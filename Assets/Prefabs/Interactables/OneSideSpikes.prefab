@@ -95,7 +95,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8088889767634466109}
   - component: {fileID: 856373468060449661}
-  - component: {fileID: 4242720004912491553}
+  - component: {fileID: 3922182615135532830}
   m_Layer: 0
   m_Name: NoPetTrigger
   m_TagString: Untagged
@@ -171,7 +171,7 @@ PolygonCollider2D:
       - {x: 0.72121584, y: -0.9424465}
       - {x: 0.2945547, y: 0.10157007}
   m_UseDelaunayMesh: 0
---- !u!114 &4242720004912491553
+--- !u!114 &3922182615135532830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,14 +180,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6344175191277318617}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 144977d2486d862468fe5b4e59f47a08, type: 3}
+  m_Script: {fileID: 11500000, guid: c1857af047054020bfd195d5fd084c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerAction:
-    m_PersistentCalls:
-      m_Calls: []
-  turnOffAfterTrigger: 0
-  isPlayerEmmiting: 1
 --- !u!1 &7702256594017222879
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +337,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac8845d2c744592b476ab34383bc311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDuration: 0.5
   easeCurve:
     serializedVersion: 2
     m_Curve:
@@ -368,6 +362,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _isPlayer: 1
+  isDog: 0
   _alive: 0
   _dog: {fileID: 0}
   _player: {fileID: 0}
