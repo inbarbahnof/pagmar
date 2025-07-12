@@ -125,11 +125,11 @@ namespace Interactables
         
         public void StopKeepingDistance()
         {
-            foreach (var ghost in _ghostsAttackDog)
-            {
-                ghost.SetKeepDistance(false);
-                ghost.SetAttackSpeed(6.5f);
-            }
+            // foreach (var ghost in _ghostsAttackDog)
+            // {
+            //     ghost.SetKeepDistance(false);
+            //     ghost.SetAttackSpeed(6.6f);
+            // }
             
             foreach (var ghost in _ghostsAttackPlayer)
             {
