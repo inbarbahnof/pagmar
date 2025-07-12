@@ -110,8 +110,8 @@ MonoBehaviour:
   _runSpeed: 5
   _runFastSpeed: 6
   _crouchSpeed: 3
-  _sadWalkSpeed: 3
-  _narrowPassSpeed: 2.5
+  _sadWalkSpeed: 1.5
+  _narrowPassSpeed: 2.2
   _pushSpeed: 2
   _playerArt: {fileID: 2333882633315783233}
 --- !u!114 &7531407140655005662
@@ -367,7 +367,6 @@ MonoBehaviour:
   holdPushAnimName: HoldPushPull
   sadWalkAnimName: Walking
   sadStopAnimName: EndGameLook
-  scaredAnimName: Scare2
   idleAnimSpeed: 1
   callAnimSpeed: 2
   pushAnimSpeed: 1
@@ -382,11 +381,10 @@ MonoBehaviour:
   petAnimSpeed: 1
   cantPetAnimSpeed: 1
   dropAnimSpeed: 1
-  narrowPassAnimSpeed: 1.4
+  narrowPassAnimSpeed: 0.8
   holdPushAnimSpeed: 1
-  sadWalkAnimSpeed: 1
-  sadStopAnimSpeed: 1
-  scaredAnimSpeed: 1
+  sadWalkAnimSpeed: 0.8
+  sadStopAnimSpeed: 0.7
   _climbUpEventName: ClimbUp
   _climbRightEventName: ClimbRight
   _footstepsEventName: Footstep
