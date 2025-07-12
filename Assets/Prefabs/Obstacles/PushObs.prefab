@@ -10716,7 +10716,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1445567945859375248, guid: 42e1b9986054c1143b9b2e626232a667, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.03
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1445567945859375248, guid: 42e1b9986054c1143b9b2e626232a667, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10904,11 +10904,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4352327308446988121}
   m_SourcePrefab: {fileID: 100100000, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
---- !u!1 &469210458168585062 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5373412894795349090, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
-  m_PrefabInstance: {fileID: 5481103818887190276}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3840702495281495262 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8744900242307771354, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
@@ -10968,7 +10963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979276b1f00a4e0894854deda399df91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightEffect: {fileID: 469210458168585062}
+  highlightEffect: {fileID: 0}
   interactionRange: 0.8
   col: {fileID: 0}
   interTrigger: {fileID: 4754968263504769779}
@@ -11279,11 +11274,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8744900242307771354, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
   m_PrefabInstance: {fileID: 7644789481973652484}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2343434252091727974 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5373412894795349090, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
-  m_PrefabInstance: {fileID: 7644789481973652484}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5708745271331020062 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2679138289290494234, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
@@ -11444,7 +11434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979276b1f00a4e0894854deda399df91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightEffect: {fileID: 2343434252091727974}
+  highlightEffect: {fileID: 0}
   interactionRange: 0.8
   col: {fileID: 0}
   interTrigger: {fileID: 1875845067824697116}
