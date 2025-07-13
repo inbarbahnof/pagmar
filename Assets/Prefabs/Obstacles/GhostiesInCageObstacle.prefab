@@ -213,6 +213,7 @@ MonoBehaviour:
   _ghosties:
   - {fileID: 1687499257031270474}
   - {fileID: 5657352986940271813}
+  _cageAnimator: {fileID: 1640325680317799246}
 --- !u!61 &94619940458552431
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1108,6 +1109,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8f476a8f23485a428d4ef8ce0d55bfc, type: 3}
+--- !u!95 &1640325680317799246 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5488205215973422945, guid: b8f476a8f23485a428d4ef8ce0d55bfc, type: 3}
+  m_PrefabInstance: {fileID: 6550940937491688495}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5462806939510550044 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1235771788312511027, guid: b8f476a8f23485a428d4ef8ce0d55bfc, type: 3}
