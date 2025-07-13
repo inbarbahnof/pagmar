@@ -51,7 +51,6 @@ namespace Interactables
             }
 
             base.DropObject(worldTarget);
-            // transform.localScale = _initialLocalScale;
         }
 
         private void ActivateIfOnWalkable(Vector2 worldTarget)
@@ -111,9 +110,10 @@ namespace Interactables
             transform.position = input.endPoint;
             _isThrowing = false;
             transform.localScale = _initialLocalScale;
-
             if (_isStealth)
             {
+                
+                print("local scale");
                 _particle.Play();
             }
 
