@@ -374,7 +374,8 @@ public class PlayerStateManager : MonoBehaviour
                 StartCoroutine(WaitForThrowingAnim());
                 break;
             case (ThrowState.End):
-                SetState(PlayerState.Idle);
+                StopIdle();
+                ResumeMovement();
                 if (!_throwing)
                 {
                     UpdatePickedUp(false);
