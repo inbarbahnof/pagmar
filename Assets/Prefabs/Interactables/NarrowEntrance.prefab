@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7991c04ed7b194e9646c10536928f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _faderGameObject: {fileID: 0}
 --- !u!60 &3818848946383161728
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -331,9 +332,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3686330634904321686, guid: 655472b8911ad554fbc2b7cf7f186ea3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3922569404464871500, guid: 655472b8911ad554fbc2b7cf7f186ea3, type: 3}
       propertyPath: m_Name
       value: NarrowEntranceArt
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482045244008127980, guid: 655472b8911ad554fbc2b7cf7f186ea3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7991c04ed7b194e9646c10536928f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _faderGameObject: {fileID: 0}
 --- !u!60 &1356232884694705136
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -299,6 +300,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2714606880426488865}
     m_Modifications:
+    - target: {fileID: 1553358662067255105, guid: 1943ed0fa29e03e4f8a4d95bed44ec60, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750594704083946139, guid: 1943ed0fa29e03e4f8a4d95bed44ec60, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527121916259769314, guid: 1943ed0fa29e03e4f8a4d95bed44ec60, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5828757217075598853, guid: 1943ed0fa29e03e4f8a4d95bed44ec60, type: 3}
       propertyPath: m_Name
       value: NarrowExitArt
