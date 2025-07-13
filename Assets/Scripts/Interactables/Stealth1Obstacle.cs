@@ -18,18 +18,36 @@ namespace Interactables
         [SerializeField] private DogActionManager _dog;
 
         private bool _didGhostAppear;
+        private Coroutine _coroutine;
         
         public void GhostAppear(Transform stick)
         {
-            // TODO make noise and bring the ghost
             if (_ghostGameObject != null)
             {
+                AudioManager.Instance.MuteMusicEvent();
+                
                 _ghostGameObject.SetActive(true);
                 _ghostMovement.GoToTargetAndPause(stick);
+                
+                _player.SetProtected(true);
+                _dog.HandleDogProtectionChanged(true);
             }
+            
             TargetGenerator.instance.SetStealthTarget(_stealthTarget);
 
             _didGhostAppear = true;
+
+            if (_coroutine == null)
+                _coroutine = StartCoroutine(WaitToGhostCome());
+        }
+
+        private IEnumerator WaitToGhostCome()
+        {
+            yield return new WaitForSeconds(7f);
+            
+            AudioManager.Instance.ResumeMusic();
+            _player.SetProtected(false);
+            _dog.HandleDogProtectionChanged(false);
         }
 
         public void SetStealthTarget(bool isEntered, Target target)
