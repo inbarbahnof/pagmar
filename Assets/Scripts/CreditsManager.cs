@@ -12,6 +12,7 @@ public class CreditsManager : MonoBehaviour
         [SerializeField] private float nextCreditsWaitTime = 1f;
         [SerializeField] private float creditsFadeOutWaitTime = 4f;
         [SerializeField] private float outAnimTime = 0.5f;
+        [SerializeField] private float endWaitTime = 3f;
 
         private Animator _usAnimator;
         private Animator _themAnimator;
@@ -56,6 +57,7 @@ public class CreditsManager : MonoBehaviour
                 }
                 else if (_curAnimator == _themAnimator)
                 {
+                        yield return new WaitForSecondsRealtime(endWaitTime);
                         themCredits.SetActive(false);
                         GameManager.instance.RestartGame();
                 }

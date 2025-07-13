@@ -32,7 +32,7 @@ public class SpriteFade : MonoBehaviour, IObjectFader
         if (_fadeOutCoroutine != null)
             StopCoroutine(_fadeOutCoroutine);
 
-        _fadeOutCoroutine = StartCoroutine(LerpOutColor(reverse));
+        if (gameObject.activeSelf) _fadeOutCoroutine = StartCoroutine(LerpOutColor(reverse));
     }
 
     private IEnumerator LerpOutColor(bool reverse)

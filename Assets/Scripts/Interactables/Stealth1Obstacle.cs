@@ -43,7 +43,7 @@ namespace Interactables
 
         private IEnumerator WaitToGhostCome()
         {
-            yield return new WaitForSeconds(7f);
+            yield return new WaitForSeconds(5f);
             
             AudioManager.Instance.ResumeMusic();
             _player.SetProtected(false);

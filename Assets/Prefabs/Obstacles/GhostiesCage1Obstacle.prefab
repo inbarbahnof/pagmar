@@ -50,6 +50,8 @@ MonoBehaviour:
   _ghosties:
   - {fileID: 5218907780397456413}
   - {fileID: 4572775809795486818}
+  _TOIs: {fileID: 0}
+  _cage: {fileID: 3556370296607426365}
 --- !u!1001 &2927994960538564874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124,6 +126,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3424645868832359357, guid: 378526f6306746a4289a24eaa5b32dd0, type: 3}
   m_PrefabInstance: {fileID: 2927994960538564874}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3556370296607426365 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1871404071416610359, guid: 378526f6306746a4289a24eaa5b32dd0, type: 3}
+  m_PrefabInstance: {fileID: 2927994960538564874}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb1a7a4afdaa4640bee4687c4da0386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3285960727379738575
 PrefabInstance:
   m_ObjectHideFlags: 0
