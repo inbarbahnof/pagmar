@@ -92,7 +92,7 @@ namespace Dog
 
         private void Update()
         {
-            print("dog State " + curState + " player state " + playerStateManager.CurrentState);
+            // print("dog State " + curState + " player state " + playerStateManager.CurrentState);
             // print("_foodIsClose " + _foodIsClose);
             if (!movementEnabled) return;
             
