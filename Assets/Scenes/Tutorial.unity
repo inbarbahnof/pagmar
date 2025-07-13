@@ -3965,6 +3965,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3994285496854985580, guid: 0331364337f27364db8c300eb1f70d17, type: 3}
+      propertyPath: <Chapter0Cutscene>k__BackingField.Path
+      value: event:/music/00_tutorial/dog_ScaryCue
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994285496854985580, guid: 0331364337f27364db8c300eb1f70d17, type: 3}
+      propertyPath: <Chapter0Cutscene>k__BackingField.Guid.Data1
+      value: 1849224629
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994285496854985580, guid: 0331364337f27364db8c300eb1f70d17, type: 3}
+      propertyPath: <Chapter0Cutscene>k__BackingField.Guid.Data2
+      value: 1185172971
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994285496854985580, guid: 0331364337f27364db8c300eb1f70d17, type: 3}
+      propertyPath: <Chapter0Cutscene>k__BackingField.Guid.Data3
+      value: 917511553
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994285496854985580, guid: 0331364337f27364db8c300eb1f70d17, type: 3}
+      propertyPath: <Chapter0Cutscene>k__BackingField.Guid.Data4
+      value: -1708425885
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -40027,15 +40047,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 361430531692883166, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 976524785128727605, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6705805003072254381, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7080431090092594224, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Name
@@ -46467,8 +46487,6 @@ PlayableDirector:
     value: {fileID: 1887335575}
   - key: {fileID: -6949514600269953543, guid: e5197170547e9114d9f72bb19c4f3c33, type: 2}
     value: {fileID: 1050567125}
-  - key: {fileID: -7533669438005577681, guid: e5197170547e9114d9f72bb19c4f3c33, type: 2}
-    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - 210c7c92426d2954487e55749ae99101: {fileID: 419365130}
@@ -47135,7 +47153,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ec870f82e59bace4992b0f78efb4358e, type: 2}
     - {fileID: 11400000, guid: 13b54932740f3e841bcd845d7f74f32f, type: 2}
     - {fileID: 11400000, guid: 5bfdeeb0a230ea94c928fdf18bc3435e, type: 2}
-    - {fileID: 11400000, guid: 76ab6c5d102054bda90b584a125b7af1, type: 2}
+    - {fileID: 0}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -47235,19 +47253,7 @@ MonoBehaviour:
     - m_PersistentCalls:
         m_Calls: []
     - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 274547276}
-          m_TargetAssemblyTypeName: Audio.FMOD.AudioManager, Assembly-CSharp
-          m_MethodName: StopMusic
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!1 &1834576619
 GameObject:
   m_ObjectHideFlags: 0
@@ -48360,15 +48366,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 361430531692883166, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 976524785128727605, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6705805003072254381, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7080431090092594224, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Name
