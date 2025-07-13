@@ -23,6 +23,7 @@ namespace Interactables
                 col.SetActive(false);
                 //print("col deactivated at interact");
             }
+            if (textPrompt) textPrompt.StopShowText();
         }
         
         public override void StopInteractPress()
