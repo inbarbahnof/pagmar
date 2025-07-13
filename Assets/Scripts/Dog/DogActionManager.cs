@@ -141,10 +141,10 @@ namespace Dog
             else
             {
                 _animationManager.SetAnimationEnabled(true);
-                // StartWalkingAfterPlayer();
-                
+
                 var agent = GetComponent<NavMeshAgent>();
                 if (agent != null) agent.Warp(transform.position);
+                StartWalkingAfterPlayer();
             }
         }
 

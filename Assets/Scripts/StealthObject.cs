@@ -29,7 +29,7 @@ public class StealthObject : MonoBehaviour
            
            if (_obstacle != null && _target != null)
                _obstacle.SetStealthTarget(true, _target);
-           
+           // print("player protected");
            _particle.Play();
            _animator.SetTrigger("enter");
            GameManager.instance.PlayVolumeEffect();
@@ -41,7 +41,7 @@ public class StealthObject : MonoBehaviour
         {
             _curDogActionManager = other.GetComponent<DogActionManager>();
             _curDogActionManager.HandleDogProtectionChanged(true);
-            
+            // print("dog protected");
             if (!_isTogether)
             {
                 _particle.Play();
@@ -66,7 +66,7 @@ public class StealthObject : MonoBehaviour
             _particle.Play();
             _animator.SetTrigger("enter");
             GameManager.instance.StopVolumeEffect();
-            
+            // print("player not protected");
             AudioManager.Instance.StopSound(_bushSound);
             _bushSound = default;
         }
@@ -74,7 +74,7 @@ public class StealthObject : MonoBehaviour
         {
             _curDogActionManager.HandleDogProtectionChanged(false);
             _curDogActionManager = null;
-            
+            // print("dog not protected");
             if (!_isTogether)
             {
                 _particle.Play();

@@ -110,10 +110,9 @@ namespace Interactables
             transform.position = input.endPoint;
             _isThrowing = false;
             transform.localScale = _initialLocalScale;
+            
             if (_isStealth)
             {
-                
-                print("local scale");
                 _particle.Play();
             }
 
