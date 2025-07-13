@@ -1,25 +1,32 @@
 using System;
+using System.Collections;
 using Audio.FMOD;
 using Dog;
+using Ghosts;
 using Targets;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Interactables
 { 
     public class Stealth1Obstacle : Obstacle // Start is called once before the first execution of Update after the MonoBehaviour is created
     {
-        [SerializeField] private GameObject _ghost;
+        [FormerlySerializedAs("_ghost")] [SerializeField] private GameObject _ghostGameObject;
+        [SerializeField] private GhostMovement _ghostMovement;
         [SerializeField] private Target _stealthTarget;
         [SerializeField] private PlayerStealthManager _player;
         [SerializeField] private DogActionManager _dog;
 
         private bool _didGhostAppear;
         
-        public void GhostAppear()
+        public void GhostAppear(Transform stick)
         {
             // TODO make noise and bring the ghost
-            
-            if (_ghost != null)  _ghost.SetActive(true);
+            if (_ghostGameObject != null)
+            {
+                _ghostGameObject.SetActive(true);
+                _ghostMovement.GoToTargetAndPause(stick);
+            }
             TargetGenerator.instance.SetStealthTarget(_stealthTarget);
 
             _didGhostAppear = true;

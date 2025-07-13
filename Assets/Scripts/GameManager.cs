@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     private bool _inTutorialCutScene = false;
     private PlayerMove _playerMove;
+    private PlayerStealthManager _playerStealth;
     private IObjectFader _fader;
     private DieEffect _ghostieEffect;
     private DieEffect _ghostEffect;
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         _ghostieEffect = _ghostieEffectgameObject.GetComponent<DieEffect>();
         _ghostEffect = _ghostEffectgameObject.GetComponent<DieEffect>();
         _playerMove = _playerInput.GetComponent<PlayerMove>();
+        _playerStealth = _playerInput.GetComponent<PlayerStealthManager>();
         
         if (chapter != 0) PlayMusicAccordingToLevel();
         PlayAmbiance();
@@ -101,6 +103,7 @@ public class GameManager : MonoBehaviour
     public void PlayerDied(bool isGhostie)
     {
         _playerMove.SetCanMove(false);
+        _playerStealth.SetProtected(true);
         
         if (isGhostie) _ghostieEffect.PlayEffect();
         else _ghostEffect.PlayEffect();
@@ -115,6 +118,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         _playerMove.SetCanMove(true);
+        _playerStealth.SetProtected(false);
     }
 
     public void PlayVolumeEffect()

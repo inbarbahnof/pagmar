@@ -78,6 +78,11 @@ public class GhostiesCircleObstacle : Obstacle
             _food[i].GetPickup().gameObject.SetActive(true);
         }
 
+        foreach (var ghostie in _ghosties)
+        {
+            ghostie.ResetMovement();
+        }
+
         PickUpInteractableManager.instance.DropObject();
         PushInteractableManager.instance.StopPush();
 

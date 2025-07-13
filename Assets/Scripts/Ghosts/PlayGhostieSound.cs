@@ -52,7 +52,20 @@ namespace Ghosts
 
         }
 
-     
+        private void OnDisable()
+        {
+            if (_charachterSound.isValid())
+            {
+                _charachterSound.stop(STOP_MODE.ALLOWFADEOUT);
+            }
+
+            hasStarted = false;
+        }
+        
+        private void OnEnable()
+        {
+            hasStarted = false;
+        }
 
         public void StopGhostieSound()
         {

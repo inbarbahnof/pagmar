@@ -83,6 +83,7 @@ namespace Ghosts
         public void ResetMovement()
         {
             // print("ResetMovement");
+            transform.position = _initialPosition;
             _isMoving = true;
             _dead = false;
             MoveAround();

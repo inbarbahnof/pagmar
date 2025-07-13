@@ -9,10 +9,12 @@ public class DogWaitForPlayer : MonoBehaviour
     [SerializeField] private WantFoodTarget _wantFoodTarget;
     [SerializeField] private bool _isRunning;
     [SerializeField] private FinalObstacle _finalObstacle;
+
+    private bool _pullReachedTarget;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Dog"))
+        if (other.CompareTag("Dog") && !_pullReachedTarget)
         {
             DogActionManager dog = other.GetComponent<DogActionManager>();
             
@@ -43,5 +45,10 @@ public class DogWaitForPlayer : MonoBehaviour
     public void PlayerReached()
     {
         _wantFoodTarget.FinishTargetAction();
+    }
+
+    public void PullReachedTarget()
+    {
+        _pullReachedTarget = true;
     }
 }

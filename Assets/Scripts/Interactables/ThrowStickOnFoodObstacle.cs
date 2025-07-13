@@ -49,7 +49,7 @@ namespace Interactables
             TargetGenerator.instance.NotifyFoodNearby(
                 _food.GetComponent<FoodTargetGetter>().GetFoodTarget());
 
-            _stealth.GhostAppear();
+            _stealth.GhostAppear(_stick.transform);
         }
 
         private IEnumerator WaitToDropStick()
