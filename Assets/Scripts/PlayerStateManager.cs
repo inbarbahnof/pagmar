@@ -312,10 +312,12 @@ public class PlayerStateManager : MonoBehaviour
                     "stealth no dog");
         }       
         else if (_worried)
+        {
             AudioManager.Instance.PlaySoundWithStringParameter(
                 FMODEvents.Instance.PlayerCall,
                 transform.position, "Girl Call Mode",
                 "worried end");
+        }
         else if (_isCrouching)
             AudioManager.Instance.PlaySoundWithStringParameter(
                         FMODEvents.Instance.PlayerCall,
