@@ -17,13 +17,17 @@ namespace Interactables
         
         private AimControl _aimControl;
         private bool _isThrowing;
+        private ThrowInput _curInput;
 
+        public ThrowInput CurThrowInput => _curInput;
         public bool IsThrowing => _isThrowing;
         public event Action<Transform> OnThrowComplete;
         
         public void Throw(ThrowInput input)
         {
             if (_isThrowing) return;
+
+            _curInput = input;
             StartCoroutine(ThrowCoroutine(input));
         }
         

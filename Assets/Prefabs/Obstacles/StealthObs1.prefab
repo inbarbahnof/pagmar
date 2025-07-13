@@ -55,7 +55,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ace67c465a8f1549af0d9f17163bba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ghost: {fileID: 558076991814245570}
+  _ghostGameObject: {fileID: 558076991814245570}
+  _ghostMovement: {fileID: 6477928508528647179}
   _stealthTarget: {fileID: 0}
   _player: {fileID: 0}
   _dog: {fileID: 0}
@@ -976,6 +977,14 @@ PrefabInstance:
       propertyPath: speed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 984129791002498552, guid: 64fcc23cb315a8a42af5ca7bdc4d223c, type: 3}
+      propertyPath: _pauseAfterTarget
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859503114328572842, guid: 64fcc23cb315a8a42af5ca7bdc4d223c, type: 3}
+      propertyPath: m_Name
+      value: Ghost1
+      objectReference: {fileID: 0}
     - target: {fileID: 2048479652136000483, guid: 64fcc23cb315a8a42af5ca7bdc4d223c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40.377663
@@ -1087,6 +1096,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2048479652136000483, guid: 64fcc23cb315a8a42af5ca7bdc4d223c, type: 3}
   m_PrefabInstance: {fileID: 6074913328905095667}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6477928508528647179 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 984129791002498552, guid: 64fcc23cb315a8a42af5ca7bdc4d223c, type: 3}
+  m_PrefabInstance: {fileID: 6074913328905095667}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9efb2f2c0e43e4fb4c862bd242fd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9206433773663754603
 PrefabInstance:
   m_ObjectHideFlags: 0

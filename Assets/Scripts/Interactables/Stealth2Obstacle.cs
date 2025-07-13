@@ -64,7 +64,7 @@ namespace Interactables
             // reset ghost positions
             foreach (var ghost in _ghosts)  
             {
-                ghost.MoveAround();
+                ghost.ResetMovement();
             }
             
             _curTarget = 0;

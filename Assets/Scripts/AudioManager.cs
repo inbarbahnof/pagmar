@@ -216,7 +216,22 @@ namespace Audio.FMOD
         {
             if (musicInstance.isValid())
                 StartCoroutine(PauseEventCoroutine(1));
+        }
+        
+        public void ResumeMusic()
+        {
+            if (musicInstance.isValid())
+            {
+                ResumeEvent(1);
+            }
+        }
 
+        public void ResumeAmbience()
+        {
+            if (ambianceInstance.isValid())
+            {
+                ResumeEvent(0);
+            }
         }
 
 

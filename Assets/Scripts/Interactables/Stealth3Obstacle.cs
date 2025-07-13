@@ -69,13 +69,13 @@ namespace Interactables
             // reset ghost positions
             foreach (var ghost in _ghostsForDog)  
             {
-                ghost.MoveAround();
+                ghost.ResetMovement();
             }
             
             // reset ghost positions
             foreach (var ghost in _ghostsForPlayer)  
             {
-                ghost.MoveAround();
+                ghost.ResetMovement();
             }
             
             _curDogTarget = 0;

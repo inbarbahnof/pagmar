@@ -24,6 +24,8 @@ namespace Interactables
         
         private Rigidbody2D stickRb;
         private Rigidbody2D foodRb;
+        
+        private float dropDistance = 4f;
 
         private void Start()
         {
@@ -34,11 +36,6 @@ namespace Interactables
         public void DropStick()
         {
             foodRb.bodyType = RigidbodyType2D.Dynamic;
-            // foodRb.gravityScale = 1f;
-            // foodRb.linearVelocity = CalculateDropVelocity(_food.transform.position, 
-            //     _dropFoodPos.position, _droprockDuration);
-
-            StartCoroutine(WaitToDropStick());
             
             _feedDogObstacle.HandleFoodDroppedWalkable(_food);
             _food.FoodCanBeFed();
@@ -49,13 +46,26 @@ namespace Interactables
             TargetGenerator.instance.NotifyFoodNearby(
                 _food.GetComponent<FoodTargetGetter>().GetFoodTarget());
 
-            _stealth.GhostAppear(_stick.transform);
-        }
+            ThrowInput curInput = _stick.CurThrowInput;
+            Vector2 rawDirection = (curInput.endPoint - curInput.startPoint).normalized;
 
-        private IEnumerator WaitToDropStick()
+            // Blend with downward direction to ensure it goes down
+            Vector2 downwardBias = Vector2.down * 1.2f; 
+            Vector2 combinedDirection = (rawDirection + downwardBias).normalized;
+
+            Vector2 dynamicDropPos = (Vector2)_stick.transform.position + combinedDirection * dropDistance;
+            _dropStickPos.position = dynamicDropPos;
+            
+            // Start coroutine with the calculated position
+            StartCoroutine(WaitToDropStick(dynamicDropPos));
+            
+            _stealth.GhostAppear(_dropStickPos);
+        }
+        
+        private IEnumerator WaitToDropStick(Vector2 dropTargetPos)
         {
             yield return new WaitForSeconds(0.2f);
-            
+
             if (!stickRb)
             {
                 stickRb = _stick.gameObject.AddComponent<Rigidbody2D>();
@@ -64,11 +74,33 @@ namespace Interactables
 
             stickRb.bodyType = RigidbodyType2D.Dynamic;
             stickRb.gravityScale = 1f;
-            stickRb.linearVelocity = CalculateDropVelocity(_stick.transform.position,
-                _dropStickPos.position, _droprockDuration - 0.2f);
+            stickRb.linearVelocity = CalculateDropVelocity(
+                _stick.transform.position,
+                dropTargetPos,
+                _droprockDuration - 0.2f
+            );
 
             StartCoroutine(TurnOffRigidBody(stickRb, false));
         }
+
+
+        // private IEnumerator WaitToDropStick()
+        // {
+        //     yield return new WaitForSeconds(0.2f);
+        //     
+        //     if (!stickRb)
+        //     {
+        //         stickRb = _stick.gameObject.AddComponent<Rigidbody2D>();
+        //         stickRb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        //     }
+        //
+        //     stickRb.bodyType = RigidbodyType2D.Dynamic;
+        //     stickRb.gravityScale = 1f;
+        //     stickRb.linearVelocity = CalculateDropVelocity(_stick.transform.position,
+        //         _dropStickPos.position, _droprockDuration - 0.2f);
+        //
+        //     StartCoroutine(TurnOffRigidBody(stickRb, false));
+        // }
         
         private Vector2 CalculateDropVelocity(Vector2 from, Vector2 to, float duration)
         {
