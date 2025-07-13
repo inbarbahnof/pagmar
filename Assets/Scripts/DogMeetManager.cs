@@ -14,7 +14,9 @@ public class DogMeetManager : MonoBehaviour
     [SerializeField] private PlayableDirector ghostieSequence;
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private GameObject playerBlockCollider;
-    private bool _playerHiding;   
+    [SerializeField] private SpriteFade bushGlow;
+    private bool _playerHiding;
+    private bool _playerHidePrompt;
 
     private EventInstance _cutsceneMusic;
 
@@ -26,20 +28,25 @@ public class DogMeetManager : MonoBehaviour
         // freeze player
         // play sequence to pan camera right and move dog
         dogSequence.Play();
-
+        _playerHidePrompt = true;
+        UpdateBushGlow(_playerHidePrompt);
         _cutsceneMusic = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.Chapter0Cutscene);
 
         // on camera pan stop allow player controls and show 'hide' prompt
     }
 
-    public void PlayerHiding()
+    public void PlayerHiding(bool hiding)
     {
-        _playerHiding = true;
-        playerMove.SetCanMove(false);
-        _playerStateManager ??= playerMove.GetComponent<PlayerStateManager>();
-        _playerStateManager.StopIdle();
-        _playerStateManager.UpdateStealth(true);
-        print("player state: " + _playerStateManager.CurrentState);
+        _playerHiding = hiding;
+        UpdateBushGlow(!hiding);
+    }
+
+    private void UpdateBushGlow(bool glow)
+    {
+        if (_playerHidePrompt)
+        {
+            bushGlow.FadeOutOverTime(glow);
+        }
     }
     
     public void ShowGhostiesSequence()
@@ -48,22 +55,31 @@ public class DogMeetManager : MonoBehaviour
         // freeze player
         // play sequence to pam cam left and activate ghosties them move dog and scatter
         StartCoroutine(WaitToShowGhostiesCoroutine());
-        playerBlockCollider.SetActive(false);
+    }
+
+    private void pausePlayerInBush()
+    {
+        playerMove.SetCanMove(false);
+        _playerStateManager ??= playerMove.GetComponent<PlayerStateManager>();
+        _playerStateManager.StopIdle();
+        _playerStateManager.UpdateStealth(true);
     }
 
     private IEnumerator WaitToShowGhostiesCoroutine()
     {
         float startTime = Time.time;
-        float timeout = 10f;
+        float timeout = 30f;
         while (!_playerHiding && Time.time - startTime < timeout)
         {
             yield return null; // wait one frame
         }
         
-        if (_cutsceneMusic.isValid())  
+        if (_cutsceneMusic.isValid())
             AudioManager.Instance.SetFloatParameter(_cutsceneMusic, "Lvl0 Cutscene", 1, false);
-
-
+        
+        pausePlayerInBush();
+        playerBlockCollider.SetActive(false);
         ghostieSequence.Play();
+        _playerHidePrompt = false;
     }
 }
