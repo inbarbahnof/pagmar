@@ -46,6 +46,7 @@ public class PlayerStateManager : MonoBehaviour
     private bool _smoothMoving;
     private bool _stopSad;
     private bool _scared;
+    private bool _worried;
 
     private Coroutine _waitToCallCoroutine;
     private Vector3 _initialPickUpParentPos;
@@ -114,6 +115,11 @@ public class PlayerStateManager : MonoBehaviour
     public void UpdateAimAbility(bool canAim = false)
     {
         _isAbleToAim = canAim;
+    }
+
+    public void PlayerWorried()
+    {
+        _worried = true;
     }
 
     public void PlayerScared()
@@ -304,7 +310,7 @@ public class PlayerStateManager : MonoBehaviour
                     transform.position, "Girl Call Mode",
                     "stealth no dog");
         }       
-        else if (_sad)
+        else if (_worried)
             AudioManager.Instance.PlaySoundWithStringParameter(
                 FMODEvents.Instance.PlayerCall,
                 transform.position, "Girl Call Mode",

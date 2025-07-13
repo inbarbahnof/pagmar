@@ -11,7 +11,8 @@ public class StopPlayerToCallDog : MonoBehaviour
         {
             if (_player == null) 
                 _player = other.gameObject.GetComponent<PlayerStateManager>();
-            
+
+            _player.PlayerWorried();
             _player.StartedCalling();
         }
     }

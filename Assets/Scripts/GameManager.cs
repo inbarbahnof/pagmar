@@ -51,7 +51,9 @@ public class GameManager : MonoBehaviour
         _ghostEffect = _ghostEffectgameObject.GetComponent<DieEffect>();
         _playerMove = _playerInput.GetComponent<PlayerMove>();
         
-        PlayMusicAccordingToLevel();
+        if (chapter != 0) PlayMusicAccordingToLevel();
+        PlayAmbiance();
+        
         if (_cameraFade && _cameraFade.gameObject.activeInHierarchy) _cameraFade.FadeOutOverTime(true);
         StartCoroutine(WaitToZoom());
     }
@@ -83,13 +85,17 @@ public class GameManager : MonoBehaviour
                 AudioManager.Instance.PlayMusic(FMODEvents.Instance.Chapter4Music);
                 break;
         }
-        
+    }
+    
+    private void PlayAmbiance()
+    {
         AudioManager.Instance.PlayAmbiance(FMODEvents.Instance.Ambiance);
     }
 
     public void StartGame()
     {
         if (_startScreen != null) _startScreen.OnPressStart();
+        PlayMusicAccordingToLevel();
     }
 
     public void PlayerDied(bool isGhostie)
