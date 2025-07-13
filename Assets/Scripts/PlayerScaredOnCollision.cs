@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerScaredOnCollision : MonoBehaviour
 {
+    [SerializeField] private bool _fromLeft; // true = scare if moves left, false = scare if moves right
     private PlayerMove _player;
     private PlayerStateManager _playerState;
     private Coroutine _scareRoutine;
@@ -37,19 +38,21 @@ public class PlayerScaredOnCollision : MonoBehaviour
 
     private IEnumerator PlayerScaredLoop()
     {
-        bool wasMovingRight = false;
+        bool wasMovingInTriggerDirection = false;
 
         while (true)
         {
-            bool isMovingRight = _player.MoveInput.x > 0;
+            float moveInputX = _player.MoveInput.x;
 
-            if (isMovingRight && !wasMovingRight)
+            bool isMovingInTriggerDirection = _fromLeft ? (moveInputX < 0) : (moveInputX > 0);
+
+            if (isMovingInTriggerDirection && !wasMovingInTriggerDirection)
             {
                 _playerState.PlayerScared();
                 yield return new WaitForSeconds(0.7f); // Delay to avoid spamming
             }
 
-            wasMovingRight = isMovingRight;
+            wasMovingInTriggerDirection = isMovingInTriggerDirection;
             yield return null;
         }
     }
