@@ -117,9 +117,9 @@ public class PlayerStateManager : MonoBehaviour
         _isAbleToAim = canAim;
     }
 
-    public void PlayerWorried()
+    public void PlayerWorried(bool worried)
     {
-        _worried = true;
+        _worried = worried;
     }
 
     public void PlayerScared()
@@ -262,8 +262,9 @@ public class PlayerStateManager : MonoBehaviour
 
     private IEnumerator WaitToStopSad()
     {
-        yield return new WaitForSeconds(3.367f);
+        yield return new WaitForSeconds(5f);
         _stopSad = false;
+        GameManager.instance.LevelEnd();
         _move.SetCanMove(true);
     }
 
@@ -297,7 +298,7 @@ public class PlayerStateManager : MonoBehaviour
                 transform.position, "Girl Call Mode", 
                 "no dog lvl0");
         }
-        else if (GameManager.instance.Chapter == 3)
+        else if (GameManager.instance.Chapter == 3 && _worried)
         {
             if (!_stealthManager.isProtected)
             AudioManager.Instance.PlaySoundWithStringParameter(

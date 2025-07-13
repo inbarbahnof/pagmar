@@ -18,18 +18,36 @@ namespace Interactables
         [SerializeField] private DogActionManager _dog;
 
         private bool _didGhostAppear;
+        private Coroutine _coroutine;
         
         public void GhostAppear(Transform stick)
         {
-            // TODO make noise and bring the ghost
             if (_ghostGameObject != null)
             {
+                AudioManager.Instance.MuteMusicEvent();
+                
                 _ghostGameObject.SetActive(true);
                 _ghostMovement.GoToTargetAndPause(stick);
+                
+                _player.SetProtected(true);
+                _dog.HandleDogProtectionChanged(true);
             }
+            
             TargetGenerator.instance.SetStealthTarget(_stealthTarget);
 
             _didGhostAppear = true;
+
+            if (_coroutine == null)
+                _coroutine = StartCoroutine(WaitToGhostCome());
+        }
+
+        private IEnumerator WaitToGhostCome()
+        {
+            yield return new WaitForSeconds(7f);
+            
+            AudioManager.Instance.ResumeMusic();
+            _player.SetProtected(false);
+            _dog.HandleDogProtectionChanged(false);
         }
 
         public void SetStealthTarget(bool isEntered, Target target)
@@ -45,6 +63,14 @@ namespace Interactables
             
             _dog.ChangeCrouching(true);
             // _player.StealthObstacle(false);
+
+            StartCoroutine(WaitToProtectPlayer());
+        }
+
+        private IEnumerator WaitToProtectPlayer()
+        {
+            yield return new WaitForSeconds(1f);
+            _player.SetProtected(true);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -54,6 +80,11 @@ namespace Interactables
                 CameraController.instance.ZoomOut();
                 _player.StealthObstacle(true);
                 _dog.ChangeCrouching(true);
+                
+                AudioManager.Instance.SetFloatParameter(default,
+                    "Stealth Echo",
+                    1,
+                    true);
             }
         }
 
@@ -61,6 +92,11 @@ namespace Interactables
         {
             CameraController.instance.FollowPlayer();
             _player.StealthObstacle(false);
+            
+            AudioManager.Instance.SetFloatParameter(default,
+                "Stealth Echo",
+                0,
+                true);
         }
     }
 }

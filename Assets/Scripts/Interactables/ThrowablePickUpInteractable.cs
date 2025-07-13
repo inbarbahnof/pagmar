@@ -17,13 +17,17 @@ namespace Interactables
         
         private AimControl _aimControl;
         private bool _isThrowing;
+        private ThrowInput _curInput;
 
+        public ThrowInput CurThrowInput => _curInput;
         public bool IsThrowing => _isThrowing;
         public event Action<Transform> OnThrowComplete;
         
         public void Throw(ThrowInput input)
         {
             if (_isThrowing) return;
+
+            _curInput = input;
             StartCoroutine(ThrowCoroutine(input));
         }
         
@@ -102,11 +106,10 @@ namespace Interactables
 
             if (_isStealth)
             {
-                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DropStealthObject);
                 _particle.Play();
             }
             
-            else AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ObjectFall);
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ObjectFall);
             if (_foodTarget != null) ActivateIfOnWalkable(transform.position);
             
             OnThrowComplete?.Invoke(transform);

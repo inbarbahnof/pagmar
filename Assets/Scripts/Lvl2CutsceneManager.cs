@@ -5,6 +5,7 @@ public class Lvl2CutsceneManager : MonoBehaviour
 {
         [SerializeField] private PlayableDirector sequence;
         [SerializeField] private PlayerMove _playerMove;
+        private PlayerStateManager _playerStateManager;
         
         private bool _dogInPlace;
         private bool _playerInPlace;
@@ -19,6 +20,9 @@ public class Lvl2CutsceneManager : MonoBehaviour
         {
                 _playerInPlace = true;
                 _playerMove.SetCanMove(false);
+                _playerStateManager ??= _playerMove.GetComponent<PlayerStateManager>();
+                _playerStateManager.SetIdleState();
+                _playerStateManager.UpdateStealth(true);
                 StartCutscene();
         }
 

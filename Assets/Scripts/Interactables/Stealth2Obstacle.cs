@@ -71,6 +71,14 @@ namespace Interactables
             TargetGenerator.instance.SetStealthTarget(_targets[0]);
             _dog.StealthObs(true);
             CameraController.instance.FollowPlayerAndDog();
+            
+            StartCoroutine(WaitToProtectPlayer());
+        }
+
+        private IEnumerator WaitToProtectPlayer()
+        {
+            yield return new WaitForSeconds(1f);
+            _player.SetProtected(true);
         }
 
         public override void PlayerReachedTarget()
@@ -88,6 +96,11 @@ namespace Interactables
             {
                 TargetGenerator.instance.SetStealthTarget(_lastTarget);
                 StartCoroutine(ChangeDogCrouch());
+                
+                AudioManager.Instance.SetFloatParameter(default,
+                    "Stealth Echo",
+                    0,
+                    true);
             }
         }
 
@@ -104,6 +117,11 @@ namespace Interactables
                 TargetGenerator.instance.SetStealthTarget(_targets[0]);
                 _dog.StealthObs(true);
                 CameraController.instance.FollowPlayerAndDog();
+                
+                AudioManager.Instance.SetFloatParameter(default,
+                    "Stealth Echo",
+                    1,
+                    true);
             }
         }
 
@@ -134,20 +152,3 @@ namespace Interactables
         }
     }
 }
-// // reset camera
-// CameraController.instance.FollowPlayer();
-//
-// _curTarget = 0;
-// TargetGenerator.instance.SetStealthTarget(_targets[0]);
-//
-// // reset player
-// _player.SetProtected(false);
-//
-// // reset dog
-// _dog.StealthObs(false);
-// _dog.ChangeCrouching(false);
-            
-// foreach (var target in _targets)  
-// {
-//     target.FinishTargetAction();
-// }

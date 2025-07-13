@@ -160,6 +160,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 959035661760640628}
     m_Modifications:
+    - target: {fileID: 381686310815875544, guid: caf59cf5d560c544b9ff3084b80471ac, type: 3}
+      propertyPath: m_Name
+      value: Shadow
+      objectReference: {fileID: 0}
     - target: {fileID: 2489342365258853747, guid: caf59cf5d560c544b9ff3084b80471ac, type: 3}
       propertyPath: m_Name
       value: FoodArt
@@ -217,6 +221,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caf59cf5d560c544b9ff3084b80471ac, type: 3}
+--- !u!95 &1855995498982922211 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5117308425892591132, guid: caf59cf5d560c544b9ff3084b80471ac, type: 3}
+  m_PrefabInstance: {fileID: 6829012793428615679}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7865272429990685977 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3738701747647778022, guid: caf59cf5d560c544b9ff3084b80471ac, type: 3}
@@ -234,6 +243,10 @@ PrefabInstance:
       propertyPath: _food
       value: 
       objectReference: {fileID: 7417587739686014415}
+    - target: {fileID: 1804897355344761010, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
+      propertyPath: _shadow
+      value: 
+      objectReference: {fileID: 1855995498982922211}
     - target: {fileID: 1804897355344761010, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
       propertyPath: _sprite
       value: 
@@ -342,6 +355,7 @@ MonoBehaviour:
   interactionRange: 1.5
   _isThrowable: 0
   _sprite: {fileID: 2948498257072249038}
+  _shadow: {fileID: 0}
   _foodTarget: {fileID: 2660901898492799788}
 --- !u!114 &8279499095431394443
 MonoBehaviour:

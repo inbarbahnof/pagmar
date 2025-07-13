@@ -207,6 +207,7 @@ MonoBehaviour:
   interactionRange: 1.5
   _isThrowable: 1
   _sprite: {fileID: 8136931017048813413}
+  _shadow: {fileID: 8798581305215110898}
   _foodTarget: {fileID: 0}
   _isStealth: 1
   _particle: {fileID: 5155449264618071578}
@@ -305,6 +306,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8824701921238938360}
     m_Modifications:
+    - target: {fileID: 388038169574038420, guid: bdbd99958b6bf214bbda60a3b307f84b, type: 3}
+      propertyPath: m_Name
+      value: Shadow
+      objectReference: {fileID: 0}
     - target: {fileID: 2803778399748420509, guid: bdbd99958b6bf214bbda60a3b307f84b, type: 3}
       propertyPath: m_Name
       value: PickUpArt
@@ -357,5 +362,10 @@ PrefabInstance:
 --- !u!4 &7241012181649386023 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6748626568372740385, guid: bdbd99958b6bf214bbda60a3b307f84b, type: 3}
+  m_PrefabInstance: {fileID: 4168871098909330182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8798581305215110898 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4881929732102243828, guid: bdbd99958b6bf214bbda60a3b307f84b, type: 3}
   m_PrefabInstance: {fileID: 4168871098909330182}
   m_PrefabAsset: {fileID: 0}

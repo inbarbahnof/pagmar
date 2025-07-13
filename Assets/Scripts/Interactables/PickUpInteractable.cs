@@ -10,6 +10,7 @@ namespace Interactables
     {
         [SerializeField] protected bool _isThrowable;
         [SerializeField] protected SortingGroup _sprite;
+        [SerializeField] private Animator _shadow;
         
         private bool isPickedUp = false;
         private Transform originalParent;
@@ -37,6 +38,8 @@ namespace Interactables
             transform.DOLocalMove(Vector3.zero, 0.08f)
                 .SetEase(Ease.OutQuad);
             
+            _shadow.SetTrigger("out");
+            
             _sprite.sortingOrder = 4;
             
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPickUp);
@@ -46,6 +49,7 @@ namespace Interactables
         {
             isPickedUp = false;
             _sprite.sortingOrder = 3;
+            _shadow.SetTrigger("in");
             
             if (_isThrowable && worldTarget != Vector2.zero)
             {
