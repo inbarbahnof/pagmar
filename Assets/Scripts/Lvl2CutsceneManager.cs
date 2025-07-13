@@ -31,9 +31,11 @@ public class Lvl2CutsceneManager : MonoBehaviour
     {
         if (_playerInPlace && _dogInPlace && (sequence.state != PlayState.Playing))
         {
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.Chapter2DogEscapeMusic);
+
             sequence.Play();
+
         }
         
-        AudioManager.Instance.PlayMusic(FMODEvents.Instance.Chapter2DogEscapeMusic);
     }
 }
