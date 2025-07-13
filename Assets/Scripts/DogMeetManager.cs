@@ -11,6 +11,7 @@ public class DogMeetManager : MonoBehaviour
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private GameObject playerBlockCollider;
     private bool _playerHiding;
+    private PlayerStateManager _playerStateManager;
     
     public void ShowDogSequence()
     {
@@ -25,6 +26,9 @@ public class DogMeetManager : MonoBehaviour
     {
         _playerHiding = true;
         playerMove.SetCanMove(false);
+        _playerStateManager ??= playerMove.GetComponent<PlayerStateManager>();
+        _playerStateManager.SetIdleState();
+        _playerStateManager.UpdateStealth(true);
     }
     
     public void ShowGhostiesSequence()
