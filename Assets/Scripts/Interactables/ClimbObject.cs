@@ -26,6 +26,7 @@ namespace Interactables
                 col.SetActive(false);
                 //print("col deactivated at interact press");
             }
+            base.Interact();
         }
 
         public override void StopInteractPress()

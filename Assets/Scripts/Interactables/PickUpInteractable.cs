@@ -25,6 +25,7 @@ namespace Interactables
         public override void Interact()
         {
             PickUpInteractableManager.instance.Interact(this);
+            base.Interact();
         }
 
         public virtual void PickUpObject(Transform parent)

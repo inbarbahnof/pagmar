@@ -6,6 +6,7 @@ namespace Interactables
     {
         [SerializeField] private GameObject highlightEffect;
         [SerializeField] protected float interactionRange = 1.5f;
+        [SerializeField] protected TextAppear textPrompt;
 
         protected bool _canInteract = true;
         protected Vector3 ogPos;
@@ -49,6 +50,7 @@ namespace Interactables
         /// <param name="player"> Transform of player interacting with obj </param>
         public virtual void Interact()
         {
+            if (textPrompt) textPrompt.StopShowText();
         }
 
         /// <summary>

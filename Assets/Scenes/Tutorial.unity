@@ -4547,6 +4547,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5776631639960977106, guid: 9ffe73ab640b41f4bafe33a2b7259255, type: 3}
+      propertyPath: textPrompt
+      value: 
+      objectReference: {fileID: 4825190411750865564}
     - target: {fileID: 5967649362398269065, guid: 9ffe73ab640b41f4bafe33a2b7259255, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
       value: 14
@@ -34515,7 +34519,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 521331614}
-  secondText: {fileID: 0}
   showTime: 5
   glowSpeed: 2
 --- !u!4 &932756046 stripped
@@ -39283,7 +39286,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-  turnOffAfterTrigger: 0
+  turnOffAfterTrigger: 1
   isPlayerEmmiting: 1
 --- !u!114 &1244609569
 MonoBehaviour:
@@ -39298,7 +39301,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 7943059623039071350}
-  secondText: {fileID: 0}
   showTime: 3
   glowSpeed: 2
 --- !u!61 &1244609570
@@ -52357,6 +52359,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClimbObject
       objectReference: {fileID: 0}
+    - target: {fileID: 8143532468426600742, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
+      propertyPath: textPrompt
+      value: 
+      objectReference: {fileID: 1244609569}
     - target: {fileID: 8744900242307771354, guid: 1bb14f813cd123d4c95305f7180177d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.62
@@ -52498,7 +52504,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-  turnOffAfterTrigger: 0
+  turnOffAfterTrigger: 1
   isPlayerEmmiting: 1
 --- !u!224 &2861439595947163505 stripped
 RectTransform:
@@ -52710,7 +52716,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 8437138857497324794}
-  secondText: {fileID: 0}
   showTime: 3
   glowSpeed: 2
 --- !u!1001 &5071190544859046633

@@ -17,6 +17,8 @@ public class InputManager : MonoBehaviour
     private Vector2 _lastAimInput = Vector2.zero;
     private Coroutine _retainAimCoroutine;
 
+    private TextAppear callListener;
+
     [SerializeField] private float deadzoneThreshold = 0.2f;
     
     private void Awake()
@@ -131,11 +133,21 @@ public class InputManager : MonoBehaviour
         _canMoveInput = true;
     }
 
+    public void RegisterCallListener(TextAppear listener)
+    {
+        callListener = listener;
+    }
+
     public void OnCall(InputAction.CallbackContext context)
     {
         if (!_canMoveInput) return;
         if (context.started)
         {
+            if (callListener)
+            {
+                callListener.StopShowText();
+                callListener = null;
+            }
             _stateManager.StartedCalling();
         }
     }
