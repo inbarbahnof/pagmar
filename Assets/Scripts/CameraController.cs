@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CinemachineCamera _followPlayerAndDog;
     [SerializeField] private CinemachineCamera[] cutsceneCams;
     [SerializeField] private CinemachineCamera _followPlayerPan;
+    [SerializeField] private CinemachineCamera _panCameraEnd;
     
     [Header("Zoom Values")]
     [SerializeField] private float minFOV = 5f;
@@ -70,6 +71,7 @@ public class CameraController : MonoBehaviour
         SwitchEffectParent(_followPlayer.transform);
 
         if (_followPlayerPan != null) _followPlayerPan.enabled = false;
+        if (_panCameraEnd != null) _panCameraEnd.enabled = false;
     }
 
     public void FollowPlayerPan()
@@ -78,7 +80,17 @@ public class CameraController : MonoBehaviour
         _followPlayer.enabled = false;
         _followPlayerPan.enabled = true;
         
+        
         SwitchEffectParent(_followPlayerPan.transform);
+    }
+
+    public void PanCameraEnd()
+    {
+        _followPlayerAndDog.enabled = false;
+        _followPlayer.enabled = false;
+        _followPlayerPan.enabled = false;
+        
+        _panCameraEnd.enabled = true;
     }
 
     public void FollowPlayerAndDog()
@@ -88,6 +100,7 @@ public class CameraController : MonoBehaviour
         SwitchEffectParent(_followPlayerAndDog.transform);
         
         if (_followPlayerPan != null) _followPlayerPan.enabled = false;
+        if (_panCameraEnd != null) _panCameraEnd.enabled = false;
     }
 
     public void DisableCutsceneCams()
