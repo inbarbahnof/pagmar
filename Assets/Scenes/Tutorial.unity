@@ -1648,7 +1648,7 @@ Transform:
   m_GameObject: {fileID: 80354168}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -107.827324, y: -12.594519, z: 10.135887}
+  m_LocalPosition: {x: -70.44703, y: -13.604902, z: 10.108272}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3643,7 +3643,7 @@ Transform:
   m_GameObject: {fileID: 219977572}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -148.91052, y: -11.609573, z: 0.23406696}
+  m_LocalPosition: {x: -65.17052, y: -13.969574, z: 0.23406696}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4273,6 +4273,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6088760852999712502, guid: 50a81a0e2733255499adbc84481dd368, type: 3}
   m_PrefabInstance: {fileID: 826793598}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &331928690 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2126287841468501225, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
+  m_PrefabInstance: {fileID: 1887335571}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866562023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa982fff3cb7824bb0a78bd46770bc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &334239617
 GameObject:
   m_ObjectHideFlags: 0
@@ -4299,7 +4310,7 @@ Transform:
   m_GameObject: {fileID: 334239617}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -148.91052, y: -11.609573, z: 10.234067}
+  m_LocalPosition: {x: -65.17052, y: -13.969574, z: 10.234067}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34172,7 +34183,7 @@ Transform:
   m_GameObject: {fileID: 902634860}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -107.00125, y: -12.689861, z: 0.1352768}
+  m_LocalPosition: {x: -64.62463, y: -14.097242, z: 0.039001465}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -40027,15 +40038,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 361430531692883166, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 976524785128727605, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6705805003072254381, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7080431090092594224, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Name
@@ -46601,6 +46612,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 1
+        - m_Target: {fileID: 331928690}
+          m_TargetAssemblyTypeName: Dog.DogAnimationManager, Assembly-CSharp
+          m_MethodName: BarkGrowlAnimations
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1050567140}
@@ -47311,6 +47334,18 @@ MonoBehaviour:
         - m_Target: {fileID: 274547276}
           m_TargetAssemblyTypeName: Audio.FMOD.AudioManager, Assembly-CSharp
           m_MethodName: StopMusic
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 331928690}
+          m_TargetAssemblyTypeName: Dog.DogAnimationManager, Assembly-CSharp
+          m_MethodName: StopBarkGrowlAnimations
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -48432,15 +48467,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 361430531692883166, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 976524785128727605, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6705805003072254381, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7080431090092594224, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Name
