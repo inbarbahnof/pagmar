@@ -32,7 +32,7 @@ namespace Ghosts
             {
                 _attack.StopAttacking(false, Vector3.zero);
                 _movement.MoveAround();
-                GameManager.checkpointManagerInstance.Undo();
+                GameManager.instance.PlayerDied(_isGhostie);
             }
         }
 

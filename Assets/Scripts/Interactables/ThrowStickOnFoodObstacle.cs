@@ -35,6 +35,11 @@ namespace Interactables
 
         public void DropStick()
         {
+            AudioManager.Instance.SetFloatParameter(default,
+                "Stealth Echo",
+                1,
+                true);
+            
             foodRb.bodyType = RigidbodyType2D.Dynamic;
             
             _feedDogObstacle.HandleFoodDroppedWalkable(_food);
@@ -82,25 +87,6 @@ namespace Interactables
 
             StartCoroutine(TurnOffRigidBody(stickRb, false));
         }
-
-
-        // private IEnumerator WaitToDropStick()
-        // {
-        //     yield return new WaitForSeconds(0.2f);
-        //     
-        //     if (!stickRb)
-        //     {
-        //         stickRb = _stick.gameObject.AddComponent<Rigidbody2D>();
-        //         stickRb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        //     }
-        //
-        //     stickRb.bodyType = RigidbodyType2D.Dynamic;
-        //     stickRb.gravityScale = 1f;
-        //     stickRb.linearVelocity = CalculateDropVelocity(_stick.transform.position,
-        //         _dropStickPos.position, _droprockDuration - 0.2f);
-        //
-        //     StartCoroutine(TurnOffRigidBody(stickRb, false));
-        // }
         
         private Vector2 CalculateDropVelocity(Vector2 from, Vector2 to, float duration)
         {

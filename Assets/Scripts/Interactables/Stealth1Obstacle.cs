@@ -72,6 +72,11 @@ namespace Interactables
                 CameraController.instance.ZoomOut();
                 _player.StealthObstacle(true);
                 _dog.ChangeCrouching(true);
+                
+                AudioManager.Instance.SetFloatParameter(default,
+                    "Stealth Echo",
+                    1,
+                    true);
             }
         }
 
@@ -79,6 +84,11 @@ namespace Interactables
         {
             CameraController.instance.FollowPlayer();
             _player.StealthObstacle(false);
+            
+            AudioManager.Instance.SetFloatParameter(default,
+                "Stealth Echo",
+                0,
+                true);
         }
     }
 }
