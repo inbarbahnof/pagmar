@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2136769604117811414}
   - component: {fileID: 5027864809247045990}
+  - component: {fileID: 2758580445651786487}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -82,16 +83,33 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 0.48800197, y: 0.34589863}
       - {x: 0, y: 0.25597715}
-      - {x: -0.8376947, y: 0.13112557}
-      - {x: -1.5489672, y: -0.1647042}
-      - {x: -1.4755082, y: -0.89102054}
-      - {x: -0.78433335, y: -1.057977}
-      - {x: 0.7057093, y: -1.0448737}
-      - {x: 1.4979649, y: -0.88766354}
-      - {x: 1.741226, y: -0.22964883}
-      - {x: 1.5280163, y: 0.15582871}
+      - {x: -1.5749495, y: 0.12436211}
+      - {x: -1.7180625, y: -0.21881473}
+      - {x: -1.6987138, y: -0.9518926}
+      - {x: -0.89255416, y: -1.3420565}
+      - {x: 0.67189044, y: -1.4101195}
+      - {x: 1.4641457, y: -1.2326171}
+      - {x: 1.7805568, y: -0.7580931}
+      - {x: 1.8291554, y: -0.31081414}
+      - {x: 1.5415437, y: 0.19641232}
       - {x: 1.2393315, y: 0.26970768}
   m_UseDelaunayMesh: 0
+--- !u!114 &2758580445651786487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142977134012021778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &8245175785531859816
 GameObject:
   m_ObjectHideFlags: 0
