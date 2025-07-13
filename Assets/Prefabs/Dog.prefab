@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 1538025327645606136}
   - component: {fileID: 2126287841468501225}
   - component: {fileID: 4631522509052752445}
+  - component: {fileID: 2266897055768498655}
   m_Layer: 9
   m_Name: Dog
   m_TagString: Dog
@@ -206,7 +207,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -237,7 +238,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.22
-  m_BaseOffset: 0.5
+  m_BaseOffset: 0.14
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &5673655906767182034
@@ -392,6 +393,18 @@ MonoBehaviour:
   _alive: 1
   _dog: {fileID: 2126287841468501225}
   _player: {fileID: 0}
+--- !u!210 &2266897055768498655
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6921637257308304299}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 3
+  m_SortAtRoot: 0
 --- !u!1 &7083949992489541263
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +569,7 @@ Transform:
   m_GameObject: {fileID: 7385295845555642968}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -802,7 +815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1836151122679334915, guid: c1dc56c73af1e954b9516572353eef12, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.52
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 1836151122679334915, guid: c1dc56c73af1e954b9516572353eef12, type: 3}
       propertyPath: m_LocalPosition.z

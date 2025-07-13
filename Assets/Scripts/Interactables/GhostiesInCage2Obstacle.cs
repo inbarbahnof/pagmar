@@ -30,18 +30,8 @@ namespace Interactables
                 CameraController.instance.ExtraZoomOut();
                 _cage.transform.DOMove(_cageDropPos.position, _dropDuration)
                     .SetEase(Ease.InCubic)
-                    .OnComplete(() =>
-                    {
-                        AfterCageDrop();
-                        StartCoroutine(WaitToNormalZoom());
-                    });
+                    .OnComplete(AfterCageDrop);
             }
-        }
-
-        private IEnumerator WaitToNormalZoom()
-        {
-            yield return new WaitForSeconds(1f);
-            CameraController.instance.ZoomOut();
         }
 
         private void AfterCageDrop()

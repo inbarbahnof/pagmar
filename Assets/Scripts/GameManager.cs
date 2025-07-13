@@ -60,9 +60,11 @@ public class GameManager : MonoBehaviour
         {
             PlayMusicAccordingToLevel();
             PlayAmbiance();
+            
+            if (_cameraFade && _cameraFade.gameObject.activeInHierarchy)
+                _cameraFade.FadeOutOverTime(true);
         }
         
-        if (_cameraFade && _cameraFade.gameObject.activeInHierarchy) _cameraFade.FadeOutOverTime(true);
         StartCoroutine(WaitToZoom());
     }
 
