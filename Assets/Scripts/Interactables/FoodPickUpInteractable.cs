@@ -28,7 +28,7 @@ namespace Interactables
         public void ActivateIfOnWalkable(Vector2 worldTarget)
         {
             bool isWalkable = IsWalkable(worldTarget);
-            print("activate " + isWalkable);
+            
             if (isWalkable)
             {
                 StartCoroutine(WaitToTransformScale());
