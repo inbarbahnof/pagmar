@@ -133,11 +133,11 @@ public class GameManager : MonoBehaviour
         _playerMove.SetCanMove(true);
         _playerStealth.SetProtected(false);
         
+        yield return new WaitForSeconds(0.2f);
         foreach (var ghost in _allLevelGhostst)
         {
             ghost.SetActive(true);
         }
-        // _dog.HandleDogProtectionChanged(false);
     }
 
     public void PlayVolumeEffect()
