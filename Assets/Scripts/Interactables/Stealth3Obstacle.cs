@@ -69,13 +69,13 @@ namespace Interactables
             // reset ghost positions
             foreach (var ghost in _ghostsForDog)  
             {
-                ghost.ResetMovement();
+                ghost.MoveAround();
             }
             
             // reset ghost positions
             foreach (var ghost in _ghostsForPlayer)  
             {
-                ghost.ResetMovement();
+                ghost.MoveAround();
             }
             
             _curDogTarget = 0;
@@ -86,6 +86,14 @@ namespace Interactables
             
             _dog.StealthObs(true);
             CameraController.instance.FollowPlayerAndDog();
+
+            StartCoroutine(WaitToDogProtected());
+        }
+
+        private IEnumerator WaitToDogProtected()
+        {
+            yield return new WaitForSeconds(2f);
+            _dog.HandleDogProtectionChanged(true);
         }
 
         public void PlayerReachedStealth()
@@ -127,6 +135,11 @@ namespace Interactables
             CameraController.instance.FollowPlayer();
             _dog.ChangeCrouching(false);
             _player.StealthObstacle(false);
+            
+            AudioManager.Instance.SetFloatParameter(default,
+                "Stealth Echo",
+                0,
+                true);
         }
 
         public void TargetReached(bool isLast)
@@ -144,6 +157,11 @@ namespace Interactables
                 _dog.StealthObs(true);
                 CameraController.instance.FollowPlayerAndDog();
                 _player.StealthObstacle(true);
+                
+                AudioManager.Instance.SetFloatParameter(default,
+                    "Stealth Echo",
+                    1,
+                    true);
             }
         }
 

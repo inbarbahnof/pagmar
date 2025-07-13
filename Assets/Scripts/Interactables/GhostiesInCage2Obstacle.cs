@@ -27,17 +27,28 @@ namespace Interactables
             if (_cage.GhostiesInCage >= 1)
             {
                 AudioManager.Instance.PlayOneShot(FMODEvents.Instance.CageSnap);
+                CameraController.instance.ExtraZoomOut();
                 _cage.transform.DOMove(_cageDropPos.position, _dropDuration)
                     .SetEase(Ease.InCubic)
-                    .OnComplete(AfterCageDrop);
+                    .OnComplete(() =>
+                    {
+                        AfterCageDrop();
+                        StartCoroutine(WaitToNormalZoom());
+                    });
             }
+        }
+
+        private IEnumerator WaitToNormalZoom()
+        {
+            yield return new WaitForSeconds(1f);
+            CameraController.instance.ZoomOut();
         }
 
         private void AfterCageDrop()
         {
             _deathZoneToDestroy.gameObject.SetActive(false);
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.CageFall);
-            NavMeshManager.instance.ReBake();
+            // NavMeshManager.instance.ReBake();
         }
 
         private void OnTriggerEnter2D(Collider2D other)

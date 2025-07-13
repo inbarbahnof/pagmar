@@ -145,6 +145,12 @@ public class CameraController : MonoBehaviour
         zoomSpeed = speed;
     }
 
+    public void ExtraZoomOut(float speed = 2)
+    {
+        StartZoom(9);
+        zoomSpeed = speed;
+    }
+
     public void ExtraZoomIn(float speed = 2)
     {
         StartZoom(extraZoomIn);

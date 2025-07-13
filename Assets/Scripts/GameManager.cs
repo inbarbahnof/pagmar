@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     private bool _inTutorialCutScene = false;
     private PlayerMove _playerMove;
     private PlayerStealthManager _playerStealth;
+    private PlayerStateManager _playerState;
     private IObjectFader _fader;
     private DieEffect _ghostieEffect;
     private DieEffect _ghostEffect;
@@ -52,9 +53,13 @@ public class GameManager : MonoBehaviour
         _ghostEffect = _ghostEffectgameObject.GetComponent<DieEffect>();
         _playerMove = _playerInput.GetComponent<PlayerMove>();
         _playerStealth = _playerInput.GetComponent<PlayerStealthManager>();
+        _playerState = _playerInput.GetComponent<PlayerStateManager>();
         
-        if (chapter != 0) PlayMusicAccordingToLevel();
-        PlayAmbiance();
+        if (chapter != 0)
+        {
+            PlayMusicAccordingToLevel();
+            PlayAmbiance();
+        }
         
         if (_cameraFade && _cameraFade.gameObject.activeInHierarchy) _cameraFade.FadeOutOverTime(true);
         StartCoroutine(WaitToZoom());
@@ -82,6 +87,7 @@ public class GameManager : MonoBehaviour
                 break;
             case 3:
                 AudioManager.Instance.PlayMusic(FMODEvents.Instance.Chapter3Music);
+                _playerState.PlayerWorried(true);
                 break;
             case 4:
                 AudioManager.Instance.PlayMusic(FMODEvents.Instance.Chapter4Music);
@@ -104,6 +110,7 @@ public class GameManager : MonoBehaviour
     {
         _playerMove.SetCanMove(false);
         _playerStealth.SetProtected(true);
+        // _dog.HandleDogProtectionChanged(true);
         
         if (isGhostie) _ghostieEffect.PlayEffect();
         else _ghostEffect.PlayEffect();
@@ -119,6 +126,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         _playerMove.SetCanMove(true);
         _playerStealth.SetProtected(false);
+        // _dog.HandleDogProtectionChanged(false);
     }
 
     public void PlayVolumeEffect()
@@ -147,6 +155,7 @@ public class GameManager : MonoBehaviour
     public void TutorialOut()
     {
         _inTutorialCutScene = false;
+        PlayAmbiance();
     }
 
     public void LevelEnd()

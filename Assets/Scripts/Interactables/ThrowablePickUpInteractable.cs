@@ -106,11 +106,10 @@ namespace Interactables
 
             if (_isStealth)
             {
-                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DropStealthObject);
                 _particle.Play();
             }
             
-            else AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ObjectFall);
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ObjectFall);
             if (_foodTarget != null) ActivateIfOnWalkable(transform.position);
             
             OnThrowComplete?.Invoke(transform);
