@@ -29,6 +29,7 @@ public class DogMeetManager : MonoBehaviour
         _playerStateManager ??= playerMove.GetComponent<PlayerStateManager>();
         _playerStateManager.SetIdleState();
         _playerStateManager.UpdateStealth(true);
+        print("aaaaaaaaaaaaaaaaa");
     }
     
     public void ShowGhostiesSequence()
