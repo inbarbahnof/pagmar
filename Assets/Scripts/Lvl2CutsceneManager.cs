@@ -19,10 +19,10 @@ public class Lvl2CutsceneManager : MonoBehaviour
         public void UpdatePlayerInPlace()
         {
                 _playerInPlace = true;
-                _playerMove.SetCanMove(false);
                 _playerStateManager ??= _playerMove.GetComponent<PlayerStateManager>();
                 _playerStateManager.SetIdleState();
                 _playerStateManager.UpdateStealth(true);
+                _playerMove.SetCanMove(false);
                 StartCutscene();
         }
 

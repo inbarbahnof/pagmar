@@ -25,10 +25,10 @@ public class DogMeetManager : MonoBehaviour
     public void PlayerHiding()
     {
         _playerHiding = true;
-        playerMove.SetCanMove(false);
         _playerStateManager ??= playerMove.GetComponent<PlayerStateManager>();
         _playerStateManager.SetIdleState();
         _playerStateManager.UpdateStealth(true);
+        playerMove.SetCanMove(false);
         print("aaaaaaaaaaaaaaaaa");
     }
     
