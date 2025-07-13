@@ -162,6 +162,13 @@ public class CameraController : MonoBehaviour
     {
         StartZoom(9);
         zoomSpeed = speed;
+        StartCoroutine(WaitToNormalZoom());
+    }
+    
+    private IEnumerator WaitToNormalZoom()
+    {
+        yield return new WaitForSeconds(1.5f);
+        ZoomOut();
     }
 
     public void ExtraZoomIn(float speed = 2)
