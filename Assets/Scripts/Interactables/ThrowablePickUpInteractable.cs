@@ -18,10 +18,16 @@ namespace Interactables
         private AimControl _aimControl;
         private bool _isThrowing;
         private ThrowInput _curInput;
+        private Vector3 _initialLocalScale;
 
         public ThrowInput CurThrowInput => _curInput;
         public bool IsThrowing => _isThrowing;
         public event Action<Transform> OnThrowComplete;
+
+        private void Awake()
+        {
+            _initialLocalScale = transform.localScale;
+        }
         
         public void Throw(ThrowInput input)
         {
@@ -45,6 +51,7 @@ namespace Interactables
             }
 
             base.DropObject(worldTarget);
+            // transform.localScale = _initialLocalScale;
         }
 
         private void ActivateIfOnWalkable(Vector2 worldTarget)
@@ -86,11 +93,11 @@ namespace Interactables
             _isThrowing = true;
             float duration = Vector2.Distance(input.startPoint, input.endPoint) / input.throwSpeed;
             float elapsed = 0f;
-        
+
             // Recalculate control point (identical to OnAim)
             Vector2 controlPoint = (input.startPoint + input.endPoint) * 0.5f;
             controlPoint.y += input.arcHeight;
-        
+
             while (elapsed < duration)
             {
                 float t = elapsed / duration;
@@ -100,18 +107,19 @@ namespace Interactables
                 elapsed += Time.deltaTime;
                 yield return null;
             }
-        
+
             transform.position = input.endPoint;
             _isThrowing = false;
+            transform.localScale = _initialLocalScale;
 
             if (_isStealth)
             {
                 _particle.Play();
             }
-            
+
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ObjectFall);
             if (_foodTarget != null) ActivateIfOnWalkable(transform.position);
-            
+
             OnThrowComplete?.Invoke(transform);
         }
 
