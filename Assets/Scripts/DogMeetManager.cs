@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using Audio.FMOD;
 using DG.Tweening;
+using FMOD.Studio;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -10,7 +12,10 @@ public class DogMeetManager : MonoBehaviour
     [SerializeField] private PlayableDirector ghostieSequence;
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private GameObject playerBlockCollider;
-    private bool _playerHiding;
+    private bool _playerHiding;   
+
+    private EventInstance _cutsceneMusic;
+
     private PlayerStateManager _playerStateManager;
     
     public void ShowDogSequence()
@@ -19,16 +24,19 @@ public class DogMeetManager : MonoBehaviour
         // freeze player
         // play sequence to pan camera right and move dog
         dogSequence.Play();
+
+        _cutsceneMusic = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.Chapter0Cutscene);
+
         // on camera pan stop allow player controls and show 'hide' prompt
     }
 
     public void PlayerHiding()
     {
         _playerHiding = true;
-        playerMove.SetCanMove(false);
         _playerStateManager ??= playerMove.GetComponent<PlayerStateManager>();
         _playerStateManager.SetIdleState();
         _playerStateManager.UpdateStealth(true);
+        playerMove.SetCanMove(false);
         print("aaaaaaaaaaaaaaaaa");
     }
     
@@ -49,6 +57,10 @@ public class DogMeetManager : MonoBehaviour
         {
             yield return null; // wait one frame
         }
+        
+        if (_cutsceneMusic.isValid())  
+            AudioManager.Instance.SetFloatParameter(_cutsceneMusic, "Lvl0 Cutscene", 1, false);
+
 
         ghostieSequence.Play();
     }
