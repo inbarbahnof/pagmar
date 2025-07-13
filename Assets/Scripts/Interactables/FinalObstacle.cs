@@ -21,6 +21,7 @@ namespace Interactables
         [SerializeField] private GameObject _tree;
         [SerializeField] private GameObject _callBlock;
         [SerializeField] private GameObject _dogDead;
+        [SerializeField] private GameObject _moveToMainCamera;
 
         [Header("Initial Ghosts")]
         [SerializeField] private GhostAttack _playerInitialGhost;
@@ -55,7 +56,6 @@ namespace Interactables
                 _player.UpdatePlayerRunning(true);
                 AudioManager.Instance.SetFloatParameter(AudioManager.Instance.musicInstance,
                     "Ending Run", 2, false);
-                
                 _dog.Running(true);
                 
                 _parentGameObject.SetActive(true);
@@ -170,6 +170,11 @@ namespace Interactables
             }
         }
 
+        public void TurnOnCameraChangeTrigger()
+        {
+            _moveToMainCamera.SetActive(true);
+        }
+
         public void TurnOffCallBlock()
         {
             _callBlock.SetActive(false);
@@ -209,6 +214,7 @@ namespace Interactables
                 _ghostsAttackPlayer[i].SetAttackSpeed(5f);
             }
             _ghostsAttackPlayer[^1].StopAttacking(false, Vector3.zero);
+            _ghostsAttackPlayer[^1].SetAttackSpeed(6.5f);
             
             for (int i = 0; i < _ghosts.Count; i++)
             {
@@ -217,7 +223,7 @@ namespace Interactables
             
             _wall.SetActive(false);
             _player.UpdatePlayerRunning(false);
-            _dog.Running(false);
+            _dog.Running(true);
 
             _wait.PlayerReached();
         }

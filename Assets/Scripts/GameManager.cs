@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     [Header("Die Effects")]
     [SerializeField] private GameObject _ghostieEffectgameObject;
     [SerializeField] private GameObject _ghostEffectgameObject;
+    [SerializeField] private GameObject[] _allLevelGhostst;
 
     [SerializeField] private MenuManager menuManager;
 
@@ -111,6 +112,11 @@ public class GameManager : MonoBehaviour
         _playerMove.SetCanMove(false);
         _playerStealth.SetProtected(true);
         // _dog.HandleDogProtectionChanged(true);
+
+        foreach (var ghost in _allLevelGhostst)
+        {
+            ghost.SetActive(false);
+        }
         
         if (isGhostie) _ghostieEffect.PlayEffect();
         else _ghostEffect.PlayEffect();
@@ -126,6 +132,11 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         _playerMove.SetCanMove(true);
         _playerStealth.SetProtected(false);
+        
+        foreach (var ghost in _allLevelGhostst)
+        {
+            ghost.SetActive(true);
+        }
         // _dog.HandleDogProtectionChanged(false);
     }
 
