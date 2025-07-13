@@ -12,13 +12,12 @@ public class DogMeetManager : MonoBehaviour
     [SerializeField] private PlayableDirector ghostieSequence;
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private GameObject playerBlockCollider;
-    private bool _playerHiding;
-
-    private PlayerStateManager _playerStateManager;
-   
+    private bool _playerHiding;   
 
     private EventInstance _cutsceneMusic;
 
+    private PlayerStateManager _playerStateManager;
+    
     public void ShowDogSequence()
     {
         // activate upon player reach start pos
@@ -38,6 +37,7 @@ public class DogMeetManager : MonoBehaviour
         _playerStateManager ??= playerMove.GetComponent<PlayerStateManager>();
         _playerStateManager.SetIdleState();
         _playerStateManager.UpdateStealth(true);
+        print("aaaaaaaaaaaaaaaaa");
     }
     
     public void ShowGhostiesSequence()
