@@ -33,6 +33,7 @@ namespace Interactables
         
         private void Start()
         {
+            ogPos = transform.position;
             if (_pushParticals != null) _particalOffsetFromPush = _pushParticals.position - transform.position;
         }
         

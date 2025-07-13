@@ -8,7 +8,7 @@ namespace Interactables
         [SerializeField] protected float interactionRange = 1.5f;
 
         protected bool _canInteract = true;
-        private Vector3 ogPos;
+        protected Vector3 ogPos;
         
         public bool CanInteract => _canInteract;
 
