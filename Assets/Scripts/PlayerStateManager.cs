@@ -199,6 +199,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public void StopIdle()
     {
+        _move.UpdateMoveInput(Vector2.zero);
         _move.SetCanMove(false);
         SetState(PlayerState.Idle);
     }
@@ -385,6 +386,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public void SetIdleState()
     {
+        _move.UpdateMoveInput(Vector2.zero);
         _animationManager.StartIdleAnim();
         SetState(PlayerState.Idle);
     }

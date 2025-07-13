@@ -133,6 +133,7 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         if (canMove) Move();
         
         //movingRight = _moveInput.x >= 0;
@@ -229,6 +230,7 @@ public class PlayerMove : MonoBehaviour
     public void SetCanMove(bool move)
     {
         canMove = move;
+        if (!move) isMoving = false;
     }
 
     public void SetIsSwinging(bool swing)
@@ -265,4 +267,5 @@ public class PlayerMove : MonoBehaviour
         SetIsSwinging(false);
         _stateManager.OnFinishedInteraction();
     }
+        
 }
