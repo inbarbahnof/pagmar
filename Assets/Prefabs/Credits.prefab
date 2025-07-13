@@ -640,6 +640,7 @@ GameObject:
   - component: {fileID: 7733730321996063852}
   - component: {fileID: 4580647947927890867}
   - component: {fileID: 7434905197462508335}
+  - component: {fileID: 2792676767386475542}
   m_Layer: 5
   m_Name: Credits
   m_TagString: Untagged
@@ -744,6 +745,23 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &2792676767386475542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4005999511062017286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ff41cf66a624e2f8da5b6cb20543c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usCredits: {fileID: 4214224107621627432}
+  themCredits: {fileID: 4018668533593855339}
+  nextCreditsWaitTime: 1
+  creditsFadeOutWaitTime: 4
+  outAnimTime: 0.5
 --- !u!1 &4018668533593855339
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +773,7 @@ GameObject:
   - component: {fileID: 8726918818510102701}
   - component: {fileID: 4521923861716197109}
   - component: {fileID: 6774380380178521717}
+  - component: {fileID: 3455009452362366734}
   m_Layer: 5
   m_Name: Them
   m_TagString: Untagged
@@ -817,6 +836,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3455009452362366734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4018668533593855339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f290b86baeb4492b36491cb5405d2a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creditsManager: {fileID: 2792676767386475542}
 --- !u!1 &4214224107621627432
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,6 +860,7 @@ GameObject:
   - component: {fileID: 1322731237193332743}
   - component: {fileID: 3735081310722937101}
   - component: {fileID: 7245296448074879661}
+  - component: {fileID: 3921318374130094216}
   m_Layer: 5
   m_Name: US
   m_TagString: Untagged
@@ -890,6 +923,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3921318374130094216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4214224107621627432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f290b86baeb4492b36491cb5405d2a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creditsManager: {fileID: 2792676767386475542}
 --- !u!1 &4703211652418186028
 GameObject:
   m_ObjectHideFlags: 0

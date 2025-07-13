@@ -197,9 +197,14 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void ShowEndCredits()
+    private void ShowEndCredits()
     {
         menuManager.ShowCredits();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
     }
     
 }
