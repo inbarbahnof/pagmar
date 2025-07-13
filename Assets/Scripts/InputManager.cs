@@ -37,6 +37,13 @@ public class InputManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         _input.enabled = false;
         _input.enabled = true;
+        _input.SwitchCurrentActionMap("Player");
+    }
+
+    public void SwitchActionMaps(bool uiInput)
+    {
+        if (uiInput) _input.SwitchCurrentActionMap("UI");
+        else _input.SwitchCurrentActionMap("Player");
     }
     
     public void OnMove(InputAction.CallbackContext context)
@@ -135,6 +142,6 @@ public class InputManager : MonoBehaviour
 
     public void OnMenuButton(InputAction.CallbackContext context)
     {
-        Application.Quit();
+        if (context.performed) GameManager.instance.OnMenuButton();
     }
 }

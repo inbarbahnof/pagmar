@@ -4,6 +4,7 @@ using CheckpointUtils;
 using Dog;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,11 +23,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _ghostieEffectgameObject;
     [SerializeField] private GameObject _ghostEffectgameObject;
 
+    [SerializeField] private MenuManager menuManager;
+
     private bool _inTutorialCutScene = false;
     private PlayerMove _playerMove;
     private IObjectFader _fader;
     private DieEffect _ghostieEffect;
     private DieEffect _ghostEffect;
+
+    private Menus _curMenu = Menus.NONE;
     
     public int ConnectionState => connectionState;
     public int Chapter => chapter;
@@ -168,8 +173,33 @@ public class GameManager : MonoBehaviour
         else
         {
             print("end");
-            Application.Quit();
+            ShowEndCredits();
         }
+    }
+
+    public void OnMenuButton()
+    {
+        switch (_curMenu)
+        {
+            case Menus.NONE:
+                menuManager.ShowPauseMenu(true);
+                _curMenu = Menus.PAUSE;
+                _playerInput.SwitchActionMaps(true);
+                break;
+            case Menus.PAUSE:
+                menuManager.ShowPauseMenu(false);
+                _curMenu = Menus.NONE;
+                _playerInput.SwitchActionMaps(false);
+                break;
+            case Menus.CREDITS:
+                break;
+        }
+        
+    }
+
+    public void ShowEndCredits()
+    {
+        menuManager.ShowCredits();
     }
     
 }
