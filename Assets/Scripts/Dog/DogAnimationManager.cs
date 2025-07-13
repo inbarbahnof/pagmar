@@ -109,9 +109,10 @@ namespace Dog
         private float moveXPrevDir;
         
         private DogAnimation _currentIdleBehavior = DogAnimation.Idle;
-        private float _nextIdleBehaviorChangeTime = 0f;
+        private float _nextIdleBehaviorChangeTime = 2f;
         private float _idleBehaviorDuration = 2.5f;
         private bool _animationEnabled = true;
+        private Coroutine _barkGrowlRoutine;
         
         public void SetAnimationEnabled(bool enabled)
         {
@@ -262,6 +263,49 @@ namespace Dog
             int index = Random.Range(0, idleOptions.Length);
             return idleOptions[index];
         }
+        
+        public void BarkGrowlAnimations()
+        {
+            _animationEnabled = true;
+
+            if (_barkGrowlRoutine == null)
+                _barkGrowlRoutine = StartCoroutine(BarkGrowlLoop());
+        }
+        
+        public void StopBarkGrowlAnimations()
+        {
+            if (_barkGrowlRoutine != null)
+            {
+                StopCoroutine(_barkGrowlRoutine);
+                _barkGrowlRoutine = null;
+                DogAnimationUpdate(DogAnimation.Idle);
+            }
+        }
+
+        private IEnumerator BarkGrowlLoop()
+        {
+            while (true)
+            {
+                int random = Random.Range(0, 3);
+
+                switch (random)
+                {
+                    case 0:
+                        DogAnimationUpdate(DogAnimation.Idle);
+                        break;
+                    case 1:
+                        yield return Growl(); // Waits for growl to finish
+                        break;
+                    case 2:
+                        yield return Bark();
+                        DogAnimationUpdate(DogAnimation.Idle);
+                        break;
+                }
+
+                yield return new WaitForSeconds(2f);
+            }
+        }
+
 
         public void IdleTailWag(bool isWagging)
         {
