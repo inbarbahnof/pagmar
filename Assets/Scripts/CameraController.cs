@@ -80,7 +80,7 @@ public class CameraController : MonoBehaviour
         _followPlayer.enabled = false;
         _followPlayerPan.enabled = true;
         
-        
+        if (_panCameraEnd != null) _panCameraEnd.enabled = false;
         SwitchEffectParent(_followPlayerPan.transform);
     }
 
