@@ -14,6 +14,7 @@ namespace Interactables
         [SerializeField] private float _dropDuration = 1.3f;
         [SerializeField] private GameObject _deathZoneToDestroy;
         [SerializeField] private GhostieDie[] _ghosties;
+        [SerializeField] private Animator _cageAnimator;
 
         private bool _isZoomOut;
 
@@ -28,6 +29,9 @@ namespace Interactables
             {
                 AudioManager.Instance.PlayOneShot(FMODEvents.Instance.CageSnap);
                 CameraController.instance.ExtraZoomOut();
+                
+                _cageAnimator.SetTrigger("fall");
+                
                 _cage.transform.DOMove(_cageDropPos.position, _dropDuration)
                     .SetEase(Ease.InCubic)
                     .OnComplete(AfterCageDrop);
