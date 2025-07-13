@@ -3,8 +3,10 @@ using System.Collections;
 using Audio.FMOD;
 using DG.Tweening;
 using FMOD.Studio;
+using Spine.Unity;
 using UnityEngine;
 using UnityEngine.Playables;
+using WaitForEndOfFrame = UnityEngine.WaitForEndOfFrame;
 
 public class DogMeetManager : MonoBehaviour
 {
@@ -33,11 +35,11 @@ public class DogMeetManager : MonoBehaviour
     public void PlayerHiding()
     {
         _playerHiding = true;
-        _playerStateManager ??= playerMove.GetComponent<PlayerStateManager>();
-        _playerStateManager.SetIdleState();
-        _playerStateManager.UpdateStealth(true);
         playerMove.SetCanMove(false);
-        print("aaaaaaaaaaaaaaaaa");
+        _playerStateManager ??= playerMove.GetComponent<PlayerStateManager>();
+        _playerStateManager.StopIdle();
+        _playerStateManager.UpdateStealth(true);
+        print("player state: " + _playerStateManager.CurrentState);
     }
     
     public void ShowGhostiesSequence()
