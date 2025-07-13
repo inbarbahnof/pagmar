@@ -71,6 +71,14 @@ namespace Interactables
             TargetGenerator.instance.SetStealthTarget(_targets[0]);
             _dog.StealthObs(true);
             CameraController.instance.FollowPlayerAndDog();
+            
+            StartCoroutine(WaitToProtectPlayer());
+        }
+
+        private IEnumerator WaitToProtectPlayer()
+        {
+            yield return new WaitForSeconds(1f);
+            _player.SetProtected(true);
         }
 
         public override void PlayerReachedTarget()

@@ -63,6 +63,14 @@ namespace Interactables
             
             _dog.ChangeCrouching(true);
             // _player.StealthObstacle(false);
+
+            StartCoroutine(WaitToProtectPlayer());
+        }
+
+        private IEnumerator WaitToProtectPlayer()
+        {
+            yield return new WaitForSeconds(1f);
+            _player.SetProtected(true);
         }
 
         private void OnTriggerEnter2D(Collider2D other)

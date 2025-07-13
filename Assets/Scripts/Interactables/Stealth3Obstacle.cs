@@ -94,6 +94,7 @@ namespace Interactables
         {
             yield return new WaitForSeconds(2f);
             _dog.HandleDogProtectionChanged(true);
+            _player.SetProtected(true);
         }
 
         public void PlayerReachedStealth()

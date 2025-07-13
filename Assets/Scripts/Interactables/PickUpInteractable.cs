@@ -38,7 +38,7 @@ namespace Interactables
             transform.DOLocalMove(Vector3.zero, 0.08f)
                 .SetEase(Ease.OutQuad);
             
-            // _shadow.SetTrigger("out");
+            _shadow.SetTrigger("out");
             
             _sprite.sortingOrder = 4;
             
@@ -49,7 +49,7 @@ namespace Interactables
         {
             isPickedUp = false;
             _sprite.sortingOrder = 3;
-            // _shadow.SetTrigger("in");
+            _shadow.SetTrigger("in");
             
             if (_isThrowable && worldTarget != Vector2.zero)
             {
