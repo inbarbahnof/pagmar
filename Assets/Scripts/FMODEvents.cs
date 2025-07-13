@@ -37,8 +37,10 @@ namespace Audio.FMOD
 
         [field: Header("Music")]
         [field: SerializeField] public EventReference Chapter0Music { get; private set; }
+        [field: SerializeField] public EventReference Chapter0Cutscene { get; private set; }
         [field: SerializeField] public EventReference Chapter1Music { get; private set; }
         [field: SerializeField] public EventReference Chapter2Music { get; private set; }
+        [field: SerializeField] public EventReference Chapter2DogEscapeMusic { get; private set; }
         [field: SerializeField] public EventReference Chapter3Music { get; private set; }
         [field: SerializeField] public EventReference Chapter3ReunionMusic { get; private set; }
         [field: SerializeField] public EventReference Chapter4Music { get; private set; }

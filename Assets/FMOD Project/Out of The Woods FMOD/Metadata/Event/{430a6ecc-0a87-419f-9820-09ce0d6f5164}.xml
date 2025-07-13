@@ -96,7 +96,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{4c1637c7-889b-45c8-b2ab-d5dac2be1196}">
 		<property name="volume">
-			<value>-4</value>
+			<value>-2.5</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{f550bd40-5b77-436c-b202-fd37c5c10d15}</destination>
@@ -156,7 +156,7 @@
 			<value>15</value>
 		</property>
 		<property name="maximumScatterDistance">
-			<value>90</value>
+			<value>50</value>
 		</property>
 		<property name="volumeRandomization">
 			<value>-4.5</value>
@@ -169,9 +169,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{e290cb84-879a-411f-a965-d0206a37a413}">
-		<property name="volume">
-			<value>-1</value>
-		</property>
 		<property name="name">
 			<value>birds?</value>
 		</property>
@@ -199,10 +196,10 @@
 			<value>14000</value>
 		</property>
 		<property name="minimumScatterDistance">
-			<value>15</value>
+			<value>10</value>
 		</property>
 		<property name="maximumScatterDistance">
-			<value>90</value>
+			<value>45</value>
 		</property>
 		<property name="volumeRandomization">
 			<value>-3.5</value>
@@ -215,6 +212,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{f90ff325-3970-4306-939d-fdd1dc49461a}">
+		<property name="volume">
+			<value>2</value>
+		</property>
 		<property name="name">
 			<value>crows?</value>
 		</property>
