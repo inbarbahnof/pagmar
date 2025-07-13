@@ -466,7 +466,7 @@ namespace Dog
 
         private bool GoToTOI()
         {
-            print("GoToTOI");
+            //print("GoToTOI");
             Target target = _targetGenerator.GetNearbyTOI(transform);
             if (target != null)
             {
