@@ -138,6 +138,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public void UpdateDropping(bool climbRight, Transform obj)
     {
+        _move.SetCanMove(false);
         _animationManager.UpdateClimbDropDirection(climbRight);
         SetState(PlayerState.Drop);
         _dropping = true;
@@ -153,6 +154,7 @@ public class PlayerStateManager : MonoBehaviour
     
     public void UpdateClimbing(bool climbRight, Transform obj)
     {
+        _move.SetCanMove(false);
         _animationManager.UpdateClimbDropDirection(climbRight);
         SetState(PlayerState.Climb);
         _isClimbing = true;
