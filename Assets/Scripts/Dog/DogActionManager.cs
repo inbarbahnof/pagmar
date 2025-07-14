@@ -256,6 +256,7 @@ namespace Dog
             _playerFollower.ResetToCheckpoint(position);
             curState = DogState.Idle;
             _numberChaseGhostie = 0;
+            _wantFood = false;
             
             if (_chaseGhostieCoroutine != null) StopCoroutine(_chaseGhostieCoroutine);
             
@@ -308,7 +309,9 @@ namespace Dog
                 case (_, DogState.FollowFood):
                     curState = DogState.FollowFood;
                     HandleDogFollowTOI();
-                    _playerFollower.GoToFoodTarget(_targetGenerator.GetFoodTarget());
+                    FoodTarget food = _targetGenerator.GetFoodTarget();
+                    _playerFollower.GoToFoodTarget(food);
+                    food.SetCantPickUp();
                     break;
                 case (_, DogState.ChaseGhostie):
                     HandleChaseGhostie();

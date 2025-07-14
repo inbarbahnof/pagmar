@@ -36,6 +36,18 @@ namespace Targets
                 });
         }
 
+        public void SetCantPickUp()
+        {
+            // turn off the pickability
+            if (_pickUp != null)
+            {
+                InteractableManager.instance.RemoveInteractable(_pickUp);
+                _pickUp.SetCanInteract(false);
+            }
+            
+            _collider.enabled = false;
+        }
+
         public PickUpInteractable GetPickup()
         {
             return _pickUp;

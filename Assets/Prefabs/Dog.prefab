@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2828699047734654277}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.013999939, y: -0.00399971, z: 0}
+  m_LocalPosition: {x: 0.013999939, y: -0.167, z: 0.015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -399,7 +399,7 @@ MonoBehaviour:
   playerStateManager: {fileID: 0}
   _targetGenerator: {fileID: 0}
   _soundParticals: {fileID: 6433405089080394456}
-  _shadowAnimator: {fileID: 7798939476803391010}
+  _shadowAnimator: {fileID: 8269692943542389211}
   _listenDistance: 10
   _petDistance: 3
 --- !u!114 &2126287841468501225
@@ -1023,10 +1023,5 @@ SortingGroup:
 --- !u!198 &6973209380187040066 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 8634579218328832328, guid: c1dc56c73af1e954b9516572353eef12, type: 3}
-  m_PrefabInstance: {fileID: 1662357064360239114}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &7798939476803391010 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 8875054258440810024, guid: c1dc56c73af1e954b9516572353eef12, type: 3}
   m_PrefabInstance: {fileID: 1662357064360239114}
   m_PrefabAsset: {fileID: 0}

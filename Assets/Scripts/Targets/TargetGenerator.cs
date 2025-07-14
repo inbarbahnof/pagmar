@@ -191,7 +191,9 @@ namespace Targets
         public FoodTarget GetFoodTarget()
         {
             if (_foodTarget != null && _foodTarget.CanBeFed)
+            {
                 return _foodTarget;
+            }
                 
             return null;
         }

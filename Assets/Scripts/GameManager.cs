@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         if (_startScreen != null) _startScreen.OnPressStart();
-        AudioManager.Instance.MuteAmbienceEvent();
+        // AudioManager.Instance.MuteAmbienceEvent();
         PlayMusicAccordingToLevel();
     }
 
@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
         _playerMove.SetCanMove(true);
         _playerStealth.SetProtected(false);
         
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.7f);
         foreach (var ghost in _allLevelGhostst)
         {
             ghost.SetActive(true);
@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
     public void TutorialOut()
     {
         _inTutorialCutScene = false;
-        AudioManager.Instance.ResumeAmbience();
+        // AudioManager.Instance.ResumeAmbience();
     }
 
     public void LevelEnd()
