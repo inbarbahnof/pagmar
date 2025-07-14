@@ -29353,6 +29353,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1788046020038783339, guid: 05cc1b0186163ef4a956707ab150d54d, type: 3}
   m_PrefabInstance: {fileID: 554268425}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &730475314 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2126287841468501225, guid: 579a43ea40b83bc47865a2b1b9a1f2f0, type: 3}
+  m_PrefabInstance: {fileID: 1887335571}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866562023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa982fff3cb7824bb0a78bd46770bc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &730842924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34795,15 +34806,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 361430531692883166, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 976524785128727605, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6705805003072254381, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7080431090092594224, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Name
@@ -39134,6 +39145,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 13b54932740f3e841bcd845d7f74f32f, type: 2}
     - {fileID: 11400000, guid: 5bfdeeb0a230ea94c928fdf18bc3435e, type: 2}
     - {fileID: 0}
+    - {fileID: 11400000, guid: db2c41d4575f1ac44959de9b9f2d6451, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -39246,6 +39258,20 @@ MonoBehaviour:
         m_Calls: []
     - m_PersistentCalls:
         m_Calls: []
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 730475314}
+          m_TargetAssemblyTypeName: Dog.DogAnimationManager, Assembly-CSharp
+          m_MethodName: StopBarkGrowlAnimations
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!1 &1834576619
 GameObject:
   m_ObjectHideFlags: 0
@@ -40236,15 +40262,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 361430531692883166, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 976524785128727605, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6705805003072254381, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7080431090092594224, guid: 3397a279b44c18048966c58af2caf26f, type: 3}
       propertyPath: m_Name
