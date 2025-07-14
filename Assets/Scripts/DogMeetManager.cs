@@ -15,8 +15,11 @@ public class DogMeetManager : MonoBehaviour
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private GameObject playerBlockCollider;
     [SerializeField] private SpriteFade bushGlow;
+    [SerializeField] private float bushGlowTime = 1f;
     private bool _playerHiding;
     private bool _playerHidePrompt;
+    private bool _glow;
+    private Coroutine _glowCoroutine;
 
     private EventInstance _cutsceneMusic;
 
@@ -39,12 +42,33 @@ public class DogMeetManager : MonoBehaviour
         _playerHiding = hiding;
         UpdateBushGlow(!hiding);
     }
-    public void UpdateBushGlow(bool glow)
+    public void UpdateBushGlow(bool startGlow)
     {
-        if (_playerHidePrompt)
+        if (_playerHidePrompt && bushGlow.gameObject.activeInHierarchy)
         {
-            bushGlow.FadeOutOverTime(glow);
+            _glow = startGlow;
+            if (_glow && _glowCoroutine is null)
+            {
+                _glowCoroutine = StartCoroutine(BushGlowCoroutine());
+                return;
+            }
         }
+        if (_glowCoroutine is not null) StopCoroutine(_glowCoroutine);
+        bushGlow.FadeOutOverTime();
+        _glowCoroutine = null;
+        _glow = false;
+    }
+
+    private IEnumerator BushGlowCoroutine()
+    {
+        while (_glow)
+        {
+            bushGlow.FadeOutOverTime(true);
+            yield return new WaitForSeconds(bushGlowTime);
+            bushGlow.FadeOutOverTime(); 
+            yield return new WaitForSeconds(bushGlowTime);
+        }
+        _glowCoroutine = null;
     }
     
     public void ShowGhostiesSequence()

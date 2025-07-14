@@ -1,4 +1,4 @@
 ﻿public interface IObjectFader
 {
-    public void FadeOutOverTime(bool reverse = false);
+    public float FadeOutOverTime(bool reverse = false);
 }
