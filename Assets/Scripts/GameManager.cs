@@ -193,6 +193,11 @@ public class GameManager : MonoBehaviour
         chapter = 5;
     }
 
+    public void Chapter4()
+    {
+        chapter = 4;
+    }
+
     private IEnumerator LevelEndCoroutine()
     {
         Time.timeScale = 0;
