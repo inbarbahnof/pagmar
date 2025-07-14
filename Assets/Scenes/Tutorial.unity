@@ -186,8 +186,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291491578
+  m_fontColor: {r: 0.98039216, g: 0.9647059, b: 0.7921569, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 0
   m_fontColorGradient:
@@ -42868,8 +42868,8 @@ Canvas:
   m_GameObject: {fileID: 347397072269814064}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1483706848}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -42879,7 +42879,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 924091165
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &783539978847995647 stripped
@@ -43258,6 +43258,10 @@ PrefabInstance:
     - target: {fileID: 6112341774512062569, guid: 283dbd61c45574df9857bb230ff66b97, type: 3}
       propertyPath: m_Name
       value: Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 6112341774512062569, guid: 283dbd61c45574df9857bb230ff66b97, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -44199,6 +44203,10 @@ PrefabInstance:
     - target: {fileID: 6864285766373392937, guid: e8481d733c6234e0b935d3cc9c295cb9, type: 3}
       propertyPath: m_Name
       value: Push
+      objectReference: {fileID: 0}
+    - target: {fileID: 6864285766373392937, guid: e8481d733c6234e0b935d3cc9c295cb9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8270338824643353168, guid: e8481d733c6234e0b935d3cc9c295cb9, type: 3}
       propertyPath: m_Pivot.x
