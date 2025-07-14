@@ -149,6 +149,7 @@ public class PlayerStateManager : MonoBehaviour
     private IEnumerator WaitForDropAnim()
     {
         yield return new WaitForSeconds(_dropAnimTime);
+        _move.SetCanMove(true);
         _dropping = false;
     }
     
@@ -165,6 +166,7 @@ public class PlayerStateManager : MonoBehaviour
     private IEnumerator WaitForClimbAnim()
     {
         yield return new WaitForSeconds(_climbAnimTime);
+        _move.SetCanMove(true);
         _isClimbing = false;
     }
 
