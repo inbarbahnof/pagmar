@@ -18,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     private Vector2 _moveInput = Vector2.zero;
     private Rigidbody2D _playerRb;
     private PlayerStateManager _stateManager;
+    private SmoothMover _smoothMover;
     private float _speed;
     private Vector2 _aimInput;
 
@@ -48,6 +49,7 @@ public class PlayerMove : MonoBehaviour
         
         _playerRb = GetComponent<Rigidbody2D>();
         _stateManager = GetComponent<PlayerStateManager>();
+        _smoothMover = GetComponent<SmoothMover>();
     }
     
     public void StopAutoRun(float duration = 1f)
@@ -196,7 +198,7 @@ public class PlayerMove : MonoBehaviour
         {
             if (stationary) _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionX;
             else _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionY;
-            float waitTime = GetComponent<SmoothMover>().MoveTo(playerPos, 2f);
+            float waitTime = _smoothMover.MoveTo(playerPos, 2f);
 
             _speed = _pushSpeed;
             return waitTime;
@@ -209,12 +211,14 @@ public class PlayerMove : MonoBehaviour
             _speed = _runSpeed;
             
         }
+        _stateManager.StopIdle();
+        _stateManager.ResumeMovement();
         return 0;
     }
 
     public float GetReadyToClimb(Vector2 playerPos, bool climb = false)
     {
-        float waitTime = GetComponent<SmoothMover>().MoveTo(playerPos);
+        float waitTime = _smoothMover.MoveTo(playerPos);
         if (climb) _playerRb.constraints |= RigidbodyConstraints2D.FreezePositionY;
         //Debug.Log(_playerRb.constraints);
         return waitTime;

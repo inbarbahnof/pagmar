@@ -35,6 +35,7 @@ namespace Interactables
         {
             ogPos = transform.position;
             if (_pushParticals != null) _particalOffsetFromPush = _pushParticals.position - transform.position;
+            if (highlightEffect) _highlightSpriteFade = highlightEffect.GetComponent<SpriteFade>();
         }
         
         public override void Interact()
@@ -48,9 +49,8 @@ namespace Interactables
         public override void StopInteractPress()
         {
             PushInteractableManager.instance.StopPush();
-            base.FinishInteraction();
         }
-        
+
         public void SetOffset(float playerX)
         {
             _xOffset = transform.position.x - playerX;

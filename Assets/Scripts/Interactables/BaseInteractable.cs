@@ -4,21 +4,23 @@ namespace Interactables
 {
     public abstract class BaseInteractable : MonoBehaviour, IInteractable
     {
-        [SerializeField] private GameObject highlightEffect;
+        [SerializeField] protected GameObject highlightEffect;
         [SerializeField] protected float interactionRange = 1.5f;
         [SerializeField] protected TextAppear textPrompt;
 
         protected bool _canInteract = true;
         protected Vector3 ogPos;
+        protected SpriteFade _highlightSpriteFade;
         
         public bool CanInteract => _canInteract;
+        public float InteractionRange => interactionRange;
 
         private void Start()
         {
             ogPos = transform.position;
+            if (highlightEffect) _highlightSpriteFade = highlightEffect.GetComponent<SpriteFade>();
         }
         
-        public float InteractionRange => interactionRange;
 
         public void SetCanInteract(bool can)
         {
@@ -31,8 +33,8 @@ namespace Interactables
         /// <param name="isHighlighted"> Bool val to set highlight activation to </param>
         public virtual void SetHighlight(bool isHighlighted)
         {
-            SpriteFade fadeScript = highlightEffect.GetComponent<SpriteFade>();
-            if (fadeScript) fadeScript.FadeOutOverTime(isHighlighted);
+            if (highlightEffect is null) return;
+            if (_highlightSpriteFade) _highlightSpriteFade.FadeOutOverTime(isHighlighted);
             else highlightEffect.SetActive(isHighlighted);
         }
 

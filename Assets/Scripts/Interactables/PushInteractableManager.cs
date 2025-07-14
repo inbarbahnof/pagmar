@@ -16,6 +16,7 @@ namespace Interactables
         [SerializeField] private Transform dog;
         
         private PlayerMove _playerMove;
+        private PlayerStateManager _playerStateManager;
         private DogActionManager _dogAction;
 
         private PushInteractable _curPushable;
@@ -38,6 +39,7 @@ namespace Interactables
             else Debug.LogError("TOO MANY PUSH INTERACTABLE MANAGERS!");
             
             _playerMove = player.GetComponent<PlayerMove>();
+            _playerStateManager = player.GetComponent<PlayerStateManager>();
             if (dog != null) _dogAction = dog.GetComponent<DogActionManager>();
         }
 
@@ -79,7 +81,7 @@ namespace Interactables
             if (_isPushing)
             {
                 _isPushing = false;
-                _curPushable.StopInteractPress();
+                _curPushable.FinishInteraction();
             
                 _curPushable = null;
                 _playerMove.SetIsPushing(false, Vector3.zero);
@@ -99,7 +101,7 @@ namespace Interactables
             {
                 float targetDist = Vector2.Distance(_curPushable.transform.position, _pushTarget);
                 //Debug.Log("targetDist: " + targetDist);
-                if (targetDist < 0.3f && moveToTarget == null)
+                if (targetDist < 0.1f && moveToTarget == null)
                 {
                     moveToTarget = StartCoroutine(ReachedTarget());
                 }

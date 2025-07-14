@@ -5,7 +5,6 @@ using UnityEngine;
 public class TextAppear : MonoBehaviour
 {
     [SerializeField] private GameObject text;
-    [SerializeField] private float showTime = 5f;
     [SerializeField] private float glowSpeed = 2f;
     
     private bool _showing = false;
