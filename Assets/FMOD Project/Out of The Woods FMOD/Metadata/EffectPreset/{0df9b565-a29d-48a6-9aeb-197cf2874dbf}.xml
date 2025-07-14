@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EffectPreset" id="{0df9b565-a29d-48a6-9aeb-197cf2874dbf}">
+		<property name="name">
+			<value>ghosite Point Source - Mono</value>
+		</property>
+		<relationship name="folder">
+			<destination>{760b98b5-6e49-4f6d-825b-3ee568eaaf64}</destination>
+		</relationship>
+		<relationship name="effect">
+			<destination>{8be066b1-3643-4c7e-95a8-97d7447c2a11}</destination>
+		</relationship>
+	</object>
+	<object class="SpatialiserEffect" id="{8be066b1-3643-4c7e-95a8-97d7447c2a11}">
+		<property name="minimumDistance">
+			<value>0</value>
+		</property>
+		<property name="maximumDistance">
+			<value>10</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>2.60000014</value>
+		</property>
+		<property name="minimumExtent">
+			<value>280</value>
+		</property>
+		<property name="userStereoSeparation">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
