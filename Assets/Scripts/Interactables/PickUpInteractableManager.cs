@@ -98,7 +98,7 @@ namespace Interactables
         public void StopInteractPress(ThrowablePickUpInteractable throwableObj)
         {
             if (!throwableObj.IsPickedUp || !_isAbleToAim) return;
-            if (aimControl.IsAiming)
+            if (aimControl.IsAiming && aimControl.CurAimValid)
             {
                 throwableObj.Throw(aimControl.GetCurThrowInput());
                 TargetGenerator.instance.SetStickTarget(throwableObj.GetComponent<Target>());
