@@ -155,12 +155,10 @@ public class PlayerAnimationManager : MonoBehaviour
         if (Mathf.Abs(moveInput.x) > 0.001f)
         {
             newScaleX = moveInput.x > 0 ? 1 : -1;
-            print("aim " + aimInput.x);
         }
         else if (Mathf.Abs(aimInput.x) > 0.001f)
         {
             newScaleX = aimInput.x > 0 ? 1 : -1;
-            print("aim " + aimInput);
         }
     
         SetFlipSprite(newScaleX);
