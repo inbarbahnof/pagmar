@@ -288,22 +288,21 @@ namespace Dog
             while (true)
             {
                 int random = Random.Range(0, 3);
-
+                
                 switch (random)
-                {
+                {       
                     case 0:
                         DogAnimationUpdate(DogAnimation.Idle);
+                        yield return new WaitForSeconds(1.5f);
                         break;
                     case 1:
                         yield return Growl(); // Waits for growl to finish
                         break;
                     case 2:
-                        yield return Bark();
                         DogAnimationUpdate(DogAnimation.Idle);
+                        yield return Bark();
                         break;
                 }
-
-                yield return new WaitForSeconds(2f);
             }
         }
 
