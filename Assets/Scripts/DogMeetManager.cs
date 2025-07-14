@@ -29,7 +29,6 @@ public class DogMeetManager : MonoBehaviour
         // play sequence to pan camera right and move dog
         dogSequence.Play();
         _playerHidePrompt = true;
-        UpdateBushGlow(_playerHidePrompt);
         _cutsceneMusic = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.Chapter0Cutscene);
 
         // on camera pan stop allow player controls and show 'hide' prompt
@@ -40,8 +39,7 @@ public class DogMeetManager : MonoBehaviour
         _playerHiding = hiding;
         UpdateBushGlow(!hiding);
     }
-
-    private void UpdateBushGlow(bool glow)
+    public void UpdateBushGlow(bool glow)
     {
         if (_playerHidePrompt)
         {
