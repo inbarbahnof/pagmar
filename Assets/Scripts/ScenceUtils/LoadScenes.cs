@@ -17,8 +17,8 @@ public class LoadScenes : MonoBehaviour
 
     private void Start()
     {
-        if (_playerStartLevelPos != null) _player.MoveTo(_playerStartLevelPos.position);
-        if (_dogStartLevelPos != null) _dog.MoveTo(_dogStartLevelPos.position);
+        if (_playerStartLevelPos != null) _player.MoveTo(_playerStartLevelPos.position, 2);
+        if (_dogStartLevelPos != null) _dog.MoveTo(_dogStartLevelPos.position, 2);
     }
 
     public void LoadScene()
