@@ -33,6 +33,7 @@ namespace Interactables
         [SerializeField] private List<GhostAttack> _ghostsAttackPlayer = new List<GhostAttack>();
         
         private List<Vector3> _initialGhostsPositions = new List<Vector3>();
+        private List<PlayGhostieSound> _ghostSounds;
 
         private Coroutine _stopKeepingDistance;
         private Coroutine _slowMotion;
@@ -42,10 +43,12 @@ namespace Interactables
         private void Start()
         {
             _playerState = _player.GetComponent<PlayerStateManager>();
+            _ghostSounds = new List<PlayGhostieSound>();
             
             foreach (var ghost in _ghosts)
             {
                 _initialGhostsPositions.Add(ghost.transform.position);
+                _ghostSounds.Add(ghost.GetComponent<PlayGhostieSound>());
             }
         }
 
@@ -54,8 +57,12 @@ namespace Interactables
             if (other.CompareTag("Player"))
             {
                 _player.UpdatePlayerRunning(true);
-                AudioManager.Instance.SetFloatParameter(AudioManager.Instance.musicInstance,
-                    "Ending Run", 2, false);
+                // AudioManager.Instance.SetFloatParameter(AudioManager.Instance.musicInstance,
+                //     "Ending Run", 2, false);
+                
+                AudioManager.Instance.PlayMusic(FMODEvents.Instance.Chapter4EndMusic);
+                AudioManager.Instance.MuteAmbienceEvent();
+                
                 _dog.Running(true);
                 
                 _parentGameObject.SetActive(true);
@@ -117,6 +124,11 @@ namespace Interactables
         public void ActivateSlowMotion()
         {
             _slowMotion = StartCoroutine(SlowMotion());
+
+            foreach (var sound in _ghostSounds)
+            {
+                sound.GhostEndParameter();
+            }
             
             for (int i = 0; i < _ghostsAttackDog.Count; i++)
             {
@@ -222,6 +234,15 @@ namespace Interactables
             {
                 _ghosts[i].transform.position = _initialGhostsPositions[i];
             }
+            
+            foreach (var sound in _ghostSounds)
+            {
+                sound.ResetGhostEndParameter();
+            }
+            
+            // AudioManager.Instance.ResumeAmbience();
+            AudioManager.Instance.StopMusic();
+            print("stop music");
             
             _wall.SetActive(false);
             _player.UpdatePlayerRunning(false);

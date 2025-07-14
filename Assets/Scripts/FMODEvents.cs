@@ -45,6 +45,7 @@ namespace Audio.FMOD
         [field: SerializeField] public EventReference Chapter3ReunionMusic { get; private set; }
         [field: SerializeField] public EventReference Chapter4Music { get; private set; }
         [field: SerializeField] public EventReference ChapterRunning4Music { get; private set; }
+        [field: SerializeField] public EventReference Chapter4EndMusic { get; private set; }
 
         [field: Header("Ambience")]
         [field: SerializeField] public EventReference Ambiance { get; private set; }

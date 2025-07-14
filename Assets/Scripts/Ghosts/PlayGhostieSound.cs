@@ -67,6 +67,20 @@ namespace Ghosts
             hasStarted = false;
         }
 
+        public void ResetGhostEndParameter()
+        {
+            AudioManager.Instance.SetFloatParameter(_charachterSound,
+                "Ending Dog Death",
+                0, false);
+        }
+
+        public void GhostEndParameter()
+        {
+            AudioManager.Instance.SetFloatParameter(_charachterSound,
+                "Ending Dog Death",
+                1, false);
+        }
+
         public void StopGhostieSound()
         {
             if (hasStarted)
@@ -74,7 +88,8 @@ namespace Ghosts
                 _charachterSound.setParameterByName("Ghostie Mode", 1);
 
                 AudioManager.Instance.PlayOneShot(
-                    FMODEvents.Instance.GhostieBonesDeath, transform.position, true);
+                    FMODEvents.Instance.GhostieBonesDeath, 
+                    transform.position, true);
 
                 //_charachterSound.stop(STOP_MODE.ALLOWFADEOUT);
                 hasStarted = false;
