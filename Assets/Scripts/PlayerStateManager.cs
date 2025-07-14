@@ -63,6 +63,7 @@ public class PlayerStateManager : MonoBehaviour
     private void Start()
     {
         GetManagers();
+        if (GameManager.instance.Chapter == 0) StopIdle();
     }
 
     private void GetManagers()
