@@ -69,10 +69,11 @@ public class CameraController : MonoBehaviour
     {
         _followPlayerAndDog.enabled = false;
         _followPlayer.enabled = true;
-        SwitchEffectParent(_followPlayer.transform);
 
         if (_followPlayerPan != null) _followPlayerPan.enabled = false;
         if (_panCameraEnd != null) _panCameraEnd.enabled = false;
+        
+        SwitchEffectParent(_followPlayer.transform);
     }
 
     public void FollowPlayerPan()
@@ -98,10 +99,11 @@ public class CameraController : MonoBehaviour
     {
         _followPlayer.enabled = false;
         _followPlayerAndDog.enabled = true;
-        SwitchEffectParent(_followPlayerAndDog.transform);
-        
+
         if (_followPlayerPan != null) _followPlayerPan.enabled = false;
         if (_panCameraEnd != null) _panCameraEnd.enabled = false;
+        
+        SwitchEffectParent(_followPlayerAndDog.transform);
     }
 
     public void DisableCutsceneCams()
