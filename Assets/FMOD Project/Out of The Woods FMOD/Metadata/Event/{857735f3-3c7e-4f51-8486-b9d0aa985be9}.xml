@@ -518,7 +518,7 @@
 			<destination>{2f351804-fd88-42f7-ab8e-030158ad2956}</destination>
 			<destination>{3d8128bb-2952-450c-9972-b911feab95da}</destination>
 			<destination>{87c3e61b-4ae9-4024-9018-89a37d1f595f}</destination>
-			<destination>{a6695fa5-4d7b-4318-9e38-38bf61c8a784}</destination>
+			<destination>{5dab1439-203a-442f-a531-c2b5d3b63797}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{58e4040b-222b-401d-b9b1-e16ffd863043}" />
@@ -727,28 +727,13 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{87c3e61b-4ae9-4024-9018-89a37d1f595f}" />
-	<object class="SpatialiserEffect" id="{a6695fa5-4d7b-4318-9e38-38bf61c8a784}">
-		<property name="minimumDistance">
-			<value>0</value>
-		</property>
-		<property name="maximumDistance">
-			<value>10</value>
-		</property>
-		<property name="overrideRange">
-			<value>true</value>
-		</property>
-		<property name="extentMode">
+	<object class="ProxyEffect" id="{5dab1439-203a-442f-a531-c2b5d3b63797}">
+		<property name="inputFormat">
 			<value>1</value>
 		</property>
-		<property name="soundSize">
-			<value>2.60000014</value>
-		</property>
-		<property name="minimumExtent">
-			<value>280</value>
-		</property>
-		<property name="userStereoSeparation">
-			<value>0</value>
-		</property>
+		<relationship name="preset">
+			<destination>{0df9b565-a29d-48a6-9aeb-197cf2874dbf}</destination>
+		</relationship>
 	</object>
 	<object class="AutomationPoint" id="{3326dd60-5c9a-445b-87f8-b6a279476293}">
 		<property name="position">
@@ -959,7 +944,7 @@
 			<value>0.0042372881355932203</value>
 		</property>
 		<property name="value">
-			<value>-14</value>
+			<value>-12</value>
 		</property>
 		<property name="curveShape">
 			<value>0.344433188</value>
@@ -970,7 +955,7 @@
 			<value>0.20000000000000001</value>
 		</property>
 		<property name="value">
-			<value>-6</value>
+			<value>-2</value>
 		</property>
 		<property name="curveShape">
 			<value>0.680603921</value>
@@ -981,7 +966,7 @@
 			<value>0.35000000000000003</value>
 		</property>
 		<property name="value">
-			<value>-10</value>
+			<value>-8</value>
 		</property>
 		<property name="curveShape">
 			<value>-0.136633545</value>
@@ -992,7 +977,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>-35.2000008</value>
+			<value>-31.2000008</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{a3e2378c-5602-4607-a580-c943957835b7}">
