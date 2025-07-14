@@ -72,7 +72,15 @@ public class AimControl : MonoBehaviour
             UpdateTarget(true);
         }
         startPoint = transform.position;
-        _endPoint = startPoint + input.normalized * throwDistance;
+        // _endPoint = startPoint + input.normalized * throwDistance;
+        
+        float maxThrowDistance = throwDistance; // keeps using serialized value as *max*
+        float inputStrength = Mathf.Clamp01(input.magnitude);
+        float distance = Mathf.Lerp(0f, maxThrowDistance, inputStrength);
+        _endPoint = startPoint + input.normalized * distance;
+        
+        arcHeight = Mathf.Lerp(1f, 3f, inputStrength);
+        
         Vector2 validEndPoint = GetValidTarget(_endPoint);
         if (validEndPoint != Vector2.zero)
         {
