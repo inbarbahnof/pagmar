@@ -120,7 +120,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{4ffe2e20-9103-428e-ad85-51b6b401a658}">
 		<property name="volume">
-			<value>-8</value>
+			<value>-4</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{7d7ea349-9920-461f-b354-7550a7c6f84b}</destination>
@@ -294,7 +294,6 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{667e2641-9565-4af1-ab4c-2adbba613377}">
 		<relationship name="effects">
-			<destination>{c70d14fb-36f8-4560-a6fe-fce44a9fd8de}</destination>
 			<destination>{2677bd84-8144-4895-b937-dea01e6d3574}</destination>
 			<destination>{0143fca5-8ab2-4745-8876-1dddef7a0055}</destination>
 		</relationship>
@@ -393,14 +392,6 @@
 			<destination>{fe9f2bad-678b-4aa9-a281-fca0c0a28e24}</destination>
 			<destination>{d50b42ae-ed62-4abe-b785-883ee76755a7}</destination>
 		</relationship>
-	</object>
-	<object class="ThreeEQEffect" id="{c70d14fb-36f8-4560-a6fe-fce44a9fd8de}">
-		<property name="lowGain">
-			<value>-4</value>
-		</property>
-		<property name="lowCrossover">
-			<value>460</value>
-		</property>
 	</object>
 	<object class="MixerBusFader" id="{2677bd84-8144-4895-b937-dea01e6d3574}" />
 	<object class="CompressorEffect" id="{0143fca5-8ab2-4745-8876-1dddef7a0055}">
