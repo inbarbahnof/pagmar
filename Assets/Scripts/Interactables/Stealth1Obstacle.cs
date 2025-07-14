@@ -24,8 +24,6 @@ namespace Interactables
         {
             if (_ghostGameObject != null)
             {
-                AudioManager.Instance.MuteMusicEvent();
-                
                 _ghostGameObject.SetActive(true);
                 _ghostMovement.GoToTargetAndPause(stick);
                 
@@ -43,7 +41,7 @@ namespace Interactables
 
         private IEnumerator WaitToGhostCome()
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(6f);
             
             AudioManager.Instance.ResumeMusic();
             _player.SetProtected(false);
