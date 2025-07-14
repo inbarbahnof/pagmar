@@ -242,7 +242,6 @@ namespace Interactables
             
             // AudioManager.Instance.ResumeAmbience();
             AudioManager.Instance.StopMusic();
-            print("stop music");
             
             _wall.SetActive(false);
             _player.UpdatePlayerRunning(false);

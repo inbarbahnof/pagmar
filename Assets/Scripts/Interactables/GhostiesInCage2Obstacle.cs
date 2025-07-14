@@ -16,7 +16,6 @@ namespace Interactables
         [SerializeField] private GhostieDie[] _ghosties;
         [SerializeField] private Animator _cageAnimator;
 
-        private bool _isZoomOut;
 
         private void Start()
         {
@@ -47,7 +46,6 @@ namespace Interactables
         {
             _deathZoneToDestroy.gameObject.SetActive(false);
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.CageFall);
-            // NavMeshManager.instance.ReBake();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -55,17 +53,7 @@ namespace Interactables
             // print("zoom out " + _isZoomOut);
             if (other.CompareTag("Player"))
             {
-                if (_isZoomOut)
-                {
-                    _isZoomOut = false;
-                    CameraController.instance.ZoomIn();
-                }
-                else
-                {
-                    _isZoomOut = true;
-                    CameraController.instance.ZoomOut();
-                }
-                
+                CameraController.instance.ZoomOut();
             }
         }
 
@@ -77,8 +65,6 @@ namespace Interactables
             }
             
             _cage.ResetCage();
-            CameraController.instance.ZoomIn();
-            _isZoomOut = false;
         }
             
     }
