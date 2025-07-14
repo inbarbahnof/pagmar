@@ -34,7 +34,7 @@ namespace CheckpointUtils
             var memento = _mementos.Last();
             _mementos.Remove(memento);
             //Debug.Log("undo to: " + memento.GetCheckpointInfo().PlayerRespawnLoc);
-
+            if (!_originator) return;
             try
             {
                 _originator.Restore(memento);
