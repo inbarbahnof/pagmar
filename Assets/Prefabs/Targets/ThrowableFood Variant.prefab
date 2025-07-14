@@ -259,6 +259,10 @@ PrefabInstance:
       propertyPath: highlightEffect
       value: 
       objectReference: {fileID: 2767892999749189595}
+    - target: {fileID: 1804897355344761010, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
+      propertyPath: _highlightSpriteFade
+      value: 
+      objectReference: {fileID: 2983631334153643353}
     - target: {fileID: 8422414114862519063, guid: 6765740d8bd82e746b2b2950a98c5b30, type: 3}
       propertyPath: m_Name
       value: ThrowableFood Variant
@@ -353,6 +357,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 2767892999749189595}
   interactionRange: 1.5
+  textPrompt: {fileID: 0}
+  _highlightSpriteFade: {fileID: 0}
   _isThrowable: 0
   _sprite: {fileID: 2948498257072249038}
   _shadow: {fileID: 1855995498982922211}
