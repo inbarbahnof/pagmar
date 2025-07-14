@@ -123,7 +123,7 @@ namespace Dog
 
         private DogState HandlePlayerIdleBehavior(DogState previousDogState, DogStateMachineInput machineInput)
         {
-            if (machineInput._dogReachedTarget) //&& machineInput._connectionStage < 3
+            if (machineInput._dogReachedTarget || machineInput._connectionStage == 0) //&& machineInput._connectionStage < 3
             {
                 return DogState.Idle;
             }

@@ -126,6 +126,11 @@ namespace Dog
             isPerformingAction = false;
         }
 
+        public void ResetDogPos(Vector2 pos)
+        {
+            agent.Warp(pos);
+        }
+
         private float ComputeStopProbOnCall()
         {
             switch (GameManager.instance.ConnectionState)

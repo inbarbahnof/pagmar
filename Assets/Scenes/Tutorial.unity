@@ -2612,7 +2612,7 @@ Transform:
   m_GameObject: {fileID: 219977572}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -100.347916, y: -12.675734, z: 0.23406696}
+  m_LocalPosition: {x: -149.18051, y: -11.439573, z: 0.23406696}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3081,7 +3081,7 @@ Transform:
   m_GameObject: {fileID: 334239617}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -100.347916, y: -12.675734, z: 10.234067}
+  m_LocalPosition: {x: -149.18051, y: -11.439573, z: 10.234067}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -31394,53 +31394,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 032e136c7d357324eb0570a26d07cd4b, type: 3}
---- !u!1 &1021380969
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1021380971}
-  - component: {fileID: 1021380970}
-  m_Layer: 0
-  m_Name: Wait
-  m_TagString: Untagged
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1021380970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021380969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a28b53f3559143d28a5329786bf3616a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 0.8
-  isTOI: 0
-  _isFoodClose: 0
---- !u!4 &1021380971
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021380969}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.98, y: 0.87, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1026946694}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1021659826
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31570,55 +31523,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5024548791741489765, guid: a7e0431090d1e154da0f1cba43d357df, type: 3}
   m_PrefabInstance: {fileID: 1859212423}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1026946692
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1026946694}
-  - component: {fileID: 1026946693}
-  m_Layer: 0
-  m_Name: DogWaitForPlayer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1026946693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1026946692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 712ca1500c608b940aa85d80ac8f4ab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wantFoodTarget: {fileID: 1021380970}
-  _isRunning: 0
-  _finalObstacle: {fileID: 0}
---- !u!4 &1026946694
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1026946692}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 91.01, y: 4.4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1021380971}
-  - {fileID: 1998398712}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1027832310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37908,6 +37812,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1180494835}
     - target: {fileID: 3928992937263542164, guid: 361a77586bdd7254fbc4b75854fc6ee4, type: 3}
+      propertyPath: connectionState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3928992937263542164, guid: 361a77586bdd7254fbc4b75854fc6ee4, type: 3}
       propertyPath: _faderGameObject
       value: 
       objectReference: {fileID: 1417426001}
@@ -38572,6 +38480,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 1
+        - m_Target: {fileID: 1887335572}
+          m_TargetAssemblyTypeName: Dog.DogActionManager, Assembly-CSharp
+          m_MethodName: DogBarkGrowl
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1050567140}
@@ -39096,18 +39016,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1026946693}
-          m_TargetAssemblyTypeName: DogWaitForPlayer, Assembly-CSharp
-          m_MethodName: GoToWait
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 1887335572}
-            m_ObjectArgumentAssemblyTypeName: Dog.DogActionManager, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 1
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1580157036}
@@ -40800,11 +40708,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1998398712}
-  - component: {fileID: 1998398714}
   - component: {fileID: 1998398713}
   - component: {fileID: 1998398715}
   m_Layer: 0
-  m_Name: PlayerReached
+  m_Name: FollowPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40818,12 +40725,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1998398711}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.75, y: 0.91, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 91.5, y: 3.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1026946694}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1998398713
 BoxCollider2D:
@@ -40871,20 +40778,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 4.92}
   m_EdgeRadius: 0
---- !u!114 &1998398714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998398711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceca11357f7141a4ebf14d22ae9c6228, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dogWait: {fileID: 1026946693}
-  _obstacle: {fileID: 0}
 --- !u!114 &1998398715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40900,6 +40793,18 @@ MonoBehaviour:
   triggerAction:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1694535567}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: TurnToPhase2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1887335572}
         m_TargetAssemblyTypeName: Dog.DogActionManager, Assembly-CSharp
         m_MethodName: FollowPlayer
@@ -44181,11 +44086,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4679407582487070141, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -100.347916
+      value: -149.18051
       objectReference: {fileID: 0}
     - target: {fileID: 4679407582487070141, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.675734
+      value: -11.439573
       objectReference: {fileID: 0}
     - target: {fileID: 4679407582487070141, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -44305,11 +44210,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8000971322927287477, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -100.347916
+      value: -149.18051
       objectReference: {fileID: 0}
     - target: {fileID: 8000971322927287477, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.675734
+      value: -11.439573
       objectReference: {fileID: 0}
     - target: {fileID: 8000971322927287477, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -44424,4 +44329,4 @@ SceneRoots:
   - {fileID: 1019918855}
   - {fileID: 598442617}
   - {fileID: 1180494831}
-  - {fileID: 1026946694}
+  - {fileID: 1998398712}
