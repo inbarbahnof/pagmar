@@ -23,12 +23,17 @@ namespace Interactables
             _cage.OnGhostEnterCage += HandleGhostEnterCage;
         }
 
+        public void ShowCage()
+        {
+            CameraController.instance.ExtraZoomOut(true);
+        }
+
         private void HandleGhostEnterCage()
         {
             if (_cage.GhostiesInCage >= 1)
             {
                 AudioManager.Instance.PlayOneShot(FMODEvents.Instance.CageSnap);
-                CameraController.instance.ExtraZoomOut();
+                CameraController.instance.ExtraZoomOut(false);
                 
                 _cageAnimator.SetTrigger("fall");
                 

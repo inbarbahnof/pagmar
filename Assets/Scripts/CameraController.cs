@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CinemachineCamera[] cutsceneCams;
     [SerializeField] private CinemachineCamera _followPlayerPan;
     [SerializeField] private CinemachineCamera _panCameraEnd;
+    [SerializeField] private CinemachineCamera _cageCamera;
     
     [Header("Zoom Values")]
     [SerializeField] private float minFOV = 5f;
@@ -158,17 +159,33 @@ public class CameraController : MonoBehaviour
         zoomSpeed = speed;
     }
 
-    public void ExtraZoomOut(float speed = 2)
+    public void ExtraZoomOut(bool offset ,float speed = 2)
     {
-        StartZoom(9);
-        zoomSpeed = speed;
-        StartCoroutine(WaitToNormalZoom());
+        if (offset)
+        {
+            _cageCamera.Priority = 1;
+        }
+        else
+        {
+            StartZoom(9);
+            zoomSpeed = speed;
+        }
+        
+        StartCoroutine(WaitToNormalZoom(offset));
     }
     
-    private IEnumerator WaitToNormalZoom()
+    private IEnumerator WaitToNormalZoom(bool offset)
     {
-        yield return new WaitForSeconds(1.5f);
-        ZoomOut();
+        if (offset)
+        {
+            yield return new WaitForSeconds(2.5f);
+            _cageCamera.Priority = 0;
+        }
+        else
+        {
+            yield return new WaitForSeconds(1.5f);
+            ZoomOut();
+        }
     }
 
     public void ExtraZoomIn(float speed = 2)
