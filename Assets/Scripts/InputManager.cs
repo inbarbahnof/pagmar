@@ -102,6 +102,7 @@ public class InputManager : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if (!_canMoveInput || GameManager.instance.Chapter == 5) return;
         if(GameManager.instance.Chapter == 0 && !_hasGameStarted)
         {
             GameManager.instance.StartGame();
@@ -127,6 +128,7 @@ public class InputManager : MonoBehaviour
 
     public void OnPet(InputAction.CallbackContext context)
     {
+        if (GameManager.instance.Chapter == 5) return;
         _stateManager.UpdatePetting();
         
         if (!_canMoveInput) GameManager.instance.OnPlayerPetLevel3();
