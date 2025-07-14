@@ -59,12 +59,12 @@ public class GameManager : MonoBehaviour
         if (chapter != 0)
         {
             PlayMusicAccordingToLevel();
-            PlayAmbiance();
             
             if (_cameraFade && _cameraFade.gameObject.activeInHierarchy)
                 _cameraFade.FadeOutOverTime(true);
         }
         
+        PlayAmbiance();
         StartCoroutine(WaitToZoom());
     }
 
@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         if (_startScreen != null) _startScreen.OnPressStart();
+        AudioManager.Instance.MuteAmbienceEvent();
         PlayMusicAccordingToLevel();
     }
 
@@ -168,7 +169,7 @@ public class GameManager : MonoBehaviour
     public void TutorialOut()
     {
         _inTutorialCutScene = false;
-        PlayAmbiance();
+        AudioManager.Instance.ResumeAmbience();
     }
 
     public void LevelEnd()
