@@ -19,13 +19,14 @@ public class CameraFade : MonoBehaviour, IObjectFader
 
     public float Duration => duration;
 
-    public void FadeOutOverTime(bool reverse = false)
+    public float FadeOutOverTime(bool reverse = false)
     {
-        if (!fade) return;
+        if (!fade || !fade.gameObject.activeInHierarchy) return 0;
         if (_fadeOutCoroutine != null)
             StopCoroutine(_fadeOutCoroutine);
 
         _fadeOutCoroutine = StartCoroutine(LerpColor(reverse));
+        return duration;
     }
 
     private IEnumerator LerpColor(bool reverse)

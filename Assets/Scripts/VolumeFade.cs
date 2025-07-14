@@ -12,9 +12,9 @@ public class VolumeFade : MonoBehaviour, IObjectFader
 
     public float Duration => duration;
 
-    public void FadeOutOverTime(bool reverse = false)
+    public float FadeOutOverTime(bool reverse = false)
     {
-        if (!volume) return;
+        if (!volume || !volume.gameObject.activeInHierarchy) return 0;
 
         if (_fadeOutCoroutine != null)
             StopCoroutine(_fadeOutCoroutine);
@@ -26,6 +26,7 @@ public class VolumeFade : MonoBehaviour, IObjectFader
             : (fromVal == 1f ? 0f : 1f); // default: fade to opposite
 
         _fadeOutCoroutine = StartCoroutine(LerpVolume(fromVal, toVal));
+        return duration;
     }
 
     private IEnumerator LerpVolume(float fromVal, float toVal)

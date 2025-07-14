@@ -26,13 +26,16 @@ public class SpriteFade : MonoBehaviour, IObjectFader
         _transparentColor.a = 0;
     }
 
-    public void FadeOutOverTime(bool reverse = false)
+    public float FadeOutOverTime(bool reverse = false)
     {
-        if (!spriteRenderer || _opaqueColor == default || _transparentColor == default) return;
+        if (!spriteRenderer || _opaqueColor == default 
+                            || _transparentColor == default 
+                            || !spriteRenderer.gameObject.activeInHierarchy) return 0;
         if (_fadeOutCoroutine != null)
             StopCoroutine(_fadeOutCoroutine);
 
         if (gameObject.activeSelf) _fadeOutCoroutine = StartCoroutine(LerpOutColor(reverse));
+        return duration;
     }
 
     private IEnumerator LerpOutColor(bool reverse)
