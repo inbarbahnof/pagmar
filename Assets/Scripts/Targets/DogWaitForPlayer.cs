@@ -17,7 +17,6 @@ public class DogWaitForPlayer : MonoBehaviour
     {
         if (other.CompareTag("Dog") && !_playerReached &&!_pullReachedTarget)
         {
-            print("dog want food");
             DogActionManager dog = other.GetComponent<DogActionManager>();
             
             if (_finalObstacle != null)

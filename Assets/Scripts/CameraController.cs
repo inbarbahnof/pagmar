@@ -119,6 +119,8 @@ public class CameraController : MonoBehaviour
     {
         if (_followPlayer.enabled) return _followPlayer;
         if (_followPlayerAndDog.enabled) return _followPlayerAndDog;
+        if (_followPlayerPan != null && _followPlayerPan.enabled) return _followPlayerPan;
+        if (_panCameraEnd != null && _panCameraEnd.enabled) return _panCameraEnd;
         return null;
     }
     
@@ -143,11 +145,21 @@ public class CameraController : MonoBehaviour
         cam.Lens.OrthographicSize = targetSize; // Snap to exact value at the end
     }
     
-    void SwitchEffectParent(Transform newFollowTarget)
+    private void SwitchEffectParent(Transform newFollowTarget)
     {
+        // Step 1: Save current *world* position and rotation
+        Vector3 ghostieWorldPos = _ghostieEffect.localPosition;
+        Vector3 ghostWorldPos = _ghostEffect.localPosition;
+
+        // Step 2: Set the new parent
         _ghostieEffect.SetParent(newFollowTarget);
         _ghostEffect.SetParent(newFollowTarget);
+
+        // Step 3: Re-apply saved *world* position and rotation
+        _ghostieEffect.localPosition = ghostieWorldPos;
+        _ghostEffect.localPosition = ghostWorldPos;
     }
+
 
     public void ZoomOut(float speed = 2)
     {
