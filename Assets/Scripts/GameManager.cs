@@ -188,6 +188,11 @@ public class GameManager : MonoBehaviour
         connectionState = 2;
     }
 
+    public void Chapter5()
+    {
+        chapter = 5;
+    }
+
     private IEnumerator LevelEndCoroutine()
     {
         Time.timeScale = 0;

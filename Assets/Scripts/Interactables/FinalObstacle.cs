@@ -146,7 +146,7 @@ namespace Interactables
             foreach (var ghost in _ghostsAttackPlayer)
             {
                 ghost.Attack(_player.transform);
-                ghost.SetAttackSpeed(12f);
+                ghost.SetAttackSpeed(11f);
             }
         }
         
@@ -214,7 +214,7 @@ namespace Interactables
                 _ghostsAttackPlayer[i].SetAttackSpeed(5f);
             }
             _ghostsAttackPlayer[^1].StopAttacking(false, Vector3.zero);
-            _ghostsAttackPlayer[^1].SetAttackSpeed(6.5f);
+            _ghostsAttackPlayer[^1].SetAttackSpeed(6.3f);
             
             for (int i = 0; i < _ghosts.Count; i++)
             {
@@ -225,7 +225,7 @@ namespace Interactables
             _player.UpdatePlayerRunning(false);
             _dog.Running(true);
 
-            _wait.PlayerReached();
+            _wait.FinishTargetActionWithoutReach();
         }
     }
 }

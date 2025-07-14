@@ -140,7 +140,7 @@ public class InputManager : MonoBehaviour
 
     public void OnCall(InputAction.CallbackContext context)
     {
-        if (!_canMoveInput) return;
+        if (!_canMoveInput || GameManager.instance.Chapter == 5) return;
         if (context.started)
         {
             if (callListener)

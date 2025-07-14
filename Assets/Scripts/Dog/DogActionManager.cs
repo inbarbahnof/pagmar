@@ -537,7 +537,7 @@ namespace Dog
 
         private void HandleDogOnAction()
         {
-            _playerFollower.SetSpeed(true);
+            if (GameManager.instance.Chapter < 5) _playerFollower.SetSpeed(true);
             _dogFollowingTOI = false;
             _dogBusy = true;
             _dogReachedTarget = true;
@@ -546,7 +546,7 @@ namespace Dog
 
         private void HandleDogFinishedAction()
         {
-            _playerFollower.SetSpeed(true);
+            if (GameManager.instance.Chapter < 5) _playerFollower.SetSpeed(true);
             _dogFollowingTOI = false;
             _dogBusy = false;
             _isFollowingStick = false;
@@ -569,7 +569,7 @@ namespace Dog
 
         private void HandleDogIdle()
         {
-            _playerFollower.SetSpeed(true);
+            if (GameManager.instance.Chapter < 5) _playerFollower.SetSpeed(true);
             _dogFollowingTOI = false;
             _dogFollowingTarget = false;
             _dogReachedTarget = true;
