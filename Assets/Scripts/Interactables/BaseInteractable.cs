@@ -7,10 +7,10 @@ namespace Interactables
         [SerializeField] protected GameObject highlightEffect;
         [SerializeField] protected float interactionRange = 1.5f;
         [SerializeField] protected TextAppear textPrompt;
+        [SerializeField] protected SpriteFade _highlightSpriteFade;
 
         protected bool _canInteract = true;
         protected Vector3 ogPos;
-        protected SpriteFade _highlightSpriteFade;
         
         public bool CanInteract => _canInteract;
         public float InteractionRange => interactionRange;
@@ -18,7 +18,6 @@ namespace Interactables
         private void Start()
         {
             ogPos = transform.position;
-            if (highlightEffect) _highlightSpriteFade = highlightEffect.GetComponent<SpriteFade>();
         }
         
 
@@ -34,7 +33,11 @@ namespace Interactables
         public virtual void SetHighlight(bool isHighlighted)
         {
             if (highlightEffect is null) return;
-            if (_highlightSpriteFade) _highlightSpriteFade.FadeOutOverTime(isHighlighted);
+            if (_highlightSpriteFade)
+            {
+                if (!highlightEffect.activeInHierarchy) highlightEffect.SetActive(true);
+                _highlightSpriteFade.FadeOutOverTime(isHighlighted);
+            }
             else highlightEffect.SetActive(isHighlighted);
         }
 
