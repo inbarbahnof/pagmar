@@ -247,13 +247,13 @@ namespace Audio.FMOD
                 case 0: // Ambience
                     ambienceMute.start();
 
-                    yield return new WaitForSeconds(1f); // Wait for a short duration to ensure the event is paused
+                    yield return new WaitForSeconds(2f); // Wait for a short duration to ensure the event is paused
                     ambianceInstance.setPaused(true);
                     break;
 
                 case 1: // Music
                     musicMute.start();
-                    yield return new WaitForSeconds(1f); // Wait for a short duration to ensure the event is paused
+                    yield return new WaitForSeconds(2f); // Wait for a short duration to ensure the event is paused
                     musicInstance.setPaused(true);
                     break;
 
