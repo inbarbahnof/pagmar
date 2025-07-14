@@ -80,6 +80,8 @@ namespace Interactables
 
         public void AttackDog()
         {
+            GameManager.instance.Chapter4();
+            
             foreach (var ghost in _ghostsAttackPlayer)
             {
                 ghost.StopAttacking(false, Vector3.zero);
