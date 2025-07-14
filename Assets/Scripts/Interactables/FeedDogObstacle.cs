@@ -13,6 +13,7 @@ namespace Interactables
         [SerializeField] private SpriteFade _foodSpriteFade;
 
         private Coroutine _foodGlow;
+        private bool _foodOnWalkable;
         
         private void Awake()
         {
@@ -34,6 +35,8 @@ namespace Interactables
         public void HandleFoodDroppedWalkable(FoodPickUpInteractable food)
         {
             if (_foodGlow != null) StopCoroutine(_foodGlow);
+
+            _foodOnWalkable = true;
             _wantFoodTarget.FoodCanBeReached();
             _food.SetCanInteract(false);
             StartCoroutine(TurnOffInteractacle());
@@ -68,7 +71,7 @@ namespace Interactables
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Dog"))
+            if (other.CompareTag("Dog") && !_foodOnWalkable)
             {
                 TargetGenerator.instance.SetWantFoodTarget(_wantFoodTarget);
                 DogActionManager dog = other.GetComponent<DogActionManager>();
