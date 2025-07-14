@@ -14,6 +14,7 @@ namespace Audio.FMOD
         [field: SerializeField] public EventReference DropStealthObject { get; private set; }
         [field: SerializeField] public EventReference CageFall { get; private set; }
         [field: SerializeField] public EventReference CageSnap { get; private set; }
+        [field: SerializeField] public EventReference TreeFall { get; private set; }
         
         [field: Header("PlayerSFX")]
         [field: SerializeField] public EventReference PlayerCall { get; private set; }
@@ -24,6 +25,7 @@ namespace Audio.FMOD
         [field: SerializeField] public EventReference PlayerSigh { get; private set; }
         [field: SerializeField] public EventReference PlayerScared { get; private set; }
         [field: SerializeField] public EventReference PlayerDeath { get; private set; }
+        [field: SerializeField] public EventReference PlayerPch { get; private set; }
         
         [field: Header("DogSFX")]
         [field: SerializeField] public EventReference DogBark { get; private set; }
@@ -46,6 +48,7 @@ namespace Audio.FMOD
         [field: SerializeField] public EventReference Chapter4Music { get; private set; }
         [field: SerializeField] public EventReference ChapterRunning4Music { get; private set; }
         [field: SerializeField] public EventReference Chapter4EndMusic { get; private set; }
+        [field: SerializeField] public EventReference Chapter4CreditsMusic { get; private set; }
 
         [field: Header("Ambience")]
         [field: SerializeField] public EventReference Ambiance { get; private set; }

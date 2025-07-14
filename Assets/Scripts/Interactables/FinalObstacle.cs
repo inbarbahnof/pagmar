@@ -100,11 +100,14 @@ namespace Interactables
 
         private IEnumerator TreeFall()
         {
-            yield return new WaitForSeconds(0.5f);
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.TreeFall);
             
+            yield return new WaitForSeconds(0.5f);
+
             _tree.transform.rotation = Quaternion.Euler(0, 0, 121f);
             _tree.transform.localPosition = new Vector3(-0.5f, 0.73f, 0);
-            // TODO Play tree fall sound
+
+            yield return new WaitForSeconds(0.3f);
             
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogDie, 
                 _dog.transform.position,
@@ -220,6 +223,7 @@ namespace Interactables
                 _ghostsAttackDog[i].SetAttackSpeed(5f);
             }
             _ghostsAttackDog[^1].StopAttacking(false, Vector3.zero);
+            _ghostsAttackDog[^1].SetAttackSpeed(6f);
 
             for (int i = 0; i < _ghostsAttackPlayer.Count - 1; i++)
             {
@@ -228,7 +232,7 @@ namespace Interactables
                 _ghostsAttackPlayer[i].SetAttackSpeed(5f);
             }
             _ghostsAttackPlayer[^1].StopAttacking(false, Vector3.zero);
-            _ghostsAttackPlayer[^1].SetAttackSpeed(6.3f);
+            _ghostsAttackPlayer[^1].SetAttackSpeed(6f);
             
             for (int i = 0; i < _ghosts.Count; i++)
             {
