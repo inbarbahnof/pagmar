@@ -264,10 +264,11 @@ namespace Dog
             return idleOptions[index];
         }
         
-        public void BarkGrowlAnimations()
+        public void BarkGrowlAnimations(Transform player)
         {
             _animationEnabled = true;
-
+            FaceTowardsPosition(player.position);
+            
             if (_barkGrowlRoutine == null)
                 _barkGrowlRoutine = StartCoroutine(BarkGrowlLoop());
         }

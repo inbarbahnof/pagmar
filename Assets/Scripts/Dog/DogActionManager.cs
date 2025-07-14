@@ -126,6 +126,12 @@ namespace Dog
                 HandleStealthBehavior();
             }
         }
+
+        public void DogBarkGrowl()
+        {
+            _playerFollower.ResetDogPos(transform.position);
+            _animationManager.BarkGrowlAnimations(_playerTransform);
+        }
         
         public void SetMovementEnabled(bool enabled)
         {
@@ -144,7 +150,7 @@ namespace Dog
 
                 var agent = GetComponent<NavMeshAgent>();
                 if (agent != null) agent.Warp(transform.position);
-                StartWalkingAfterPlayer();
+                if (GameManager.instance.Chapter > 0) StartWalkingAfterPlayer();
             }
         }
 
