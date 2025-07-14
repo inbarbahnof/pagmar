@@ -6,7 +6,7 @@ public class MenuManager : MonoBehaviour
 {
         [SerializeField] private GameObject pauseMenu;
         [SerializeField] private GameObject endCredits;
-
+        
         public void ShowPauseMenu(bool show)
         {
                 pauseMenu.SetActive(show);

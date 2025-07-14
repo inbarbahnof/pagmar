@@ -205,8 +205,14 @@ public class GameManager : MonoBehaviour
         else
         {
             print("end");
-            ShowEndCredits();
+            StartCoroutine(GameEnd());
         }
+    }
+
+    private IEnumerator GameEnd()
+    {
+        yield return new WaitForSeconds(2f);
+        ShowEndCredits();
     }
 
     public void OnMenuButton()
@@ -217,8 +223,10 @@ public class GameManager : MonoBehaviour
                 menuManager.ShowPauseMenu(true);
                 _curMenu = Menus.PAUSE;
                 _playerInput.SwitchActionMaps(true);
+                //Time.timeScale = 0;
                 break;
             case Menus.PAUSE:
+                //Time.timeScale = 1;
                 menuManager.ShowPauseMenu(false);
                 _curMenu = Menus.NONE;
                 _playerInput.SwitchActionMaps(false);
@@ -236,6 +244,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
     
