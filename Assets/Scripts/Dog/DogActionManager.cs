@@ -148,6 +148,11 @@ namespace Dog
             }
         }
 
+        public void FollowPlayer()
+        {
+            StartWalkingAfterPlayer();
+        }
+
         public void Bark()
         {
             _animationManager.DogBark();
