@@ -100,7 +100,7 @@ namespace Interactables
 
         private IEnumerator TreeFall()
         {
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.TreeFall);
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.TreeFall, _tree.transform.position, true);
             
             yield return new WaitForSeconds(0.5f);
 
