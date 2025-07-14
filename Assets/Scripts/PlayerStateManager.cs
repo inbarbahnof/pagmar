@@ -200,6 +200,7 @@ public class PlayerStateManager : MonoBehaviour
     public void StopIdle()
     {
         _move.UpdateMoveInput(Vector2.zero);
+        _move.UpdateAimInput(Vector2.zero);
         _move.SetCanMove(false);
         SetState(PlayerState.Idle);
     }

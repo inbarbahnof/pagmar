@@ -78,6 +78,7 @@ public class PlayerAnimationManager : MonoBehaviour
 
     private PlayerAnimation _curAnim;
     private bool _isHolding;
+    private float _lastFacingDirection = 1f;
 
     private string _holdBoneName = "F Arm Palm";
     private Bone handBone;
@@ -137,6 +138,15 @@ public class PlayerAnimationManager : MonoBehaviour
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerScared, 
                 transform.position, true);
     }
+
+    private void SetFlipSprite(float direction)
+    {
+        _playerArt.transform.localScale = new Vector3(
+            direction * Mathf.Abs(skeletonAnimation.transform.localScale.x),
+            skeletonAnimation.transform.localScale.y,
+            skeletonAnimation.transform.localScale.z
+        );
+    }
     
     public void FlipSpriteBasedOnInput(Vector2 moveInput, Vector2 aimInput)
     {
@@ -145,17 +155,35 @@ public class PlayerAnimationManager : MonoBehaviour
         if (Mathf.Abs(moveInput.x) > 0.001f)
         {
             newScaleX = moveInput.x > 0 ? 1 : -1;
+            print("aim " + aimInput.x);
         }
         else if (Mathf.Abs(aimInput.x) > 0.001f)
         {
             newScaleX = aimInput.x > 0 ? 1 : -1;
+            print("aim " + aimInput);
         }
     
-        _playerArt.transform.localScale = new Vector3(
-            newScaleX * Mathf.Abs(skeletonAnimation.transform.localScale.x),
-            skeletonAnimation.transform.localScale.y,
-            skeletonAnimation.transform.localScale.z
-        );
+        SetFlipSprite(newScaleX);
+    }
+    
+    public void FaceTowardsTransform(Transform target)
+    {
+        if (target == null) return;
+
+        float direction = target.position.x - transform.position.x;
+        float newScaleX = direction >= 0 ? 1 : -1;
+
+        SetFlipSprite(newScaleX);
+    }
+
+    public void FaceAgainstTransform(Transform target)
+    {
+        if (target == null) return;
+
+        float direction = target.position.x - transform.position.x;
+        float newScaleX = direction >= 0 ? -1 : 1;
+
+        SetFlipSprite(newScaleX);
     }
 
     public void SetLeafsParticles(ParticleSystem leaf)
@@ -213,34 +241,6 @@ public class PlayerAnimationManager : MonoBehaviour
     {
         if (isFast) runAnimSpeed = 1.5f;
         else runAnimSpeed = 1.25f;
-    }
-    
-    public void FaceTowardsTransform(Transform target)
-    {
-        if (target == null) return;
-
-        float direction = target.position.x - transform.position.x;
-        float newScaleX = direction >= 0 ? 1 : -1;
-
-        _playerArt.transform.localScale = new Vector3(
-            newScaleX * Mathf.Abs(_playerArt.transform.localScale.x),
-            _playerArt.transform.localScale.y,
-            _playerArt.transform.localScale.z
-        );
-    }
-
-    public void FaceAgainstTransform(Transform target)
-    {
-        if (target == null) return;
-
-        float direction = target.position.x - transform.position.x;
-        float newScaleX = direction >= 0 ? -1 : 1;
-
-        _playerArt.transform.localScale = new Vector3(
-            newScaleX * Mathf.Abs(_playerArt.transform.localScale.x),
-            _playerArt.transform.localScale.y,
-            _playerArt.transform.localScale.z
-        );
     }
 
     public void StartIdleAnim()
