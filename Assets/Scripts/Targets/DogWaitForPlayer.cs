@@ -11,10 +11,11 @@ public class DogWaitForPlayer : MonoBehaviour
     [SerializeField] private FinalObstacle _finalObstacle;
 
     private bool _pullReachedTarget;
+    private bool _playerReached;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Dog") && !_pullReachedTarget)
+        if (other.CompareTag("Dog") && !_playerReached &&!_pullReachedTarget)
         {
             DogActionManager dog = other.GetComponent<DogActionManager>();
             
@@ -26,6 +27,13 @@ public class DogWaitForPlayer : MonoBehaviour
             
             if (_isRunning) dog.Running(true);
         }
+    }
+
+    public void GoToWait(DogActionManager dog)
+    {
+        if (_playerReached) return;
+        TargetGenerator.instance.SetWantFoodTarget(_wantFoodTarget);
+        dog.SetWantsFood(true);
     }
 
     private IEnumerator TurnAroundLastObs(DogActionManager dog)
@@ -44,6 +52,7 @@ public class DogWaitForPlayer : MonoBehaviour
 
     public void PlayerReached()
     {
+        _playerReached = true;
         _wantFoodTarget.FinishTargetAction();
     }
 
