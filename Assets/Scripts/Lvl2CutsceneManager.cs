@@ -6,6 +6,7 @@ public class Lvl2CutsceneManager : MonoBehaviour
 {
     [SerializeField] private PlayableDirector sequence;
     [SerializeField] private PlayerMove _playerMove;
+    [SerializeField] private GameObject[] playerBlockingGhosties;
     private PlayerStateManager _playerStateManager;
 
     private bool _dogInPlace;
@@ -34,7 +35,10 @@ public class Lvl2CutsceneManager : MonoBehaviour
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.Chapter2DogEscapeMusic);
 
             sequence.Play();
-
+            foreach (var ghostie in playerBlockingGhosties)
+            {
+                ghostie.SetActive(true);
+            }
         }
         
     }
