@@ -74,7 +74,7 @@ namespace Audio.FMOD
                 musicInstance.stop(STOP_MODE.ALLOWFADEOUT);
                 musicInstance.release();
             }
-            
+
             musicInstance = RuntimeManager.CreateInstance(music);
             musicInstance.start();
         }
