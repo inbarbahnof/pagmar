@@ -62,7 +62,12 @@ namespace Interactables
                 _foodTarget.SetCanBeFed(true);
             }
         }
-        
+
+        public override void Interact()
+        {
+            PickUpInteractableManager.instance.Interact(this);
+        }
+
         private bool IsWalkable(Vector2 position)
         {
             NavMeshHit hit;
@@ -89,6 +94,7 @@ namespace Interactables
 
         private IEnumerator ThrowCoroutine(ThrowInput input)
         {
+            if (textPrompt) textPrompt.StopShowText();
             _isThrowing = true;
             float duration = Vector2.Distance(input.startPoint, input.endPoint) / input.throwSpeed;
             float elapsed = 0f;

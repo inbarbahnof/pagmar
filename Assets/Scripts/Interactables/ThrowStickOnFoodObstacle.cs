@@ -55,8 +55,7 @@ namespace Interactables
             Vector2 rawDirection = (curInput.endPoint - curInput.startPoint).normalized;
 
             // Blend with downward direction to ensure it goes down
-            Vector2 downwardBias = Vector2.down * 1.2f; 
-            Vector2 combinedDirection = (rawDirection + downwardBias).normalized;
+            Vector2 combinedDirection = (Vector2.down * 0.6f + rawDirection * 0.4f).normalized;
 
             Vector2 dynamicDropPos = (Vector2)_stick.transform.position + combinedDirection * dropDistance;
             _dropStickPos.position = dynamicDropPos;
