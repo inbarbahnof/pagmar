@@ -41,7 +41,7 @@ namespace Interactables
         public void RemoveInteractable(BaseInteractable interactable)
         {
             curInteractables.Remove(interactable);
-            print("inter removed: " + interactable + " at dist: " + Vector2.Distance(player.position, interactable.transform.position));
+            //print("inter removed: " + interactable + " at dist: " + Vector2.Distance(player.position, interactable.transform.position));
             // foreach (var inter in curInteractables)
             // {
             //     print(inter + ", ");
@@ -101,7 +101,7 @@ namespace Interactables
                     closest = interactable;
                 }
             }
-            print("closest: " + closest + Vector2.Distance(player.position, closest.transform.position));
+            //print("closest: " + closest + Vector2.Distance(player.position, closest.transform.position));
     
             if (closest == null) return;
             if (curInteractableObj != closest)

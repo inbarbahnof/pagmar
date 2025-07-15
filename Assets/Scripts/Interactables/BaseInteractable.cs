@@ -79,6 +79,7 @@ namespace Interactables
 
         public virtual void ResetToCheckpoint()
         {
+            if (textPrompt) textPrompt.StopShowText();
             transform.position = ogPos;
         }
 
