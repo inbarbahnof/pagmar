@@ -78,14 +78,6 @@ namespace Audio.FMOD
 
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-                PauseMenuSnapshotStart();
-            if (Input.GetKeyDown(KeyCode.G))
-                ResumePauseMenu();
-        }
-
         public void StopAllSnapshots()
         {
             foreach (var snapshot in _snapshots)
