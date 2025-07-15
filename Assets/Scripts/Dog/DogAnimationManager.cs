@@ -297,7 +297,10 @@ namespace Dog
                 StopCoroutine(_barkGrowlRoutine);
                 _barkGrowlRoutine = null;
             }
-            //FaceTowardsTransform(playerTransform);
+
+            FaceTowardsTransform(playerTransform);
+            _growling = false;
+            spineAnimationState.ClearTrack(1);
             DogAnimationUpdate(DogAnimation.Idle);
         }
 
@@ -305,13 +308,13 @@ namespace Dog
         {
             while (true)
             {
-                int random = Random.Range(0, 3);
+                int random = Random.Range(1, 3);
                 
                 switch (random)
                 {       
                     case 0:
                         DogAnimationUpdate(DogAnimation.Idle);
-                        yield return new WaitForSeconds(1.5f);
+                        yield return new WaitForSeconds(0.6f);
                         break;
                     case 1:
                         yield return Growl(); // Waits for growl to finish
@@ -426,6 +429,7 @@ namespace Dog
         public void DogWaitForPet()
         {
             _wantFood = true;
+            StartCoroutine(WaitToPlayerPet());
             StartCoroutine(WaitToPlayerPet());
         }
         
