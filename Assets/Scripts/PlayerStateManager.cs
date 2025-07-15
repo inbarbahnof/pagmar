@@ -272,7 +272,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5.9f);
         _stopSad = false;
-        GameManager.instance.LevelEnd();
+        GameManager.instance.EndGame();
     }
 
     public void StartedCalling()

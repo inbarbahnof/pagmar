@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private DogActionManager _dog;
     [SerializeField] private GameObject _faderGameObject;
     [SerializeField] private StartScreenManager _startScreen;
+    [SerializeField] private GameObject _blackScreen;
     
     [Header("Die Effects")]
     [SerializeField] private GameObject _ghostieEffectgameObject;
@@ -183,6 +184,18 @@ public class GameManager : MonoBehaviour
         }
         if (!_cameraFade.gameObject.activeInHierarchy) _cameraFade.gameObject.SetActive(true);
         StartCoroutine(LevelEndCoroutine());
+    }
+
+    public void EndGame()
+    {
+        _blackScreen.SetActive(true);
+        StartCoroutine(WaitToEnd());
+    }
+
+    private IEnumerator WaitToEnd()
+    {
+        yield return new WaitForSeconds(1f);
+        ChangeScene();
     }
 
     public void TurnToPhase2()
