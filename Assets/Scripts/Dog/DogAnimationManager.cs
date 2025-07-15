@@ -298,10 +298,10 @@ namespace Dog
                 _barkGrowlRoutine = null;
             }
 
-            FaceTowardsTransform(playerTransform);
             _growling = false;
             spineAnimationState.ClearTrack(1);
             DogAnimationUpdate(DogAnimation.Idle);
+            // FaceTowardsTransform(playerTransform);
         }
 
         private IEnumerator BarkGrowlLoop()
