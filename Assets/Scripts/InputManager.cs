@@ -161,12 +161,17 @@ public class InputManager : MonoBehaviour
         if (!_canMoveInput || GameManager.instance.Chapter == 5 || !_canCall) return;
         if (context.started)
         {
-            if (callListener)
-            {
-                callListener.StopShowText();
-                callListener = null;
-            }
+            ResetCallPrompt();
             _stateManager.StartedCalling();
+        }
+    }
+
+    public void ResetCallPrompt()
+    {
+        if (callListener)
+        {
+            callListener.StopShowText();
+            callListener = null;
         }
     }
 
