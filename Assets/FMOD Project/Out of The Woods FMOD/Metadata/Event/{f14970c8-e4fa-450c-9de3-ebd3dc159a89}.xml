@@ -28,6 +28,7 @@
 		<relationship name="groupTracks">
 			<destination>{95fc57c4-d0c2-4455-be43-25182da2afd9}</destination>
 			<destination>{b63a7a3e-da36-407f-bb9a-b7f27dd5dffb}</destination>
+			<destination>{e5c018f6-091b-4272-9c70-e2a4abff804e}</destination>
 		</relationship>
 		<relationship name="timeline">
 			<destination>{87b780d4-16f4-44b8-b300-6b32071d180b}</destination>
@@ -80,15 +81,26 @@
 	<object class="GroupTrack" id="{b63a7a3e-da36-407f-bb9a-b7f27dd5dffb}">
 		<relationship name="modules">
 			<destination>{d21ebea8-287c-4833-b0dd-e9efc7c7b28b}</destination>
+			<destination>{37affae0-c6f9-406a-9f1a-4be085e04c31}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{fe3ee1f5-8cb7-49ee-befa-b4c7e5c6a417}</destination>
+		</relationship>
+	</object>
+	<object class="GroupTrack" id="{e5c018f6-091b-4272-9c70-e2a4abff804e}">
+		<relationship name="modules">
+			<destination>{f96d87e2-9349-4797-a791-793c59c25f63}</destination>
+		</relationship>
+		<relationship name="mixerGroup">
+			<destination>{535549eb-788f-4ccf-81ad-77739305e75c}</destination>
 		</relationship>
 	</object>
 	<object class="Timeline" id="{87b780d4-16f4-44b8-b300-6b32071d180b}">
 		<relationship name="modules">
 			<destination>{65144710-bc47-4517-ab5d-7ee062ca2f50}</destination>
 			<destination>{d21ebea8-287c-4833-b0dd-e9efc7c7b28b}</destination>
+			<destination>{f96d87e2-9349-4797-a791-793c59c25f63}</destination>
+			<destination>{37affae0-c6f9-406a-9f1a-4be085e04c31}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{fe25a4e5-576d-4eb6-9b89-511e9dea08a3}">
@@ -170,6 +182,23 @@
 			<destination>{41d4475b-7b2d-4530-b5ab-3b5494dacc47}</destination>
 		</relationship>
 	</object>
+	<object class="CommandSound" id="{37affae0-c6f9-406a-9f1a-4be085e04c31}">
+		<property name="length">
+			<value>0.35000000000000003</value>
+		</property>
+		<property name="delayType">
+			<value>0</value>
+		</property>
+		<property name="commandType">
+			<value>3</value>
+		</property>
+		<property name="targetValue">
+			<value>1</value>
+		</property>
+		<relationship name="commandTarget">
+			<destination>{390a762b-3c4c-48ea-867b-df1aa26f71d2}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerGroup" id="{fe3ee1f5-8cb7-49ee-befa-b4c7e5c6a417}">
 		<property name="name">
 			<value>stop growling</value>
@@ -179,6 +208,37 @@
 		</relationship>
 		<relationship name="panner">
 			<destination>{075473e0-e96e-42c2-862e-7cb2032d9da5}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{fe25a4e5-576d-4eb6-9b89-511e9dea08a3}</destination>
+		</relationship>
+	</object>
+	<object class="CommandSound" id="{f96d87e2-9349-4797-a791-793c59c25f63}">
+		<property name="start">
+			<value>0.75</value>
+		</property>
+		<property name="length">
+			<value>0.039999999999999702</value>
+		</property>
+		<property name="delayType">
+			<value>0</value>
+		</property>
+		<property name="commandType">
+			<value>3</value>
+		</property>
+		<relationship name="commandTarget">
+			<destination>{390a762b-3c4c-48ea-867b-df1aa26f71d2}</destination>
+		</relationship>
+	</object>
+	<object class="EventMixerGroup" id="{535549eb-788f-4ccf-81ad-77739305e75c}">
+		<property name="name">
+			<value>return growling</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{1cccba4a-e321-46fe-8536-fc2d0fbd8cfd}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{21891c0a-301e-4a2a-b0b8-1741d7e71393}</destination>
 		</relationship>
 		<relationship name="output">
 			<destination>{fe25a4e5-576d-4eb6-9b89-511e9dea08a3}</destination>
@@ -245,6 +305,12 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{075473e0-e96e-42c2-862e-7cb2032d9da5}" />
+	<object class="MixerBusEffectChain" id="{1cccba4a-e321-46fe-8536-fc2d0fbd8cfd}">
+		<relationship name="effects">
+			<destination>{78ee7eab-e74b-49b5-b8dd-8b1bd541cd15}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{21891c0a-301e-4a2a-b0b8-1741d7e71393}" />
 	<object class="CompressorEffect" id="{1243c322-1a24-46b2-8061-b6877a7d8ae0}">
 		<property name="threshold">
 			<value>-22.5</value>
@@ -284,6 +350,7 @@
 	</object>
 	<object class="MixerBusFader" id="{519d0d9d-adda-4243-b03f-e40dd114900f}" />
 	<object class="MixerBusFader" id="{83f71450-e869-435a-a097-7126a4444576}" />
+	<object class="MixerBusFader" id="{78ee7eab-e74b-49b5-b8dd-8b1bd541cd15}" />
 	<object class="Automator" id="{5ce651d0-ee91-477a-9ad3-b78bc1b9213b}">
 		<property name="nameOfPropertyBeingAutomated">
 			<value>level</value>
