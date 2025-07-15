@@ -125,6 +125,7 @@ public class InputManager : MonoBehaviour
     public void CanPetOnly()
     {
         _canMoveInput = false;
+        _canPet = true;
     }
 
     public void PlayerDisableAllInput()
