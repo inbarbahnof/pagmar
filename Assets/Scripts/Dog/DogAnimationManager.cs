@@ -297,7 +297,7 @@ namespace Dog
                 StopCoroutine(_barkGrowlRoutine);
                 _barkGrowlRoutine = null;
             }
-            FaceTowardsTransform(playerTransform);
+            //FaceTowardsTransform(playerTransform);
             DogAnimationUpdate(DogAnimation.Idle);
         }
 
