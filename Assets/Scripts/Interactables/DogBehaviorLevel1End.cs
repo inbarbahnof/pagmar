@@ -3,6 +3,7 @@ using Audio.FMOD;
 using Dog;
 using Targets;
 using UnityEngine;
+using Input = UnityEngine.Windows.Input;
 
 namespace Interactables
 {
@@ -14,7 +15,8 @@ namespace Interactables
         [SerializeField] private DogActionManager _dog;
         [SerializeField] private PlayerMove _playerMove;
         [SerializeField] private StartCutsceneManager _cutsceneManager;
-
+        [SerializeField] private InputManager _playerInput;
+        
         public void Level1EndBehavior()
         {
             _firstTarget.FinishTargetAction();
@@ -64,6 +66,7 @@ namespace Interactables
 
         private IEnumerator StartCutscene()
         {
+            _playerInput.PlayerDisableAllInput();
             _playerMove.SetCanMove(false);
 
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogScared,
