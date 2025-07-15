@@ -60,6 +60,9 @@
 		<property name="maxVoices">
 			<value>1</value>
 		</property>
+		<property name="triggerCooldown">
+			<value>380</value>
+		</property>
 	</object>
 	<object class="MarkerTrack" id="{b9bd1610-da53-4e24-ad9c-5e5fe84a68da}" />
 	<object class="GroupTrack" id="{98b6b444-062a-48c1-9dc8-73b31c54e6fa}">
@@ -122,7 +125,6 @@
 			<destination>{09b0f26b-814c-4bcc-be82-f59361eb6e7e}</destination>
 			<destination>{05d683d0-e6e3-4949-8bbe-a266b948ebab}</destination>
 			<destination>{d90e1d24-6218-4c2d-bb3e-a895df5b10b3}</destination>
-			<destination>{dc1ed046-ce80-4155-af67-6d9f1b842109}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{547abf10-aeff-41b2-8ee0-fc636d009dab}" />
@@ -143,6 +145,5 @@
 	</object>
 	<object class="GainEffect" id="{05d683d0-e6e3-4949-8bbe-a266b948ebab}" />
 	<object class="MixerBusFader" id="{d90e1d24-6218-4c2d-bb3e-a895df5b10b3}" />
-	<object class="LoudnessMeter" id="{dc1ed046-ce80-4155-af67-6d9f1b842109}" />
 	<object class="MixerBusFader" id="{90c40870-6531-4e6a-8363-ba3fff89df5d}" />
 </objects>
