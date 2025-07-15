@@ -31,10 +31,14 @@
 			<destination>{185c766e-4088-4c18-95a6-38ae23ed245e}</destination>
 			<destination>{e6100d42-c8f9-489d-81c6-5967012f17b7}</destination>
 			<destination>{6960dd5a-5e95-4644-af0a-29d78440848d}</destination>
+			<destination>{a1f6896a-830c-452c-bd46-ccb25c2ea55e}</destination>
+			<destination>{acca7f16-4fba-4339-aafc-35bf635f1657}</destination>
+			<destination>{7c304191-c976-4427-abbd-6e3eafbeae86}</destination>
 		</relationship>
 		<relationship name="snapshotTracks">
 			<destination>{ff1f85ca-cfb8-4f6d-aa30-3ca9c461fd0b}</destination>
 			<destination>{3d4a06d7-701c-4c06-87f4-5ec17b5e0f16}</destination>
+			<destination>{fae777e3-d136-488c-b131-5a419dd71e25}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{704f8601-dc1e-4041-8cee-4d806ad45b7b}">
@@ -63,9 +67,6 @@
 		<property name="value">
 			<value>620</value>
 		</property>
-		<relationship name="automators">
-			<destination>{3d92ff6d-a613-40c3-9812-1d9c4cf600de}</destination>
-		</relationship>
 		<relationship name="automatableObject">
 			<destination>{4ac606e1-2656-4a4b-99e7-3dff23f3efa1}</destination>
 		</relationship>
@@ -136,10 +137,40 @@
 			<destination>{5a01ffcd-ecfa-4a60-a546-582a7173a9be}</destination>
 		</relationship>
 	</object>
-	<object class="SnapshotTrack" id="{ff1f85ca-cfb8-4f6d-aa30-3ca9c461fd0b}">
-		<relationship name="automationTracks">
-			<destination>{27056414-403c-4501-b984-8496a81e2137}</destination>
+	<object class="SnapshotProperty" id="{a1f6896a-830c-452c-bd46-ccb25c2ea55e}">
+		<property name="propertyName">
+			<value>cutoff</value>
+		</property>
+		<property name="value">
+			<value>620</value>
+		</property>
+		<relationship name="automatableObject">
+			<destination>{e8369fad-fef5-4236-8262-ba7b5705a7db}</destination>
 		</relationship>
+	</object>
+	<object class="SnapshotProperty" id="{acca7f16-4fba-4339-aafc-35bf635f1657}">
+		<property name="propertyName">
+			<value>resonance</value>
+		</property>
+		<property name="value">
+			<value>1.43999994</value>
+		</property>
+		<relationship name="automatableObject">
+			<destination>{e8369fad-fef5-4236-8262-ba7b5705a7db}</destination>
+		</relationship>
+	</object>
+	<object class="SnapshotProperty" id="{7c304191-c976-4427-abbd-6e3eafbeae86}">
+		<property name="propertyName">
+			<value>gain</value>
+		</property>
+		<property name="value">
+			<value>-4</value>
+		</property>
+		<relationship name="automatableObject">
+			<destination>{8537179d-120a-4a5e-969c-9b2a91458757}</destination>
+		</relationship>
+	</object>
+	<object class="SnapshotTrack" id="{ff1f85ca-cfb8-4f6d-aa30-3ca9c461fd0b}">
 		<relationship name="mixerStrip">
 			<destination>{441a529d-e14e-4cab-97ff-958d47f13f7f}</destination>
 		</relationship>
@@ -149,15 +180,20 @@
 			<destination>{ba270ce2-a99a-4e30-bd72-92da3104b8b3}</destination>
 		</relationship>
 	</object>
+	<object class="SnapshotTrack" id="{fae777e3-d136-488c-b131-5a419dd71e25}">
+		<relationship name="mixerStrip">
+			<destination>{f23df3d1-1b3d-42d2-92a9-4c13fe148a80}</destination>
+		</relationship>
+	</object>
 	<object class="ADSRModulator" id="{1c3572f8-2601-466e-a54a-38486a9ae459}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>snapshotIntensity</value>
 		</property>
 		<property name="attackTime">
-			<value>940</value>
+			<value>680</value>
 		</property>
 		<property name="attackShape">
-			<value>-0.440573335</value>
+			<value>-0.538477838</value>
 		</property>
 		<property name="peakValue">
 			<value>100</value>
@@ -166,20 +202,10 @@
 			<value>100</value>
 		</property>
 		<property name="releaseTime">
-			<value>2200</value>
+			<value>620</value>
 		</property>
 		<property name="releaseShape">
-			<value>-0.291016132</value>
+			<value>0.171084642</value>
 		</property>
-	</object>
-	<object class="Automator" id="{3d92ff6d-a613-40c3-9812-1d9c4cf600de}">
-		<property name="nameOfPropertyBeingAutomated">
-			<value>value</value>
-		</property>
-	</object>
-	<object class="AutomationTrack" id="{27056414-403c-4501-b984-8496a81e2137}">
-		<relationship name="automator">
-			<destination>{3d92ff6d-a613-40c3-9812-1d9c4cf600de}</destination>
-		</relationship>
 	</object>
 </objects>
