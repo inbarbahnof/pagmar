@@ -67,6 +67,7 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] private string _breathEventName;
     [SerializeField] private string _callEventName;
     [SerializeField] private string _scareEventName;
+    [SerializeField] private string _climbEventName;
     
     private Spine.EventData _climbUpEventData;
     private Spine.EventData _climbRightEventData;
@@ -75,6 +76,7 @@ public class PlayerAnimationManager : MonoBehaviour
     private Spine.EventData _breathEventData;
     private Spine.EventData _callEventData;
     private Spine.EventData _scareEventData;
+    private Spine.EventData _climbEventData;
 
     private PlayerAnimation _curAnim;
     private bool _isHolding;
@@ -103,6 +105,7 @@ public class PlayerAnimationManager : MonoBehaviour
         _breathEventData = skeletonAnimation.Skeleton.Data.FindEvent(_breathEventName);
         _callEventData = skeletonAnimation.Skeleton.Data.FindEvent(_callEventName);
         _scareEventData = skeletonAnimation.Skeleton.Data.FindEvent(_scareEventName);
+        _climbEventData = skeletonAnimation.Skeleton.Data.FindEvent(_climbEventName);
         
         skeletonAnimation.AnimationState.Event += HandleAnimationStateEvent;
 
@@ -132,11 +135,17 @@ public class PlayerAnimationManager : MonoBehaviour
         else if (e.Data == _callEventData)
             _stateManager.MakeCallSound();
         else if (e.Data == _breathEventData)
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerSigh, 
+        {
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerSigh,
                 transform.position, true);
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.Chapter4CreditsMusic);
+        }
         else if (e.Data == _scareEventData)
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerScared, 
                 transform.position, true);
+        else if (e.Data == _climbUpEventData)
+                    AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPch, 
+                        transform.position, true);
     }
 
     private void SetFlipSprite(float direction)

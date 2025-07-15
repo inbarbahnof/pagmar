@@ -269,10 +269,9 @@ public class PlayerStateManager : MonoBehaviour
 
     private IEnumerator WaitToStopSad()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(5.9f);
         _stopSad = false;
         GameManager.instance.LevelEnd();
-        _move.SetCanMove(true);
     }
 
     public void StartedCalling()
