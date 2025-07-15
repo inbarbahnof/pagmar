@@ -28,7 +28,12 @@ namespace Targets
                 _dog.DogStartSniff();
             }
             
-            StartCoroutine(HoverOverTarget());
+            if (gameObject.activeInHierarchy) StartCoroutine(HoverOverTarget());
+            else
+            {
+                if (isTOI) _dog.DogFinishSniff();
+                FinishTargetAction();
+            }
         }
     }
 }

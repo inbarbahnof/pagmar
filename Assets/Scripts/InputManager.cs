@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
     private bool _canMoveInput = true;
     private bool _canPet = true;
     private bool _hasGameStarted;
+    private bool _canCall = true;
     
     private Vector2 _lastAimInput = Vector2.zero;
     private Coroutine _retainAimCoroutine;
@@ -157,7 +158,7 @@ public class InputManager : MonoBehaviour
 
     public void OnCall(InputAction.CallbackContext context)
     {
-        if (!_canMoveInput || GameManager.instance.Chapter == 5) return;
+        if (!_canMoveInput || GameManager.instance.Chapter == 5 || !_canCall) return;
         if (context.started)
         {
             if (callListener)
@@ -172,6 +173,11 @@ public class InputManager : MonoBehaviour
     public void OnMenuButton(InputAction.CallbackContext context)
     {
         if (context.performed) GameManager.instance.OnMenuButton();
+    }
+
+    public void DisableCall()
+    {
+        _canCall = false;
     }
     
     public void CrisisMode()
