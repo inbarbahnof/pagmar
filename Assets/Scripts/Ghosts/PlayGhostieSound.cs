@@ -23,13 +23,14 @@ namespace Ghosts
                 transform.position, true);
 
 
-            // This tells FMOD to track the transform and Rigidbody
+           /* // This tells FMOD to track the transform and Rigidbody
             FMODUnity.RuntimeManager.AttachInstanceToGameObject(
                 _charachterSound,
                 transform, // the Ghostie's transform
                 GetComponent<Rigidbody2D>() // optional, used for velocity tracking
-            );
+            );*/
         }
+
 
         private void Update()
         {
@@ -61,6 +62,13 @@ namespace Ghosts
         private void OnEnable()
         {
             hasStarted = false;
+
+            // This tells FMOD to track the transform and Rigidbody
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(
+                _charachterSound,
+                transform, // the Ghostie's transform
+                GetComponent<Rigidbody2D>() // optional, used for velocity tracking
+            );
         }
 
         public void ResetGhostEndParameter()
