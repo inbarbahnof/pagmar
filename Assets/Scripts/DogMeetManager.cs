@@ -33,6 +33,7 @@ public class DogMeetManager : MonoBehaviour
         dogSequence.Play();
         _playerHidePrompt = true;
         _cutsceneMusic = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.Chapter0Cutscene);
+        AudioManager.Instance.MuteAmbienceEvent();
 
         // on camera pan stop allow player controls and show 'hide' prompt
     }
@@ -103,5 +104,8 @@ public class DogMeetManager : MonoBehaviour
         playerBlockCollider.SetActive(false);
         ghostieSequence.Play();
         _playerHidePrompt = false;
+
+        yield return new WaitForSeconds(4f);
+        AudioManager.Instance.ResumeAmbience();
     }
 }
