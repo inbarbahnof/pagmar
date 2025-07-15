@@ -21,6 +21,8 @@ namespace Audio.FMOD
         private EventInstance ambienceMute;
         private EventInstance musicMute;
         
+        private List<EventInstance> _oneShotInstances = new();
+        
         private void Awake()
         {
             if (Instance == null)
@@ -119,7 +121,8 @@ namespace Audio.FMOD
             }
 
             instance.start();
-            instance.release();
+            // instance.release();
+            _oneShotInstances.Add(instance);
         }
         
         public EventInstance PlayLoopingSound(EventReference sound, Vector3 pos = default, bool useDirection = false)
@@ -133,6 +136,19 @@ namespace Audio.FMOD
 
             instance.start();  // Starts playing the sound
             return instance;   // Return the instance to allow stopping later
+        }
+        
+        public void StopAllOneShots()
+        {
+            foreach (var instance in _oneShotInstances)
+            {
+                if (instance.isValid())
+                {
+                    instance.stop(STOP_MODE.IMMEDIATE);
+                    instance.release();
+                }
+            }
+            _oneShotInstances.Clear();
         }
         
         public void StopSound(EventInstance instance)
