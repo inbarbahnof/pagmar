@@ -296,8 +296,8 @@ namespace Dog
             {
                 StopCoroutine(_barkGrowlRoutine);
                 _barkGrowlRoutine = null;
-                DogAnimationUpdate(DogAnimation.Idle);
             }
+            DogAnimationUpdate(DogAnimation.Idle);
         }
 
         private IEnumerator BarkGrowlLoop()

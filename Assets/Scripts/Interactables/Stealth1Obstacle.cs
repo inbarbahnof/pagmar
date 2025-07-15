@@ -41,6 +41,7 @@ namespace Interactables
 
         private IEnumerator WaitToGhostCome()
         {
+            AudioManager.Instance.MuteMusicEvent();
             yield return new WaitForSeconds(6f);
             
             AudioManager.Instance.ResumeMusic();
