@@ -291,12 +291,12 @@ namespace Dog
         
         public void StopBarkGrowlAnimations()
         {
-            //FaceTowardsTransform(playerTransform);
             if (_barkGrowlRoutine != null)
             {
                 StopCoroutine(_barkGrowlRoutine);
                 _barkGrowlRoutine = null;
             }
+            FaceTowardsTransform(playerTransform);
             DogAnimationUpdate(DogAnimation.Idle);
         }
 
