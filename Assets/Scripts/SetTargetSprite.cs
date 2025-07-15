@@ -14,7 +14,13 @@ public class SetTargetSprite : MonoBehaviour
             _airTarget.SetActive(true);
         }
     }
-    
+
+    private void OnEnable()
+    {
+        _regularTarget.SetActive(true);
+        _airTarget.SetActive(false);
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("AirThrow"))
