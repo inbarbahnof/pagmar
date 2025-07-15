@@ -270,7 +270,9 @@ namespace Dog
             _numberChaseGhostie = 0;
             _wantFood = false;
             _dogFollowingTarget = false;
+            _dogBusy = false;
             _dogReachedTarget = true;
+            _dogFollowingTOI = false;
             
             if (_chaseGhostieCoroutine != null) StopCoroutine(_chaseGhostieCoroutine);
             
