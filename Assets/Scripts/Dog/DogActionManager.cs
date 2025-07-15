@@ -269,6 +269,8 @@ namespace Dog
             curState = DogState.Idle;
             _numberChaseGhostie = 0;
             _wantFood = false;
+            _dogFollowingTarget = false;
+            _dogReachedTarget = true;
             
             if (_chaseGhostieCoroutine != null) StopCoroutine(_chaseGhostieCoroutine);
             
