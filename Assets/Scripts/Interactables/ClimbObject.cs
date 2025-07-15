@@ -22,8 +22,9 @@ namespace Interactables
         public override void Interact()
         {
             bool playerDirRight = ClimbInteractableManager.instance.GetPlayerMovingRight();
-            if (playerDirRight != climbRight || !interTrigger.enabled || !_currentlyInteractable)
+            if (!interTrigger.enabled || !_currentlyInteractable)
             {
+                print(" ");
                 InteractableManager.instance.OnFinishInteraction();
                 return;
             }
@@ -46,7 +47,7 @@ namespace Interactables
             _waitToStopInteractCoroutine = StartCoroutine(WaitToStopInteract());
         }
 
-        private IEnumerator WaitToStopInteract()
+        protected IEnumerator WaitToStopInteract()
         {
             float time;
             if (_isClimbing) time = 2.1f;

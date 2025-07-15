@@ -30,8 +30,15 @@ namespace Interactables
                 col.SetActive(false);
                 //print("col deactivated at interact");
             }
-            base.StopInteractPress();
+            StopInteractPress();
         }
+        
+        public override void StopInteractPress()
+        {
+            if (_waitToStopInteractCoroutine is not null) return;
+            _waitToStopInteractCoroutine = StartCoroutine(base.WaitToStopInteract());
+        }
+
 
         public override void FinishInteraction()
         {
@@ -51,10 +58,10 @@ namespace Interactables
             {
                 bool playerDirRight = ClimbInteractableManager.instance.GetPlayerMovingRight();
                 //print("player right: " + playerDirRight);
-                if (playerDirRight == climbRight && interTrigger.enabled && _currentlyInteractable)
+                if (playerDirRight == climbRight)
                 {
                     _climbing = true;
-                    _currentlyInteractable = false;
+                    //_currentlyInteractable = false;
                     ClimbDown();
                 }
             }
