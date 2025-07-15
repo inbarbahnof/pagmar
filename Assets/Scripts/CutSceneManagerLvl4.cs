@@ -25,6 +25,7 @@ public class CutSceneManagerLvl4 : MonoBehaviour
         _waiting = true;
         
         AudioManager.Instance.StopMusic();
+        AudioManager.Instance.MuteAmbienceEvent();
     }
 
     private void Update()
