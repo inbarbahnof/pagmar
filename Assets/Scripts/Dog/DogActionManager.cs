@@ -143,6 +143,7 @@ namespace Dog
                 _playerFollower.SetIsGoingToTarget(false);
                 _playerFollower.SetSpeed(true);
                 _animationManager.SetAnimationEnabled(false);
+                // _animationManager.
             }
             else
             {

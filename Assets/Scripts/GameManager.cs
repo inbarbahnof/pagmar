@@ -114,6 +114,7 @@ public class GameManager : MonoBehaviour
     {
         _playerMove.SetCanMove(false);
         _playerStealth.SetProtected(true);
+        _playerState.PlayerScared();
         // _dog.HandleDogProtectionChanged(true);
 
         foreach (var ghost in _allLevelGhostst)
@@ -136,7 +137,7 @@ public class GameManager : MonoBehaviour
         _playerMove.SetCanMove(true);
         _playerStealth.SetProtected(false);
         
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.8f);
         foreach (var ghost in _allLevelGhostst)
         {
             ghost.SetActive(true);

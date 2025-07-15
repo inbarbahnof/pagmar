@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     private PlayerInput _input;
     private AimControl _aimControl;
     private bool _canMoveInput = true;
+    private bool _canPet = true;
     private bool _hasGameStarted;
     
     private Vector2 _lastAimInput = Vector2.zero;
@@ -126,9 +127,21 @@ public class InputManager : MonoBehaviour
         _canMoveInput = false;
     }
 
+    public void PlayerDisableAllInput()
+    {
+        _canMoveInput = false;
+        _canPet = false;
+    }
+    
+    public void PlayerEnableAllInput()
+    {
+        _canMoveInput = true;
+        _canPet = true;
+    }
+
     public void OnPet(InputAction.CallbackContext context)
     {
-        if (GameManager.instance.Chapter == 5) return;
+        if (GameManager.instance.Chapter == 5 || !_canPet) return;
         _stateManager.UpdatePetting();
         
         if (!_canMoveInput) GameManager.instance.OnPlayerPetLevel3();
