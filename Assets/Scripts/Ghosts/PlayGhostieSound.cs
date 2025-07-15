@@ -45,11 +45,7 @@ namespace Ghosts
                 _charachterSound.stop(STOP_MODE.ALLOWFADEOUT);
                 hasStarted = false;
             }
-
-         /*   if (Input.GetKeyDown(KeyCode.F))
-                AudioManager.Instance.PlayOneShot(
-                    FMODEvents.Instance.GhostieBonesDeath, transform.position, true);*/
-
+        
         }
 
         private void OnDisable()
