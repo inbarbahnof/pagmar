@@ -34,6 +34,10 @@ public class AimControl : MonoBehaviour
     
     public void UpdateAimInput(Vector2 input)
     {
+        if (_curTarget is null || !_curTarget.activeInHierarchy)
+        {
+            UpdateTarget(true);
+        }
         if (input.magnitude < inputDeadzone)
         {
             _aimInput = Vector2.zero;
@@ -48,7 +52,7 @@ public class AimControl : MonoBehaviour
 
     private void UpdateTarget(bool isValid)
     {
-        if (_curAimValid == isValid) return;
+        if (_curAimValid == isValid && _curTarget.activeInHierarchy) return;
         _curAimValid = isValid;
         validTrajectoryTarget.SetActive(isValid);
         invalidTrajectoryTarget.SetActive(!isValid);
