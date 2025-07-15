@@ -79,7 +79,6 @@
 	</object>
 	<object class="GroupTrack" id="{b63a7a3e-da36-407f-bb9a-b7f27dd5dffb}">
 		<relationship name="modules">
-			<destination>{040e690a-d399-4db8-9712-3dfd95706b2c}</destination>
 			<destination>{d21ebea8-287c-4833-b0dd-e9efc7c7b28b}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
@@ -89,7 +88,6 @@
 	<object class="Timeline" id="{87b780d4-16f4-44b8-b300-6b32071d180b}">
 		<relationship name="modules">
 			<destination>{65144710-bc47-4517-ab5d-7ee062ca2f50}</destination>
-			<destination>{040e690a-d399-4db8-9712-3dfd95706b2c}</destination>
 			<destination>{d21ebea8-287c-4833-b0dd-e9efc7c7b28b}</destination>
 		</relationship>
 	</object>
@@ -156,26 +154,6 @@
 		</relationship>
 		<relationship name="output">
 			<destination>{fe25a4e5-576d-4eb6-9b89-511e9dea08a3}</destination>
-		</relationship>
-	</object>
-	<object class="CommandSound" id="{040e690a-d399-4db8-9712-3dfd95706b2c}">
-		<property name="length">
-			<value>0.75632653061224486</value>
-		</property>
-		<property name="delayType">
-			<value>0</value>
-		</property>
-		<property name="minimumTimeDelay">
-			<value>300</value>
-		</property>
-		<property name="maximumTimeDelay">
-			<value>440</value>
-		</property>
-		<property name="commandType">
-			<value>1</value>
-		</property>
-		<relationship name="commandTarget">
-			<destination>{f690fe10-263b-4b3f-bf0d-29487ec0cddb}</destination>
 		</relationship>
 	</object>
 	<object class="CommandSound" id="{d21ebea8-287c-4833-b0dd-e9efc7c7b28b}">
