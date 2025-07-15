@@ -3060,7 +3060,7 @@ Transform:
   m_GameObject: {fileID: 219977572}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -100.36917, y: -12.678264, z: 0.23406696}
+  m_LocalPosition: {x: -149.18051, y: -11.439573, z: 0.23406696}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3119,7 +3119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
-    Enabled: 0
+    Enabled: 1
     m_Value: 0
   OutputChannel: 1
   StandbyUpdate: 2
@@ -3925,7 +3925,7 @@ Transform:
   m_GameObject: {fileID: 334239617}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -100.36917, y: -12.678264, z: 10.234067}
+  m_LocalPosition: {x: -149.18051, y: -11.439573, z: 10.234067}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43905,6 +43905,8 @@ PlayableDirector:
     value: {fileID: 1887335575}
   - key: {fileID: -6949514600269953543, guid: e5197170547e9114d9f72bb19c4f3c33, type: 2}
     value: {fileID: 1050567125}
+  - key: {fileID: 3668439954352899440, guid: e5197170547e9114d9f72bb19c4f3c33, type: 2}
+    value: {fileID: 1105917146}
   m_ExposedReferences:
     m_References:
     - 210c7c92426d2954487e55749ae99101: {fileID: 419365130}
@@ -44046,18 +44048,19 @@ MonoBehaviour:
           m_CallState: 1
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1774571780}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: 
-          m_Mode: 1
+        - m_Target: {fileID: 1580157036}
+          m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
+          m_MethodName: UpdatePriorities
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgument: {fileID: 219977576}
+            m_ObjectArgumentAssemblyTypeName: Unity.Cinemachine.CinemachineCamera,
+              Unity.Cinemachine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 2
+          m_CallState: 1
 --- !u!1001 &1781198385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44776,16 +44779,29 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 1
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1580157036}
-          m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
-          m_MethodName: DisableCutsceneCams
+          m_CallState: 1
+        - m_Target: {fileID: 730475314}
+          m_TargetAssemblyTypeName: Dog.DogAnimationManager, Assembly-CSharp
+          m_MethodName: StopBarkGrowlAnimations
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 1
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1580157036}
+          m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
+          m_MethodName: UpdatePriorities
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 419365130}
+            m_ObjectArgumentAssemblyTypeName: Unity.Cinemachine.CinemachineCamera,
+              Unity.Cinemachine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -50336,11 +50352,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4679407582487070141, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -100.36917
+      value: -149.18051
       objectReference: {fileID: 0}
     - target: {fileID: 4679407582487070141, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.678264
+      value: -11.439573
       objectReference: {fileID: 0}
     - target: {fileID: 4679407582487070141, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -50460,11 +50476,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8000971322927287477, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -100.36917
+      value: -149.18051
       objectReference: {fileID: 0}
     - target: {fileID: 8000971322927287477, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.678264
+      value: -11.439573
       objectReference: {fileID: 0}
     - target: {fileID: 8000971322927287477, guid: 02d0f0bdc2dee444f9c7ecf522afc0f1, type: 3}
       propertyPath: m_LocalPosition.z
