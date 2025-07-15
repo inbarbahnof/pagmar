@@ -32,6 +32,7 @@ public class StartCutsceneManager : MonoBehaviour
     public void AfterSequence()
     {
         playerMove.SetCanMove(true);
+        dog.StealthObs(false);
         dog.SetMovementEnabled(true);
     }
 }
