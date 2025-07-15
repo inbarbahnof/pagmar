@@ -14,6 +14,7 @@ namespace Interactables
 
         private Coroutine _foodGlow;
         private bool _foodOnWalkable;
+        private bool _foodWasEaten;
         
         private void Awake()
         {
@@ -30,6 +31,7 @@ namespace Interactables
         private void HandleFoodEaten()
         {
             GetComponent<Collider2D>().enabled = false;
+            _foodWasEaten = true;
         }
         
         public void HandleFoodDroppedWalkable(FoodPickUpInteractable food)
@@ -50,7 +52,7 @@ namespace Interactables
 
         public void FoodGlow()
         {
-            _foodGlow = StartCoroutine(FoodGlowCoroutine());
+             if (!_foodWasEaten) _foodGlow = StartCoroutine(FoodGlowCoroutine());
         }
 
         private IEnumerator FoodGlowCoroutine()
