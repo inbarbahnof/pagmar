@@ -205,15 +205,15 @@ public class PlayerAnimationManager : MonoBehaviour
     
     private void OnClimbUpEvent()
     {
-        float deltaX = _climbDropRight ? 0.1f : -0.1f;
-        Vector3 newPos = new Vector3(transform.position.x + deltaX, transform.position.y + 0.3f, 0);
+        float deltaX = _climbDropRight ? 0.2f : -0.2f;
+        Vector3 newPos = new Vector3(transform.position.x + deltaX, transform.position.y + 0.4f, 0);
         transform.DOMove(newPos, 0.53f);
         _shadowAnimator.SetTrigger("out");
     }
     
     private void OnClimbRightEvent()
     {
-        float deltaX = _climbDropRight ? 0.3f : -0.3f;
+        float deltaX = _climbDropRight ? 0.7f : -0.7f;
         Vector3 newPos = new Vector3(transform.position.x + deltaX, transform.position.y + 0.1f, 0);
         transform.DOMove(newPos, 0.5f);
         _shadowAnimator.SetTrigger("in");
@@ -221,8 +221,8 @@ public class PlayerAnimationManager : MonoBehaviour
 
     private IEnumerator OnDrop()
     {
-        float deltaX1 = _climbDropRight ? 0.4f : -0.4f;
-        float deltaX2 = _climbDropRight ? 0.3f : -0.3f;
+        float deltaX1 = _climbDropRight ? 0.5f : -0.5f;
+        float deltaX2 = _climbDropRight ? 0.6f : -0.6f;
         
         _shadowAnimator.SetTrigger("outNoTrans");
         Vector3 newPos1 = new Vector3(transform.position.x + deltaX1, transform.position.y + 0.1f, 0);

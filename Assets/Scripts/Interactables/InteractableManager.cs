@@ -112,8 +112,8 @@ namespace Interactables
         {
             if (curInteractableObj != null)
             {
-                curInteractableObj.Interact();
                 curInteractableObj.SetHighlight(false);
+                curInteractableObj.Interact();
                 interacting = true;
 
                 playerStateManager.UpdateCurInteraction(curInteractableObj);
@@ -152,7 +152,10 @@ namespace Interactables
 
             if (curInteractableObj)
             {
-                if (interactableTwin is null) curInteractableObj.SetHighlight(true);
+                if (interactableTwin is null)
+                {
+                    curInteractableObj.SetHighlight(true);
+                }
                 else
                 {
                     AddInteractableObj(interactableTwin);

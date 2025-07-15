@@ -144,10 +144,10 @@ public class PlayerStateManager : MonoBehaviour
         SetState(PlayerState.Drop);
         _dropping = true;
         _animationManager.FaceAgainstTransform(obj);
-        StartCoroutine(WaitForDropAnim());
+        StartCoroutine(WaitForDropAnim(climbRight));
     }
     
-    private IEnumerator WaitForDropAnim()
+    private IEnumerator WaitForDropAnim(bool climbRight)
     {
         yield return new WaitForSeconds(_dropAnimTime);
         _move.SetCanMove(true);
@@ -161,10 +161,10 @@ public class PlayerStateManager : MonoBehaviour
         SetState(PlayerState.Climb);
         _isClimbing = true;
         _animationManager.FaceTowardsTransform(obj);
-        StartCoroutine(WaitForClimbAnim());
+        StartCoroutine(WaitForClimbAnim(climbRight));
     }
 
-    private IEnumerator WaitForClimbAnim()
+    private IEnumerator WaitForClimbAnim(bool climbRight)
     {
         yield return new WaitForSeconds(_climbAnimTime);
         _move.SetCanMove(true);

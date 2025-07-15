@@ -11,6 +11,8 @@ namespace Interactables
         [SerializeField] protected bool climbRight = true;
         [SerializeField] protected ClimbObject twin;
         protected Collider2D twinTrigger;
+        private bool canInteract = true;
+        private Coroutine _waitToStopInteractCoroutine;
         
         public Collider2D GetColGO()
         {
@@ -19,19 +21,28 @@ namespace Interactables
         
         public override void Interact()
         {
+            bool playerDirRight = ClimbInteractableManager.instance.GetPlayerMovingRight();
+            if (playerDirRight != climbRight || !interTrigger.enabled || !canInteract)
+            {
+                InteractableManager.instance.OnFinishInteraction();
+                return;
+            }
+            //print("player right: " + playerDirRight + " climb right: " + climbRight);
+            //print("interacting: " + name);
+            canInteract = false;
             if (twinTrigger is null && twin is not null) twinTrigger = twin.GetColGO();
             ClimbInteractableManager.instance.Climb(this, Vector2.zero, _isClimbing, climbRight);
             if (col)
             {
                 col.SetActive(false);
-                //print("col deactivated at interact press");
             }
             base.Interact();
         }
 
         public override void StopInteractPress()
         {
-            StartCoroutine(WaitToStopInteract());
+            if (canInteract || _waitToStopInteractCoroutine is not null) return;
+            _waitToStopInteractCoroutine = StartCoroutine(WaitToStopInteract());
         }
 
         private IEnumerator WaitToStopInteract()
@@ -42,6 +53,7 @@ namespace Interactables
             
             yield return new WaitForSeconds(time); 
             FinishInteraction();
+            _waitToStopInteractCoroutine = null;
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -51,7 +63,6 @@ namespace Interactables
                 if (col)
                 {
                     col.SetActive(true);
-                    //print("col activated at trigger exit");
                 }
                 
             }
@@ -59,13 +70,25 @@ namespace Interactables
 
         public override void FinishInteraction()
         {
-            if (twinTrigger)
+            //Debug.Log("finish " + name);
+            if (twinTrigger && interTrigger.enabled)
             {
                 twinTrigger.enabled = true;
                 interTrigger.enabled = false;
                 //Debug.Log("col deactivated at finish interact");
             }
             InteractableManager.instance.OnFinishInteraction(twin);
+            StartCoroutine(CoolDown());
+            if (col)
+            {
+                col.SetActive(true);
+            }
+        }
+
+        private IEnumerator CoolDown()
+        {
+            yield return new WaitForSeconds(1f);
+            canInteract = true;
         }
     }
 }
