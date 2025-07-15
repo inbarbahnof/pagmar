@@ -94,14 +94,18 @@ namespace Audio.FMOD
             {
                 ambianceInstance.stop(STOP_MODE.ALLOWFADEOUT);
                 ambianceInstance.release();
+
+                ResumeAmbience();
+
             }
-            
+
             ambianceInstance = RuntimeManager.CreateInstance(music);
 
             /// itamar added this --- to have the ambiance sound follow the camera position and have ATTENUATION
             ambianceInstance.set3DAttributes(Camera.main.transform.position.To3DAttributes()); 
 
             ambianceInstance.start();
+
         }
         
         public void PlayOneShot(EventReference sound, Vector3 pos = default, bool useDirection = false)
