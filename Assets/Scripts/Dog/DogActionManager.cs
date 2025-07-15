@@ -284,7 +284,7 @@ namespace Dog
             _playerFollower.StopGoingToTarget();
             _playerFollower.SetIsGoingToTarget(false);
             
-            _animationManager.DogWaitForFood();
+            _animationManager.DogWaitForPet();
         }
 
         public void StopWaitingForPet()
@@ -438,6 +438,7 @@ namespace Dog
 
         private void HandlePetBehavior()
         {
+            _animationManager.PlayerPet();
             _playerFollower.GoToFoodTarget(_targetGenerator.GetPetTarget());
         }
 

@@ -115,6 +115,7 @@ namespace Dog
         private Coroutine _barkGrowlRoutine;
 
         private bool _faceLeft;
+        private bool _playerPet;
         
         public void SetAnimationEnabled(bool enabled)
         {
@@ -420,6 +421,24 @@ namespace Dog
         {
             _wantFood = true;
             StartCoroutine(WaitToAnimation());
+        }
+
+        public void DogWaitForPet()
+        {
+            _wantFood = true;
+            StartCoroutine(WaitToPlayerPet());
+        }
+        
+        private IEnumerator WaitToPlayerPet()
+        {
+            yield return new WaitUntil(() => _playerPet);
+            _wantFood = false;
+            _playerPet = false;
+        }
+
+        public void PlayerPet()
+        {
+            _playerPet = true;
         }
 
         private IEnumerator WaitToAnimation()
