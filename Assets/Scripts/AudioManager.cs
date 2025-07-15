@@ -23,6 +23,8 @@ namespace Audio.FMOD
         private EventInstance pauseMenuSnapshot;
 
         private List<EventInstance> _snapshots;
+        private List<EventInstance> _oneShotInstances = new();
+        private List<EventInstance> _loopShotsInstances = new();
         
         private void Awake()
         {
@@ -142,7 +144,34 @@ namespace Audio.FMOD
             }
 
             instance.start();
-            instance.release();
+            // instance.release();
+            _oneShotInstances.Add(instance);
+        }
+
+        public void StopAllLoopShots()
+        {
+            foreach (var instance in _loopShotsInstances)
+            {
+                if (instance.isValid())
+                {
+                    instance.stop(STOP_MODE.IMMEDIATE);
+                    instance.release();
+                }
+            }
+            _oneShotInstances.Clear();
+        }
+        
+        public void StopAllOneShots()
+        {
+            foreach (var instance in _oneShotInstances)
+            {
+                if (instance.isValid())
+                {
+                    instance.stop(STOP_MODE.IMMEDIATE);
+                    instance.release();
+                }
+            }
+            _oneShotInstances.Clear();
         }
         
         public EventInstance PlayLoopingSound(EventReference sound, Vector3 pos = default, bool useDirection = false)
@@ -155,8 +184,7 @@ namespace Audio.FMOD
             }
 
             instance.start();  // Starts playing the sound
-            //_eventInstances.Add(instance);
-
+            _loopShotsInstances.Add(instance);
             return instance;   // Return the instance to allow stopping later
 
         }
