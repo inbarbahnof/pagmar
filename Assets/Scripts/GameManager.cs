@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDied(bool isGhostie)
     {
+        _playerInput.ResetCallPrompt();
         _playerMove.SetCanMove(false);
         _playerStealth.SetProtected(true);
         _playerState.PlayerScared();
