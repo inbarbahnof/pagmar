@@ -46,7 +46,6 @@
 	<object class="MasterTrack" id="{37eca320-74eb-4770-9279-6c6257eb6646}">
 		<relationship name="automationTracks">
 			<destination>{3d2d38f6-797b-4554-9a58-a07e1a3b892b}</destination>
-			<destination>{b5e5c048-74b6-44b3-ae1e-d4897b1ae790}</destination>
 			<destination>{436bde7d-b275-42c1-a5fb-3002ab615d2a}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
@@ -92,12 +91,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{6bce9326-2b10-4b22-93df-41bbdf39a039}">
-		<property name="volume">
-			<value>-7.5</value>
-		</property>
-		<relationship name="automators">
-			<destination>{5dd5f868-e81f-4de5-b4c5-fde3cd74abf2}</destination>
-		</relationship>
 		<relationship name="effectChain">
 			<destination>{ce77415f-aff1-4011-a6e4-f5d4821bb47a}</destination>
 		</relationship>
@@ -111,11 +104,6 @@
 	<object class="AutomationTrack" id="{3d2d38f6-797b-4554-9a58-a07e1a3b892b}">
 		<relationship name="automator">
 			<destination>{0a490b39-d76a-4729-ba4a-cea429d3b89c}</destination>
-		</relationship>
-	</object>
-	<object class="AutomationTrack" id="{b5e5c048-74b6-44b3-ae1e-d4897b1ae790}">
-		<relationship name="automator">
-			<destination>{5dd5f868-e81f-4de5-b4c5-fde3cd74abf2}</destination>
 		</relationship>
 	</object>
 	<object class="AutomationTrack" id="{436bde7d-b275-42c1-a5fb-3002ab615d2a}">
@@ -145,6 +133,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{efe66533-cbed-47a4-bef7-f34ce0cf4879}">
+		<property name="volume">
+			<value>10</value>
+		</property>
 		<property name="name">
 			<value>hit normal</value>
 		</property>
@@ -157,11 +148,6 @@
 		<relationship name="output">
 			<destination>{6bce9326-2b10-4b22-93df-41bbdf39a039}</destination>
 		</relationship>
-	</object>
-	<object class="Automator" id="{5dd5f868-e81f-4de5-b4c5-fde3cd74abf2}">
-		<property name="nameOfPropertyBeingAutomated">
-			<value>volume</value>
-		</property>
 	</object>
 	<object class="MixerBusEffectChain" id="{ce77415f-aff1-4011-a6e4-f5d4821bb47a}">
 		<relationship name="effects">
@@ -301,7 +287,7 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>8</value>
+			<value>-5</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{bc38c2a3-25bb-412f-b18f-d5507ca52b2e}">
@@ -309,7 +295,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>10</value>
+			<value>0</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{dd69c1f7-45d5-40c1-b920-c0db47626290}">

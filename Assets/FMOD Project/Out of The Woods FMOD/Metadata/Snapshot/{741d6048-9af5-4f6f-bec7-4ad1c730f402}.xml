@@ -19,9 +19,70 @@
 		<relationship name="snapshotMasterTrack">
 			<destination>{2f99a8e8-aa3d-42b4-a61a-c2d83620ccf4}</destination>
 		</relationship>
+		<relationship name="snapshotProperties">
+			<destination>{bfa779b3-fac0-42ae-8054-616d6a485eea}</destination>
+			<destination>{f2b5a9e5-e2cf-4a72-9660-30090fe42fb5}</destination>
+		</relationship>
+		<relationship name="snapshotTracks">
+			<destination>{de7fc78d-1f9e-4866-adb0-1ab76f0d08ea}</destination>
+		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{b71d8147-911f-4e93-8402-10ccd6c91e0a}" />
+	<object class="EventAutomatableProperties" id="{b71d8147-911f-4e93-8402-10ccd6c91e0a}">
+		<relationship name="modulators">
+			<destination>{f5a06bb4-cb88-417c-b045-b1d46dbaa3a4}</destination>
+		</relationship>
+	</object>
 	<object class="MarkerTrack" id="{6c9e04a8-a967-4b7e-8b34-b4eda1f2aa32}" />
 	<object class="Timeline" id="{17ec0fb3-238b-4055-8474-d2f3138a5914}" />
 	<object class="SnapshotMasterTrack" id="{2f99a8e8-aa3d-42b4-a61a-c2d83620ccf4}" />
+	<object class="SnapshotProperty" id="{bfa779b3-fac0-42ae-8054-616d6a485eea}">
+		<property name="propertyName">
+			<value>gain</value>
+		</property>
+		<property name="value">
+			<value>-1</value>
+		</property>
+		<relationship name="automatableObject">
+			<destination>{7fa32195-993d-489e-b4c3-24ddbb35ebca}</destination>
+		</relationship>
+	</object>
+	<object class="SnapshotProperty" id="{f2b5a9e5-e2cf-4a72-9660-30090fe42fb5}">
+		<property name="propertyName">
+			<value>cutoff</value>
+		</property>
+		<property name="value">
+			<value>620</value>
+		</property>
+		<relationship name="automatableObject">
+			<destination>{38d9d033-088e-4b79-b18e-18221ec21ad3}</destination>
+		</relationship>
+	</object>
+	<object class="SnapshotTrack" id="{de7fc78d-1f9e-4866-adb0-1ab76f0d08ea}">
+		<relationship name="mixerStrip">
+			<destination>{55129530-d2c9-4f0e-8a90-9060e0c17225}</destination>
+		</relationship>
+	</object>
+	<object class="ADSRModulator" id="{f5a06bb4-cb88-417c-b045-b1d46dbaa3a4}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>snapshotIntensity</value>
+		</property>
+		<property name="attackTime">
+			<value>220</value>
+		</property>
+		<property name="attackShape">
+			<value>-0.419218749</value>
+		</property>
+		<property name="peakValue">
+			<value>100</value>
+		</property>
+		<property name="sustainValue">
+			<value>100</value>
+		</property>
+		<property name="releaseTime">
+			<value>380</value>
+		</property>
+		<property name="releaseShape">
+			<value>0.116643719</value>
+		</property>
+	</object>
 </objects>
