@@ -5,43 +5,38 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-        [SerializeField] private GameObject pauseMenu;
-        [SerializeField] private GameObject endCredits;
-        
-        public void ShowPauseMenu(bool show)
-        {
+    [SerializeField] private GameObject pauseMenu;
 
-            if (show)
+    public void ShowPauseMenu(bool show)
+    {
+        if (show)
             AudioManager.Instance.PauseMenuSnapshotStart();
         else
             AudioManager.Instance.ResumePauseMenu();
 
 
         pauseMenu.SetActive(show);
-        }
-        
-        public void OnResume()
-        {
+    }
 
-
+    public void OnResume()
+    {
         GameManager.instance.OnMenuButton();
     }
 
-        public void OnReset()
-        {
-
+    public void OnReset()
+    {
         AudioManager.Instance.StopAllSnapshots();
         AudioManager.Instance.StopMusic();
         SceneManager.LoadScene(0);
-        }
+    }
 
-        public void OnCredits()
-        {
-                ShowCredits();
-        }
+    public void OnCredits()
+    {
+        ShowCredits();
+    }
 
-        public void ShowCredits()
-        {
-                endCredits.SetActive(true);
-        }
+    public void ShowCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
 }
