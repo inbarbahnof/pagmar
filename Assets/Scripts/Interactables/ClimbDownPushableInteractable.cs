@@ -8,6 +8,16 @@ namespace Interactables
     {
         private bool _canClimb = false;
         private bool _climbing = false;
+        private PlayerMove.Movedir _obsDir = PlayerMove.Movedir.None;
+        
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                InteractableManager.instance.AddInteractableObj(this);
+                //print("triggerEnter");
+            }
+        }
         
         public override void Interact()
         {
@@ -16,7 +26,9 @@ namespace Interactables
 
         public override void SetHighlight(bool isHighlighted)
         {
+            if (_obsDir == PlayerMove.Movedir.None) _obsDir = climbRight ? PlayerMove.Movedir.Right : PlayerMove.Movedir.Left;
             _canClimb = isHighlighted;
+            //print("highlight " + isHighlighted + name);
         }
 
         private void ClimbDown()
@@ -56,9 +68,10 @@ namespace Interactables
         {
             if (_canClimb && !_climbing)
             {
-                bool playerDirRight = ClimbInteractableManager.instance.GetPlayerMovingRight();
+                PlayerMove.Movedir playerDirRight = ClimbInteractableManager.instance.GetPlayerMovingRight();
+                _obsDir = climbRight ? PlayerMove.Movedir.Right : PlayerMove.Movedir.Left;
                 //print("player right: " + playerDirRight);
-                if (playerDirRight == climbRight)
+                if (playerDirRight == _obsDir)
                 {
                     _climbing = true;
                     //_currentlyInteractable = false;

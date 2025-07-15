@@ -21,10 +21,8 @@ namespace Interactables
         
         public override void Interact()
         {
-            bool playerDirRight = ClimbInteractableManager.instance.GetPlayerMovingRight();
             if (!interTrigger.enabled || !_currentlyInteractable)
             {
-                print(" ");
                 InteractableManager.instance.OnFinishInteraction();
                 return;
             }

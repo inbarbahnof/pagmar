@@ -43,6 +43,13 @@ public class PlayerMove : MonoBehaviour
     public Vector2 MoveInput => _moveInput;
     public Vector2 AimInput => _aimInput;
 
+    public enum Movedir
+    {
+        None,
+        Right,
+        Left
+    }
+
     void Start()
     {
         _speed = _runSpeed;
