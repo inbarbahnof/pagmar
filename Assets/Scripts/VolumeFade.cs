@@ -19,11 +19,8 @@ public class VolumeFade : MonoBehaviour, IObjectFader
         if (_fadeOutCoroutine != null)
             StopCoroutine(_fadeOutCoroutine);
 
-        // Determine start and end based on current volume state
-        float fromVal = volume.weight;
-        float toVal = reverse
-            ? (fromVal == 0f ? 1f : 0f)  // go opposite of current
-            : (fromVal == 1f ? 0f : 1f); // default: fade to opposite
+        float fromVal = reverse ? 0f : 1f;
+        float toVal   = reverse ? 1f : 0f;
 
         _fadeOutCoroutine = StartCoroutine(LerpVolume(fromVal, toVal));
         return duration;
