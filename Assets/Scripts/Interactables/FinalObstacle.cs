@@ -53,6 +53,14 @@ namespace Interactables
                 _initialGhostsPositions.Add(ghost.transform.position);
                 _ghostSounds.Add(ghost.GetComponent<PlayGhostieSound>());
             }
+
+            StartCoroutine(TurnOffGhosts());
+        }
+
+        private IEnumerator TurnOffGhosts()
+        {
+            yield return new WaitForSeconds(1f);
+            _parentGameObject.SetActive(false);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
