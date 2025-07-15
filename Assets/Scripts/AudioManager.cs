@@ -155,7 +155,7 @@ namespace Audio.FMOD
             }
 
             instance.start();  // Starts playing the sound
-            _eventInstances.Add(instance);
+            //_eventInstances.Add(instance);
 
             return instance;   // Return the instance to allow stopping later
 
