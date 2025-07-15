@@ -12,7 +12,7 @@ namespace Interactables
         public override void Interact()
         {
             bool playerDirRight = ClimbInteractableManager.instance.GetPlayerMovingRight();
-            if (playerDirRight != climbRight || !interTrigger.enabled || !_currentlyInteractable)
+            if (!interTrigger.enabled || !_currentlyInteractable)
             {
                 InteractableManager.instance.OnFinishInteraction();
                 return;
