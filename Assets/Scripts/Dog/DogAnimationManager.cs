@@ -159,7 +159,6 @@ namespace Dog
         {
             if (e.Data == _footstepsEventData) 
                 AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogFootsteps, 
-                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogFootsteps, 
                     transform.position, true);
             else if(e.Data == _barkEventData)
                 AudioManager.Instance.PlayOneShot(FMODEvents.Instance.DogBark, 
@@ -297,8 +296,8 @@ namespace Dog
             {
                 StopCoroutine(_barkGrowlRoutine);
                 _barkGrowlRoutine = null;
+                DogAnimationUpdate(DogAnimation.Idle);
             }
-            DogAnimationUpdate(DogAnimation.Idle);
         }
 
         private IEnumerator BarkGrowlLoop()
