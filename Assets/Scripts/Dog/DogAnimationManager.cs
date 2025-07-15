@@ -291,7 +291,7 @@ namespace Dog
         
         public void StopBarkGrowlAnimations()
         {
-            FaceTowardsTransform(playerTransform);
+            //FaceTowardsTransform(playerTransform);
             if (_barkGrowlRoutine != null)
             {
                 StopCoroutine(_barkGrowlRoutine);
