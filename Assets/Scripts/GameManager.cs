@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
         _playerMove.SetCanMove(true);
         _playerStealth.SetProtected(false);
         
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1.3f);
         foreach (var ghost in _allLevelGhostst)
         {
             ghost.SetActive(true);
