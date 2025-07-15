@@ -29,14 +29,23 @@ namespace Interactables
 
         public void AddInteractableObj(BaseInteractable interactable)
         {
+            if (curInteractables.Contains(interactable)) return;
             curInteractables.Add(interactable);
-            //print("inter added: " + interactable.name);
+            //print("inter added: " + interactable.name + " at dist: " + Vector2.Distance(player.position, interactable.transform.position));
+            // foreach (var inter in curInteractables)
+            // {
+            //     print(inter + ", ");
+            // }
         }
 
         public void RemoveInteractable(BaseInteractable interactable)
         {
             curInteractables.Remove(interactable);
-            //print("inter removed: " + interactable + " at dist: " + Vector2.Distance(player.position, interactable.transform.position));
+            print("inter removed: " + interactable + " at dist: " + Vector2.Distance(player.position, interactable.transform.position));
+            // foreach (var inter in curInteractables)
+            // {
+            //     print(inter + ", ");
+            // }
             if (curInteractableObj == interactable)
             {
                 curInteractableObj.SetHighlight(false);
@@ -92,7 +101,7 @@ namespace Interactables
                     closest = interactable;
                 }
             }
-            //print("closest: " + closest + Vector2.Distance(player.position, closest.transform.position));
+            print("closest: " + closest + Vector2.Distance(player.position, closest.transform.position));
     
             if (closest == null) return;
             if (curInteractableObj != closest)
@@ -148,6 +157,7 @@ namespace Interactables
 
         public void OnFinishInteraction(BaseInteractable interactableTwin = null)
         {
+            //print("finished: " + curInteractableObj + "added; " + interactableTwin);
             interacting = false;
 
             if (curInteractableObj)
@@ -158,8 +168,8 @@ namespace Interactables
                 }
                 else
                 {
-                    AddInteractableObj(interactableTwin);
                     RemoveInteractable(curInteractableObj);
+                    AddInteractableObj(interactableTwin);
                 }
             }
 
