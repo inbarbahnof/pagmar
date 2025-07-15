@@ -20,6 +20,9 @@ namespace Audio.FMOD
 
         private EventInstance ambienceMute;
         private EventInstance musicMute;
+        private EventInstance pauseMenuSnapshot;
+
+        private List<EventInstance> _snapshots;
         
         private void Awake()
         {
@@ -31,12 +34,14 @@ namespace Audio.FMOD
             _eventInstances = new List<EventInstance>();
             _eventEmitters = new List<StudioEventEmitter>();
 
+            _snapshots = new List<EventInstance>();
+
             if (!ambienceMute.isValid())
                 InitializeSnapshots(FMODEvents.Instance.MuteAmbienceSnapshot, 0);
             if (!musicMute.isValid())
                 InitializeSnapshots(FMODEvents.Instance.MuteMusicSnapshot, 1);
-
-
+            if (!pauseMenuSnapshot.isValid())
+                InitializeSnapshots(FMODEvents.Instance.PauseMenuSnapshot, 2);
         }
 
         /// <summary>
@@ -52,12 +57,18 @@ namespace Audio.FMOD
                 {
                     case 0: // Ambience
                         ambienceMute = RuntimeManager.CreateInstance(eventReference);
+                        _snapshots.Add(ambienceMute);
                         break;
                     case 1: // Music
                         musicMute = RuntimeManager.CreateInstance(eventReference);
+                        _snapshots.Add(musicMute);
                         break;
                     default:
                         Debug.LogWarning("Invalid musicOrAmbience value. Use 0 for Ambience and 1 for Music.");
+                        break;
+                    case 2:
+                        pauseMenuSnapshot = RuntimeManager.CreateInstance(eventReference);
+                        _snapshots.Add(pauseMenuSnapshot);
                         break;
                 }
                
@@ -65,6 +76,18 @@ namespace Audio.FMOD
             else
                 Debug.LogWarning("EventReference for snapshots is null.");
 
+        }
+
+        public void StopAllSnapshots()
+        {
+            foreach (var snapshot in _snapshots)
+            {
+                if (snapshot.isValid())
+                {
+                    snapshot.stop(STOP_MODE.IMMEDIATE);
+                    snapshot.release();
+                }
+            }
         }
 
         public void PlayMusic(EventReference music)
@@ -238,15 +261,33 @@ namespace Audio.FMOD
             }
         }
 
+        public void PauseMenuSnapshotStart()
+        {
+            if (pauseMenuSnapshot.isValid())
+            {
+                pauseMenuSnapshot.start();
+
+            }
+        }
+
+        public void ResumePauseMenu()
+        {
+            if (pauseMenuSnapshot.isValid())
+            {
+                pauseMenuSnapshot.stop(STOP_MODE.ALLOWFADEOUT);
+
+            }
+        }
+
 
         /// <summary>
         /// 0 = ambience, 1 = music
         /// </summary>
-        /// <param name="ambienceOrMusic"></param>
+        /// <param name="snapshotIndex"></param>
         /// <returns></returns>
-        private IEnumerator PauseEventCoroutine(int ambienceOrMusic)
+        private IEnumerator PauseEventCoroutine(int snapshotIndex)
         {
-            switch (ambienceOrMusic)
+            switch (snapshotIndex)
             {
                 case 0: // Ambience
                     ambienceMute.start();
@@ -260,9 +301,14 @@ namespace Audio.FMOD
                     yield return new WaitForSeconds(2f); // Wait for a short duration to ensure the event is paused
                     musicInstance.setPaused(true);
                     break;
+                case 2:
+                    
+                    break;
 
             }
         }
+
+
 
         private void ResumeEvent(int ambienceOrMusic)
         {
@@ -276,6 +322,9 @@ namespace Audio.FMOD
                 case 1: // Music
                     musicInstance.setPaused(false);
                     musicMute.stop(STOP_MODE.ALLOWFADEOUT);
+                    break;
+
+                case 2:
                     break;
             }
         }
