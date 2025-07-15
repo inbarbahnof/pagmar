@@ -113,6 +113,8 @@ namespace Dog
         private float _idleBehaviorDuration = 2.5f;
         private bool _animationEnabled = true;
         private Coroutine _barkGrowlRoutine;
+
+        private bool _faceLeft;
         
         public void SetAnimationEnabled(bool enabled)
         {
@@ -181,10 +183,24 @@ namespace Dog
         {
             if (!_animationEnabled) return;
             
-            if (!_petting && !_growling && !_eating && !_afterEat && !_smoothMoving) CheckRotation();
+            if (!_petting && !_growling && !_eating &&
+                !_afterEat && !_smoothMoving && !_faceLeft) CheckRotation();
             UpdateMoving();
             DogAnimation cur = WhichAnimShouldBePlayed();
             if (cur != _curAnim) DogAnimationUpdate(cur);
+            // _faceLeft = true;
+        }
+
+        public void FaceLeft()
+        {
+            _faceLeft = true;
+            
+            float newScaleX = -1;
+            art.transform.localScale = new Vector3(
+                newScaleX * Mathf.Abs(art.transform.localScale.x),
+                art.transform.localScale.y,
+                art.transform.localScale.z
+            );
         }
 
         private void CheckRotation()
