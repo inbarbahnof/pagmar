@@ -12,8 +12,12 @@ namespace Interactables
         public override void Interact()
         {
             bool playerDirRight = ClimbInteractableManager.instance.GetPlayerMovingRight();
-            //print("player right: " + playerDirRight);
-            if (playerDirRight != climbRight) return;
+            if (playerDirRight != climbRight || !interTrigger.enabled || !_currentlyInteractable)
+            {
+                InteractableManager.instance.OnFinishInteraction();
+                return;
+            }
+            _currentlyInteractable = false;
             _interacting = true;
             
             if (twinTrigger is null && twin is not null) twinTrigger = twin.GetColGO();
@@ -28,13 +32,13 @@ namespace Interactables
         
         public override void StopInteractPress()
         {
+            base.StopInteractPress();
             if (!_interacting)
             {
                 InteractableManager.instance.OnFinishInteraction();
                 return;
             }
             _interacting = false;
-            base.StopInteractPress();
         }
 
         public override void FinishInteraction()

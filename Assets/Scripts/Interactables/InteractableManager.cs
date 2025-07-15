@@ -92,7 +92,7 @@ namespace Interactables
                     closest = interactable;
                 }
             }
-            // print("closest: " + closest + Vector2.Distance(player.position, closest.transform.position));
+            //print("closest: " + closest + Vector2.Distance(player.position, closest.transform.position));
     
             if (closest == null) return;
             if (curInteractableObj != closest)
@@ -159,6 +159,7 @@ namespace Interactables
                 else
                 {
                     AddInteractableObj(interactableTwin);
+                    RemoveInteractable(curInteractableObj);
                 }
             }
 

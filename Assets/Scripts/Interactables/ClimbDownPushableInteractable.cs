@@ -30,7 +30,7 @@ namespace Interactables
                 col.SetActive(false);
                 //print("col deactivated at interact");
             }
-            StopInteractPress();
+            base.StopInteractPress();
         }
 
         public override void FinishInteraction()
@@ -51,9 +51,10 @@ namespace Interactables
             {
                 bool playerDirRight = ClimbInteractableManager.instance.GetPlayerMovingRight();
                 //print("player right: " + playerDirRight);
-                if (playerDirRight == climbRight)
+                if (playerDirRight == climbRight && interTrigger.enabled && _currentlyInteractable)
                 {
                     _climbing = true;
+                    _currentlyInteractable = false;
                     ClimbDown();
                 }
             }

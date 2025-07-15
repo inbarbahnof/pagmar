@@ -11,8 +11,8 @@ namespace Interactables
         [SerializeField] protected bool climbRight = true;
         [SerializeField] protected ClimbObject twin;
         protected Collider2D twinTrigger;
-        private bool canInteract = true;
-        private Coroutine _waitToStopInteractCoroutine;
+        protected bool _currentlyInteractable = true;
+        protected Coroutine _waitToStopInteractCoroutine;
         
         public Collider2D GetColGO()
         {
@@ -22,14 +22,15 @@ namespace Interactables
         public override void Interact()
         {
             bool playerDirRight = ClimbInteractableManager.instance.GetPlayerMovingRight();
-            if (playerDirRight != climbRight || !interTrigger.enabled || !canInteract)
+            if (playerDirRight != climbRight || !interTrigger.enabled || !_currentlyInteractable)
             {
                 InteractableManager.instance.OnFinishInteraction();
                 return;
             }
             //print("player right: " + playerDirRight + " climb right: " + climbRight);
             //print("interacting: " + name);
-            canInteract = false;
+            _currentlyInteractable = false;
+            
             if (twinTrigger is null && twin is not null) twinTrigger = twin.GetColGO();
             ClimbInteractableManager.instance.Climb(this, Vector2.zero, _isClimbing, climbRight);
             if (col)
@@ -41,7 +42,7 @@ namespace Interactables
 
         public override void StopInteractPress()
         {
-            if (canInteract || _waitToStopInteractCoroutine is not null) return;
+            if (_currentlyInteractable || _waitToStopInteractCoroutine is not null) return;
             _waitToStopInteractCoroutine = StartCoroutine(WaitToStopInteract());
         }
 
@@ -88,7 +89,7 @@ namespace Interactables
         private IEnumerator CoolDown()
         {
             yield return new WaitForSeconds(1f);
-            canInteract = true;
+            _currentlyInteractable = true;
         }
     }
 }

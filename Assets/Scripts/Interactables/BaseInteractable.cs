@@ -39,7 +39,7 @@ namespace Interactables
                 _highlightSpriteFade.FadeOutOverTime(isHighlighted);
             }
             else highlightEffect.SetActive(isHighlighted);
-            Debug.Log(highlightEffect.activeInHierarchy);
+            //Debug.Log(highlightEffect.activeInHierarchy);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
