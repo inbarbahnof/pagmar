@@ -23,12 +23,16 @@ namespace Ghosts
                 transform.position, true);
 
 
-           /* // This tells FMOD to track the transform and Rigidbody
-            FMODUnity.RuntimeManager.AttachInstanceToGameObject(
-                _charachterSound,
-                transform, // the Ghostie's transform
-                GetComponent<Rigidbody2D>() // optional, used for velocity tracking
-            );*/
+            if (_charachterSound.isValid())
+            {
+                // This tells FMOD to track the transform and Rigidbody
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(
+                    _charachterSound,
+                    transform, // the Ghostie's transform
+                    GetComponent<Rigidbody2D>() // optional, used for velocity tracking
+                );
+            }
+           
         }
 
 
@@ -63,12 +67,16 @@ namespace Ghosts
         {
             hasStarted = false;
 
-            // This tells FMOD to track the transform and Rigidbody
-            FMODUnity.RuntimeManager.AttachInstanceToGameObject(
-                _charachterSound,
-                transform, // the Ghostie's transform
-                GetComponent<Rigidbody2D>() // optional, used for velocity tracking
-            );
+            if (_charachterSound.isValid())
+            {
+                // This tells FMOD to track the transform and Rigidbody
+                FMODUnity.RuntimeManager.AttachInstanceToGameObject(
+                    _charachterSound,
+                    transform, // the Ghostie's transform
+                    GetComponent<Rigidbody2D>() // optional, used for velocity tracking
+                );
+            }
+           
         }
 
         public void ResetGhostEndParameter()
