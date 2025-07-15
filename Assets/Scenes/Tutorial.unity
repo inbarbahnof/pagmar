@@ -3346,17 +3346,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2fe310d6f8f8b641af45ff34aab7096, type: 3}
---- !u!114 &243834982 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 132946625900350752, guid: 9ffe73ab640b41f4bafe33a2b7259255, type: 3}
-  m_PrefabInstance: {fileID: 369527890}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 979276b1f00a4e0894854deda399df91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &252501482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4170,10 +4159,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 413771657}
     m_Modifications:
-    - target: {fileID: 132946625900350752, guid: 9ffe73ab640b41f4bafe33a2b7259255, type: 3}
-      propertyPath: interactionRange
-      value: 0.9
-      objectReference: {fileID: 0}
     - target: {fileID: 1885333404085217222, guid: 9ffe73ab640b41f4bafe33a2b7259255, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40.27
@@ -4218,10 +4203,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PushObs
       objectReference: {fileID: 0}
-    - target: {fileID: 5073751767984732308, guid: 9ffe73ab640b41f4bafe33a2b7259255, type: 3}
-      propertyPath: interactionRange
-      value: 0.9
-      objectReference: {fileID: 0}
     - target: {fileID: 5776631639960977106, guid: 9ffe73ab640b41f4bafe33a2b7259255, type: 3}
       propertyPath: textPrompt
       value: 
@@ -4230,14 +4211,10 @@ PrefabInstance:
       propertyPath: pushManager
       value: 
       objectReference: {fileID: 686618191}
-    - target: {fileID: 7512389590218467038, guid: 9ffe73ab640b41f4bafe33a2b7259255, type: 3}
-      propertyPath: twin
+    - target: {fileID: 8145267905168300751, guid: 9ffe73ab640b41f4bafe33a2b7259255, type: 3}
+      propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 243834982}
-    - target: {fileID: 8018045640985812227, guid: 9ffe73ab640b41f4bafe33a2b7259255, type: 3}
-      propertyPath: twin
-      value: 
-      objectReference: {fileID: 1826847602}
+      objectReference: {fileID: 1483706848}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -44632,17 +44609,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 437826218911800718, guid: 4f451836e559c714d91883af6e7be526, type: 3}
   m_PrefabInstance: {fileID: 1818409247}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1826847602 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5073751767984732308, guid: 9ffe73ab640b41f4bafe33a2b7259255, type: 3}
-  m_PrefabInstance: {fileID: 369527890}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 979276b1f00a4e0894854deda399df91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1832395785
 GameObject:
   m_ObjectHideFlags: 0
@@ -44872,6 +44838,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: Dog.DogAnimationManager, Assembly-CSharp
           m_MethodName: StopBarkGrowlAnimations
           m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 1887335572}
+          m_TargetAssemblyTypeName: Dog.DogActionManager, Assembly-CSharp
+          m_MethodName: SetMovementEnabled
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
