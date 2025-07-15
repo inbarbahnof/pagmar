@@ -4,6 +4,7 @@ using Audio.FMOD;
 using Interactables;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
@@ -171,5 +172,12 @@ public class InputManager : MonoBehaviour
     public void OnMenuButton(InputAction.CallbackContext context)
     {
         if (context.performed) GameManager.instance.OnMenuButton();
+    }
+    
+    public void CrisisMode()
+    {
+        Time.timeScale = 1;
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex);
     }
 }
