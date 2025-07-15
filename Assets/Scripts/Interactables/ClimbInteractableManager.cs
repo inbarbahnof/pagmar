@@ -45,9 +45,12 @@ namespace Interactables
             _playerMove.FinishClimb();
         }
 
-        public bool GetPlayerMovingRight()
+        public PlayerMove.Movedir GetPlayerMovingRight()
         {
-            return _playerMove.MovingRight;
+            //print(_playerMove.MoveInput.x > 0);
+            if (_playerMove.MoveInput.x > 0) return PlayerMove.Movedir.Right;
+            if (_playerMove.MoveInput.x < 0) return PlayerMove.Movedir.Left;
+            return PlayerMove.Movedir.None;
         }
     }
 }

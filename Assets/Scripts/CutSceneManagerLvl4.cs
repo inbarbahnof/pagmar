@@ -1,5 +1,6 @@
 using System;
 using Audio.FMOD;
+using FMOD.Studio;
 using UnityEngine;
 
 public class CutSceneManagerLvl4 : MonoBehaviour
@@ -11,6 +12,8 @@ public class CutSceneManagerLvl4 : MonoBehaviour
     
     private StartCutsceneManager _cutsceneManager;
     private bool _waiting;
+
+    private EventInstance _runningMusic;
 
     private void Start()
     {
@@ -38,9 +41,9 @@ public class CutSceneManagerLvl4 : MonoBehaviour
             _cutsceneManager.ShowSequence();
             _waiting = false;
             
-            AudioManager.Instance.PlayMusic(FMODEvents.Instance.ChapterRunning4Music);
+            _runningMusic = AudioManager.Instance.PlayLoopingSound(FMODEvents.Instance.ChapterRunning4Music);
             AudioManager.Instance.SetFloatParameter(
-                AudioManager.Instance.musicInstance,
+                _runningMusic,
                 "Ending Run",
                 1,
                 false);

@@ -4211,6 +4211,10 @@ PrefabInstance:
       propertyPath: pushManager
       value: 
       objectReference: {fileID: 686618191}
+    - target: {fileID: 8145267905168300751, guid: 9ffe73ab640b41f4bafe33a2b7259255, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1483706848}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -44854,6 +44858,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 1
+        - m_Target: {fileID: 1887335572}
+          m_TargetAssemblyTypeName: Dog.DogActionManager, Assembly-CSharp
+          m_MethodName: SetMovementEnabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!1 &1834576619
 GameObject:
   m_ObjectHideFlags: 0
@@ -47471,7 +47487,7 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 54.419647, y: 5.6233425}
+    - - {x: 53.451485, y: 7.075596}
       - {x: 48.40854, y: 5.4852524}
       - {x: 44.44477, y: 5.6951027}
       - {x: 37.85932, y: 6.007527}
@@ -47507,13 +47523,14 @@ PolygonCollider2D:
       - {x: 41.257195, y: -9.468949}
       - {x: 42.283302, y: -9.149641}
       - {x: 47.64399, y: -9.073478}
-      - {x: 62.88244, y: -8.288846}
-      - {x: 62.70826, y: -6.6202726}
-      - {x: 64.34164, y: -5.709944}
-      - {x: 71.71049, y: -3.9122276}
-      - {x: 69.76611, y: 6.922637}
-      - {x: 62.164886, y: 7.128049}
-      - {x: 58.105373, y: 5.7097354}
+      - {x: 62.49517, y: -10.2251835}
+      - {x: 66.19367, y: -9.040699}
+      - {x: 70.53792, y: -6.77493}
+      - {x: 75.09908, y: -4.493129}
+      - {x: 70.73428, y: 9.6335125}
+      - {x: 70.73428, y: 9.6335125}
+      - {x: 62.164886, y: 8.677121}
+      - {x: 58.00855, y: 8.42061}
   m_UseDelaunayMesh: 0
 --- !u!1001 &2037395269
 PrefabInstance:

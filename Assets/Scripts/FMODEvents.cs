@@ -57,7 +57,7 @@ namespace Audio.FMOD
         [field: Header("Snapshots")]
         [field: SerializeField] public EventReference MuteAmbienceSnapshot { get; private set; }
         [field: SerializeField] public EventReference MuteMusicSnapshot { get; private set; }
-
+        [field: SerializeField] public EventReference PauseMenuSnapshot { get; private set; }
 
 
         public static FMODEvents Instance { get; private set; }

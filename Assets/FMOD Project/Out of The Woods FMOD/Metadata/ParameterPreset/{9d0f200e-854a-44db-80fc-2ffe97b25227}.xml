@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{9d0f200e-854a-44db-80fc-2ffe97b25227}">
+		<property name="name">
+			<value>Dog Growl Mute</value>
+		</property>
+		<relationship name="folder">
+			<destination>{00ded247-c94b-49cf-b59a-964c13cbe83c}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{390a762b-3c4c-48ea-867b-df1aa26f71d2}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{390a762b-3c4c-48ea-867b-df1aa26f71d2}">
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>3</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>

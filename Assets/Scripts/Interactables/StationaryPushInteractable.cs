@@ -67,6 +67,7 @@ namespace Interactables
 
         public override void ResetToCheckpoint()
         {
+            if (textPrompt) textPrompt.StopShowText();
             roadblock.rotation = _startRot;
             GetComponent<Collider2D>().enabled = true;
         }

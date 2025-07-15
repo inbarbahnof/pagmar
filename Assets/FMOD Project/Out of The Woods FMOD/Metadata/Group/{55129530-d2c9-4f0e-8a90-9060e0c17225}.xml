@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{55129530-d2c9-4f0e-8a90-9060e0c17225}">
+		<property name="name">
+			<value>Gameplay</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{e1f0e35c-24de-45a2-8502-379eefad7696}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{6d001319-82d2-4867-a1da-76ef74166591}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{979ab450-fc15-46d9-9db7-23ccdc762d9f}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{e1f0e35c-24de-45a2-8502-379eefad7696}">
+		<relationship name="effects">
+			<destination>{38d9d033-088e-4b79-b18e-18221ec21ad3}</destination>
+			<destination>{7fa32195-993d-489e-b4c3-24ddbb35ebca}</destination>
+			<destination>{ea9774e0-1f5f-4149-a67a-c7001c64cdd3}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{6d001319-82d2-4867-a1da-76ef74166591}" />
+	<object class="LowpassEffect" id="{38d9d033-088e-4b79-b18e-18221ec21ad3}">
+		<property name="cutoff">
+			<value>22000</value>
+		</property>
+	</object>
+	<object class="GainEffect" id="{7fa32195-993d-489e-b4c3-24ddbb35ebca}">
+		<property name="gain">
+			<value>6</value>
+		</property>
+	</object>
+	<object class="MixerBusFader" id="{ea9774e0-1f5f-4149-a67a-c7001c64cdd3}" />
+</objects>

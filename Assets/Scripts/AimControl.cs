@@ -48,6 +48,7 @@ public class AimControl : MonoBehaviour
 
     private void UpdateTarget(bool isValid)
     {
+        if (_curAimValid == isValid) return;
         _curAimValid = isValid;
         validTrajectoryTarget.SetActive(isValid);
         invalidTrajectoryTarget.SetActive(!isValid);

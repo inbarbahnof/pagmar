@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Audio.FMOD;
 using Dog;
+using FMOD.Studio;
 using Ghosts;
 using UnityEngine;
 
@@ -40,6 +41,8 @@ namespace Interactables
 
         private PlayerStateManager _playerState;
 
+        private EventInstance _deathMusic;
+
         private void Start()
         {
             _playerState = _player.GetComponent<PlayerStateManager>();
@@ -60,7 +63,9 @@ namespace Interactables
                 // AudioManager.Instance.SetFloatParameter(AudioManager.Instance.musicInstance,
                 //     "Ending Run", 2, false);
                 
-                AudioManager.Instance.PlayMusic(FMODEvents.Instance.Chapter4EndMusic);
+                if (!AudioManager.Instance.musicInstance.isValid())
+                    AudioManager.Instance.PlayMusic(FMODEvents.Instance.Chapter4EndMusic);
+
                 AudioManager.Instance.MuteAmbienceEvent();
                 
                 _dog.Running(true);
@@ -245,7 +250,7 @@ namespace Interactables
             }
             
             // AudioManager.Instance.ResumeAmbience();
-            AudioManager.Instance.StopMusic();
+            //AudioManager.Instance.StopMusic();
             
             _wall.SetActive(false);
             _player.UpdatePlayerRunning(false);

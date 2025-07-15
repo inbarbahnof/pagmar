@@ -166,8 +166,9 @@ public class PlayerStateManager : MonoBehaviour
 
     private IEnumerator WaitForClimbAnim(bool climbRight)
     {
-        yield return new WaitForSeconds(_climbAnimTime);
+        yield return new WaitForSeconds(_climbAnimTime + 0.2f);
         _move.SetCanMove(true);
+        print("player release");
         _isClimbing = false;
     }
 

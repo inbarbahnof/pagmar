@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Audio.FMOD;
 using Dog;
 using UnityEngine;
 using UnityEngine.Events;
@@ -39,12 +40,21 @@ namespace Targets
             
             StartCoroutine(HoverOverTarget());
             onPetEvent?.Invoke();
+            StartCoroutine(ResumeAmbienceSound());
         }
         
         private IEnumerator GoToPetPos()
         {
             yield return new WaitForSeconds(0.5f);
             PetBehavior();
+        }
+
+        private IEnumerator ResumeAmbienceSound()
+        {
+            yield return new WaitForSeconds(7f);
+           
+            AudioManager.Instance.ResumeAmbience();
+
         }
     }
 }
