@@ -27,6 +27,7 @@ public class MenuManager : MonoBehaviour
     {
         AudioManager.Instance.StopAllSnapshots();
         AudioManager.Instance.StopMusic();
+        AudioManager.Instance.Cleanup();
         SceneManager.LoadScene(0);
     }
 

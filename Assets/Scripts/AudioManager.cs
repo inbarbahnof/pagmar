@@ -155,7 +155,10 @@ namespace Audio.FMOD
             }
 
             instance.start();  // Starts playing the sound
+            _eventInstances.Add(instance);
+
             return instance;   // Return the instance to allow stopping later
+
         }
         
         public void StopSound(EventInstance instance)
@@ -338,7 +341,7 @@ namespace Audio.FMOD
             return eventInstance;
         }
         
-        private void Cleanup() {
+        public void Cleanup() {
             foreach (EventInstance eventInstance in _eventInstances)
             {
                 eventInstance.stop(STOP_MODE.IMMEDIATE);
