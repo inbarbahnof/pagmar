@@ -68,7 +68,7 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.11}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1857af047054020bfd195d5fd084c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fromLeft: 0
 --- !u!1 &1064041815594775442
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +178,7 @@ Transform:
   m_GameObject: {fileID: 1064041815594775442}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0.27, z: 0}
+  m_LocalPosition: {x: 1, y: 0.24, z: 0}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -240,6 +241,7 @@ MonoBehaviour:
   _isJumping: 0
   _wait: {fileID: 0}
   _reachedTargetPartical: {fileID: 2433335997995981503}
+  _dogWaitScared: {fileID: 0}
 --- !u!1 &1473616838314385969
 GameObject:
   m_ObjectHideFlags: 0
@@ -10150,7 +10152,7 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.11}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10232,6 +10234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1857af047054020bfd195d5fd084c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fromLeft: 0
 --- !u!1 &3709990551689991952
 GameObject:
   m_ObjectHideFlags: 0
@@ -10360,7 +10363,7 @@ Transform:
   m_GameObject: {fileID: 5197433749841774742}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1, y: 0.3, z: 0}
+  m_LocalPosition: {x: -1.1, y: 0.29, z: 0}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10567,7 +10570,7 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.11}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10598,6 +10601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1857af047054020bfd195d5fd084c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fromLeft: 0
 --- !u!61 &2049914230199890954
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10965,6 +10969,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 0}
   interactionRange: 0.8
+  textPrompt: {fileID: 0}
+  _highlightSpriteFade: {fileID: 0}
   col: {fileID: 0}
   interTrigger: {fileID: 4754968263504769779}
   _isClimbing: 0
@@ -11071,6 +11077,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 7485599676212666184}
   interactionRange: 1.5
+  textPrompt: {fileID: 0}
+  _highlightSpriteFade: {fileID: 0}
   col: {fileID: 0}
   interTrigger: {fileID: 5841335194882259152}
   _isClimbing: 1
@@ -11330,6 +11338,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 7485599676212666184}
   interactionRange: 1.5
+  textPrompt: {fileID: 0}
+  _highlightSpriteFade: {fileID: 0}
   col: {fileID: 0}
   interTrigger: {fileID: 3118333004632365076}
   _isClimbing: 1
@@ -11436,6 +11446,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 0}
   interactionRange: 0.8
+  textPrompt: {fileID: 0}
+  _highlightSpriteFade: {fileID: 0}
   col: {fileID: 0}
   interTrigger: {fileID: 1875845067824697116}
   _isClimbing: 0

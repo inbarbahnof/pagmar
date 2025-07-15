@@ -222,7 +222,7 @@ public class PlayerAnimationManager : MonoBehaviour
     
     private void OnClimbRightEvent()
     {
-        float deltaX = _climbDropRight ? 0.7f : -0.7f;
+        float deltaX = _climbDropRight ? 0.6f : -0.6f;
         Vector3 newPos = new Vector3(transform.position.x + deltaX, transform.position.y + 0.1f, 0);
         transform.DOMove(newPos, 0.5f);
         _shadowAnimator.SetTrigger("in");

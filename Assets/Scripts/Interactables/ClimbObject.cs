@@ -65,7 +65,6 @@ namespace Interactables
                 {
                     col.SetActive(true);
                 }
-                
             }
         }
 
@@ -88,7 +87,7 @@ namespace Interactables
 
         private IEnumerator CoolDown()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             _currentlyInteractable = true;
         }
     }
