@@ -141,8 +141,11 @@ public class PlayerAnimationManager : MonoBehaviour
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.Chapter4CreditsMusic);
         }
         else if (e.Data == _scareEventData)
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerScared, 
+        {
+            AudioManager.Instance.StopAllOneShots();
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerScared,
                 transform.position, true);
+        }
         else if (e.Data == _climbUpEventData)
                     AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPch, 
                         transform.position, true);
