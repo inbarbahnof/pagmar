@@ -27,7 +27,7 @@ namespace Interactables
         {
             TargetGenerator.instance.SetWantFoodTarget(_firstTarget);
             _dog.SetWantsFood(true);
-            
+            _dog.FoodNotClose();
             _dog.Running(true);
         }
 

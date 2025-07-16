@@ -471,6 +471,11 @@ namespace Dog
             _targetGenerator.NotifyFoodNearby(getter.GetFoodTarget());
         }
 
+        public void FoodNotClose()
+        {
+            _foodIsClose = false;
+        }
+
         public void FoodIsFar(Collider2D food)
         {
             if (_dogFollowingTOI) return;

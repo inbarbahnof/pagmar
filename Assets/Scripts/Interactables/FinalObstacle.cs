@@ -208,7 +208,7 @@ namespace Interactables
         public void TurnOffCallBlock()
         {
             _callBlock.SetActive(false);
-            GameManager.instance.PlayVolumeEffect();
+            // GameManager.instance.PlayVolumeEffect();
             StartCoroutine(WaitToBeSad());
         }
 
