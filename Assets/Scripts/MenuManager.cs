@@ -25,6 +25,7 @@ public class MenuManager : MonoBehaviour
 
     public void OnReset()
     {
+
         AudioManager.Instance.StopAllSnapshots();
         AudioManager.Instance.StopMusic();
         AudioManager.Instance.StopAllLoopShots();
@@ -33,6 +34,8 @@ public class MenuManager : MonoBehaviour
 
     public void OnCredits()
     {
+        AudioManager.Instance.StopAllSnapshots();
+        AudioManager.Instance.StopMusic();
         ShowCredits();
     }
 

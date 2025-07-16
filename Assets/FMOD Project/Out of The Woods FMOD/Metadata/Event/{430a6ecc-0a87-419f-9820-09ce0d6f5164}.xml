@@ -126,6 +126,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{af10493e-e7e8-4b0a-88ae-cc3bfaa72837}">
+		<property name="volume">
+			<value>-5</value>
+		</property>
 		<property name="name">
 			<value>main</value>
 		</property>
@@ -271,6 +274,8 @@
 	<object class="MixerBusFader" id="{a20f463f-c472-4f6b-bb40-8aca9e995c26}" />
 	<object class="MixerBusEffectChain" id="{c93fd707-0770-4599-b621-3761282934c5}">
 		<relationship name="effects">
+			<destination>{0df6e8ef-00ee-424a-a31d-7a23aa6d15a7}</destination>
+			<destination>{52bb2952-0273-4c03-aeb0-6d72aa246ab5}</destination>
 			<destination>{5eec4d36-c1a8-45f9-9a31-44a571f20725}</destination>
 		</relationship>
 	</object>
@@ -301,6 +306,22 @@
 	</object>
 	<object class="MixerBusPanner" id="{b07b53d2-00a5-47a4-a054-8c7f9d9b8d2b}" />
 	<object class="MixerBusFader" id="{308966c8-8ec9-491b-8c26-9b9e4cfed29f}" />
+	<object class="ThreeEQEffect" id="{0df6e8ef-00ee-424a-a31d-7a23aa6d15a7}">
+		<property name="lowGain">
+			<value>-2</value>
+		</property>
+		<property name="lowCrossover">
+			<value>540</value>
+		</property>
+	</object>
+	<object class="CompressorEffect" id="{52bb2952-0273-4c03-aeb0-6d72aa246ab5}">
+		<property name="threshold">
+			<value>-44</value>
+		</property>
+		<property name="attackTime">
+			<value>46</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{5eec4d36-c1a8-45f9-9a31-44a571f20725}" />
 	<object class="SingleSound" id="{48df94f4-382e-47d6-bae1-b65dc00121aa}">
 		<relationship name="audioFile">

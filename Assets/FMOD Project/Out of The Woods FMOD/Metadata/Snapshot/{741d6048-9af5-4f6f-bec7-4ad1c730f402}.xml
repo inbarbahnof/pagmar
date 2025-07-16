@@ -28,6 +28,9 @@
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{b71d8147-911f-4e93-8402-10ccd6c91e0a}">
+		<property name="maxVoices">
+			<value>1</value>
+		</property>
 		<relationship name="modulators">
 			<destination>{f5a06bb4-cb88-417c-b045-b1d46dbaa3a4}</destination>
 		</relationship>
@@ -79,7 +82,7 @@
 			<value>100</value>
 		</property>
 		<property name="releaseTime">
-			<value>380</value>
+			<value>680</value>
 		</property>
 		<property name="releaseShape">
 			<value>0.116643719</value>

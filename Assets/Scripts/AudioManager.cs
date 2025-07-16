@@ -38,6 +38,12 @@ namespace Audio.FMOD
 
             _snapshots = new List<EventInstance>();
 
+           
+
+        }
+
+        private void Start()
+        {
             if (!ambienceMute.isValid())
                 InitializeSnapshots(FMODEvents.Instance.MuteAmbienceSnapshot, 0);
             if (!musicMute.isValid())
@@ -86,7 +92,7 @@ namespace Audio.FMOD
             {
                 if (snapshot.isValid())
                 {
-                    snapshot.stop(STOP_MODE.IMMEDIATE);
+                    snapshot.stop(STOP_MODE.ALLOWFADEOUT);
                     snapshot.release();
                 }
             }

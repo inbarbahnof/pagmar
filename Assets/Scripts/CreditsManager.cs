@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Audio.FMOD;
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -22,7 +23,15 @@ public class CreditsManager : MonoBehaviour
         {
                 _usAnimator = usCredits.GetComponent<Animator>();
                 _themAnimator = themCredits.GetComponent<Animator>();
+
+        if (AudioManager.Instance.musicInstance.getPlaybackState(out var playbackState) == FMOD.RESULT.OK)
+        {
+            if (playbackState == FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                AudioManager.Instance.StopMusic();
         }
+
+
+    }
 
         public void SetCurAnimator(Animator animator)
         {
