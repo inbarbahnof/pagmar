@@ -77,6 +77,10 @@ namespace Interactables
             _dog.SetMovementEnabled(false);
 
             _cutsceneManager.ShowSequence();
+
+            yield return new WaitForSeconds(6f);
+            AudioManager.Instance.ResumeMusic();
+
         }
     }
 }

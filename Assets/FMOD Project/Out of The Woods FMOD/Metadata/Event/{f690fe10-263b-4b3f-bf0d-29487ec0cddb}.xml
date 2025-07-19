@@ -41,9 +41,6 @@
 		</relationship>
 	</object>
 	<object class="MasterTrack" id="{46f31379-a3b5-476f-aa24-f10ecfe71dae}">
-		<relationship name="automationTracks">
-			<destination>{63cde49d-a821-4660-b8b8-434e11d090a4}</destination>
-		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{d060ed44-f2d1-4b97-aa0c-c34eb82a445c}</destination>
 		</relationship>
@@ -102,11 +99,6 @@
 		</relationship>
 		<relationship name="mixer">
 			<destination>{a148ee68-4db9-411d-9bc8-db13b58d61e2}</destination>
-		</relationship>
-	</object>
-	<object class="AutomationTrack" id="{63cde49d-a821-4660-b8b8-434e11d090a4}">
-		<relationship name="automator">
-			<destination>{acf2a683-adf9-4f8f-a33b-fdf1efa8c1d0}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{fbd17db3-297b-4936-93a7-0c0e7c692ef1}">
@@ -169,9 +161,6 @@
 	<object class="RandomizerModulator" id="{9efb3a31-bf40-47f8-986c-9fa01eeadb82}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>volume</value>
-		</property>
-		<property name="amount">
-			<value>3</value>
 		</property>
 	</object>
 	<object class="MixerBusEffectChain" id="{1faa501b-0302-4d17-9757-bc55a144cf30}">
