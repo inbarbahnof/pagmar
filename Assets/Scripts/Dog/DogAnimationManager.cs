@@ -189,6 +189,7 @@ namespace Dog
             UpdateMoving();
             DogAnimation cur = WhichAnimShouldBePlayed();
             if (cur != _curAnim) DogAnimationUpdate(cur);
+            
             // _faceLeft = true;
         }
 
@@ -225,8 +226,7 @@ namespace Dog
             Vector3 currentPosition = transform.position;
             float distanceMoved = Vector3.Distance(currentPosition, lastPosition);
             
-            if (_actionManager.Crouching) _isMoving = distanceMoved > 0.005f;
-            else _isMoving = distanceMoved > 0.005f;
+            _isMoving = distanceMoved > 0.0005f;
             
             lastPosition = currentPosition; 
         }
