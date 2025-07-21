@@ -67,7 +67,7 @@
 			<value>45</value>
 		</property>
 		<property name="triggerCooldown">
-			<value>2600</value>
+			<value>680</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{9f015324-bf08-484a-a711-90a1a3bdc533}" />
@@ -90,6 +90,9 @@
 		</property>
 		<relationship name="automators">
 			<destination>{acf2a683-adf9-4f8f-a33b-fdf1efa8c1d0}</destination>
+		</relationship>
+		<relationship name="modulators">
+			<destination>{4d13c7f8-ad37-476e-bbcb-985e01b46481}</destination>
 		</relationship>
 		<relationship name="effectChain">
 			<destination>{3ab50f00-a224-4600-b08f-5f6523e95cb6}</destination>
@@ -136,6 +139,23 @@
 	<object class="Automator" id="{acf2a683-adf9-4f8f-a33b-fdf1efa8c1d0}">
 		<property name="nameOfPropertyBeingAutomated">
 			<value>volume</value>
+		</property>
+	</object>
+	<object class="ADSRModulator" id="{4d13c7f8-ad37-476e-bbcb-985e01b46481}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="initialValue">
+			<value>-80</value>
+		</property>
+		<property name="attackTime">
+			<value>0</value>
+		</property>
+		<property name="releaseTime">
+			<value>600</value>
+		</property>
+		<property name="finalValue">
+			<value>-80</value>
 		</property>
 	</object>
 	<object class="MixerBusEffectChain" id="{3ab50f00-a224-4600-b08f-5f6523e95cb6}">

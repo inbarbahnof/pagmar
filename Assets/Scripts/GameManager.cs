@@ -40,7 +40,10 @@ public class GameManager : MonoBehaviour
     public int ConnectionState => connectionState;
     public int Chapter => chapter;
     public bool InTutorialCutScene => _inTutorialCutScene;
-    
+
+    // itamar added this - to stop music on final obstalce when girl is dead
+    public bool IsPlayerDead { get; private set; } = false;
+
     void Start()
     {
         checkpointManagerInstance = new CheckpointManager(GetComponent<CheckpointOriginator>());
@@ -119,6 +122,9 @@ public class GameManager : MonoBehaviour
         _playerState.PlayerScared();
         // _dog.HandleDogProtectionChanged(true);
 
+        // itamar added
+        IsPlayerDead = true;
+
         foreach (var ghost in _allLevelGhostst)
         {
             ghost.SetActive(false);
@@ -144,6 +150,9 @@ public class GameManager : MonoBehaviour
         {
             ghost.SetActive(true);
         }
+
+        // itamar added
+        IsPlayerDead = false;
     }
 
     public void PlayVolumeEffect()

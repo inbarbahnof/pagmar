@@ -70,9 +70,9 @@ namespace Interactables
                 _player.UpdatePlayerRunning(true);
                 // AudioManager.Instance.SetFloatParameter(AudioManager.Instance.musicInstance,
                 //     "Ending Run", 2, false);
-                
-                if (!AudioManager.Instance.musicInstance.isValid())
-                    AudioManager.Instance.PlayMusic(FMODEvents.Instance.Chapter4EndMusic);
+
+
+                AudioManager.Instance.PlayMusic(FMODEvents.Instance.Chapter4EndMusic);
 
                 AudioManager.Instance.MuteAmbienceEvent();
                 
@@ -82,6 +82,24 @@ namespace Interactables
                 
                 _playerInitialGhost.Attack(_player.transform);
                 _dogInitialGhost.Attack(_dog.transform);
+
+                // itamar added
+                StartCoroutine(CheckPlayerDeath());
+            }
+        }
+
+        // itamar added
+        private IEnumerator CheckPlayerDeath()
+        {
+            yield return new WaitUntil(() => GameManager.instance.IsPlayerDead);
+            
+            yield return new WaitForSeconds(0.1f);
+
+            _parentGameObject.SetActive(false);
+
+            if (AudioManager.Instance.musicInstance.isValid())
+            {
+                AudioManager.Instance.StopMusic();
             }
         }
 
@@ -96,6 +114,7 @@ namespace Interactables
             {
                 ghost.Attack(_player.transform);
             }
+
         }
 
         public void AttackDog()

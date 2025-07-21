@@ -67,7 +67,9 @@ namespace Ghosts
         {
             hasStarted = false;
 
-            if (_charachterSound.isValid())
+            _charachterSound.getPlaybackState(out PLAYBACK_STATE playbackState);
+
+            if (_charachterSound.isValid() && playbackState == PLAYBACK_STATE.PLAYING)
             {
                 // This tells FMOD to track the transform and Rigidbody
                 FMODUnity.RuntimeManager.AttachInstanceToGameObject(
