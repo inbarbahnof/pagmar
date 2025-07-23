@@ -53,6 +53,8 @@ public class InputManager : MonoBehaviour
     
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (!_canMoveInput) return;
+        
         Vector2 inputVal = context.ReadValue<Vector2>();
         if (inputVal.magnitude < deadzoneThreshold)
             inputVal = Vector2.zero;
@@ -188,6 +190,11 @@ public class InputManager : MonoBehaviour
     public void CrisisMode()
     {
         Time.timeScale = 1;
+        
+        AudioManager.Instance.StopMusic();
+        AudioManager.Instance.StopAllLoopShots();
+        AudioManager.Instance.StopAllSnapshots();
+        
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
     }

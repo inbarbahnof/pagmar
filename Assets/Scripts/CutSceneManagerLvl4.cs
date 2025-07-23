@@ -19,7 +19,16 @@ public class CutSceneManagerLvl4 : MonoBehaviour
     {
         _cutsceneManager = GetComponent<StartCutsceneManager>();
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") || other.CompareTag("Dog"))
+        {
+            MoveToPositions();
+            GameManager.instance.Chapter5();
+        }
+    }
+
     public void MoveToPositions()
     {
         _cutsceneManager.FreezePLayer();

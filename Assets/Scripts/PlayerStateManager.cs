@@ -14,21 +14,22 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] private float _climbAnimTime = 2f;
     [SerializeField] private float _cantPetAnimTime = 0.8f;
     [SerializeField] private float _dropAnimTime = 0.7f;
-    
+    [SerializeField] private InputManager _inputManager;
+
+
     public enum ThrowState
     {
         Aim,
         Throw,
         End
     };
-    
+
     private PlayerState curState = PlayerState.Idle;
     private PlayerAnimationManager _animationManager;
     private PlayerStealthManager _stealthManager;
     private BaseInteractable _curInteraction;
     private PlayerMove _move;
-    private InputManager _inputManager;
-    
+
     private bool _isCrouching;
     private bool _isAbleToAim;
     private bool _isCalling;
@@ -72,8 +73,6 @@ public class PlayerStateManager : MonoBehaviour
         _stealthManager = GetComponent<PlayerStealthManager>();
         _move = GetComponent<PlayerMove>();
         _computer = new PlayerAnimationComputer();
-        _inputManager = GetComponent<InputManager>();
-        //print(_inputManager);
     }
 
     private void Update()
@@ -106,6 +105,8 @@ public class PlayerStateManager : MonoBehaviour
     public void UpdateSmoothMove(bool move)
     {
         _smoothMoving = move;
+        if (move) _inputManager.PlayerDisableAllInput();
+        else _inputManager.PlayerEnableAllInput();
     }
 
     public void UpdatePlayerSpeed(bool isFast)
