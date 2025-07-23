@@ -636,6 +636,8 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{f8bcdf19-78c0-4182-bbeb-7c7413acabac}">
 		<relationship name="effects">
+			<destination>{751efa8b-ea47-4cf8-a832-f315382292bc}</destination>
+			<destination>{c56d0ede-f8e2-46ef-a268-b4660ed19a84}</destination>
 			<destination>{1f5f4979-53cb-4ab0-a651-5f52681fddc7}</destination>
 		</relationship>
 	</object>
@@ -741,6 +743,28 @@
 			<destination>{a49bcd54-9c19-4c06-8a4b-33a3f4c25c46}</destination>
 			<destination>{20991c46-d9ad-479e-894d-9289d41f0be5}</destination>
 		</relationship>
+	</object>
+	<object class="ThreeEQEffect" id="{751efa8b-ea47-4cf8-a832-f315382292bc}">
+		<property name="lowGain">
+			<value>-14.5</value>
+		</property>
+		<property name="midGain">
+			<value>-8.5</value>
+		</property>
+		<property name="highGain">
+			<value>-2</value>
+		</property>
+		<property name="lowCrossover">
+			<value>500</value>
+		</property>
+		<property name="highCrossover">
+			<value>1500</value>
+		</property>
+	</object>
+	<object class="GainEffect" id="{c56d0ede-f8e2-46ef-a268-b4660ed19a84}">
+		<property name="gain">
+			<value>10</value>
+		</property>
 	</object>
 	<object class="MixerBusFader" id="{1f5f4979-53cb-4ab0-a651-5f52681fddc7}" />
 	<object class="AutomationPoint" id="{69a389a8-1f36-462f-8cc2-31a12b57efda}">
@@ -856,7 +880,7 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>-80</value>
+			<value>-47.5</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{20991c46-d9ad-479e-894d-9289d41f0be5}">
@@ -864,7 +888,7 @@
 			<value>0.97881355932203384</value>
 		</property>
 		<property name="value">
-			<value>-7</value>
+			<value>0</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{65a57c50-5448-40e0-bb81-a5b3519f7588}">
@@ -913,7 +937,7 @@
 			<value>0.9885057471264368</value>
 		</property>
 		<property name="value">
-			<value>3.81469727e-06</value>
+			<value>-6</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{5214a018-12bf-4788-9944-1f2661133ed5}">

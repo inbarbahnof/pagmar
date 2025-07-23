@@ -97,7 +97,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{8064372c-ed5d-40c5-a4a5-d9b469ce1527}">
 		<property name="volume">
-			<value>-10</value>
+			<value>-7</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{ac446c33-346d-4312-b3e1-7a4316e197be}</destination>
@@ -172,6 +172,7 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{ac446c33-346d-4312-b3e1-7a4316e197be}">
 		<relationship name="effects">
+			<destination>{9308c659-7bc6-4376-b03f-cb4b506a163f}</destination>
 			<destination>{57d1c541-06f8-407e-9dc8-cf8dc3b2ee5b}</destination>
 			<destination>{6abf7abb-47e8-4c77-9c60-3ec4b170596d}</destination>
 		</relationship>
@@ -275,6 +276,14 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{1e454f10-216c-4c8b-8d0c-4476cabf19fd}" />
+	<object class="ThreeEQEffect" id="{9308c659-7bc6-4376-b03f-cb4b506a163f}">
+		<property name="lowGain">
+			<value>-4</value>
+		</property>
+		<property name="lowCrossover">
+			<value>540</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{57d1c541-06f8-407e-9dc8-cf8dc3b2ee5b}" />
 	<object class="ProxyEffect" id="{6abf7abb-47e8-4c77-9c60-3ec4b170596d}">
 		<property name="inputFormat">

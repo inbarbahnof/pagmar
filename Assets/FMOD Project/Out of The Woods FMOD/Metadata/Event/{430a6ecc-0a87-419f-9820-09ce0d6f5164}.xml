@@ -96,7 +96,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{4c1637c7-889b-45c8-b2ab-d5dac2be1196}">
 		<property name="volume">
-			<value>-7</value>
+			<value>4</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{f550bd40-5b77-436c-b202-fd37c5c10d15}</destination>
@@ -127,7 +127,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{af10493e-e7e8-4b0a-88ae-cc3bfaa72837}">
 		<property name="volume">
-			<value>-5</value>
+			<value>-10</value>
 		</property>
 		<property name="name">
 			<value>main</value>
@@ -172,6 +172,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{e290cb84-879a-411f-a965-d0206a37a413}">
+		<property name="volume">
+			<value>-8</value>
+		</property>
 		<property name="name">
 			<value>birds?</value>
 		</property>
@@ -215,6 +218,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{f90ff325-3970-4306-939d-fdd1dc49461a}">
+		<property name="volume">
+			<value>-7</value>
+		</property>
 		<property name="name">
 			<value>crows?</value>
 		</property>

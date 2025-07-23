@@ -68,6 +68,9 @@
 		<property name="maximumDistance">
 			<value>60</value>
 		</property>
+		<property name="triggerCooldown">
+			<value>360</value>
+		</property>
 	</object>
 	<object class="MarkerTrack" id="{f943f35b-65f9-49cc-9105-4bebc4ea1312}" />
 	<object class="GroupTrack" id="{95fc57c4-d0c2-4455-be43-25182da2afd9}">
@@ -80,13 +83,16 @@
 	</object>
 	<object class="GroupTrack" id="{b63a7a3e-da36-407f-bb9a-b7f27dd5dffb}">
 		<relationship name="modules">
-			<destination>{d21ebea8-287c-4833-b0dd-e9efc7c7b28b}</destination>
+			<destination>{48ba4951-52cf-41cb-b0b3-0639fd2a4012}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{fe3ee1f5-8cb7-49ee-befa-b4c7e5c6a417}</destination>
 		</relationship>
 	</object>
 	<object class="GroupTrack" id="{e5c018f6-091b-4272-9c70-e2a4abff804e}">
+		<relationship name="modules">
+			<destination>{d21ebea8-287c-4833-b0dd-e9efc7c7b28b}</destination>
+		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{535549eb-788f-4ccf-81ad-77739305e75c}</destination>
 		</relationship>
@@ -95,12 +101,10 @@
 		<relationship name="modules">
 			<destination>{65144710-bc47-4517-ab5d-7ee062ca2f50}</destination>
 			<destination>{d21ebea8-287c-4833-b0dd-e9efc7c7b28b}</destination>
+			<destination>{48ba4951-52cf-41cb-b0b3-0639fd2a4012}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{fe25a4e5-576d-4eb6-9b89-511e9dea08a3}">
-		<property name="volume">
-			<value>-2</value>
-		</property>
 		<relationship name="effectChain">
 			<destination>{1d7eea85-327b-436a-ba41-27a31c8d94db}</destination>
 		</relationship>
@@ -135,9 +139,6 @@
 		<property name="maxVoices">
 			<value>1</value>
 		</property>
-		<property name="playlistMode">
-			<value>1</value>
-		</property>
 		<relationship name="sounds">
 			<destination>{1949d4f3-3c9b-45f5-87d7-f4fd8f26127c}</destination>
 			<destination>{2879309b-b116-481f-9bab-f602acf95fc5}</destination>
@@ -162,18 +163,15 @@
 			<destination>{fe25a4e5-576d-4eb6-9b89-511e9dea08a3}</destination>
 		</relationship>
 	</object>
-	<object class="CommandSound" id="{d21ebea8-287c-4833-b0dd-e9efc7c7b28b}">
+	<object class="CommandSound" id="{48ba4951-52cf-41cb-b0b3-0639fd2a4012}">
 		<property name="length">
 			<value>0.75632653061224486</value>
-		</property>
-		<property name="delayType">
-			<value>0</value>
 		</property>
 		<property name="commandType">
 			<value>1</value>
 		</property>
 		<relationship name="commandTarget">
-			<destination>{41d4475b-7b2d-4530-b5ab-3b5494dacc47}</destination>
+			<destination>{f690fe10-263b-4b3f-bf0d-29487ec0cddb}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{fe3ee1f5-8cb7-49ee-befa-b4c7e5c6a417}">
@@ -190,9 +188,23 @@
 			<destination>{fe25a4e5-576d-4eb6-9b89-511e9dea08a3}</destination>
 		</relationship>
 	</object>
+	<object class="CommandSound" id="{d21ebea8-287c-4833-b0dd-e9efc7c7b28b}">
+		<property name="length">
+			<value>0.75632653061224486</value>
+		</property>
+		<property name="delayType">
+			<value>0</value>
+		</property>
+		<property name="commandType">
+			<value>1</value>
+		</property>
+		<relationship name="commandTarget">
+			<destination>{41d4475b-7b2d-4530-b5ab-3b5494dacc47}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerGroup" id="{535549eb-788f-4ccf-81ad-77739305e75c}">
 		<property name="name">
-			<value>return growling</value>
+			<value>stop sniff</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{1cccba4a-e321-46fe-8536-fc2d0fbd8cfd}</destination>
