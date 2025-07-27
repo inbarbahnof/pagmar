@@ -25,11 +25,7 @@ public class MenuManager : MonoBehaviour
 
     public void OnReset()
     {
-
-        AudioManager.Instance.StopAllSnapshots();
-        AudioManager.Instance.StopMusic();
-        AudioManager.Instance.StopAllLoopShots();
-        SceneManager.LoadScene(0);
+        GameManager.instance.RestartGame();
     }
 
     public void OnCredits()

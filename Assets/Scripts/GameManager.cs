@@ -34,12 +34,14 @@ public class GameManager : MonoBehaviour
     private IObjectFader _fader;
     private DieEffect _ghostieEffect;
     private DieEffect _ghostEffect;
+    private bool _atGameStart;
 
     private Menus _curMenu = Menus.NONE;
     
     public int ConnectionState => connectionState;
     public int Chapter => chapter;
     public bool InTutorialCutScene => _inTutorialCutScene;
+    public bool AtGameStart => _atGameStart;
 
     // itamar added this - to stop music on final obstalce when girl is dead
     public bool IsPlayerDead { get; private set; } = false;
@@ -83,6 +85,7 @@ public class GameManager : MonoBehaviour
         switch (chapter)
         {
             case 0:
+                _atGameStart = true;
                 AudioManager.Instance.PlayMusic(FMODEvents.Instance.Chapter0Music);
                 _inTutorialCutScene = true;
                 break;
@@ -110,6 +113,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         if (_startScreen != null) _startScreen.OnPressStart();
+        _atGameStart = false;
         // AudioManager.Instance.MuteAmbienceEvent();
         PlayMusicAccordingToLevel();
     }
@@ -279,6 +283,10 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        AudioManager.Instance.StopAllSnapshots();
+        AudioManager.Instance.StopMusic();
+        AudioManager.Instance.StopAllLoopShots();
+
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
