@@ -28,8 +28,8 @@ namespace Interactables
         public override void ReachedTarget()
         {
             base.ReachedTarget();
-            SwapToClimb(true);
             DisableBarrier(true);
+            SwapToClimb(true);
             if (_reachedTargetPartical != null) _reachedTargetPartical.Play();
             if (_dogWaitScared != null) _dogWaitScared.PullReachedTarget();
             
@@ -57,6 +57,7 @@ namespace Interactables
         {
             if (climbUpObject)
             {
+                if (colMid != null) colMid.SetActive(true);
                 climbUpObject.gameObject.SetActive(climb);
                 InteractableManager.instance.RemoveInteractable(interactable);
                 InteractableManager.instance.AddInteractableObj(firstClimbInter);

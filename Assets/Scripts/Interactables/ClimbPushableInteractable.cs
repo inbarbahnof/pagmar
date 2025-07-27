@@ -18,6 +18,7 @@ namespace Interactables
             }
             _currentlyInteractable = false;
             _interacting = true;
+            climbPushManager.DisableBarrier();
             
             if (twinTrigger is null && twin is not null) twinTrigger = twin.GetColGO();
             ClimbInteractableManager.instance.Climb(this, playerPos.position, _isClimbing, climbRight);

@@ -4,6 +4,7 @@ namespace Interactables
 {
     public class ClimbPushManager : MonoBehaviour
     {
+        [SerializeField] private GameObject gapCol;
         [SerializeField] private GameObject rightCol;
         [SerializeField] private GameObject leftCol;
         [SerializeField] private Collider2D leftClimbTrigger;
@@ -19,6 +20,12 @@ namespace Interactables
             rightClimbTrigger.enabled = !onLog;
             leftJumpTrigger.enabled = onLog;
             rightJumpTrigger.enabled = onLog;
+            gapCol.SetActive(!onLog);
+        }
+
+        public void DisableBarrier()
+        {
+            gapCol.SetActive(false);
         }
     }
 }
