@@ -70,7 +70,7 @@ public class GhostiesCircleObstacle : Obstacle
         for (int i = 0; i < _food.Length; i++)
         {
             // Reactivate the original food
-            _foodInteractables[i].ResetState(_foodPositions[i], transform);
+            _foodInteractables[i].ResetState(_foodPositions[i], null);
 
             // Also re-enable art & collider
             _foodInteractables[i].GetComponent<Collider2D>().enabled = true;
@@ -83,7 +83,7 @@ public class GhostiesCircleObstacle : Obstacle
             ghostie.ResetMovement();
         }
 
-        PickUpInteractableManager.instance.DropObject();
+        PickUpInteractableManager.instance.DropObject(_player.transform.position);
         PushInteractableManager.instance.StopPush();
 
         _pushObs.ResetObstacle();

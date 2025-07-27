@@ -13,7 +13,7 @@ namespace Interactables
         [SerializeField] private Animator _shadow;
         
         private bool isPickedUp = false;
-        private Transform originalParent;
+        protected Transform originalParent;
         
         public bool IsPickedUp => isPickedUp;
 

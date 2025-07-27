@@ -80,7 +80,7 @@ namespace Interactables
         {
             StopAllCoroutines();
             transform.position = resetPosition;
-            transform.SetParent(parent);
+            transform.SetParent(parent ?? originalParent);
     
             _isThrowing = false;
             typeof(ThrowablePickUpInteractable)
@@ -114,6 +114,7 @@ namespace Interactables
             }
 
             transform.position = input.endPoint;
+            transform.SetParent(originalParent);
             _isThrowing = false;
             transform.localScale = _initialLocalScale;
             

@@ -202,6 +202,7 @@ public class PlayerStateManager : MonoBehaviour
     public void OnFinishedInteraction(BaseInteractable interactable = null)
     {
         SetState(PlayerState.Idle);
+        if (interactable is ThrowablePickUpInteractable) UpdateThrowState(ThrowState.End);
     }
 
     public void StopIdle()
@@ -388,6 +389,7 @@ public class PlayerStateManager : MonoBehaviour
                     UpdatePickedUp(false);
                     AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPickUp);
                 }
+                _throwing = false;
                 break;
         }
     }

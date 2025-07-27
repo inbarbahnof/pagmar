@@ -90,9 +90,9 @@ namespace Interactables
             }
         }
 
-        public void DropObject()
+        public void DropObject(Vector2 pos)
         {
-            if (_curPickUp != null) _curPickUp.DropObject(Vector2.zero);
+            if (_curPickUp != null) _curPickUp.DropObject(pos);
         }
         
         public void StopInteractPress(ThrowablePickUpInteractable throwableObj)

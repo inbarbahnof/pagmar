@@ -58,7 +58,7 @@ namespace Interactables
 
         public override void ResetObstacle()
         {
-            PickUpInteractableManager.instance.DropObject();
+            PickUpInteractableManager.instance.DropObject(_player.transform.position);
             
             // reset sticks positions
             for (int i = 0; i < _stickPositions.Length; i++)

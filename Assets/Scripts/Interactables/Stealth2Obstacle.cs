@@ -47,7 +47,7 @@ namespace Interactables
 
         public override void ResetObstacle()
         {
-            PickUpInteractableManager.instance.DropObject();
+            PickUpInteractableManager.instance.DropObject(_player.transform.position);
             
             // reset targets
             for (int i = 1; i < _targets.Length; i++)
