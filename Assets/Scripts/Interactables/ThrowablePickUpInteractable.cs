@@ -23,16 +23,15 @@ namespace Interactables
         public ThrowInput CurThrowInput => _curInput;
         public bool IsThrowing => _isThrowing;
         public event Action<Transform> OnThrowComplete;
-
+        
         private void Awake()
         {
             _initialLocalScale = transform.localScale;
         }
-        
+
         public void Throw(ThrowInput input)
         {
             if (_isThrowing) return;
-
             _curInput = input;
             StartCoroutine(ThrowCoroutine(input));
         }
@@ -102,12 +101,13 @@ namespace Interactables
             // Recalculate control point (identical to OnAim)
             Vector2 controlPoint = (input.startPoint + input.endPoint) * 0.5f;
             controlPoint.y += input.arcHeight;
-
+            //print("og pos: " + input.startPoint);
             while (elapsed < duration)
             {
+                //print("pos: " + transform.position + transform.parent);
                 float t = elapsed / duration;
                 Vector2 pos = TrajectoryEvaluator.Evaluate(t, input.startPoint, input.endPoint, controlPoint);
-            
+                
                 transform.position = pos;
                 elapsed += Time.deltaTime;
                 yield return null;

@@ -38,7 +38,6 @@ namespace Interactables
             transform.SetParent(parent);
             transform.DOLocalMove(Vector3.zero, 0.08f)
                 .SetEase(Ease.OutQuad);
-            
             _shadow.SetTrigger("out");
             
             _sprite.sortingOrder = 4;

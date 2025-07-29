@@ -266,10 +266,11 @@ public class PlayerAnimationManager : MonoBehaviour
         if (_curAnim != anim)
         {
             TrackEntry entry = null;
-            // print("switching from animation " + _curAnim +" to animation " + animation);
+            //print("switching from animation " + _curAnim +" to animation " + anim);
             switch (anim)
             {
                 case PlayerAnimation.Idle:
+                    //print("idle");
                     entry = spineAnimationState.SetAnimation(0, idleAnimName, true);
                     if (entry != null) entry.TimeScale = idleAnimSpeed;
                     break;
@@ -286,6 +287,7 @@ public class PlayerAnimationManager : MonoBehaviour
                     if (entry != null) entry.TimeScale = pullAnimSpeed;
                     break;
                 case PlayerAnimation.PickUp:
+                    //print("pick up");
                     _isHolding = !_isHolding;
                     _holdingHand.SetActive(_isHolding);
                     entry = spineAnimationState.SetAnimation(0, pickUpAnimName, false);
@@ -313,14 +315,15 @@ public class PlayerAnimationManager : MonoBehaviour
                     if (entry != null) entry.TimeScale = crouchWalkAnimSpeed;
                     break;
                 case PlayerAnimation.Aim:
+                    //print("aim");
                     _holdingHand.SetActive(false);
                     entry = spineAnimationState.SetAnimation(0, aimAnimName, true);
                     if (entry != null) entry.TimeScale = aimAnimSpeed;
                     break;
                 case PlayerAnimation.Throw:
+                    //print("throw");
                     _holdingHand.SetActive(false);
                     _isHolding = false;
-                    
                     entry = spineAnimationState.SetAnimation(0, throwAnimName, false);
                     spineAnimationState.AddAnimation(0, idleAnimName, true, 0);
                     if (entry != null) entry.TimeScale = throwAnimSpeed;

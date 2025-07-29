@@ -104,10 +104,10 @@ namespace Interactables
                 TargetGenerator.instance.SetStickTarget(throwableObj.GetComponent<Target>());
                 _playerStateManager.UpdateThrowState(PlayerStateManager.ThrowState.Throw);
             }
+            else _playerStateManager.UpdateThrowState(PlayerStateManager.ThrowState.End);
             throwableObj.DropObject(Vector2.zero);
             _isAbleToAim = false;
             _playerStateManager.UpdateAimAbility();
-            _playerStateManager.UpdateThrowState(PlayerStateManager.ThrowState.End);
             aimControl.HideTrajectory();
         }
     }

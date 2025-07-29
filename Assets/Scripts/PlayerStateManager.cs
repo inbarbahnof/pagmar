@@ -21,7 +21,8 @@ public class PlayerStateManager : MonoBehaviour
     {
         Aim,
         Throw,
-        End
+        End,
+        Drop
     };
 
     private PlayerState curState = PlayerState.Idle;
@@ -185,6 +186,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         yield return new WaitForSeconds(_throwAnimTime);
         _throwing = false;
+        UpdateThrowState(ThrowState.End);
     }
 
     private IEnumerator WaitForPickUpAnim()
@@ -201,8 +203,8 @@ public class PlayerStateManager : MonoBehaviour
 
     public void OnFinishedInteraction(BaseInteractable interactable = null)
     {
-        SetState(PlayerState.Idle);
-        if (interactable is ThrowablePickUpInteractable) UpdateThrowState(ThrowState.End);
+        if (interactable is ThrowablePickUpInteractable) UpdateThrowState(ThrowState.Drop);
+        else SetState(PlayerState.Idle);
     }
 
     public void StopIdle()
@@ -371,6 +373,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public void UpdateThrowState(ThrowState state)
     {
+        //print("state: " + state);
         switch (state)
         {
             case (ThrowState.Aim):
@@ -382,14 +385,23 @@ public class PlayerStateManager : MonoBehaviour
                 StartCoroutine(WaitForThrowingAnim());
                 break;
             case (ThrowState.End):
-                StopIdle();
-                ResumeMovement();
                 if (!_throwing)
                 {
-                    UpdatePickedUp(false);
-                    AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPickUp);
+                    StopIdle();
+                    ResumeMovement();
                 }
                 _throwing = false;
+                break;
+            case ThrowState.Drop:
+                //print(_throwing);
+                if (!_throwing)
+                {
+                    StopIdle();
+                    ResumeMovement();
+                    UpdatePickedUp(false);
+                    AudioManager.Instance.PlayOneShot(FMODEvents.Instance.PlayerPickUp);
+                    _throwing = false;
+                }
                 break;
         }
     }

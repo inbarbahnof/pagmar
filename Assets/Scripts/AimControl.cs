@@ -9,6 +9,7 @@ public class AimControl : MonoBehaviour
     [SerializeField] private float throwDistance = 5f;
     [SerializeField] private float arcHeight = 2.5f;
     [SerializeField] private float targetRadius = 1f;
+    [SerializeField] private float holdUpDistXY = 0.29f;
     
     private NavMeshHit _navMeshHit;
     private GameObject _curTarget;
@@ -77,6 +78,8 @@ public class AimControl : MonoBehaviour
             UpdateTarget(true);
         }
         startPoint = transform.position;
+        startPoint.y += holdUpDistXY;
+        startPoint.x -= holdUpDistXY;
         // _endPoint = startPoint + input.normalized * throwDistance;
         
         float maxThrowDistance = throwDistance; // keeps using serialized value as *max*
