@@ -302,19 +302,7 @@ MonoBehaviour:
     m_ActionId: 61bc7c29-c4b9-4192-8b34-faa6281ed6d0
     m_ActionName: 'UI/Menu[/Keyboard/escape]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7531407140655005662}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: CrisisMode
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
     m_ActionId: f949b67c-930a-442e-98c7-fdece464a639
     m_ActionName: 'Player/Crisis[/XInputControllerWindows/leftShoulder,/Keyboard/rightBracket]'
   m_NeverAutoSwitchControlSchemes: 0
@@ -446,6 +434,7 @@ MonoBehaviour:
   throwDistance: 5
   arcHeight: 2.5
   targetRadius: 1
+  holdUpDistXY: 0.29
   aimSmoothSpeed: 10
 --- !u!114 &1930956038802629493
 MonoBehaviour:

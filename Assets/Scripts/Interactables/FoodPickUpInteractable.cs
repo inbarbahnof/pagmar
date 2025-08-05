@@ -39,7 +39,7 @@ namespace Interactables
         private IEnumerator WaitToTransformScale()
         {
             yield return new WaitForSeconds(0.1f);
-            OnDroppedOnWalkableSurface?.Invoke(this);
+            if (IsWalkable(transform.position)) OnDroppedOnWalkableSurface?.Invoke(this);
             if (transform.localScale.x < 0)
             {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
