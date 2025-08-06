@@ -267,6 +267,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         _stopSad = true;
         _move.SetCanMove(false);
+        _inputManager.PlayerDisableAllInput();
         _move.UpdateMoveInput(Vector2.zero);
 
         StartCoroutine(WaitToStopSad());

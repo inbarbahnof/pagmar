@@ -1,5 +1,6 @@
 using System;
 using Audio.FMOD;
+using Dog;
 using FMOD.Studio;
 using UnityEngine;
 
@@ -14,16 +15,19 @@ public class CutSceneManagerLvl4 : MonoBehaviour
     private bool _waiting;
 
     private EventInstance _runningMusic;
+    private DogActionManager _dogAction;
 
     private void Start()
     {
         _cutsceneManager = GetComponent<StartCutsceneManager>();
+        _dogAction = _dog.GetComponent<DogActionManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") || other.CompareTag("Dog"))
         {
+            _dogAction.ChangeCrouching(false);
             MoveToPositions();
             GameManager.instance.Chapter5();
         }
